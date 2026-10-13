@@ -16,5 +16,5 @@ Publishing a new version: push to GitHub, then deploy the one-line `index.ts`
 (`import "https://raw.githubusercontent.com/emiratic2007-gif/hostio-server/<commit>/edge/hostio.js";`)
 with JWT verification off. The code itself checks Meta signatures and owner logins.
 
-Websites (dashboard, /r/{slug}) are static files in `public/` on Cloudflare Pages. `functions/` forwards
+Websites (dashboard, /r/{slug}) are static files in `public/` on Cloudflare (Worker "hostio-server", see wrangler.jsonc). `cloudflare/worker.js` forwards
 `/api/*` and `/status` to this server, so pages keep using relative `/api/...` addresses.

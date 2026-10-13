@@ -1,9 +1,9 @@
 // /status?kljuc=… : readable health page for every part of Hostio.
-import { forward } from "../cloudflare/server.js";
+import { forward } from "./server.js";
 
 const esc = (t) => String(t ?? "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 
-export async function onRequest({ request }) {
+export async function statusPage(request) {
   const res = await forward(request, "/status");
   const data = await res.json().catch(() => ({}));
   const rows = data.status || [];
