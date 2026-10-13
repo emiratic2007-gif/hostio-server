@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Hostio · Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+/* Hostio dashboard: one column, calm list of appointments grouped by day; clients in a second tab. */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#0f172a; --muted:#5b6474; --line:#e3e8ef; --soft:#eef2f7;
+  --green:#7ed957; --green-ink:#14361a; --green-soft:#ecf9e6; --navy:#0f172a; --navy-ink:#ffffff;
+  --danger:#c0283b; --danger-soft:#fdecee; --warn-soft:#fff6e0; --warn-ink:#7a5200;
+  --font:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0b1120; --surface:#131b2e; --ink:#e8edf5; --muted:#97a2b6; --line:#24304a; --soft:#1a2440;
+  --green-soft:#16301b; --navy:#e8edf5; --navy-ink:#0b1120; --danger:#ff7b8b; --danger-soft:#3a1820; --warn-soft:#3a2e12; --warn-ink:#f5d58a; color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.logo{font-weight:800;letter-spacing:-.045em;line-height:1}
+.logo i{font-style:normal;color:var(--green)}
+.muted{color:var(--muted)}
+.btn{border:0;border-radius:999px;font-weight:700;font-size:.9rem;padding:11px 18px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.g{background:var(--green);color:var(--green-ink)}
+.btn.n{background:var(--navy);color:var(--navy-ink)}
+.btn.o{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.d{background:var(--danger-soft);color:var(--danger)}
+.btn.sm{padding:7px 13px;font-size:.8rem}
+.btn:disabled{opacity:.55;cursor:default}
+input.field{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;outline:none}
+input.field:focus{border-color:var(--green);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 25%,transparent)}
+
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.login-card{width:100%;max-width:380px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 24px;display:flex;flex-direction:column;gap:14px}
+.login-card .logo{font-size:2.2rem;margin-bottom:4px}
+.login-card h1{font-size:1.15rem;margin:0;font-weight:700}
+.login-card label{font-size:.8rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.err{color:var(--danger);font-size:.85rem;font-weight:500;min-height:1.2em}
+
+/* app */
+#app{max-width:880px;margin:0 auto;padding:14px 16px 60px;display:flex;flex-direction:column;gap:14px}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+header .logo{font-size:1.7rem}
+.who{display:flex;align-items:center;gap:8px;min-width:0}
+.biz{font-weight:600;font-size:.85rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.demo{background:var(--warn-soft);color:var(--warn-ink);border-radius:12px;padding:9px 14px;font-size:.85rem;font-weight:500}
+nav{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+nav button{flex:1;border:0;background:transparent;border-radius:999px;padding:10px;font-weight:600;font-size:.9rem;color:var(--muted)}
+nav button[aria-selected="true"]{background:var(--navy);color:var(--navy-ink)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;min-width:0}
+.stat b{display:block;font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted);font-weight:500}
+.stat.hl{background:var(--green-soft);border-color:transparent}
+.tools{display:flex;flex-direction:column;gap:10px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:.85rem;font-weight:600;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--navy-ink)}
+.search{position:relative}
+.search input{padding-left:40px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--muted)}
+
+.day{display:flex;flex-direction:column;gap:8px}
+.day h2{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:8px 4px 0;display:flex;justify-content:space-between}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.appt{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px 14px}
+.appt+.appt{border-top:1px solid var(--line)}
+.time{font-weight:700;font-variant-numeric:tabular-nums;font-size:.95rem;line-height:1.25}
+.time small{display:block;font-weight:500;color:var(--muted);font-size:.75rem}
+.who2{min-width:0}
+.name{font-weight:600;background:none;border:0;padding:0;text-align:left;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+button.name:hover{text-decoration:underline}
+.meta{font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 10px}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;border-radius:999px;padding:2px 8px;vertical-align:1px;margin-left:6px}
+.tag.wa{background:var(--green-soft);color:var(--ink)}
+.tag.man{background:var(--soft);color:var(--muted)}
+.tag.x{background:var(--danger-soft);color:var(--danger)}
+.appt.cancelled .name,.appt.cancelled .time{text-decoration:line-through;color:var(--muted)}
+.appt.past{opacity:.7}
+.confirm{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.empty{text-align:center;padding:40px 16px;color:var(--muted)}
+.empty b{display:block;color:var(--ink);font-size:1rem;margin-bottom:4px}
+
+.client{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;width:100%;background:none;border:0;text-align:left}
+.client+.client{border-top:1px solid var(--line)}
+.client:hover{background:var(--soft)}
+.av{width:44px;height:44px;border-radius:50%;background:var(--green-soft);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.count{font-size:.75rem;color:var(--muted);text-align:right;white-space:nowrap}
+.count b{display:block;color:var(--ink);font-size:1rem}
+
+/* client panel */
+.overlay{position:fixed;inset:0;background:rgba(10,16,30,.45);display:flex;justify-content:flex-end;z-index:20}
+.panel{background:var(--bg);width:min(520px,100%);height:100%;overflow-y:auto;padding:16px 16px calc(30px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;padding-top:calc(16px + env(safe-area-inset-top,0px))}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.panel-head h2{margin:0;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.close{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:40px;height:40px;font-size:1.2rem;flex:0 0 auto}
+.info{padding:6px 16px}
+.info div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;font-size:.9rem}
+.info div+div{border-top:1px solid var(--line)}
+.info span{color:var(--muted)}
+.info b{font-weight:600;text-align:right;word-break:break-word}
+.sec{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:6px 4px 0}
+.chat{display:flex;flex-direction:column;gap:6px;padding:14px}
+.bub{max-width:85%;padding:8px 12px;border-radius:16px;font-size:.88rem;white-space:pre-wrap;word-wrap:break-word}
+.bub.c{align-self:flex-start;background:var(--soft);border-bottom-left-radius:5px}
+.bub.h{align-self:flex-end;background:var(--green-soft);border-bottom-right-radius:5px}
+.bub small{display:block;font-size:.68rem;color:var(--muted);margin-top:2px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--navy);color:var(--navy-ink);padding:12px 18px;border-radius:14px;font-size:.88rem;font-weight:500;max-width:calc(100% - 32px);z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.refresh{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--muted);padding:0 4px}
+.refresh button{background:none;border:0;color:var(--muted);font-weight:600;text-decoration:underline;padding:4px}
+@media (max-width:480px){
+  .appt{grid-template-columns:62px minmax(0,1fr);row-gap:8px}
+  .appt .confirm,.appt>.btn{grid-column:2;justify-content:flex-start;justify-self:start}
+  .stat b{font-size:1.35rem}
+}
+@media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{transform:translate(-50%,10px);opacity:0}}}
+</style>
+</head>
+<body>
+
+<section id="login" hidden>
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="logo">host<i>io.</i></div>
+    <h1>Prijava u dashboard</h1>
+    <p class="muted" style="margin:0;font-size:.9rem">Pregled rezervacija koje Hostio zakazuje za Vaš biznis.</p>
+    <label>Email<input class="field" id="email" type="email" autocomplete="username" required></label>
+    <label>Lozinka<input class="field" id="password" type="password" autocomplete="current-password" required></label>
+    <div class="err" id="loginErr" role="alert"></div>
+    <button class="btn g" id="loginBtn" type="submit">Prijavi se</button>
+  </form>
+</section>
+
+<main id="app" hidden>
+  <header>
+    <div class="logo">host<i>io.</i></div>
+    <div class="who"><span class="biz" id="bizName"></span><button class="btn o sm" id="logout" type="button">Odjava</button></div>
+  </header>
+  <div class="demo" id="demoNote" hidden>Ovo je primjer s izmišljenim podacima. Pravi podaci se vide nakon prijave.</div>
+  <nav role="tablist">
+    <button role="tab" id="tabA" aria-selected="true" type="button">Termini</button>
+    <button role="tab" id="tabK" aria-selected="false" type="button">Klijenti</button>
+  </nav>
+
+  <div id="viewA" style="display:flex;flex-direction:column;gap:14px">
+    <div class="stats">
+      <div class="stat hl"><b id="sToday">0</b><span>termina danas</span></div>
+      <div class="stat"><b id="sWeek">0</b><span>narednih 7 dana</span></div>
+      <div class="stat"><b id="sNew">0</b><span>novih danas</span></div>
+    </div>
+    <div class="tools">
+      <div class="chips" id="filters">
+        <button class="chip" data-f="danas" aria-pressed="true" type="button">Danas</button>
+        <button class="chip" data-f="sutra" aria-pressed="false" type="button">Sutra</button>
+        <button class="chip" data-f="sedmica" aria-pressed="false" type="button">Narednih 7 dana</button>
+        <button class="chip" data-f="buduci" aria-pressed="false" type="button">Svi budući</button>
+        <button class="chip" data-f="prosli" aria-pressed="false" type="button">Prošli</button>
+        <button class="chip" data-f="otkazani" aria-pressed="false" type="button">Otkazani</button>
+      </div>
+      <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="field" id="qA" type="search" placeholder="Traži po imenu, broju ili usluzi" autocomplete="off"></div>
+    </div>
+    <div id="listA" style="display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+
+  <div id="viewK" hidden style="flex-direction:column;gap:14px">
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input class="field" id="qK" type="search" placeholder="Traži klijenta po imenu ili broju" autocomplete="off"></div>
+    <div class="card" id="listK"></div>
+  </div>
+
+  <div class="refresh"><span id="updated"></span><button id="reload" type="button">Osvježi</button></div>
+</main>
+
+<div class="overlay" id="overlay" hidden><aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="pName"></aside></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const DEMO = new URLSearchParams(location.search).has("demo");
+const $ = (id) => document.getElementById(id);
+const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const DAYS = ["nedjelja", "ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota"];
+const DSHORT = ["ned", "pon", "uto", "sri", "čet", "pet", "sub"];
+let TZ = "Europe/Sarajevo", data = { termini: [] }, filter = "danas", sess = null;
+
+// ---------- time helpers (always in the business time zone) ----------
+function parts(iso) {
+  const f = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short" });
+  const p = Object.fromEntries(f.formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  const key = `${p.year}-${p.month}-${p.day}`;
+  const wd = new Date(Date.UTC(+p.year, +p.month - 1, +p.day)).getUTCDay();
+  return { key, wd, d: +p.day, m: +p.month, hm: `${p.hour}:${p.minute}` };
+}
+const todayKey = () => parts(new Date().toISOString()).key;
+const addDays = (key, n) => { const [y, m, d] = key.split("-").map(Number); const x = new Date(Date.UTC(y, m - 1, d + n)); return x.toISOString().slice(0, 10); };
+const dayLabel = (key) => { const t = todayKey(); const [y, m, d] = key.split("-").map(Number); const wd = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  const base = `${DAYS[wd]} ${d}.${m}.`; return key === t ? "Danas · " + base : key === addDays(t, 1) ? "Sutra · " + base : key === addDays(t, -1) ? "Jučer · " + base : base; };
+const shortWhen = (iso) => { const p = parts(iso); const t = todayKey(); return (p.key === t ? "danas" : p.key === addDays(t, 1) ? "sutra" : `${DSHORT[p.wd]} ${p.d}.${p.m}.`) + " u " + p.hm; };
+const fmtPhone = (wa) => wa ? "+" + wa.replace(/^(\d{3})(\d{2})(\d{3})(\d+)$/, "$1 $2 $3 $4") : "";
+const initials = (n) => (n || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+const clientKey = (b) => b.wa_phone || "t" + String(b.customer_phone || "").replace(/\D/g, "") || "n" + (b.customer_name || "").toLowerCase();
+
+// ---------- session & API ----------
+function saveSess(s) { sess = s; try { s ? localStorage.setItem("hostio_sess", JSON.stringify(s)) : localStorage.removeItem("hostio_sess"); } catch (e) {} }
+function loadSess() { try { return JSON.parse(localStorage.getItem("hostio_sess")); } catch (e) { return null; } }
+async function api(path, opts = {}) {
+  if (sess && sess.expires_at - Date.now() < 60000) {
+    const r = await fetch("/api/osvjezi", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ refresh_token: sess.refresh_token }) });
+    if (r.ok) saveSess(await r.json()); else { logout("Prijava je istekla. Prijavite se ponovo."); throw new Error("auth"); }
+  }
+  const r = await fetch("/api/" + path, { ...opts, headers: { "content-type": "application/json", ...(sess ? { authorization: "Bearer " + sess.access_token } : {}) } });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 401) { logout(d.greska); throw new Error("auth"); }
+  if (!r.ok) throw new Error(d.greska || "Greška. Pokušajte ponovo.");
+  return d;
+}
+
+// ---------- login ----------
+$("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = $("email").value.trim(), lozinka = $("password").value;
+  if (!email || !lozinka) { $("loginErr").textContent = "Upišite email i lozinku."; return; }
+  $("loginBtn").disabled = true; $("loginBtn").textContent = "Prijava…"; $("loginErr").textContent = "";
+  try {
+    const r = await fetch("/api/prijava", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, lozinka }) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.greska || "Prijava nije uspjela.");
+    saveSess(d); $("password").value = ""; await start();
+  } catch (err) { $("loginErr").textContent = err.message; }
+  finally { $("loginBtn").disabled = false; $("loginBtn").textContent = "Prijavi se"; }
+});
+["email", "password"].forEach((id) => $(id).addEventListener("input", () => { $("loginErr").textContent = ""; }));
+function logout(msg) { saveSess(null); $("app").hidden = true; $("login").hidden = false; closePanel(); if (msg) $("loginErr").textContent = msg; }
+$("logout").onclick = () => { if (DEMO) { location.href = location.pathname; return; } logout(); };
+
+// ---------- data ----------
+async function load(silent) {
+  try {
+    if (DEMO) data = demoData(); else data = await api("podaci");
+    TZ = data.biznis.tz || TZ;
+    $("bizName").textContent = data.biznis.naziv;
+    document.title = "Hostio · " + data.biznis.naziv;
+    $("updated").textContent = "Ažurirano u " + parts(new Date().toISOString()).hm;
+    render();
+  } catch (e) { if (e.message !== "auth" && !silent) toast(e.message); }
+}
+async function start() { $("login").hidden = true; $("app").hidden = false; $("demoNote").hidden = !DEMO; await load(); }
+$("reload").onclick = () => load();
+setInterval(() => { if (!document.hidden && !$("app").hidden) load(true); }, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !$("app").hidden) load(true); });
+
+// ---------- tabs & filters ----------
+$("tabA").onclick = () => tab("A"); $("tabK").onclick = () => tab("K");
+function tab(t) { $("tabA").setAttribute("aria-selected", t === "A"); $("tabK").setAttribute("aria-selected", t === "K");
+  $("viewA").hidden = t !== "A"; $("viewA").style.display = t === "A" ? "flex" : "none"; $("viewK").hidden = t !== "K"; $("viewK").style.display = t === "K" ? "flex" : "none"; render(); }
+$("filters").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b) return; filter = b.dataset.f;
+  document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === b)); render(); });
+$("qA").addEventListener("input", render); $("qK").addEventListener("input", render);
+
+function render() { renderStats(); renderAppts(); renderClients(); }
+function renderStats() {
+  const t = todayKey(), wk = addDays(t, 6);
+  const act = data.termini.filter((b) => b.status === "aktivno");
+  $("sToday").textContent = act.filter((b) => parts(b.start_at).key === t).length;
+  $("sWeek").textContent = act.filter((b) => { const k = parts(b.start_at).key; return k >= t && k <= wk; }).length;
+  $("sNew").textContent = data.termini.filter((b) => b.created_at && parts(b.created_at).key === t).length;
+}
+function matches(b, q) { if (!q) return true; q = q.toLowerCase();
+  return [b.customer_name, b.customer_phone, b.wa_phone, b.service_name].some((v) => String(v || "").toLowerCase().includes(q) || String(v || "").replace(/\D/g, "").includes(q.replace(/\D/g, "") || "§")); }
+
+function renderAppts() {
+  const t = todayKey(), now = Date.now(), q = $("qA").value.trim();
+  let list = data.termini.filter((b) => matches(b, q));
+  const k = (b) => parts(b.start_at).key;
+  if (filter === "danas") list = list.filter((b) => b.status === "aktivno" && k(b) === t);
+  if (filter === "sutra") list = list.filter((b) => b.status === "aktivno" && k(b) === addDays(t, 1));
+  if (filter === "sedmica") list = list.filter((b) => b.status === "aktivno" && k(b) >= t && k(b) <= addDays(t, 6));
+  if (filter === "buduci") list = list.filter((b) => b.status === "aktivno" && new Date(b.end_at) >= now);
+  if (filter === "prosli") list = list.filter((b) => b.status === "aktivno" && new Date(b.end_at) < now).reverse();
+  if (filter === "otkazani") list = list.filter((b) => b.status !== "aktivno").reverse();
+  const box = $("listA"); box.textContent = "";
+  if (!list.length) {
+    const msg = { danas: "Danas nema zakazanih termina.", sutra: "Za sutra još nema termina.", sedmica: "Nema termina u narednih 7 dana.", buduci: "Nema budućih termina.", prosli: "Nema prošlih termina.", otkazani: "Nema otkazanih termina." }[filter];
+    box.innerHTML = `<div class="card empty"><b>${q ? "Ništa nije pronađeno." : msg}</b>${q ? "Pokušajte s drugim imenom ili brojem." : "Novi termini se ovdje pojave čim ih Hostio zakaže."}</div>`;
+    return;
+  }
+  const groups = new Map();
+  for (const b of list) { const key = k(b); if (!groups.has(key)) groups.set(key, []); groups.get(key).push(b); }
+  for (const [key, items] of groups) {
+    const day = document.createElement("div"); day.className = "day";
+    day.innerHTML = `<h2><span>${esc(dayLabel(key))}</span><span>${items.length} ${items.length === 1 ? "termin" : "termina"}</span></h2>`;
+    const card = document.createElement("div"); card.className = "card";
+    items.forEach((b) => card.append(apptRow(b)));
+    day.append(card); box.append(day);
+  }
+}
+function apptRow(b, inPanel) {
+  const s = parts(b.start_at), e = parts(b.end_at), past = new Date(b.end_at) < Date.now(), cancelled = b.status !== "aktivno";
+  const row = document.createElement("div"); row.className = "appt" + (cancelled ? " cancelled" : past ? " past" : "");
+  const src = b.source === "hostio" ? '<span class="tag wa">WhatsApp</span>' : '<span class="tag man">Ručno</span>';
+  row.innerHTML = `<div class="time">${s.hm}<small>${inPanel ? esc(DSHORT[s.wd] + " " + s.d + "." + s.m + ".") : "do " + e.hm}</small></div>
+    <div class="who2">${inPanel
+      ? `<div class="name">${esc(b.service_name)}${cancelled ? '<span class="tag x">Otkazan</span>' : ""}</div><div class="meta"><span>${s.hm}–${e.hm}</span>${src}</div>`
+      : `<button class="name" type="button">${esc(b.customer_name || "Bez imena")}${cancelled ? '<span class="tag x">Otkazan</span>' : ""}</button>
+    <div class="meta"><span>${esc(b.service_name)}</span><span>${esc(b.customer_phone || fmtPhone(b.wa_phone))}</span>${src}</div>`}</div>`;
+  if (!inPanel) row.querySelector(".name").onclick = () => openClient(clientKey(b));
+  if (!cancelled && !past) {
+    const btn = document.createElement("button"); btn.className = "btn d sm"; btn.type = "button"; btn.textContent = "Otkaži";
+    btn.onclick = () => askCancel(row, btn, b);
+    row.append(btn);
+  }
+  return row;
+}
+function askCancel(row, btn, b) {
+  const c = document.createElement("div"); c.className = "confirm";
+  c.innerHTML = `<span class="muted" style="font-size:.8rem">Otkazati termin?</span>`;
+  const yes = document.createElement("button"); yes.className = "btn d sm"; yes.type = "button"; yes.textContent = "Da, otkaži";
+  const no = document.createElement("button"); no.className = "btn o sm"; no.type = "button"; no.textContent = "Ne";
+  no.onclick = () => c.replaceWith(btn);
+  yes.onclick = async () => {
+    yes.disabled = no.disabled = true; yes.textContent = "Otkazujem…";
+    try {
+      const r = DEMO ? { otkazano: true, obavijesten: !!b.wa_phone } : await api("otkazi", { method: "POST", body: JSON.stringify({ id: b.id }) });
+      b.status = "otkazano"; b.cancelled_at = new Date().toISOString();
+      toast(r.obavijesten ? "Termin je otkazan. Klijent je obaviješten na WhatsApp." : `Termin je otkazan. Klijent nije automatski obaviješten, javite se na ${b.customer_phone || fmtPhone(b.wa_phone)}.`);
+      render(); if (!$("overlay").hidden) openClient(clientKey(b));
+    } catch (e) { if (e.message !== "auth") { toast(e.message); yes.disabled = no.disabled = false; yes.textContent = "Da, otkaži"; } }
+  };
+  c.append(yes, no); btn.replaceWith(c); yes.focus();
+}
+
+// ---------- clients ----------
+function clients() {
+  const map = new Map();
+  for (const b of data.termini) {
+    const k = clientKey(b); let c = map.get(k);
+    if (!c) { c = { key: k, name: b.customer_name, phone: b.customer_phone, wa: b.wa_phone, items: [] }; map.set(k, c); }
+    c.items.push(b); if (b.customer_name) c.name = b.customer_name; if (b.customer_phone) c.phone = b.customer_phone; if (b.wa_phone) c.wa = b.wa_phone;
+  }
+  const now = Date.now();
+  for (const c of map.values()) {
+    const act = c.items.filter((b) => b.status === "aktivno");
+    c.next = act.filter((b) => new Date(b.end_at) >= now).sort((a, b) => a.start_at.localeCompare(b.start_at))[0];
+    c.last = act.filter((b) => new Date(b.end_at) < now).sort((a, b) => b.start_at.localeCompare(a.start_at))[0];
+    c.total = act.length; c.cancelled = c.items.length - act.length;
+  }
+  return [...map.values()].sort((a, b) => (a.next && b.next) ? a.next.start_at.localeCompare(b.next.start_at) : a.next ? -1 : b.next ? 1 : (b.last?.start_at || "").localeCompare(a.last?.start_at || ""));
+}
+function renderClients() {
+  const q = $("qK").value.trim().toLowerCase(), box = $("listK"); box.textContent = "";
+  const list = clients().filter((c) => !q || (c.name || "").toLowerCase().includes(q) || (c.phone || "").replace(/\D/g, "").includes(q.replace(/\D/g, "") || "§") || (c.wa || "").includes(q.replace(/\D/g, "") || "§"));
+  if (!list.length) { box.innerHTML = `<div class="empty"><b>${q ? "Nijedan klijent nije pronađen." : "Još nema klijenata."}</b>${q ? "Pokušajte s drugim imenom ili brojem." : "Klijenti se pojave nakon prve rezervacije."}</div>`; return; }
+  for (const c of list) {
+    const el = document.createElement("button"); el.className = "client"; el.type = "button";
+    const sub = c.next ? "Sljedeći: " + shortWhen(c.next.start_at) : c.last ? "Zadnji: " + shortWhen(c.last.start_at) : "Samo otkazani termini";
+    el.innerHTML = `<div class="av">${esc(initials(c.name))}</div><div style="min-width:0"><div class="name">${esc(c.name || "Bez imena")}</div>
+      <div class="meta"><span>${esc(c.phone || fmtPhone(c.wa))}</span><span>${esc(sub)}</span></div></div>
+      <div class="count"><b>${c.total}</b>${c.total === 1 ? "termin" : "termina"}</div>`;
+    el.onclick = () => openClient(c.key);
+    box.append(el);
+  }
+}
+async function openClient(key) {
+  const c = clients().find((x) => x.key === key); if (!c) return;
+  const p = $("panel");
+  const up = c.items.filter((b) => b.status === "aktivno" && new Date(b.end_at) >= Date.now()).sort((a, b) => a.start_at.localeCompare(b.start_at));
+  const rest = c.items.filter((b) => !up.includes(b)).sort((a, b) => b.start_at.localeCompare(a.start_at));
+  p.innerHTML = `<div class="panel-head"><div><div class="muted" style="font-size:.8rem;font-weight:600">Klijent</div><h2 id="pName">${esc(c.name || "Bez imena")}</h2></div>
+      <button class="close" id="pClose" type="button" aria-label="Zatvori">×</button></div>
+    <div class="card info">
+      <div><span>Telefon za kontakt</span><b>${esc(c.phone || "–")}</b></div>
+      <div><span>WhatsApp</span><b>${esc(fmtPhone(c.wa) || "–")}</b></div>
+      <div><span>Termina ukupno</span><b>${c.total}${c.cancelled ? ` · ${c.cancelled} otkazan${c.cancelled === 1 ? "" : "o"}` : ""}</b></div>
+      <div><span>Prvi termin</span><b>${esc(shortWhen(c.items.slice().sort((a, b) => a.start_at.localeCompare(b.start_at))[0].start_at))}</b></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn o sm" id="pCopy" type="button">Kopiraj broj</button></div>
+    <div class="sec">Naredni termini</div><div class="card" id="pUp"></div>
+    <div class="sec">Historija</div><div class="card" id="pRest"></div>
+    <div class="sec">WhatsApp razgovor</div><div class="card chat" id="pChat"><span class="muted" style="font-size:.85rem">Učitavam…</span></div>`;
+  const fill = (id, arr, emptyText) => { const box = p.querySelector("#" + id); if (!arr.length) box.innerHTML = `<div class="empty" style="padding:18px">${emptyText}</div>`; arr.forEach((b) => box.append(apptRow(b, true))); };
+  fill("pUp", up, "Nema zakazanih termina."); fill("pRest", rest, "Nema ranijih termina.");
+  p.querySelector("#pClose").onclick = closePanel;
+  p.querySelector("#pCopy").onclick = async () => { const n = c.phone || fmtPhone(c.wa); try { await navigator.clipboard.writeText(n); toast("Broj je kopiran."); } catch (e) { toast(n); } };
+  $("overlay").hidden = false; document.body.style.overflow = "hidden"; p.querySelector("#pClose").focus();
+  const chat = p.querySelector("#pChat");
+  if (!c.wa) { chat.innerHTML = '<span class="muted" style="font-size:.85rem">Ovaj termin je upisan ručno, nema WhatsApp razgovora.</span>'; return; }
+  try {
+    const r = DEMO ? demoChat(c) : await api("razgovor?wa=" + encodeURIComponent(c.wa));
+    if (!r.poruke.length) { chat.innerHTML = '<span class="muted" style="font-size:.85rem">Nema poruka u zadnje vrijeme.</span>'; return; }
+    chat.innerHTML = r.poruke.filter((m) => !m.content.startsWith("[")).map((m) => `<div class="bub ${m.role === "user" ? "c" : "h"}">${esc(m.content)}<small>${m.role === "user" ? "Klijent" : "Hostio"} · ${esc(shortWhen(m.created_at))}</small></div>`).join("");
+  } catch (e) { if (e.message !== "auth") chat.innerHTML = '<span class="muted" style="font-size:.85rem">Razgovor se nije mogao učitati.</span>'; }
+}
+function closePanel() { $("overlay").hidden = true; document.body.style.overflow = ""; }
+$("overlay").addEventListener("click", (e) => { if (e.target === $("overlay")) closePanel(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("overlay").hidden) closePanel(); });
+
+let toastTimer;
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 5000); }
+
+// ---------- demo data (only with ?demo) ----------
+let _demo;
+function demoData() {
+  if (_demo) return _demo;
+  const t = todayKey(), at = (dd, hm) => { const [y, m, d] = addDays(t, dd).split("-").map(Number); const [h, mi] = hm.split(":").map(Number); return new Date(Date.UTC(y, m - 1, d, h - 2, mi)).toISOString(); };
+  const mk = (i, dd, hm, min, name, ph, wa, svc, src = "hostio", status = "aktivno") => ({ id: "demo-" + i, start_at: at(dd, hm), end_at: new Date(new Date(at(dd, hm)).getTime() + min * 6e4).toISOString(), service_name: svc, customer_name: name, customer_phone: ph, wa_phone: wa, source: src, status, created_at: at(i === 5 || i === 9 ? 0 : Math.min(dd, 0) - 1, "08:15") });
+  _demo = { biznis: { naziv: "Salon Lana", tz: "Europe/Sarajevo" }, termini: [
+    mk(1, -6, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"),
+    mk(2, -3, "14:00", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje"),
+    mk(3, -1, "11:30", 45, "Amra Delić", "061 777 210", "38761777210", "žensko šišanje", "hostio", "otkazano"),
+    mk(4, 0, "09:30", 30, "Haris Mehić", "063 120 450", "38763120450", "muško šišanje"),
+    mk(5, 0, "12:00", 45, "Lejla Karić", "061 909 818", "38761909818", "žensko šišanje"),
+    mk(6, 0, "15:30", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje"),
+    mk(7, 1, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"),
+    mk(8, 1, "13:00", 45, "Ajla Softić", "065 300 222", null, "žensko šišanje", "rucno"),
+    mk(9, 3, "11:00", 30, "Emir Hasić", "061 456 789", "38761456789", "muško šišanje"),
+  ] };
+  return _demo;
+}
+function demoChat(c) {
+  return { poruke: [
+    { role: "user", content: "Zdravo, imate li slobodno za " + (c.items[0].service_name) + "?", created_at: c.items[0].created_at },
+    { role: "assistant", content: "Imamo slobodno u 10:00 ili 12:00. Koji termin Vam više odgovara?", created_at: c.items[0].created_at },
+    { role: "user", content: "10 može. " + c.name + " " + c.phone, created_at: c.items[0].created_at },
+    { role: "assistant", content: "Hvala, " + c.name.split(" ")[0] + ". Rezervisali smo Vam termin. Vidimo se!", created_at: c.items[0].created_at },
+  ] };
+}
+
+// ---------- start ----------
+if (DEMO) start();
+else { sess = loadSess(); if (sess && sess.access_token) start(); else $("login").hidden = false; }
+</script>
+</body>
+</html>
