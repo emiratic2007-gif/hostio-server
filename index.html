@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#5f6873">
+<title>Hostio · Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2314181f'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%237ed957'%3Eh.%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+<style>
+/* Hostio dashboard. Soft slate shell, light rounded cards, one dark panel, Hostio green as the only accent (with glow). */
+:root{
+  --shell:#5f6873;        /* page */
+  --shell-2:#6b7480;      /* raised areas on the shell */
+  --card:#c8ced6;         /* light cards */
+  --card-2:#d6dbe1;       /* inputs and pills on cards */
+  --paper:#f4f6f8;        /* highlighted card */
+  --ink:#1b2028;          /* text on light */
+  --ink-2:#4a525d;        /* secondary text on light */
+  --on-shell:#f2f4f6;     /* text on the shell */
+  --on-shell-2:#cdd3da;
+  --dark:#252b34;         /* dark panel */
+  --dark-2:#323944;
+  --green:#7ed957;        /* Hostio */
+  --green-ink:#10260b;
+  --green-soft:#dff3d3;
+  --glow:0 0 0 1px rgba(126,217,87,.35),0 0 24px rgba(126,217,87,.45);
+  --red:#b3261e; --red-soft:#f6dcda;
+  --r-lg:30px; --r-md:22px; --r-sm:14px;
+  --font:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;min-height:100%}
+body{background:var(--shell);color:var(--on-shell);font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:-20vh -20vw auto auto;width:70vw;height:70vh;background:radial-gradient(closest-side,rgba(126,217,87,.22),transparent 70%);pointer-events:none;z-index:0;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-12vw,8vh) scale(1.1)}}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.logo{font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--on-shell);display:inline-flex;align-items:baseline}
+.logo i{font-style:normal;color:var(--green);text-shadow:0 0 18px rgba(126,217,87,.55)}
+
+/* pills & buttons */
+.pill{border:0;border-radius:999px;background:var(--card-2);color:var(--ink);padding:10px 18px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .2s,background .2s}
+.pill:hover{transform:translateY(-1px)}
+.pill.round{width:46px;height:46px;padding:0}
+.pill.glass{background:rgba(255,255,255,.14);color:var(--on-shell);backdrop-filter:blur(8px)}
+.pill.green{background:var(--green);color:var(--green-ink);font-weight:600;box-shadow:var(--glow)}
+.pill.green:hover{box-shadow:0 0 0 1px rgba(126,217,87,.5),0 0 34px rgba(126,217,87,.65)}
+.pill.dark{background:var(--dark);color:#fff}
+.pill.danger{background:var(--red-soft);color:var(--red);font-weight:600}
+.pill.sm{padding:7px 14px;font-size:.82rem}
+.pill:disabled{opacity:.55;cursor:default;transform:none}
+.ico{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+.live{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:500;color:var(--on-shell-2);background:rgba(255,255,255,.1);border-radius:999px;padding:6px 12px 6px 10px}
+.live b{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(126,217,87,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(126,217,87,0)}100%{box-shadow:0 0 0 0 rgba(126,217,87,0)}}
+
+input.field,select.field{width:100%;border:0;background:var(--card-2);color:var(--ink);border-radius:var(--r-sm);padding:12px 14px;outline:none;transition:box-shadow .2s}
+input.field:focus,select.field:focus{box-shadow:var(--glow)}
+select.field{appearance:none;-webkit-appearance:none;cursor:pointer;font-variant-numeric:tabular-nums}
+label.lb{display:flex;flex-direction:column;gap:6px;font-size:.78rem;font-weight:500;color:var(--ink-2);min-width:0}
+
+/* login */
+#login{position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.login{width:100%;max-width:400px;background:var(--card);color:var(--ink);border-radius:var(--r-lg);padding:34px 26px 28px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px rgba(20,24,31,.35)}
+.login .logo{font-size:2.8rem;color:var(--ink);margin-bottom:6px}
+.login h1{font-size:1.9rem;font-weight:300;margin:0;letter-spacing:-.02em}
+.err{color:var(--red);font-size:.85rem;font-weight:500;min-height:1.2em}
+.foot{font-size:.75rem;color:var(--on-shell-2);text-align:center;margin-top:14px}
+.foot b{color:var(--green)}
+
+/* shell */
+#app{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:16px 16px 120px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.top .logo{font-size:1.9rem}
+.top-r{display:flex;align-items:center;gap:8px}
+.tabs{display:flex;gap:6px}
+.tabs .pill{background:rgba(255,255,255,.14);color:var(--on-shell)}
+.tabs .pill[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 4px 16px}
+.head h1{font-size:clamp(2.2rem,6vw,3rem);font-weight:300;letter-spacing:-.03em;margin:0;line-height:1.05}
+.head p{margin:6px 0 0;color:var(--on-shell-2);font-size:.9rem}
+.demo{background:rgba(255,255,255,.14);border-radius:var(--r-sm);padding:10px 16px;font-size:.85rem;margin-bottom:14px}
+
+/* segmented stats like the reference */
+.segs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.seg{display:flex;flex-direction:column;gap:6px;min-width:0}
+.seg span{font-size:.78rem;color:var(--on-shell-2);padding-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg b{height:54px;border-radius:999px;display:flex;align-items:center;padding:0 18px;font-weight:600;font-size:1.15rem;font-variant-numeric:tabular-nums}
+.seg.s1 b{background:var(--dark);color:#fff}
+.seg.s2 b{background:var(--green);color:var(--green-ink);box-shadow:var(--glow);animation:breathe 3.2s ease-in-out infinite}
+.seg.s3 b{background:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 2px,transparent 2px 9px);color:var(--on-shell);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.seg.s4 b{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6);color:var(--on-shell)}
+@keyframes breathe{50%{box-shadow:0 0 0 1px rgba(126,217,87,.5),0 0 38px rgba(126,217,87,.7)}}
+
+.bar{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1 1 auto;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:0;border-radius:999px;background:rgba(255,255,255,.12);color:var(--on-shell);padding:9px 16px;font-size:.85rem;font-weight:500;transition:background .2s,box-shadow .2s}
+.chip[aria-pressed="true"]{background:var(--paper);color:var(--ink)}
+.search{position:relative;flex:1 1 240px}
+.search .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--on-shell-2)}
+.search input{width:100%;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:var(--on-shell);padding:12px 16px 12px 44px;outline:none}
+.search input::placeholder{color:var(--on-shell-2)}
+.search input:focus{box-shadow:var(--glow)}
+
+/* appointment cards */
+.day{margin:22px 4px 10px;display:flex;justify-content:space-between;font-size:.82rem;color:var(--on-shell-2);font-weight:500}
+.day b{color:var(--on-shell);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ap{background:var(--card);color:var(--ink);border-radius:var(--r-lg);padding:18px 20px;display:flex;flex-direction:column;gap:14px;position:relative;transition:transform .2s,box-shadow .25s;animation:rise .35s ease-out both}
+.ap:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(20,24,31,.22)}
+.ap.next{background:var(--paper);box-shadow:var(--glow)}
+.ap.past{opacity:.72}
+.ap.cancel{opacity:.6}
+.ap.cancel .who b{text-decoration:line-through}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.ap-top{display:flex;align-items:center;gap:12px}
+.av{width:46px;height:46px;border-radius:50%;background:var(--dark);color:var(--green);display:grid;place-items:center;font-weight:600;font-size:.9rem;flex:0 0 auto}
+.who{min-width:0;flex:1}
+.who b{display:block;font-weight:500;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;max-width:100%}
+.who span{color:var(--ink-2);font-size:.85rem}
+.badge{font-size:.72rem;font-weight:600;border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--card-2);color:var(--ink-2)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.badge.wa{background:var(--green-soft);color:#2f6b17}
+.badge.wa::before{background:var(--green);box-shadow:0 0 8px var(--green)}
+.badge.x{background:var(--red-soft);color:var(--red)}
+.badge.nx{background:var(--green);color:var(--green-ink);box-shadow:var(--glow)}
+.badge.nx::before{background:var(--green-ink)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.facts div{min-width:0}
+.facts span{display:block;font-size:.72rem;color:var(--ink-2)}
+.facts b{display:block;font-weight:500;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.ap-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:34px}
+.ap-foot small{color:var(--ink-2);font-size:.78rem}
+.confirm{display:flex;gap:6px;align-items:center}
+.empty{background:var(--card);color:var(--ink);border-radius:var(--r-lg);padding:40px 20px;text-align:center}
+.empty b{display:block;font-weight:500;font-size:1.1rem;margin-bottom:4px}
+.empty span{color:var(--ink-2);font-size:.9rem}
+
+/* clients: dark panel like "Session History" */
+.panel-dark{background:var(--dark);color:#fff;border-radius:var(--r-lg);padding:22px 18px 10px}
+.panel-dark .ph{display:flex;justify-content:space-between;align-items:flex-end;padding:0 6px 10px}
+.panel-dark .ph h2{margin:0;font-weight:400;font-size:1.25rem}
+.panel-dark .ph b{font-size:2.6rem;font-weight:300;line-height:1;letter-spacing:-.03em}
+.cl{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;background:none;border:0;padding:12px 8px;border-radius:18px;text-align:left;color:#fff;transition:background .2s}
+.cl:hover{background:var(--dark-2)}
+.cl .av{background:var(--dark-2);color:var(--green);border:1px solid rgba(126,217,87,.35)}
+.cl .n{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl .m{font-size:.8rem;color:#aab3bf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl .c{text-align:right;font-size:.75rem;color:#aab3bf}
+.cl .c b{display:block;font-size:1.1rem;color:#fff;font-weight:500}
+
+/* settings */
+.set{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:860px){.set{grid-template-columns:1fr 1fr}.set .wide{grid-column:1/-1}}
+.box{background:var(--card);color:var(--ink);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.box h3{margin:0;font-weight:400;font-size:1.3rem;letter-spacing:-.01em}
+.box p.h{margin:-8px 0 0;color:var(--ink-2);font-size:.85rem}
+.svc{display:grid;grid-template-columns:minmax(0,1fr) 92px 92px 40px;gap:8px;align-items:end}
+.svc .del{width:40px;height:44px;border:0;border-radius:var(--r-sm);background:transparent;color:var(--ink-2)}
+.svc .del:hover{background:var(--red-soft);color:var(--red)}
+.hrs{display:grid;grid-template-columns:110px 52px minmax(0,130px) minmax(0,130px);gap:10px;align-items:center}
+.hrs .d{font-weight:500}
+.hrs .closed{grid-column:3/5;color:var(--ink-2);font-size:.85rem;padding-left:4px}
+.sw{position:relative;width:48px;height:28px;flex:0 0 auto}
+.sw input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
+.sw i{position:absolute;inset:0;border-radius:999px;background:var(--card-2);transition:background .2s,box-shadow .2s}
+.sw i::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.sw input:checked+i{background:var(--green);box-shadow:var(--glow)}
+.sw input:checked+i::after{transform:translateX(20px)}
+.sw input:focus-visible+i{outline:2px solid var(--ink);outline-offset:2px}
+.offs{display:flex;flex-wrap:wrap;gap:6px}
+.off{display:inline-flex;align-items:center;gap:6px;background:var(--dark);color:#fff;border-radius:999px;padding:6px 6px 6px 14px;font-size:.85rem}
+.off button{width:24px;height:24px;border-radius:50%;border:0;background:var(--dark-2);color:#fff;line-height:1}
+.savebar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:15;display:flex;align-items:center;gap:14px;background:var(--dark);color:#fff;border-radius:999px;padding:8px 8px 8px 20px;box-shadow:0 20px 50px rgba(10,14,20,.4);font-size:.88rem;max-width:calc(100% - 32px)}
+@media (min-width:760px){.savebar{bottom:24px}}
+
+/* bottom nav (mobile) */
+.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:14;display:flex;align-items:center;gap:4px;background:rgba(37,43,52,.92);backdrop-filter:blur(12px);border-radius:999px;padding:6px;box-shadow:0 18px 40px rgba(10,14,20,.35)}
+.bnav button{border:0;background:transparent;color:#aab3bf;border-radius:999px;padding:10px 14px;min-width:76px;font-size:.78rem;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:2px}
+.bnav button[aria-selected="true"]{color:#fff;background:var(--dark-2)}
+.bnav .fab{width:52px;height:52px;padding:0;background:var(--green);color:var(--green-ink);box-shadow:var(--glow);margin:0 4px;justify-content:center;animation:breathe 3.2s ease-in-out infinite}
+@media (min-width:760px){.bnav{display:none}}
+@media (max-width:759px){.tabs,.top .newbtn{display:none}}
+
+/* sheets */
+.ov{position:fixed;inset:0;z-index:30;background:rgba(20,24,31,.5);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center}
+@media (min-width:760px){.ov{align-items:center}}
+.sheet{background:var(--card);color:var(--ink);width:min(560px,100%);max-height:92vh;overflow-y:auto;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px;animation:sheet .25s ease-out}
+@media (min-width:760px){.sheet{border-radius:var(--r-lg)}}
+.sheet>*{flex-shrink:0}
+@keyframes sheet{from{transform:translateY(30px);opacity:0}}
+.sh-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.sh-head h2{margin:0;font-weight:300;font-size:2rem;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+.sh-head small{color:var(--ink-2);font-size:.8rem}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:0;border-radius:999px;background:var(--card-2);color:var(--ink);padding:9px 15px;font-size:.88rem;font-weight:500;transition:box-shadow .2s,background .2s}
+.opt[aria-pressed="true"]{background:var(--green);color:var(--green-ink);box-shadow:var(--glow)}
+.opt small{display:block;font-size:.7rem;font-weight:400;color:inherit;opacity:.75}
+.dates{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 2px}
+.dates::-webkit-scrollbar{display:none}
+.dt{flex:0 0 auto;border:0;border-radius:18px;background:var(--card-2);color:var(--ink);width:58px;padding:8px 0;text-align:center;font-size:.72rem}
+.dt b{display:block;font-size:1.15rem;font-weight:600}
+.dt[aria-pressed="true"]{background:var(--dark);color:#fff;box-shadow:0 0 0 2px var(--green),0 0 18px rgba(126,217,87,.45)}
+.dt:disabled{opacity:.4;cursor:default}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:6px}
+.times .opt{padding:9px 0;font-variant-numeric:tabular-nums}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info{background:var(--paper);border-radius:var(--r-md);padding:4px 16px}
+.info div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-size:.9rem}
+.info div+div{border-top:1px solid var(--card-2)}
+.info span{color:var(--ink-2)}
+.info b{font-weight:500;text-align:right;word-break:break-word}
+.sub{font-size:.8rem;font-weight:600;color:var(--ink-2);margin:4px 2px -6px;text-transform:uppercase;letter-spacing:.06em}
+.mini{background:var(--paper);border-radius:var(--r-md);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mini b{font-weight:500}
+.mini small{display:block;color:var(--ink-2);font-size:.8rem}
+.chat{background:var(--dark);border-radius:var(--r-md);padding:14px;display:flex;flex-direction:column;gap:6px}
+.bub{max-width:85%;padding:9px 13px;border-radius:18px;font-size:.88rem;white-space:pre-wrap;word-wrap:break-word}
+.bub.c{align-self:flex-start;background:var(--dark-2);color:#fff;border-bottom-left-radius:6px}
+.bub.h{align-self:flex-end;background:var(--green);color:var(--green-ink);border-bottom-right-radius:6px}
+.bub small{display:block;font-size:.68rem;opacity:.7;margin-top:2px}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(100px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--paper);color:var(--ink);padding:12px 18px 12px 14px;border-radius:18px;font-size:.88rem;font-weight:500;max-width:calc(100% - 32px);box-shadow:0 18px 40px rgba(10,14,20,.3);display:flex;gap:10px;align-items:center}
+.toast::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);flex:0 0 auto}
+@media (min-width:760px){.toast{bottom:28px}}
+.brand-foot{text-align:center;color:var(--on-shell-2);font-size:.78rem;margin-top:34px}
+.brand-foot b{color:var(--on-shell)}
+.brand-foot i{font-style:normal;color:var(--green)}
+
+@media (max-width:520px){
+  .segs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:minmax(0,1fr) 72px 72px 36px}
+  .hrs{grid-template-columns:86px 50px minmax(0,1fr) minmax(0,1fr);gap:6px}
+  .hrs select.field{padding:10px 6px;font-size:.85rem;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.5 3.6 5.2"/></symbol>
+  <symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-ref" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+</svg>
+
+<!-- LOGIN -->
+<section id="login" hidden>
+  <div>
+    <form class="login" id="loginForm" novalidate>
+      <div class="logo">host<i>io.</i></div>
+      <h1>Dobro došli</h1>
+      <p style="margin:-6px 0 4px;color:var(--ink-2);font-size:.9rem">Prijavite se da vidite termine koje Hostio zakazuje za Vaš biznis.</p>
+      <label class="lb">Email<input class="field" id="email" type="email" autocomplete="username"></label>
+      <label class="lb">Lozinka<input class="field" id="password" type="password" autocomplete="current-password"></label>
+      <div class="err" id="loginErr" role="alert"></div>
+      <button class="pill green" id="loginBtn" type="submit" style="padding:14px">Prijavi se</button>
+    </form>
+    <p class="foot">Pokreće <b>hostio.</b> · AI rezervacije preko WhatsAppa</p>
+  </div>
+</section>
+
+<!-- APP -->
+<main id="app" hidden>
+  <div class="top">
+    <div class="logo">host<i>io.</i></div>
+    <nav class="tabs" role="tablist" aria-label="Glavni meni">
+      <button class="pill" role="tab" data-v="a" aria-selected="true" type="button">Termini</button>
+      <button class="pill" role="tab" data-v="k" aria-selected="false" type="button">Klijenti</button>
+      <button class="pill" role="tab" data-v="s" aria-selected="false" type="button">Postavke</button>
+    </nav>
+    <div class="top-r">
+      <button class="pill green newbtn" type="button" data-new><svg class="ico"><use href="#i-plus"/></svg>Novi termin</button>
+      <button class="pill round glass" id="logout" type="button" aria-label="Odjava" title="Odjava"><svg class="ico"><use href="#i-out"/></svg></button>
+    </div>
+  </div>
+  <div class="demo" id="demoNote" hidden>Primjer s izmišljenim podacima. Pravi podaci se vide nakon prijave.</div>
+
+  <!-- TERMINI -->
+  <section id="v-a">
+    <div class="head">
+      <div><h1>Termini</h1><p id="bizLine"></p></div>
+      <span class="live"><b></b>Hostio odgovara na poruke</span>
+    </div>
+    <div class="segs">
+      <div class="seg s1"><span>Danas</span><b id="sToday">0</b></div>
+      <div class="seg s2"><span>Narednih 7 dana</span><b id="sWeek">0</b></div>
+      <div class="seg s3"><span>Novo danas</span><b id="sNew">0</b></div>
+      <div class="seg s4"><span>Otkazano (30 dana)</span><b id="sCancel">0</b></div>
+    </div>
+    <div class="bar">
+      <div class="chips" id="filters">
+        <button class="chip" data-f="danas" aria-pressed="true" type="button">Danas</button>
+        <button class="chip" data-f="sutra" aria-pressed="false" type="button">Sutra</button>
+        <button class="chip" data-f="sedmica" aria-pressed="false" type="button">7 dana</button>
+        <button class="chip" data-f="buduci" aria-pressed="false" type="button">Svi budući</button>
+        <button class="chip" data-f="prosli" aria-pressed="false" type="button">Prošli</button>
+        <button class="chip" data-f="otkazani" aria-pressed="false" type="button">Otkazani</button>
+      </div>
+      <label class="search"><svg class="ico"><use href="#i-search"/></svg><input id="qA" type="search" placeholder="Ime, broj ili usluga" autocomplete="off" aria-label="Pretraga termina"></label>
+    </div>
+    <div id="listA"></div>
+  </section>
+
+  <!-- KLIJENTI -->
+  <section id="v-k" hidden>
+    <div class="head"><div><h1>Klijenti</h1><p>Svi koji su rezervisali, prvo oni sa zakazanim terminom.</p></div></div>
+    <div class="bar"><label class="search"><svg class="ico"><use href="#i-search"/></svg><input id="qK" type="search" placeholder="Ime ili broj telefona" autocomplete="off" aria-label="Pretraga klijenata"></label></div>
+    <div class="panel-dark"><div class="ph"><h2>Lista klijenata</h2><b id="kCount">0</b></div><div id="listK"></div></div>
+  </section>
+
+  <!-- POSTAVKE -->
+  <section id="v-s" hidden>
+    <div class="head"><div><h1>Postavke</h1><p>Hostio ove podatke koristi kad odgovara mušterijama.</p></div></div>
+    <div class="set">
+      <div class="box">
+        <h3>Biznis</h3>
+        <label class="lb">Naziv<input class="field" id="sName" maxlength="80"></label>
+        <label class="lb">Grad<input class="field" id="sCity" maxlength="60"></label>
+      </div>
+      <div class="box">
+        <h3>Neradni dani</h3>
+        <p class="h">Godišnji, praznici, bolovanje. Hostio te dane ne nudi.</p>
+        <div style="display:flex;gap:8px;align-items:flex-end"><label class="lb" style="flex:1">Datum<input class="field" type="date" id="offDate"></label><button class="pill dark" id="offAdd" type="button" style="height:46px">Dodaj</button></div>
+        <div class="offs" id="offs"></div>
+      </div>
+      <div class="box wide">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h3>Usluge</h3><button class="pill dark sm" id="svcAdd" type="button"><svg class="ico"><use href="#i-plus"/></svg>Dodaj uslugu</button></div>
+        <div id="svcs" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+      <div class="box wide">
+        <h3>Radno vrijeme</h3>
+        <div id="hrs" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+    </div>
+    <div class="savebar" id="saveBar" hidden><span id="saveMsg">Imate nesačuvane promjene</span><button class="pill green" id="saveBtn" type="button">Sačuvaj</button></div>
+  </section>
+
+  <p class="brand-foot">Pokreće <b>host<i>io.</i></b> · <span id="updated"></span> · <button id="reload" type="button" style="background:none;border:0;color:inherit;text-decoration:underline;padding:0;font:inherit">Osvježi</button></p>
+</main>
+
+<nav class="bnav" id="bnav" hidden aria-label="Meni">
+  <button data-v="a" aria-selected="true" type="button"><svg class="ico"><use href="#i-cal"/></svg>Termini</button>
+  <button data-v="k" aria-selected="false" type="button"><svg class="ico"><use href="#i-users"/></svg>Klijenti</button>
+  <button class="fab" data-new type="button" aria-label="Novi termin"><svg class="ico" style="width:24px;height:24px"><use href="#i-plus"/></svg></button>
+  <button data-v="s" aria-selected="false" type="button"><svg class="ico"><use href="#i-set"/></svg>Postavke</button>
+</nav>
+
+<div class="ov" id="ov" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const DEMO = new URLSearchParams(location.search).has("demo");
+const $ = (id) => document.getElementById(id);
+const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const DAYS = ["nedjelja", "ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota"];
+const DSHORT = ["ned", "pon", "uto", "sri", "čet", "pet", "sub"];
+const ORDER = [1, 2, 3, 4, 5, 6, 0];
+let TZ = "Europe/Sarajevo", data = { termini: [], biznis: {} }, settings = null, draft = null, dirty = false, filter = "danas", view = "a", sess = null;
+
+// ---------- time (always in the business time zone) ----------
+function parts(iso) {
+  const f = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  const p = Object.fromEntries(f.formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  const key = `${p.year}-${p.month}-${p.day}`;
+  return { key, wd: new Date(Date.UTC(+p.year, +p.month - 1, +p.day)).getUTCDay(), d: +p.day, m: +p.month, hm: `${p.hour}:${p.minute}` };
+}
+const todayKey = () => parts(new Date().toISOString()).key;
+const addDays = (key, n) => { const [y, m, d] = key.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10); };
+const wdOf = (key) => { const [y, m, d] = key.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d)).getUTCDay(); };
+const dLabel = (key) => { const t = todayKey(), [, m, d] = key.split("-").map(Number); const b = `${DAYS[wdOf(key)]}, ${d}.${m}.`;
+  return key === t ? ["Danas", b] : key === addDays(t, 1) ? ["Sutra", b] : key === addDays(t, -1) ? ["Jučer", b] : [b.charAt(0).toUpperCase() + b.slice(1), ""]; };
+const shortWhen = (iso) => { const p = parts(iso), t = todayKey(); return (p.key === t ? "danas" : p.key === addDays(t, 1) ? "sutra" : `${DSHORT[p.wd]} ${p.d}.${p.m}.`) + " u " + p.hm; };
+const untilText = (iso) => { const min = Math.round((new Date(iso) - Date.now()) / 60000); if (min < 1) return "upravo počinje"; if (min < 60) return `za ${min} min`; const h = Math.floor(min / 60); return h < 24 ? `za ${h} h ${min % 60 ? (min % 60) + " min" : ""}`.trim() : ""; };
+const fmtPhone = (wa) => wa ? "+" + wa.replace(/^(\d{3})(\d{2})(\d{3})(\d+)$/, "$1 $2 $3 $4") : "";
+const initials = (n) => (n || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+const clientKey = (b) => b.wa_phone || "t" + String(b.customer_phone || "").replace(/\D/g, "") || "n" + (b.customer_name || "").toLowerCase();
+const plural = (n, one, few, many) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many; };
+
+// ---------- session & API ----------
+function saveSess(s) { sess = s; try { s ? localStorage.setItem("hostio_sess", JSON.stringify(s)) : localStorage.removeItem("hostio_sess"); } catch (e) {} }
+function loadSess() { try { return JSON.parse(localStorage.getItem("hostio_sess")); } catch (e) { return null; } }
+async function api(path, opts = {}) {
+  if (DEMO) return demoApi(path, opts);
+  if (sess && sess.expires_at - Date.now() < 60000) {
+    const r = await fetch("/api/osvjezi", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ refresh_token: sess.refresh_token }) });
+    if (r.ok) saveSess(await r.json()); else { logout("Prijava je istekla. Prijavite se ponovo."); throw new Error("auth"); }
+  }
+  const r = await fetch("/api/" + path, { ...opts, headers: { "content-type": "application/json", ...(sess ? { authorization: "Bearer " + sess.access_token } : {}) } });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 401) { logout(d.greska); throw new Error("auth"); }
+  if (!r.ok) throw new Error(d.greska || "Nešto nije u redu. Pokušajte ponovo.");
+  return d;
+}
+
+// ---------- login ----------
+$("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = $("email").value.trim(), lozinka = $("password").value;
+  if (!email || !lozinka) { $("loginErr").textContent = "Upišite email i lozinku."; return; }
+  const btn = $("loginBtn"); btn.disabled = true; btn.textContent = "Prijava…"; $("loginErr").textContent = "";
+  try {
+    const r = await fetch("/api/prijava", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, lozinka }) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.greska || "Prijava nije uspjela.");
+    saveSess(d); $("password").value = ""; await start();
+  } catch (err) { $("loginErr").textContent = err.message; }
+  finally { btn.disabled = false; btn.textContent = "Prijavi se"; }
+});
+["email", "password"].forEach((id) => $(id).addEventListener("input", () => ($("loginErr").textContent = "")));
+function logout(msg) { saveSess(null); $("app").hidden = true; $("bnav").hidden = true; $("login").hidden = false; closeSheet(); if (msg) $("loginErr").textContent = msg; }
+const doLogout = () => { if (DEMO) { location.href = location.pathname; return; } if (dirty && view === "s") { toast("Prvo sačuvajte ili poništite promjene u postavkama."); return; } logout(); };
+$("logout").onclick = doLogout;
+
+// ---------- load ----------
+async function load(silent) {
+  try {
+    data = await api("podaci");
+    TZ = data.biznis.tz || TZ;
+    document.title = "Hostio · " + data.biznis.naziv;
+    $("bizLine").textContent = data.biznis.naziv + (data.biznis.grad ? " · " + data.biznis.grad : "");
+    $("updated").textContent = "ažurirano u " + parts(new Date().toISOString()).hm;
+    render();
+  } catch (e) { if (e.message !== "auth" && !silent) toast(e.message); }
+}
+async function start() { $("login").hidden = true; $("app").hidden = false; $("bnav").hidden = false; $("demoNote").hidden = !DEMO; await load(); }
+$("reload").onclick = () => load();
+setInterval(() => { if (!document.hidden && !$("app").hidden && $("ov").hidden) load(true); }, 60000);
+
+// ---------- navigation ----------
+function go(v) {
+  if (view === "s" && v !== "s" && dirty) { toast("Prvo sačuvajte promjene u postavkama."); return; }
+  view = v;
+  document.querySelectorAll("[data-v]").forEach((b) => b.setAttribute("aria-selected", b.dataset.v === v));
+  ["a", "k", "s"].forEach((x) => ($("v-" + x).hidden = x !== v));
+  if (v === "s") loadSettings(); else render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+document.querySelectorAll("[data-v]").forEach((b) => (b.onclick = () => go(b.dataset.v)));
+document.querySelectorAll("[data-new]").forEach((b) => (b.onclick = () => openNew()));
+$("filters").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b) return; filter = b.dataset.f;
+  document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === b)); renderAppts(); });
+$("qA").addEventListener("input", renderAppts); $("qK").addEventListener("input", renderClients);
+
+// ---------- termini ----------
+function render() { renderStats(); renderAppts(); renderClients(); }
+function renderStats() {
+  const t = todayKey(), act = data.termini.filter((b) => b.status === "aktivno");
+  $("sToday").textContent = act.filter((b) => parts(b.start_at).key === t).length;
+  $("sWeek").textContent = act.filter((b) => { const k = parts(b.start_at).key; return k >= t && k <= addDays(t, 6); }).length;
+  $("sNew").textContent = data.termini.filter((b) => b.created_at && parts(b.created_at).key === t).length;
+  $("sCancel").textContent = data.termini.filter((b) => b.status !== "aktivno" && b.cancelled_at && new Date(b.cancelled_at) > Date.now() - 30 * 864e5).length;
+}
+const match = (b, q) => { if (!q) return true; q = q.toLowerCase(); const dq = q.replace(/\D/g, "");
+  return [b.customer_name, b.service_name].some((v) => String(v || "").toLowerCase().includes(q)) || (dq && [b.customer_phone, b.wa_phone].some((v) => String(v || "").replace(/\D/g, "").includes(dq))); };
+function renderAppts() {
+  const t = todayKey(), now = Date.now(), q = $("qA").value.trim(), k = (b) => parts(b.start_at).key;
+  const act = data.termini.filter((b) => b.status === "aktivno");
+  const nextId = act.filter((b) => new Date(b.end_at) >= now).sort((a, b) => a.start_at.localeCompare(b.start_at))[0]?.id;
+  let list = data.termini.filter((b) => match(b, q));
+  const F = { danas: (b) => b.status === "aktivno" && k(b) === t, sutra: (b) => b.status === "aktivno" && k(b) === addDays(t, 1),
+    sedmica: (b) => b.status === "aktivno" && k(b) >= t && k(b) <= addDays(t, 6), buduci: (b) => b.status === "aktivno" && new Date(b.end_at) >= now,
+    prosli: (b) => b.status === "aktivno" && new Date(b.end_at) < now, otkazani: (b) => b.status !== "aktivno" };
+  list = list.filter(F[filter]); if (filter === "prosli" || filter === "otkazani") list.reverse();
+  const box = $("listA"); box.textContent = "";
+  if (!list.length) {
+    const msg = { danas: "Danas nema zakazanih termina", sutra: "Za sutra još nema termina", sedmica: "Nema termina u narednih 7 dana", buduci: "Nema budućih termina", prosli: "Nema prošlih termina", otkazani: "Nema otkazanih termina" }[filter];
+    const more = filter === "danas" && act.some((b) => new Date(b.end_at) >= now) ? '<div style="margin-top:14px"><button class="pill dark sm" type="button" id="seeAll">Pogledaj sve buduće termine</button></div>' : "";
+    box.innerHTML = `<div class="empty"><b>${q ? "Ništa nije pronađeno" : msg}</b><span>${q ? "Pokušajte s drugim imenom ili brojem." : "Novi termini se pojave ovdje čim ih Hostio zakaže."}</span>${q ? "" : more}</div>`;
+    const sa = $("seeAll"); if (sa) sa.onclick = () => document.querySelector('.chip[data-f="buduci"]').click();
+    return;
+  }
+  const groups = new Map(); for (const b of list) { const key = k(b); if (!groups.has(key)) groups.set(key, []); groups.get(key).push(b); }
+  for (const [key, items] of groups) {
+    const [l1, l2] = dLabel(key);
+    const h = document.createElement("div"); h.className = "day";
+    h.innerHTML = `<span><b>${esc(l1)}</b>${l2 ? " · " + esc(l2) : ""}</span><span>${items.length} ${plural(items.length, "termin", "termina", "termina")}</span>`;
+    const g = document.createElement("div"); g.className = "grid";
+    items.forEach((b, i) => { const c = card(b, b.id === nextId); c.style.animationDelay = Math.min(i, 8) * 40 + "ms"; g.append(c); });
+    box.append(h, g);
+  }
+}
+function card(b, isNext) {
+  const s = parts(b.start_at), e = parts(b.end_at), past = new Date(b.end_at) < Date.now(), cancelled = b.status !== "aktivno";
+  const el = document.createElement("article"); el.className = "ap" + (isNext ? " next" : "") + (cancelled ? " cancel" : past ? " past" : "");
+  const badge = cancelled ? '<span class="badge x">Otkazan</span>' : isNext ? '<span class="badge nx">Sljedeći</span>' : b.source === "hostio" ? '<span class="badge wa">WhatsApp</span>' : '<span class="badge">Ručno</span>';
+  el.innerHTML = `<div class="ap-top"><div class="av">${esc(initials(b.customer_name))}</div>
+      <div class="who"><b role="button" tabindex="0">${esc(b.customer_name || "Bez imena")}</b><span>${esc(b.service_name)}</span></div>${badge}</div>
+    <div class="facts"><div><span>Vrijeme</span><b>${s.hm}–${e.hm}</b></div><div><span>Telefon</span><b>${esc(b.customer_phone || fmtPhone(b.wa_phone) || "–")}</b></div>
+      <div><span>Izvor</span><b>${b.source === "hostio" ? "WhatsApp" : "Ručno"}</b></div></div>
+    <div class="ap-foot"><small>${cancelled ? "Otkazan" + (b.cancelled_at ? " " + esc(shortWhen(b.cancelled_at)) : "") : isNext ? esc(untilText(b.start_at)) : past ? "Završen" : ""}</small></div>`;
+  const nm = el.querySelector(".who b"); nm.onclick = () => openClient(clientKey(b)); nm.onkeydown = (ev) => { if (ev.key === "Enter") openClient(clientKey(b)); };
+  if (!cancelled && !past) {
+    const btn = document.createElement("button"); btn.className = "pill danger sm"; btn.type = "button"; btn.textContent = "Otkaži";
+    btn.onclick = () => askCancel(btn, b); el.querySelector(".ap-foot").append(btn);
+  }
+  return el;
+}
+function askCancel(btn, b) {
+  const c = document.createElement("div"); c.className = "confirm";
+  const yes = document.createElement("button"); yes.className = "pill danger sm"; yes.type = "button"; yes.textContent = "Da, otkaži";
+  const no = document.createElement("button"); no.className = "pill sm"; no.type = "button"; no.textContent = "Ne";
+  no.onclick = () => c.replaceWith(btn);
+  yes.onclick = async () => {
+    yes.disabled = no.disabled = true; yes.textContent = "Otkazujem…";
+    try {
+      const r = await api("otkazi", { method: "POST", body: JSON.stringify({ id: b.id }) });
+      b.status = "otkazano"; b.cancelled_at = new Date().toISOString();
+      toast(r.obavijesten ? "Termin je otkazan. Klijent je obaviješten na WhatsApp." : `Termin je otkazan. Javite se klijentu na ${b.customer_phone || fmtPhone(b.wa_phone)}.`);
+      render(); if (!$("ov").hidden && $("sheet").dataset.client) openClient($("sheet").dataset.client);
+    } catch (e) { if (e.message !== "auth") { toast(e.message); yes.disabled = no.disabled = false; yes.textContent = "Da, otkaži"; } }
+  };
+  c.append(yes, no); btn.replaceWith(c); yes.focus();
+}
+
+// ---------- klijenti ----------
+function clients() {
+  const map = new Map();
+  for (const b of data.termini) {
+    const key = clientKey(b); let c = map.get(key);
+    if (!c) map.set(key, (c = { key, items: [] }));
+    c.items.push(b); c.name = b.customer_name || c.name; c.phone = b.customer_phone || c.phone; c.wa = b.wa_phone || c.wa;
+  }
+  const now = Date.now();
+  for (const c of map.values()) {
+    const act = c.items.filter((b) => b.status === "aktivno");
+    c.next = act.filter((b) => new Date(b.end_at) >= now).sort((a, b) => a.start_at.localeCompare(b.start_at))[0];
+    c.last = act.filter((b) => new Date(b.end_at) < now).sort((a, b) => b.start_at.localeCompare(a.start_at))[0];
+    c.total = act.length; c.cancelled = c.items.length - act.length;
+  }
+  return [...map.values()].sort((a, b) => a.next && b.next ? a.next.start_at.localeCompare(b.next.start_at) : a.next ? -1 : b.next ? 1 : (b.last?.start_at || "").localeCompare(a.last?.start_at || ""));
+}
+function renderClients() {
+  const q = $("qK").value.trim().toLowerCase(), dq = q.replace(/\D/g, ""), all = clients(), box = $("listK"); box.textContent = "";
+  const list = all.filter((c) => !q || (c.name || "").toLowerCase().includes(q) || (dq && [c.phone, c.wa].some((v) => String(v || "").replace(/\D/g, "").includes(dq))));
+  $("kCount").textContent = all.length;
+  if (!list.length) { box.innerHTML = `<p style="color:#aab3bf;padding:10px 8px 18px;margin:0">${q ? "Nijedan klijent nije pronađen." : "Klijenti se pojave nakon prve rezervacije."}</p>`; return; }
+  for (const c of list) {
+    const el = document.createElement("button"); el.className = "cl"; el.type = "button";
+    const sub = c.next ? "Sljedeći: " + shortWhen(c.next.start_at) : c.last ? "Zadnji: " + shortWhen(c.last.start_at) : "Samo otkazani termini";
+    el.innerHTML = `<div class="av">${esc(initials(c.name))}</div><div style="min-width:0"><div class="n">${esc(c.name || "Bez imena")}</div><div class="m">${esc(c.phone || fmtPhone(c.wa))} · ${esc(sub)}</div></div><div class="c"><b>${c.total}</b>${plural(c.total, "termin", "termina", "termina")}</div>`;
+    el.onclick = () => openClient(c.key); box.append(el);
+  }
+}
+async function openClient(key) {
+  const c = clients().find((x) => x.key === key); if (!c) return;
+  const up = c.items.filter((b) => b.status === "aktivno" && new Date(b.end_at) >= Date.now()).sort((a, b) => a.start_at.localeCompare(b.start_at));
+  const rest = c.items.filter((b) => !up.includes(b)).sort((a, b) => b.start_at.localeCompare(a.start_at));
+  const first = c.items.slice().sort((a, b) => a.start_at.localeCompare(b.start_at))[0];
+  const sh = openSheet(`<div class="sh-head"><div><small>Klijent</small><h2>${esc(c.name || "Bez imena")}</h2></div><button class="pill round" data-close type="button" aria-label="Zatvori"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <div class="info"><div><span>Telefon</span><b>${esc(c.phone || "–")}</b></div><div><span>WhatsApp</span><b>${esc(fmtPhone(c.wa) || "–")}</b></div>
+      <div><span>Termina</span><b>${c.total}${c.cancelled ? ` · otkazano ${c.cancelled}` : ""}</b></div><div><span>Prvi termin</span><b>${esc(shortWhen(first.start_at))}</b></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="pill dark sm" id="cCopy" type="button">Kopiraj broj</button><button class="pill green sm" id="cNew" type="button"><svg class="ico"><use href="#i-plus"/></svg>Novi termin za klijenta</button></div>
+    <div class="sub">Naredni termini</div><div id="cUp" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="sub">Historija</div><div id="cRest" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="sub">WhatsApp razgovor</div><div class="chat" id="cChat"><span style="color:#aab3bf;font-size:.85rem">Učitavam…</span></div>`);
+  sh.dataset.client = key;
+  const mini = (b) => { const s = parts(b.start_at), cancelled = b.status !== "aktivno", past = new Date(b.end_at) < Date.now();
+    const d = document.createElement("div"); d.className = "mini"; d.style.opacity = cancelled || past ? .7 : 1;
+    d.innerHTML = `<div><b>${esc(b.service_name)}</b><small>${esc(shortWhen(b.start_at))}${cancelled ? " · otkazan" : ""}</small></div>`;
+    if (!cancelled && !past) { const btn = document.createElement("button"); btn.className = "pill danger sm"; btn.type = "button"; btn.textContent = "Otkaži"; btn.onclick = () => askCancel(btn, b); d.append(btn); }
+    return d; };
+  const fill = (id, arr, txt) => { const el = sh.querySelector("#" + id); if (!arr.length) el.innerHTML = `<div class="mini"><small>${txt}</small></div>`; arr.forEach((b) => el.append(mini(b))); };
+  fill("cUp", up, "Nema zakazanih termina."); fill("cRest", rest, "Nema ranijih termina.");
+  sh.querySelector("#cCopy").onclick = async () => { const n = c.phone || fmtPhone(c.wa); try { await navigator.clipboard.writeText(n); toast("Broj je kopiran."); } catch (e) { toast(n); } };
+  sh.querySelector("#cNew").onclick = () => openNew({ ime: c.name, telefon: c.phone || fmtPhone(c.wa) });
+  const chat = sh.querySelector("#cChat");
+  if (!c.wa) { chat.innerHTML = '<span style="color:#aab3bf;font-size:.85rem">Nema WhatsApp razgovora s ovim klijentom.</span>'; return; }
+  try {
+    const r = await api("razgovor?wa=" + encodeURIComponent(c.wa));
+    const msgs = r.poruke.filter((m) => !m.content.startsWith("["));
+    chat.innerHTML = msgs.length ? msgs.map((m) => `<div class="bub ${m.role === "user" ? "c" : "h"}">${esc(m.content)}<small>${m.role === "user" ? "Klijent" : "Hostio"} · ${esc(shortWhen(m.created_at))}</small></div>`).join("")
+      : '<span style="color:#aab3bf;font-size:.85rem">Nema poruka u zadnje vrijeme.</span>';
+  } catch (e) { if (e.message !== "auth") chat.innerHTML = '<span style="color:#aab3bf;font-size:.85rem">Razgovor se nije mogao učitati.</span>'; }
+}
+
+// ---------- novi termin ----------
+async function openNew(pre = {}) {
+  if (!settings) { try { settings = await api("postavke"); } catch (e) { if (e.message !== "auth") toast(e.message); return; } }
+  if (!settings.usluge.length) { toast("Prvo dodajte uslugu u Postavkama."); go("s"); return; }
+  const st = { usluga: settings.usluge[0].id, datum: todayKey(), vrijeme: null };
+  const sh = openSheet(`<div class="sh-head"><div><small>Ručni upis</small><h2>Novi termin</h2></div><button class="pill round" data-close type="button" aria-label="Zatvori"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <div class="sub">Usluga</div><div class="opts" id="nSvc"></div>
+    <div class="sub">Dan</div><div class="dates" id="nDays"></div>
+    <div class="sub">Slobodno vrijeme</div><div class="times" id="nTimes"></div>
+    <div class="two"><label class="lb">Ime i prezime<input class="field" id="nName" autocomplete="off" maxlength="80"></label><label class="lb">Telefon<input class="field" id="nPhone" inputmode="tel" autocomplete="off" maxlength="30"></label></div>
+    <div class="err" id="nErr" role="alert"></div>
+    <button class="pill green" id="nSave" type="button" style="padding:14px">Upiši termin</button>`);
+  sh.querySelector("#nName").value = pre.ime || ""; sh.querySelector("#nPhone").value = pre.telefon || "";
+  const svcBox = sh.querySelector("#nSvc"), daysBox = sh.querySelector("#nDays"), times = sh.querySelector("#nTimes");
+  settings.usluge.forEach((u) => { const b = document.createElement("button"); b.className = "opt"; b.type = "button"; b.dataset.id = u.id;
+    b.innerHTML = `${esc(u.naziv)}<small>${u.min} min · ${u.cijena} KM</small>`; b.onclick = () => { st.usluga = u.id; paint(); slots(); }; svcBox.append(b); });
+  for (let i = 0; i < 21; i++) { const key = addDays(todayKey(), i), wd = wdOf(key), [, m, d] = key.split("-").map(Number);
+    const open = !!settings.radno[wd] && !settings.neradni.includes(key);
+    const b = document.createElement("button"); b.className = "dt"; b.type = "button"; b.dataset.k = key; b.disabled = !open;
+    b.innerHTML = `${i === 0 ? "danas" : DSHORT[wd]}<b>${d}</b>${m}.`; b.onclick = () => { st.datum = key; paint(); slots(); }; daysBox.append(b); }
+  if (!settings.radno[wdOf(st.datum)] || settings.neradni.includes(st.datum)) { const f = daysBox.querySelector(".dt:not(:disabled)"); if (f) st.datum = f.dataset.k; }
+  function paint() { svcBox.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === st.usluga));
+    daysBox.querySelectorAll(".dt").forEach((b) => b.setAttribute("aria-pressed", b.dataset.k === st.datum)); }
+  let seq = 0;
+  async function slots(auto) {
+    st.vrijeme = null; const my = ++seq; times.innerHTML = '<span style="color:var(--ink-2);font-size:.85rem">Tražim slobodna vremena…</span>';
+    try {
+      let r = await api(`slobodno?datum=${st.datum}&usluga=${encodeURIComponent(st.usluga)}`); if (my !== seq) return;
+      if (auto && !r.slobodno.length) { // first open: jump to the first day that still has free times
+        for (const b of daysBox.querySelectorAll(".dt:not(:disabled)")) { if (b.dataset.k <= st.datum) continue;
+          const r2 = await api(`slobodno?datum=${b.dataset.k}&usluga=${encodeURIComponent(st.usluga)}`); if (my !== seq) return;
+          if (r2.slobodno.length) { st.datum = b.dataset.k; r = r2; paint(); b.scrollIntoView({ inline: "center", block: "nearest" }); break; } }
+      }
+      times.textContent = "";
+      if (!r.slobodno.length) { times.innerHTML = `<span style="color:var(--ink-2);font-size:.85rem">${r.zatvoreno ? "Taj dan ne radite." : "Nema slobodnih termina taj dan."}</span>`; return; }
+      r.slobodno.forEach((t) => { const b = document.createElement("button"); b.className = "opt"; b.type = "button"; b.textContent = t;
+        b.onclick = () => { st.vrijeme = t; times.querySelectorAll(".opt").forEach((x) => x.setAttribute("aria-pressed", x === b)); sh.querySelector("#nErr").textContent = ""; }; times.append(b); });
+    } catch (e) { if (e.message !== "auth" && my === seq) times.innerHTML = `<span class="err">${esc(e.message)}</span>`; }
+  }
+  paint(); slots(true);
+  sh.querySelectorAll("#nName,#nPhone").forEach((i) => i.addEventListener("input", () => (sh.querySelector("#nErr").textContent = "")));
+  sh.querySelector("#nSave").onclick = async () => {
+    const err = sh.querySelector("#nErr"), ime = sh.querySelector("#nName").value.trim(), telefon = sh.querySelector("#nPhone").value.trim();
+    if (!st.vrijeme) { err.textContent = "Izaberite slobodno vrijeme."; return; }
+    if (!ime) { err.textContent = "Upišite ime i prezime klijenta."; return; }
+    if (telefon.replace(/\D/g, "").length < 6) { err.textContent = "Upišite ispravan broj telefona."; return; }
+    const btn = sh.querySelector("#nSave"); btn.disabled = true; btn.textContent = "Upisujem…";
+    try { await api("termin", { method: "POST", body: JSON.stringify({ usluga: st.usluga, datum: st.datum, vrijeme: st.vrijeme, ime, telefon }) });
+      closeSheet(); toast(`Termin je upisan: ${dLabel(st.datum)[0].toLowerCase()} u ${st.vrijeme}.`); await load(true); }
+    catch (e) { if (e.message !== "auth") { err.textContent = e.message; btn.disabled = false; btn.textContent = "Upiši termin"; slots(); } }
+  };
+}
+
+// ---------- postavke ----------
+async function loadSettings() {
+  if (dirty) return;
+  try { settings = await api("postavke"); draft = JSON.parse(JSON.stringify(settings)); renderSettings(); setDirty(false); }
+  catch (e) { if (e.message !== "auth") toast(e.message); }
+}
+function setDirty(v) { dirty = v; $("saveBar").hidden = !v; if (v) $("saveMsg").textContent = "Imate nesačuvane promjene"; }
+function timeOpts(sel) { let o = ""; for (let m = 5 * 60; m <= 23 * 60 + 45; m += 15) { const t = String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); o += `<option${t === sel ? " selected" : ""}>${t}</option>`; }
+  if (sel && !o.includes(`>${sel}<`)) o = `<option selected>${sel}</option>` + o; return o; }
+function renderSettings() {
+  $("sName").value = draft.biznis.naziv; $("sCity").value = draft.biznis.grad;
+  $("sName").oninput = () => { draft.biznis.naziv = $("sName").value; setDirty(true); }; $("sCity").oninput = () => { draft.biznis.grad = $("sCity").value; setDirty(true); };
+  const sv = $("svcs"); sv.textContent = "";
+  draft.usluge.forEach((u, i) => {
+    const r = document.createElement("div"); r.className = "svc";
+    r.innerHTML = `<label class="lb">Usluga<input class="field" id="un${i}" maxlength="60"></label><label class="lb">Minuta<input class="field" id="um${i}" type="number" min="5" max="600" step="5" inputmode="numeric"></label><label class="lb">Cijena KM<input class="field" id="up${i}" type="number" min="0" step="0.5" inputmode="decimal"></label><button class="del" type="button" aria-label="Ukloni uslugu"><svg class="ico"><use href="#i-trash"/></svg></button>`;
+    const n = r.querySelector("#un" + i), m = r.querySelector("#um" + i), p = r.querySelector("#up" + i);
+    n.value = u.naziv; m.value = u.min; p.value = u.cijena;
+    n.oninput = () => { u.naziv = n.value; setDirty(true); }; m.oninput = () => { u.min = Number(m.value); setDirty(true); }; p.oninput = () => { u.cijena = Number(p.value); setDirty(true); };
+    r.querySelector(".del").onclick = () => { draft.usluge.splice(i, 1); renderSettings(); setDirty(true); };
+    sv.append(r);
+  });
+  if (!draft.usluge.length) sv.innerHTML = '<p style="margin:0;color:var(--ink-2)">Nema usluga. Dodajte barem jednu.</p>';
+  const hb = $("hrs"); hb.textContent = "";
+  ORDER.forEach((d) => {
+    const h = draft.radno[d], r = document.createElement("div"); r.className = "hrs";
+    const name = DAYS[d].charAt(0).toUpperCase() + DAYS[d].slice(1);
+    r.innerHTML = `<span class="d">${name}</span><label class="sw" title="Radni dan"><input type="checkbox" id="hc${d}" aria-label="${name} radni dan"${h ? " checked" : ""}><i></i></label>` +
+      (h ? `<select class="field" id="ho${d}" aria-label="${name} od">${timeOpts(h[0])}</select><select class="field" id="hz${d}" aria-label="${name} do">${timeOpts(h[1])}</select>` : `<span class="closed">Ne radi</span>`);
+    r.querySelector("#hc" + d).onchange = (e) => { draft.radno[d] = e.target.checked ? (h || ["09:00", "17:00"]) : null; renderSettings(); setDirty(true); };
+    if (h) { r.querySelector("#ho" + d).onchange = (e) => { draft.radno[d] = [e.target.value, draft.radno[d][1]]; setDirty(true); };
+      r.querySelector("#hz" + d).onchange = (e) => { draft.radno[d] = [draft.radno[d][0], e.target.value]; setDirty(true); }; }
+    hb.append(r);
+  });
+  const ob = $("offs"); ob.textContent = "";
+  draft.neradni.slice().sort().forEach((k) => { const [, m, dd] = k.split("-").map(Number);
+    const c = document.createElement("span"); c.className = "off"; c.textContent = `${DSHORT[wdOf(k)]} ${dd}.${m}.`;
+    const x = document.createElement("button"); x.type = "button"; x.textContent = "×"; x.setAttribute("aria-label", "Ukloni " + k);
+    x.onclick = () => { draft.neradni = draft.neradni.filter((v) => v !== k); renderSettings(); setDirty(true); }; c.append(x); ob.append(c); });
+  if (!draft.neradni.length) ob.innerHTML = '<span style="color:var(--ink-2);font-size:.85rem">Nema neradnih dana.</span>';
+  $("offDate").min = todayKey();
+}
+$("svcAdd").onclick = () => { draft.usluge.push({ id: null, naziv: "", min: 30, cijena: 0 }); renderSettings(); setDirty(true); $("un" + (draft.usluge.length - 1)).focus(); };
+$("offAdd").onclick = () => { const v = $("offDate").value; if (!v) { toast("Izaberite datum."); return; } if (!draft.neradni.includes(v)) draft.neradni.push(v); $("offDate").value = ""; renderSettings(); setDirty(true); };
+$("saveBtn").onclick = async () => {
+  const btn = $("saveBtn"); btn.disabled = true; btn.textContent = "Čuvam…";
+  try { settings = await api("postavke", { method: "POST", body: JSON.stringify(draft) }); draft = JSON.parse(JSON.stringify(settings));
+    dirty = false; renderSettings(); $("saveBar").hidden = true; toast("Sačuvano. Hostio od sada koristi nove postavke."); load(true); }
+  catch (e) { if (e.message !== "auth") $("saveMsg").textContent = e.message; }
+  finally { btn.disabled = false; btn.textContent = "Sačuvaj"; }
+};
+window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+// ---------- sheet & toast ----------
+let lastFocus;
+function openSheet(html) { lastFocus = document.activeElement; const sh = $("sheet"); delete sh.dataset.client; sh.innerHTML = html; $("ov").hidden = false; document.body.style.overflow = "hidden";
+  sh.querySelectorAll("[data-close]").forEach((b) => (b.onclick = closeSheet)); setTimeout(() => sh.querySelector("[data-close]")?.focus(), 30); sh.scrollTop = 0; return sh; }
+function closeSheet() { $("ov").hidden = true; document.body.style.overflow = ""; lastFocus?.focus?.(); }
+$("ov").addEventListener("click", (e) => { if (e.target === $("ov")) closeSheet(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("ov").hidden) closeSheet(); });
+let tt; function toast(m) { const t = $("toast"); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => (t.hidden = true), 5000); }
+
+// ---------- demo (only with ?demo): fake data, nothing is saved ----------
+let D;
+function demoInit() {
+  const t = todayKey(), at = (dd, hm) => { const [y, m, d] = addDays(t, dd).split("-").map(Number); const [h, mi] = hm.split(":").map(Number); return new Date(Date.UTC(y, m - 1, d, h - 2, mi)).toISOString(); };
+  const mk = (i, dd, hm, min, name, ph, wa, svc, src = "hostio", status = "aktivno") => ({ id: "demo-" + i, start_at: at(dd, hm), end_at: new Date(new Date(at(dd, hm)).getTime() + min * 6e4).toISOString(),
+    service_name: svc, customer_name: name, customer_phone: ph, wa_phone: wa, source: src, status, created_at: at(i === 6 || i === 9 ? 0 : Math.min(dd, 0) - 1, "08:15"), cancelled_at: status === "aktivno" ? null : at(-1, "18:00") });
+  D = { biznis: { naziv: "Salon Lana", grad: "Sarajevo", tz: "Europe/Sarajevo" },
+    termini: [mk(1, -6, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"), mk(2, -3, "14:00", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje"),
+      mk(3, -1, "11:30", 45, "Amra Delić", "061 777 210", "38761777210", "žensko šišanje", "hostio", "otkazano"), mk(4, 0, "09:30", 30, "Haris Mehić", "063 120 450", "38763120450", "muško šišanje"),
+      mk(5, 0, "12:00", 45, "Lejla Karić", "061 909 818", "38761909818", "žensko šišanje"), mk(6, 0, "16:30", 30, "Tarik Omerović", "062 404 303", "38762404303", "muško šišanje"),
+      mk(7, 1, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"), mk(8, 1, "13:00", 45, "Ajla Softić", "065 300 222", "38765300222", "žensko šišanje", "rucno"),
+      mk(9, 3, "11:00", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje")],
+    set: { biznis: { naziv: "Salon Lana", grad: "Sarajevo" }, usluge: [{ id: "s1", naziv: "muško šišanje", min: 30, cijena: 15 }, { id: "s2", naziv: "žensko šišanje", min: 45, cijena: 25 }, { id: "s3", naziv: "farbanje", min: 90, cijena: 60 }],
+      radno: { 0: null, 1: ["09:00", "17:00"], 2: ["09:00", "17:00"], 3: ["09:00", "17:00"], 4: ["09:00", "17:00"], 5: ["09:00", "17:00"], 6: ["09:00", "14:00"] }, neradni: [addDays(t, 9)] } };
+}
+async function demoApi(path, opts) {
+  if (!D) demoInit(); await new Promise((r) => setTimeout(r, 120));
+  const body = opts.body ? JSON.parse(opts.body) : {}, u = new URL(path, "https://x/");
+  if (u.pathname === "/podaci") return { biznis: { ...D.biznis, naziv: D.set.biznis.naziv, grad: D.set.biznis.grad }, termini: D.termini };
+  if (u.pathname === "/postavke" && opts.method === "POST") { D.set = JSON.parse(JSON.stringify(body)); D.set.usluge.forEach((x, i) => (x.id = x.id || "s" + (i + 10))); return JSON.parse(JSON.stringify(D.set)); }
+  if (u.pathname === "/postavke") return JSON.parse(JSON.stringify(D.set));
+  if (u.pathname === "/otkazi") return { otkazano: true, obavijesten: true };
+  if (u.pathname === "/razgovor") { const b = D.termini.find((x) => x.wa_phone === u.searchParams.get("wa"));
+    return { poruke: [{ role: "user", content: "Zdravo, imate li slobodno za " + b.service_name + "?", created_at: b.created_at }, { role: "assistant", content: "Imamo slobodno u 10:00 ili 12:00. Koji termin Vam više odgovara?", created_at: b.created_at },
+      { role: "user", content: "10 može. " + b.customer_name + " " + b.customer_phone, created_at: b.created_at }, { role: "assistant", content: "Hvala, " + b.customer_name.split(" ")[0] + ". Rezervisali smo Vam termin. Vidimo se!", created_at: b.created_at }] }; }
+  const svc = D.set.usluge.find((x) => x.id === (u.searchParams.get("usluga") || body.usluga));
+  const free = (datum) => { const h = D.set.radno[wdOf(datum)]; if (!h || D.set.neradni.includes(datum)) return { slobodno: [], zatvoreno: true };
+    const toM = (s) => +s.slice(0, 2) * 60 + +s.slice(3, 5), out = [], now = parts(new Date().toISOString()), nm = datum === now.key ? toM(now.hm) + 30 : -1;
+    const taken = D.termini.filter((b) => b.status === "aktivno" && parts(b.start_at).key === datum).map((b) => [toM(parts(b.start_at).hm), toM(parts(b.end_at).hm)]);
+    for (let m = toM(h[0]); m + svc.min <= toM(h[1]); m += 15) if (m >= nm && !taken.some(([a, b]) => m < b && m + svc.min > a)) out.push(String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"));
+    return { slobodno: out, zatvoreno: false }; };
+  if (u.pathname === "/slobodno") return free(u.searchParams.get("datum"));
+  if (u.pathname === "/termin") { if (!free(body.datum).slobodno.includes(body.vrijeme)) throw new Error("Taj termin više nije slobodan.");
+    const [y, m, d] = body.datum.split("-").map(Number), [h, mi] = body.vrijeme.split(":").map(Number), s = new Date(Date.UTC(y, m - 1, d, h - 2, mi)).toISOString();
+    D.termini.push({ id: "demo-" + Date.now(), start_at: s, end_at: new Date(new Date(s).getTime() + svc.min * 6e4).toISOString(), service_name: svc.naziv, customer_name: body.ime, customer_phone: body.telefon, wa_phone: null, source: "rucno", status: "aktivno", created_at: new Date().toISOString() });
+    return { upisano: true }; }
+  throw new Error("Nepoznato");
+}
+
+// ---------- start ----------
+if (DEMO) start();
+else { sess = loadSess(); if (sess && sess.access_token) start(); else $("login").hidden = false; }
+</script>
+</body>
+</html>
