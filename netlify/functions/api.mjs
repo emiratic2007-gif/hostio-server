@@ -9,4 +9,5 @@ export default async (req) => {
   }
 };
 
-export const config = { path: "/api/*" };
+// Exact paths, so /api/rc/* (rent-a-car websites) goes to its own function.
+export const config = { path: ["prijava", "osvjezi", "podaci", "razgovor", "otkazi", "postavke", "slobodno", "termin"].map((r) => "/api/" + r) };
