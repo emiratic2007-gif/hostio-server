@@ -341,6 +341,12 @@ label.lb{display:flex;flex-direction:column;gap:6px;font-size:.78rem;font-weight
         <div class="offs" id="offs"></div>
       </div>
       <div class="box wide">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+          <div><h3>Podsjetnik dan ranije</h3><p class="h" style="margin:4px 0 0">Klijent dan prije termina dobije WhatsApp podsjetnik s dugmadima Dolazim i Otkaži. Manje propuštenih termina.</p></div>
+          <label class="sw" title="Podsjetnik dan ranije"><input type="checkbox" id="remOn" aria-label="Podsjetnik dan ranije"><i></i></label>
+        </div>
+      </div>
+      <div class="box wide">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h3>Usluge</h3><button class="pill dark sm" id="svcAdd" type="button"><svg class="ico"><use href="#i-plus"/></svg>Dodaj uslugu</button></div>
         <div id="svcs" style="display:flex;flex-direction:column;gap:10px"></div>
       </div>
@@ -499,12 +505,13 @@ function renderAppts() {
 function card(b, isNext) {
   const s = parts(b.start_at), e = parts(b.end_at), past = new Date(b.end_at) < Date.now(), cancelled = b.status !== "aktivno";
   const el = document.createElement("article"); el.className = "ap" + (isNext ? " next" : "") + (cancelled ? " cancel" : past ? " past" : "");
-  const badge = cancelled ? '<span class="badge x">Otkazan</span>' : isNext ? '<span class="badge nx">Sljedeći</span>' : b.source === "hostio" ? '<span class="badge wa">WhatsApp</span>' : '<span class="badge">Ručno</span>';
+  const badge = cancelled ? '<span class="badge x">Otkazan</span>' : isNext ? '<span class="badge nx">Sljedeći</span>' : b.confirmed_at ? '<span class="badge wa">Potvrdio dolazak</span>' : b.source === "hostio" ? '<span class="badge wa">WhatsApp</span>' : '<span class="badge">Ručno</span>';
+  const remind = cancelled || past ? "" : b.confirmed_at ? "Klijent je potvrdio dolazak" : b.reminder_sent_at ? "Podsjetnik poslan " + shortWhen(b.reminder_sent_at) : "";
   el.innerHTML = `<div class="ap-top"><div class="av">${esc(initials(b.customer_name))}</div>
       <div class="who"><b role="button" tabindex="0">${esc(b.customer_name || "Bez imena")}</b><span>${esc(b.service_name)}</span></div>${badge}</div>
     <div class="facts"><div><span>Vrijeme</span><b>${s.hm}–${e.hm}</b></div><div><span>Telefon</span><b>${esc(b.customer_phone || fmtPhone(b.wa_phone) || "–")}</b></div>
       <div><span>Izvor</span><b>${b.source === "hostio" ? "WhatsApp" : "Ručno"}</b></div></div>
-    <div class="ap-foot"><small>${cancelled ? "Otkazan" + (b.cancelled_at ? " " + esc(shortWhen(b.cancelled_at)) : "") : isNext ? esc(untilText(b.start_at)) : past ? "Završen" : ""}</small></div>`;
+    <div class="ap-foot"><small>${cancelled ? "Otkazan" + (b.cancelled_at ? " " + esc(shortWhen(b.cancelled_at)) : "") : isNext ? esc([untilText(b.start_at), remind].filter(Boolean).join(" · ")) : past ? "Završen" : esc(remind)}</small></div>`;
   const nm = el.querySelector(".who b"); nm.onclick = () => openClient(clientKey(b)); nm.onkeydown = (ev) => { if (ev.key === "Enter") openClient(clientKey(b)); };
   if (!cancelled && !past) {
     const btn = document.createElement("button"); btn.className = "pill danger sm"; btn.type = "button"; btn.textContent = "Otkaži";
@@ -573,7 +580,7 @@ async function openClient(key) {
   sh.dataset.client = key;
   const mini = (b) => { const s = parts(b.start_at), cancelled = b.status !== "aktivno", past = new Date(b.end_at) < Date.now();
     const d = document.createElement("div"); d.className = "mini"; d.style.opacity = cancelled || past ? .7 : 1;
-    d.innerHTML = `<div><b>${esc(b.service_name)}</b><small>${esc(shortWhen(b.start_at))}${cancelled ? " · otkazan" : ""}</small></div>`;
+    d.innerHTML = `<div><b>${esc(b.service_name)}</b><small>${esc(shortWhen(b.start_at))}${cancelled ? " · otkazan" : b.confirmed_at ? " · potvrdio dolazak" : b.reminder_sent_at && !past ? " · podsjetnik poslan" : ""}</small></div>`;
     if (!cancelled && !past) { const btn = document.createElement("button"); btn.className = "pill danger sm"; btn.type = "button"; btn.textContent = "Otkaži"; btn.onclick = () => askCancel(btn, b); d.append(btn); }
     return d; };
   const fill = (id, arr, txt) => { const el = sh.querySelector("#" + id); if (!arr.length) el.innerHTML = `<div class="mini"><small>${txt}</small></div>`; arr.forEach((b) => el.append(mini(b))); };
@@ -653,6 +660,7 @@ function setDirty(v) { dirty = v; $("saveBar").hidden = !v; if (v) $("saveMsg").
 function timeOpts(sel) { let o = ""; for (let m = 5 * 60; m <= 23 * 60 + 45; m += 15) { const t = String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); o += `<option${t === sel ? " selected" : ""}>${t}</option>`; }
   if (sel && !o.includes(`>${sel}<`)) o = `<option selected>${sel}</option>` + o; return o; }
 function renderSettings() {
+  $("remOn").checked = draft.podsjetnik !== false; $("remOn").onchange = (e) => { draft.podsjetnik = e.target.checked; setDirty(true); };
   $("sName").value = draft.biznis.naziv; $("sCity").value = draft.biznis.grad;
   $("sName").oninput = () => { draft.biznis.naziv = $("sName").value; setDirty(true); }; $("sCity").oninput = () => { draft.biznis.grad = $("sCity").value; setDirty(true); };
   const sv = $("svcs"); sv.textContent = "";
@@ -715,10 +723,10 @@ function demoInit() {
     termini: [mk(1, -6, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"), mk(2, -3, "14:00", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje"),
       mk(3, -1, "11:30", 45, "Amra Delić", "061 777 210", "38761777210", "žensko šišanje", "hostio", "otkazano"), mk(4, 0, "09:30", 30, "Haris Mehić", "063 120 450", "38763120450", "muško šišanje"),
       mk(5, 0, "12:00", 45, "Lejla Karić", "061 909 818", "38761909818", "žensko šišanje"), mk(6, 0, "16:30", 30, "Tarik Omerović", "062 404 303", "38762404303", "muško šišanje"),
-      mk(7, 1, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"), mk(8, 1, "13:00", 45, "Ajla Softić", "065 300 222", "38765300222", "žensko šišanje", "rucno"),
+      Object.assign(mk(7, 1, "10:00", 30, "Kenan Hodžić", "061 234 567", "38761234567", "muško šišanje"), { reminder_sent_at: at(0, "10:05"), confirmed_at: at(0, "10:20") }), Object.assign(mk(8, 1, "13:00", 45, "Ajla Softić", "065 300 222", "38765300222", "žensko šišanje", "rucno"), { reminder_sent_at: at(0, "13:02") }),
       mk(9, 3, "11:00", 90, "Selma Begić", "062 555 101", "38762555101", "farbanje")],
     set: { biznis: { naziv: "Salon Lana", grad: "Sarajevo" }, usluge: [{ id: "s1", naziv: "muško šišanje", min: 30, cijena: 15 }, { id: "s2", naziv: "žensko šišanje", min: 45, cijena: 25 }, { id: "s3", naziv: "farbanje", min: 90, cijena: 60 }],
-      radno: { 0: null, 1: ["09:00", "17:00"], 2: ["09:00", "17:00"], 3: ["09:00", "17:00"], 4: ["09:00", "17:00"], 5: ["09:00", "17:00"], 6: ["09:00", "14:00"] }, neradni: [addDays(t, 9)] } };
+      podsjetnik: true, radno: { 0: null, 1: ["09:00", "17:00"], 2: ["09:00", "17:00"], 3: ["09:00", "17:00"], 4: ["09:00", "17:00"], 5: ["09:00", "17:00"], 6: ["09:00", "14:00"] }, neradni: [addDays(t, 9)] } };
 }
 async function demoApi(path, opts) {
   if (!D) demoInit(); await new Promise((r) => setTimeout(r, 120));

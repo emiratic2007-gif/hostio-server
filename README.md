@@ -16,6 +16,7 @@ Prima WhatsApp poruke, AI razgovara s mušterijom i upisuje termine u Supabase.
 | `FREE_AI_MODEL` | opcionalno, zadano `openai/gpt-oss-120b` |
 | `FREE_AI_URL` | opcionalno, zadano Groq; radi i s drugim OpenAI-kompatibilnim servisima |
 | `MODEL` | opcionalno Claude model, zadano `claude-haiku-5-5` |
+| `REPLY_DELAY_SECONDS` | opcionalno, koliko sekundi Hostio čeka nove poruke prije odgovora, zadano `6` |
 
 ## Netlify
 - `netlify/functions/webhook.mjs` je adresa `/webhook` koju upisuješ u Meta (Callback URL). Brzo odgovori Meti i preda poruku dalje.
