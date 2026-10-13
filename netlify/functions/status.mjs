@@ -5,7 +5,7 @@ export default async (req) => {
   const params = new URL(req.url).searchParams;
   const key = params.get("kljuc");
   if (!key || key !== process.env.WHATSAPP_VERIFY_TOKEN) return new Response("Dodaj ?kljuc=<tvoj WHATSAPP_VERIFY_TOKEN> na kraj adrese.", { status: 403, headers: { "content-type": "text/plain; charset=utf-8" } });
-  const rows = await statusReport({ waba: params.get("waba"), subscribe: params.get("pretplati") === "da" });
+  const rows = await statusReport({ waba: params.get("waba"), subscribe: params.get("pretplati") === "da", redirect: params.get("preusmjeri") === "da", baseUrl: new URL(req.url).origin });
   const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
   const html = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hostio status</title>
 <body style="font-family:system-ui,sans-serif;max-width:720px;margin:30px auto;padding:0 16px">
