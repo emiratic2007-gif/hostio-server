@@ -3,3 +3,9 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# Rent-a-car agency websites: /r/{slug}
+[[redirects]]
+  from = "/r/*"
+  to = "/rent/index.html"
+  status = 200
