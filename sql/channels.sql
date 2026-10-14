@@ -23,3 +23,15 @@ alter table ig_accounts enable row level security;   -- no policies: only the se
 create table if not exists app_secrets (name text primary key, value text not null, created_at timestamptz not null default now());
 alter table app_secrets enable row level security;
 insert into app_secrets (name, value) values ('cron_key', encode(gen_random_bytes(24), 'hex')) on conflict (name) do nothing;
+
+-- Daily maintenance job (03:15 UTC): renews Instagram tokens older than 7 days.
+create extension if not exists pg_net;
+create extension if not exists pg_cron;
+select cron.schedule('hostio-dnevno', '15 3 * * *', $$
+  select net.http_post(
+    url := 'https://eauwnwvieyepzrbildqt.supabase.co/functions/v1/hostio/cron',
+    body := '{}'::jsonb,
+    headers := jsonb_build_object('content-type', 'application/json', 'x-cron-key', (select value from public.app_secrets where name = 'cron_key')),
+    timeout_milliseconds := 30000
+  );
+$$);
