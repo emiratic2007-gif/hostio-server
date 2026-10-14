@@ -3,10 +3,14 @@
 //   /webhook          WhatsApp (Meta) — answers at once, the AI works in the background
 //   /status?kljuc=…   health check of every part
 //   /api/rc/*         rent-a-car agency websites
+//   /api/ig/povezi    connect a business's Instagram account (then /api/ig/povratak)
+//   /cron             daily maintenance (Instagram token renewal)
 //   /api/*            owner dashboard
 import { verifyChallenge, validSignature, processWebhook, statusReport, log } from "../lib/hostio.js";
 import { handleApi } from "../lib/dashboard.js";
 import { handleRentApi } from "../lib/rentacar.js";
+import { connectStart, connectFinish, refreshInstagramTokens, instagramStatus } from "../lib/instagram.js";
+import { db } from "../lib/db.js";
 import { env, Buffer } from "../lib/env.js";
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8" } });
@@ -45,9 +49,19 @@ export async function handle(req) {
     if (!key || key !== env("WHATSAPP_VERIFY_TOKEN")) return json({ greska: "Dodaj ?kljuc=<tvoj WHATSAPP_VERIFY_TOKEN> na kraj adrese." }, 403);
     const base = env("PUBLIC_WEBHOOK_BASE") || `${env("SUPABASE_URL")}/functions/v1/hostio`;
     const rows = await statusReport({ waba: p.get("waba"), subscribe: p.get("pretplati") === "da", redirect: p.get("preusmjeri") === "da", baseUrl: base });
+    try { rows.push(...await instagramStatus()); } catch (e) { rows.push({ name: "Instagram", ok: false, note: e.message }); }
     return json({ status: rows });
   }
 
+  // Daily maintenance (called by the database scheduler with a private key).
+  if (path === "/cron" && req.method === "POST") {
+    const [k] = await db("app_secrets?name=eq.cron_key&select=value");
+    if (!k || req.headers.get("x-cron-key") !== k.value) return json({ greska: "zabranjeno" }, 403);
+    return json({ instagram: await refreshInstagramTokens() });
+  }
+
+  if (path === "/api/ig/povezi") return connectStart(url);
+  if (path === "/api/ig/povratak") return connectFinish(url);
   if (path.startsWith("/api/rc/")) return handleRentApi(await withPath(req, path));
   if (path.startsWith("/api/")) return handleApi(await withPath(req, path));
   return json({ greska: "nepoznato" }, 404);
