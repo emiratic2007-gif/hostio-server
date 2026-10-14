@@ -131,11 +131,18 @@ function render() {
   if (!S.lang) return renderGate();
   const s = set();
   const feat = S.cars.find((c) => c.featured) || S.cars[0];
+  const minPrice = S.cars.length ? Math.min(...S.cars.map((c) => fromPrice(c.price_tiers))) : 0;
+  const stats = [
+    [S.cars.length, t("st_cars"), ""],
+    [minPrice, t("st_from"), " " + (s.currency || "KM")],
+    [(s.locations || []).length, t("st_locs"), ""],
+    s.cancellation_hours ? [s.cancellation_hours, t("st_cancel"), ""] : null,
+  ].filter(Boolean);
   app.innerHTML = `
   ${s.demo ? `<div class="demo">${esc(t("demo"))}</div>` : ""}
   <header class="top"><div class="wrap">
     <a class="logo" href="#"><b>${esc(S.ag.naziv[0] || "R")}</b><span>${esc(S.ag.naziv)}</span></a>
-    <nav class="links"><a href="#vozila">${t("nav_fleet")}</a><a href="#kako">${t("nav_how")}</a><a href="#uslovi">${t("nav_terms")}</a><a href="#kontakt">${t("nav_contact")}</a></nav>
+    <nav class="links"><a href="#vozila" data-sec="vozila">${t("nav_fleet")}</a><a href="#kako" data-sec="kako">${t("nav_how")}</a><a href="#uslovi" data-sec="uslovi">${t("nav_terms")}</a><a href="#kontakt" data-sec="kontakt">${t("nav_contact")}</a></nav>
     <div class="tools">
       <button class="pill-btn" data-act="menu" aria-haspopup="true" aria-label="Language">${ic("globe")}${S.lang.toUpperCase()}</button>
       ${waLink() ? `<a class="round mint" href="${waLink()}" target="_blank" rel="noopener" aria-label="WhatsApp">${ic("chat")}</a>` : ""}
@@ -143,57 +150,65 @@ function render() {
     ${S.menu ? `<div class="menu" role="menu">${LANGS.map((l) => `<button role="menuitem" data-act="lang" data-v="${l.code}" class="${l.code === S.lang ? "on" : ""}" lang="${l.code}">${l.name}</button>`).join("")}</div>` : ""}
   </div></header>
 
-  <section class="hero"><div class="wrap">
+  <section class="hero" id="pocetak">
+    <div class="mesh" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap">
     <div class="hero-grid">
-      <div>
+      <div class="hero-copy">
         <span class="kicker"><i></i>${esc(t("hero_kicker", { city: S.ag.grad || "" }))}</span>
         <h1>${heroTitle()}</h1>
         <p class="sub">${esc(t("hero_sub"))}</p>
+        <ul class="trust">${["trust1", "trust2", waLink() ? "trust3" : null].filter(Boolean).map((k, i) => `<li style="--i:${i}">${ic("check")}${t(k)}</li>`).join("")}</ul>
       </div>
       <div class="stage">
-        <div class="disc"></div><div class="ring"></div>
-        ${feat ? carPic(feat, "car") : ""}
+        <div class="disc"></div><div class="ring"></div><div class="ring r2"></div>
+        <div class="car-in">${feat ? carPic(feat, "car") : ""}</div>
         ${feat ? `<div class="float f1"><b>${esc(feat.make + " " + feat.model)}</b>${t(feat.transmission)} · ${t(feat.fuel)}</div>
         <div class="float f2">${t("from_price")} <b>${money(fromPrice(feat.price_tiers))} ${t("per_day")}</b></div>` : ""}
       </div>
     </div>
     ${searchHtml()}
     <div class="usp">
-      ${s.mileage === "unlimited" ? `<div><i>${ic("road")}</i>${t("usp_km")}</div>` : ""}
-      <div><i>${ic("cash")}</i>${t("usp_pay")}</div>
-      ${s.cancellation_hours ? `<div><i>${ic("undo")}</i>${t("usp_cancel", { n: s.cancellation_hours })}</div>` : ""}
-      ${(s.locations || []).length > 1 ? `<div><i>${ic("plane")}</i>${t("usp_deliver")}</div>` : ""}
+      ${s.mileage === "unlimited" ? `<div class="c1"><i>${ic("road")}</i>${t("usp_km")}</div>` : ""}
+      <div class="c2"><i>${ic("cash")}</i>${t("usp_pay")}</div>
+      ${s.cancellation_hours ? `<div class="c3"><i>${ic("undo")}</i>${t("usp_cancel", { n: s.cancellation_hours })}</div>` : ""}
+      ${(s.locations || []).length > 1 ? `<div class="c4"><i>${ic("plane")}</i>${t("usp_deliver")}</div>` : ""}
     </div>
   </div></section>
 
   <section class="block" id="vozila"><div class="wrap">
-    <div class="head"><div><h2>${t("fleet")}</h2><p id="fleet-sub"></p></div></div>
+    <div class="head rv"><div><span class="eyebrow">${t("nav_fleet")}</span><h2>${t("fleet")}</h2><p id="fleet-sub"></p></div></div>
     <div class="chips" id="chips"></div>
     <div class="grid" id="grid"></div>
   </div></section>
 
+  <section class="statband"><div class="wrap"><div class="stats">
+    ${stats.map(([n, l, suf], i) => `<div class="stat rv" style="--i:${i}"><b><span data-count="${n}">${n}</span>${esc(suf)}</b><small>${esc(l)}</small></div>`).join("")}
+  </div></div></section>
+
   <section class="block" id="kako"><div class="wrap">
-    <div class="head"><h2>${t("how")}</h2></div>
+    <div class="head rv"><div><span class="eyebrow">${t("nav_how")}</span><h2>${t("how")}</h2><p>${t("how_sub")}</p></div></div>
     <div class="steps3">
-      ${[1, 2, 3].map((n) => `<div class="st"><div class="n">${n}</div><h3>${t("how" + n)}</h3><p>${t("how" + n + "d")}</p></div>`).join("")}
+      ${[1, 2, 3].map((n) => `<div class="st rv" style="--i:${n - 1}"><div class="n">${n}</div><h3>${t("how" + n)}</h3><p>${t("how" + n + "d")}</p></div>`).join("")}
     </div>
   </div></section>
 
   <section class="block" id="uslovi"><div class="wrap">
-    <div class="head"><h2>${t("terms")}</h2></div>
+    <div class="head rv"><div><span class="eyebrow">${t("nav_terms")}</span><h2>${t("terms")}</h2><p>${t("terms_sub")}</p></div></div>
     <div class="terms">${termsHtml()}</div>
-    <div class="head" style="margin:36px 0 0"><h2 style="font-size:24px">${t("locs")}</h2></div>
-    <div class="locs">${(s.locations || []).map((l) => `<div class="loc">${ic("pin")}<div><b>${esc(nm(l.name))}</b><small>${esc(l.address || "")}</small></div><em class="${l.fee ? "" : "free"}">${l.fee ? t("fee", { p: money(l.fee) }) : t("no_fee")}</em></div>`).join("")}</div>
+    <div class="head rv" style="margin:40px 0 0"><h2 style="font-size:26px">${t("locs")}</h2></div>
+    <div class="locs">${(s.locations || []).map((l, i) => `<a class="loc rv" style="--i:${i}" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.address || nm(l.name))}" target="_blank" rel="noopener">${ic("pin")}<div><b>${esc(nm(l.name))}</b><small>${esc(l.address || "")}</small></div><em class="${l.fee ? "" : "free"}">${l.fee ? t("fee", { p: money(l.fee) }) : t("no_fee")}</em></a>`).join("")}</div>
   </div></section>
 
   <section class="block" id="faq"><div class="wrap">
-    <div class="head"><h2>${t("faq")}</h2></div>
+    <div class="head rv"><div><span class="eyebrow">FAQ</span><h2>${t("faq")}</h2></div></div>
     <div class="faq">${faqHtml()}</div>
   </div></section>
 
   <section class="block" id="kontakt"><div class="wrap">
-    <div class="contact">
+    <div class="contact rv">
       <div>
+        <span class="eyebrow">${t("nav_contact")}</span>
         <h2>${t("contact")}</h2>
         <div class="lines">
           ${s.contact?.address ? `<div>${ic("pin")}<span>${esc(s.contact.address)}</span></div>` : ""}
@@ -212,17 +227,66 @@ function render() {
 
   <footer><div class="wrap">
     <span>© ${new Date().getFullYear()} ${esc(S.ag.naziv)}</span>
-    <a href="/" target="_blank" rel="noopener">${t("powered")} <b>hostio</b></a>
+    <span class="fl"><a href="/dashboard/rentacar/">${t("owners")}</a><a href="/" target="_blank" rel="noopener">${t("powered")} <b>hostio</b></a></span>
   </div></footer>
+  <div class="sticky-cta" id="stickyCta"><div><small id="stickyWhen"></small><b>${esc(S.ag.naziv)}</b></div><button class="btn mint" data-act="sticky">${t("sticky")}${ic("arrow", "ico flip")}</button></div>
   ${waLink() ? `<a class="fab" href="${waLink()}" target="_blank" rel="noopener" aria-label="WhatsApp">${ic("chat", "")}</a>` : ""}`;
   renderFleet();
+  setupMotion();
 }
+
+// Language menu without re-drawing the whole page (keeps animations calm).
+function renderMenu() {
+  document.querySelector("header.top .menu")?.remove();
+  if (!S.menu) return;
+  document.querySelector("header.top .wrap").insertAdjacentHTML("beforeend", `<div class="menu" role="menu">${LANGS.map((l) => `<button role="menuitem" data-act="lang" data-v="${l.code}" class="${l.code === S.lang ? "on" : ""}" lang="${l.code}">${l.name}</button>`).join("")}</div>`);
+}
+
+// Scroll effects: reveal sections, count-up numbers, header state, active menu item, mobile booking bar.
+let motionIO = null;
+function setupMotion() {
+  const els = [...document.querySelectorAll(".rv")];
+  const show = (el) => {
+    el.classList.add("in");
+    el.querySelectorAll("[data-count]").forEach((c) => countUp(c));
+  };
+  if (motionIO) motionIO.disconnect();
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("motion");
+    motionIO = new IntersectionObserver((ents) => ents.forEach((e) => { if (e.isIntersecting) { show(e.target); motionIO.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    els.forEach((el) => motionIO.observe(el));
+    setTimeout(() => els.forEach((el) => el.classList.contains("in") || (el.getBoundingClientRect().top < innerHeight && show(el))), 1500);
+  } else els.forEach(show);
+  onScroll();
+}
+function countUp(el) {
+  if (el.dataset.done) return; el.dataset.done = 1;
+  const to = Number(el.dataset.count) || 0, t0 = performance.now(), dur = 900;
+  const step = (now) => { const k = Math.min(1, (now - t0) / dur); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function onScroll() {
+  const y = scrollY, top = document.querySelector("header.top");
+  if (top) top.classList.toggle("scrolled", y > 10);
+  const hero = document.querySelector(".hero"), contact = document.getElementById("kontakt"), bar = document.getElementById("stickyCta");
+  if (hero && bar) {
+    const show = y > hero.offsetTop + hero.offsetHeight - 80 && (!contact || y + innerHeight < contact.offsetTop + 200) && !S.panel;
+    bar.classList.toggle("on", show);
+    document.body.classList.toggle("has-sticky", show);
+    const s = S.search;
+    if (s) document.getElementById("stickyWhen").textContent = `${fmtDay(s.pd)} ${s.pt} → ${fmtDay(s.rd)} ${s.rt}`;
+  }
+  let cur = "";
+  for (const id of ["vozila", "kako", "uslovi", "kontakt"]) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 140) cur = id; }
+  document.querySelectorAll("nav.links a").forEach((a) => a.classList.toggle("on", a.dataset.sec === cur));
+}
+addEventListener("scroll", onScroll, { passive: true });
 
 function heroTitle() {
   const tag = nm(set().brand?.tagline) || S.ag.naziv;
   const words = tag.split(" ");
   if (words.length < 2) return esc(tag);
-  return `${esc(words.slice(0, -1).join(" "))} <em>${esc(words.at(-1))}</em>`;
+  return words.map((w, i) => `<span class="w${i === words.length - 1 ? " acc" : ""}" style="--i:${i}">${esc(w)}</span>`).join(" ");
 }
 
 function timeOpts(sel) { return TIMES.map((x) => `<option ${x === sel ? "selected" : ""}>${x}</option>`).join(""); }
@@ -263,7 +327,7 @@ function termsHtml() {
     s.hours && ["clock", t("t_hours", { o: s.hours.open, c: s.hours.close }), s.after_hours_fee ? t("t_hours_d", { p: money(s.after_hours_fee) }) : ""],
     ["cal", t("t_late"), t("t_late_d")],
   ].filter(Boolean);
-  return items.map(([i, b, p]) => `<div class="term"><i>${ic(i)}</i><div><b>${esc(b)}</b><p>${esc(p)}</p></div></div>`).join("");
+  return items.map(([i, b, p], n) => `<div class="term rv" style="--i:${n % 4}"><i>${ic(i)}</i><div><b>${esc(b)}</b><p>${esc(p)}</p></div></div>`).join("");
 }
 
 function faqHtml() {
@@ -273,7 +337,7 @@ function faqHtml() {
   if ((s.extras || []).some((x) => x.id === "granica")) qs.push(5);
   qs.push(6);
   const v = { ly: s.license_years || 2, n: s.cancellation_hours || 48 };
-  return qs.map((n) => `<details><summary>${esc(t("q" + n))}<i>${ic("plus")}</i></summary><p>${esc(t("a" + n, v))}</p></details>`).join("");
+  return qs.map((n, i) => `<details class="rv" style="--i:${i % 3}"><summary>${esc(t("q" + n))}<i>${ic("plus")}</i></summary><p>${esc(t("a" + n, v))}</p></details>`).join("");
 }
 
 // ---------- fleet ----------
@@ -281,24 +345,24 @@ function renderFleet() {
   const cats = ["all", ...new Set(S.cars.map((c) => c.category))];
   const chips = document.getElementById("chips");
   if (!chips) return;
-  chips.innerHTML = cats.map((c) => `<button class="chip ${S.cat === c ? "on" : ""}" data-act="cat" data-v="${esc(c)}">${esc(t("cat_" + c))}</button>`).join("") +
+  chips.innerHTML = cats.map((c) => `<button class="chip ${S.cat === c ? "on" : ""}" data-act="cat" data-v="${esc(c)}">${esc(t("cat_" + c))}<em>${c === "all" ? S.cars.length : S.cars.filter((x) => x.category === c).length}</em></button>`).join("") +
     (S.cars.some((c) => c.transmission === "automatic") ? `<button class="chip tog ${S.auto ? "on" : ""}" data-act="auto">${ic("gear")}${t("auto_only")}</button>` : "");
   const s = S.search;
   document.getElementById("fleet-sub").textContent = S.searched
-    ? t("fleet_sub_dates", { from: `${fmtDay(s.pd)} ${s.pt}`, to: `${fmtDay(s.rd)} ${s.rt}` }) : t("fleet_sub");
+    ? t("fleet_sub_dates", { from: `${fmtDay(s.pd)} ${s.pt}`, to: `${fmtDay(s.rd)} ${s.rt}` }) : t("fleet_sub") + " " + t("fleet_hint");
   let list = S.cars.filter((c) => (S.cat === "all" || c.category === S.cat) && (!S.auto || c.transmission === "automatic"));
   if (S.searched && S.avail) list = [...list].sort((a, b) => (S.avail[b.id] ? 1 : 0) - (S.avail[a.id] ? 1 : 0));
-  document.getElementById("grid").innerHTML = list.length ? list.map(cardHtml).join("") : `<div class="empty">${t("none")}</div>`;
+  document.getElementById("grid").innerHTML = list.length ? list.map((v, i) => cardHtml(v, i)).join("") : `<div class="empty">${t("none")}</div>`;
 }
 
-function cardHtml(v) {
+function cardHtml(v, i = 0) {
   const known = S.searched && S.avail && v.id in S.avail, free = known && S.avail[v.id];
   let price = `<small>${t("from_price")}</small><b>${money(fromPrice(v.price_tiers))} <span>${t("per_day")}</span></b>`;
   if (S.searched) {
     const q = quote(quoteInput(v, []));
     if (!q.greska) price = `<small>${t("total_for", { d: daysLabel(S.lang, q.days) })}</small><b>${money(q.total)}</b>`;
   }
-  return `<article class="card ${known && !free ? "off" : ""}" data-act="open" data-id="${v.id}" tabindex="0" role="button" aria-label="${esc(v.make + " " + v.model)}">
+  return `<article class="card ${known && !free ? "off" : ""}" style="--i:${i}" data-act="open" data-id="${v.id}" tabindex="0" role="button" aria-label="${esc(v.make + " " + v.model)}">
     <div class="row1"><span class="tag">${esc(t("cat_" + v.category))}</span>${v.featured ? `<span class="tag feat">${t("featured")}</span>` : ""}
       ${known ? `<span class="avail ${free ? "" : "no"}"><i></i>${free ? t("free") : t("busy")}</span>` : ""}</div>
     <div class="pic">${carPic(v)}</div>
@@ -352,7 +416,7 @@ async function openPanel(id) {
   const v = S.cars.find((c) => c.id === id);
   if (!v) return;
   S.panel = { v, step: 1, extras: new Set(), busy: null, month: S.search.pd.slice(0, 7), pick: "start", d: S.panel?.d || {}, files: {}, err: "", sending: false, done: null };
-  document.body.classList.add("lock");
+  document.body.classList.add("lock"); onScroll();
   if (!document.getElementById("sheet")) {
     document.body.insertAdjacentHTML("beforeend", `<div class="ov" id="ov" data-act="close"></div><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>`);
   }
@@ -375,7 +439,7 @@ function closePanel() {
   ov.classList.remove("in"); sh.classList.remove("in");
   setTimeout(() => { ov.remove(); sh.remove(); }, 300);
   document.body.classList.remove("lock");
-  S.panel = null;
+  S.panel = null; setTimeout(onScroll, 50);
   const form = document.getElementById("search");
   if (form) form.outerHTML = searchHtml();
   if (S.searched) { renderFleet(); fetchAvail(); } else renderFleet();
@@ -391,7 +455,7 @@ function renderPanel(keepScroll = true) {
   const v = P.v, q = pq();
   if (P.done) {
     sh.innerHTML = `<div class="scroll"><div class="sh-top"><span style="flex:1"></span><button class="round" data-act="close" aria-label="${t("close")}">${ic("close")}</button></div>
-      <div class="done"><div class="ok">${ic("check")}</div><h3>${t("ok_title")}</h3><p>${t("ok_text")}</p>
+      <div class="done"><div class="confetti" aria-hidden="true">${Array.from({ length: 28 }, (_, i) => `<i style="--x:${(i * 37) % 100}%;--d:${(i % 7) * 0.08}s;--c:${["#2ee6a6", "#38bdf8", "#fbbf24", "#a78bfa", "#fb7185"][i % 5]};--r:${(i * 53) % 360}deg"></i>`).join("")}</div><div class="ok">${ic("check")}</div><h3>${t("ok_title")}</h3><p>${t("ok_text")}</p>
       <div class="ref"><small>${t("ok_ref")}</small><b>${esc(P.done.ref)}</b></div>
       <div class="bill" style="text-align:start;max-width:420px;margin:0 auto 16px"><div class="ln"><span>${esc(v.make + " " + v.model)} · ${daysLabel(S.lang, P.done.dana)}</span><b>${money(P.done.ukupno)}</b></div>
       <div class="note">${ic("cash")}<span>${t("pay_note")} ${P.done.depozit ? t("deposit_note", { p: money(P.done.depozit) }) : ""}</span></div></div>
@@ -642,14 +706,15 @@ async function prepFile(file) {
 // ---------- events ----------
 document.addEventListener("click", (e) => {
   const el = e.target.closest("[data-act]");
-  if (S.menu && !e.target.closest(".menu") && el?.dataset.act !== "menu") { S.menu = false; render(); if (!el) return; }
+  if (S.menu && !e.target.closest(".menu") && el?.dataset.act !== "menu") { S.menu = false; renderMenu(); if (!el) return; }
   if (!el) return;
   const act = el.dataset.act, v = el.dataset.v;
   if (act === "lang") return setLang(v);
-  if (act === "menu") { S.menu = !S.menu; return render(); }
+  if (act === "menu") { S.menu = !S.menu; return renderMenu(); }
   if (act === "cat") { S.cat = v; return renderFleet(); }
   if (act === "auto") { S.auto = !S.auto; return renderFleet(); }
   if (act === "search") return runSearch();
+  if (act === "sticky") { const g = document.getElementById(S.searched ? "vozila" : "search"); return g?.scrollIntoView({ behavior: "smooth", block: "start" }); }
   if (act === "open") return openPanel(el.dataset.id);
   if (act === "close") return closePanel();
   if (act === "next") return next();

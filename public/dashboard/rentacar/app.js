@@ -51,6 +51,7 @@ const I = {
   chat: '<path d="M4 20l1.3-3.9A8.5 8.5 0 1 1 8 19z"/>', phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/>', id: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16c1-2 5-2 6 0M14 10h4M14 14h4"/>',
   up: '<path d="M12 19V5M5 12l7-7 7 7"/>', down: '<path d="M12 5v14M5 12l7 7 7-7"/>', ext: '<path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
   trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
 };
 const ic = (n) => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
@@ -59,9 +60,15 @@ const ic = (n) => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${I[n
 function st(b, now = Date.now()) {
   if (b.status !== "odobreno") return b.status;
   const s = new Date(b.start_at).getTime(), e = new Date(b.end_at).getTime();
-  return now < s ? "predstoji" : now < e ? "u_najmu" : "zavrseno";
+  if (b.returned_at) return "vraceno";
+  if (b.picked_up_at) return now < e ? "u_najmu" : "kasni";
+  return now < s ? "predstoji" : now < e ? "ceka_preuzimanje" : "nije_preuzeto";
 }
-const ST = { na_cekanju: "Na čekanju", predstoji: "Potvrđeno", u_najmu: "U najmu", zavrseno: "Završeno", odbijeno: "Odbijeno", otkazano: "Otkazano", blokirano: "Blokada" };
+const ST = { na_cekanju: "Na čekanju", predstoji: "Potvrđeno", ceka_preuzimanje: "Čeka preuzimanje", u_najmu: "U najmu", kasni: "Kasni s vraćanjem",
+  vraceno: "Vraćeno", nije_preuzeto: "Nije preuzeto", odbijeno: "Odbijeno", otkazano: "Otkazano", blokirano: "Blokada" };
+const ACTIVE = ["predstoji", "ceka_preuzimanje", "u_najmu", "kasni"];
+// When the car is really free again: back = return time, still out = now.
+const realEnd = (b) => b.returned_at ? +new Date(b.returned_at) : b.picked_up_at && +new Date(b.end_at) < Date.now() ? Date.now() : +new Date(b.end_at);
 const badge = (b) => `<span class="st ${st(b)}">${ST[st(b)]}</span>`;
 const isRental = (b) => b.status !== "blokirano";
 const counted = (b) => b.status === "odobreno";
@@ -161,7 +168,8 @@ function renderOverview() {
   const N = D.najmovi, active = D.vozila.filter((v) => v.active);
   const pend = N.filter((b) => b.status === "na_cekanju").sort((a, b) => a.start_at.localeCompare(b.start_at));
   const outs = N.filter((b) => counted(b) && parts(b.start_at).key === t), ins = N.filter((b) => counted(b) && parts(b.end_at).key === t);
-  const onRoad = new Set(N.filter((b) => st(b, now) === "u_najmu").map((b) => b.vehicle_id));
+  const onRoad = new Set(N.filter((b) => ["u_najmu", "kasni"].includes(st(b, now))).map((b) => b.vehicle_id));
+  const late = N.filter((b) => st(b, now) === "kasni"), waiting = N.filter((b) => st(b, now) === "ceka_preuzimanje");
   const p0 = parts(new Date().toISOString());
   const monthKey = (iso) => { const p = parts(iso); return p.y * 12 + p.m - 1; };
   const curM = p0.y * 12 + p0.m - 1;
@@ -172,11 +180,15 @@ function renderOverview() {
   const util = active.length ? Math.round(used / (30 * DAY * active.length) * 100) : 0;
   const events = [];
   for (const b of N.filter(counted)) {
-    for (const [k, iso, kind] of [[parts(b.start_at).key, b.start_at, "out"], [parts(b.end_at).key, b.end_at, "in"]]) {
-      if (k === t || k === tm) events.push({ b, iso, kind, day: k === t ? "Danas" : "Sutra" });
-    }
+    const s = st(b, now);
+    if (s === "kasni") { events.push({ b, iso: b.end_at, kind: "in", day: "Kasni", late: true }); continue; }
+    if (s === "ceka_preuzimanje" && parts(b.start_at).key < t) { events.push({ b, iso: b.start_at, kind: "out", day: "Čeka", late: true }); continue; }
+    if (!b.picked_up_at && [t, tm].includes(parts(b.start_at).key)) events.push({ b, iso: b.start_at, kind: "out", day: parts(b.start_at).key === t ? "Danas" : "Sutra" });
+    if (b.picked_up_at && !b.returned_at && [t, tm].includes(parts(b.end_at).key)) events.push({ b, iso: b.end_at, kind: "in", day: parts(b.end_at).key === t ? "Danas" : "Sutra" });
+    if (b.returned_at && parts(b.returned_at).key === t) events.push({ b, iso: b.returned_at, kind: "in", day: "Vraćeno", done: true });
+    if (b.picked_up_at && parts(b.picked_up_at).key === t && !b.returned_at) events.push({ b, iso: b.picked_up_at, kind: "out", day: "Preuzeto", done: true });
   }
-  events.sort((a, b) => a.iso.localeCompare(b.iso));
+  events.sort((a, b) => (b.late ? 1 : 0) - (a.late ? 1 : 0) || (a.done ? 1 : 0) - (b.done ? 1 : 0) || a.iso.localeCompare(b.iso));
   const months = Array.from({ length: 6 }, (_, i) => curM - 5 + i);
   const maxRev = Math.max(1, ...months.map(revM));
 
@@ -185,7 +197,7 @@ function renderOverview() {
     <div class="acts"><button class="btn ghost" data-go="kalendar">${ic("cal")}Kalendar</button><button class="btn primary" id="addManual">${ic("plus")}Blokada / ručni najam</button></div></div>
   <div class="kpis">
     <div class="card kpi hot click" data-go="najmovi"><span>Čeka Vašu odluku</span><b class="num">${pend.length}</b><small>${pend.length ? "zahtjeva za rezervaciju" : "sve je riješeno"}</small></div>
-    <div class="card kpi"><span>Danas preuzimanja</span><b class="num">${outs.length}</b><small>${ins.length} ${plural(ins.length, "vraćanje", "vraćanja", "vraćanja")} danas</small></div>
+    <div class="card kpi ${late.length ? "alert" : ""}"><span>Danas preuzimanja</span><b class="num">${outs.length}</b><small>${late.length ? `<b style="color:var(--red)">${late.length} ${plural(late.length, "vozilo kasni", "vozila kasne", "vozila kasni")} s vraćanjem</b>` : `${ins.length} ${plural(ins.length, "vraćanje", "vraćanja", "vraćanja")} danas`}</small></div>
     <div class="card kpi click" data-go="vozila"><span>Trenutno u najmu</span><b class="num">${onRoad.size}<span style="font-size:1rem;color:var(--ink-3);font-weight:500"> / ${active.length}</span></b><small>iskorištenost 30 dana: ${util}%</small></div>
     <div class="card kpi"><span>Prihod (${MONL[p0.m - 1]})</span><b class="num">${money(revM(curM))}</b><small>potvrđeni najmovi s početkom ovaj mjesec</small></div>
   </div>
@@ -193,21 +205,33 @@ function renderOverview() {
     <div class="card"><div class="card-h"><h2>Zahtjevi koji čekaju</h2><button class="link" data-go="najmovi">Svi zahtjevi →</button></div>
       <div class="list">${pend.length ? pend.slice(0, 6).map((b) => bookingRow(b, ` · ${SRC[b.source] || b.source}`)).join("") : '<div class="empty">Nema novih zahtjeva. Kad kupac pošalje zahtjev, pojavit će se ovdje.</div>'}</div></div>
     <div class="card"><div class="card-h"><h2>Danas i sutra</h2><span style="font-size:12px;color:var(--ink-3)">preuzimanja i vraćanja</span></div>
-      <div class="list">${events.length ? events.map((e) => `<div class="li" data-open="${e.b.id}">
-        <div class="av ${e.kind === "out" ? "up" : "down"}">${ic(e.kind === "out" ? "up" : "down")}</div>
-        <div class="t"><b>${e.kind === "out" ? "Preuzimanje" : "Vraćanje"} · ${esc(vname(e.b._v))}</b><small>${esc(name(e.b))} · ${esc(locName(e.kind === "out" ? e.b.pickup_location : e.b.dropoff_location))}</small></div>
-        <div class="r"><b class="num">${parts(e.iso).hm}</b><small style="color:var(--ink-3);font-size:12px">${e.day}</small></div></div>`).join("") : '<div class="empty">Danas i sutra nema preuzimanja ni vraćanja.</div>'}</div></div>
+      <div class="list">${events.length ? events.map((e) => `<div class="li ${e.late ? "late" : ""} ${e.done ? "done" : ""}" data-open="${e.b.id}">
+        <div class="av ${e.done ? "" : e.kind === "out" ? "up" : "down"}">${e.done ? ic("check") : ic(e.kind === "out" ? "up" : "down")}</div>
+        <div class="t"><b>${e.done ? (e.kind === "out" ? "Preuzeto" : "Vraćeno") : e.kind === "out" ? "Preuzimanje" : "Vraćanje"} · ${esc(vname(e.b._v))}</b><small>${esc(name(e.b))} · ${e.late ? (e.kind === "in" ? "trebalo vratiti " : "trebalo preuzeti ") + dShort(e.iso) + " " + parts(e.iso).hm : esc(locName(e.kind === "out" ? e.b.pickup_location : e.b.dropoff_location))}</small></div>
+        ${e.done ? `<div class="r"><b class="num">${parts(e.iso).hm}</b></div>` : `<button class="btn sm ${e.late ? "danger" : "primary"} quick" data-hand="${e.kind === "out" ? "preuzeto" : "vraceno"}" data-id="${e.b.id}">${e.kind === "out" ? "Preuzeto" : "Vraćeno"}</button>`}
+        <div class="r hide-s"><b class="num">${parts(e.iso).hm}</b><small style="color:${e.late ? "var(--red)" : "var(--ink-3)"};font-size:12px">${e.day}</small></div></div>`).join("") : '<div class="empty">Danas i sutra nema preuzimanja ni vraćanja.</div>'}</div></div>
   </div>
   <div class="card"><div class="card-h"><h2>Prihod po mjesecima</h2><span style="font-size:12px;color:var(--ink-3)">potvrđeni najmovi</span></div>
     <div class="chart">${months.map((m) => { const r = revM(m); return `<div class="${m === curM ? "cur" : ""}"><b class="num">${r ? money(r) : "—"}</b><i style="height:${Math.max(4, Math.round(r / maxRev * 100))}px"></i><small>${MON[m % 12]}</small></div>`; }).join("")}</div></div>`;
   $("addManual").onclick = () => openManual();
+  wireQuick($("view"));
+}
+
+// Quick "Preuzeto" / "Vraćeno" buttons (overview list and fleet cards).
+function wireQuick(root) {
+  root.querySelectorAll("[data-hand]").forEach((btn) => (btn.onclick = async (e) => {
+    e.stopPropagation(); btn.disabled = true;
+    try { await post(btn.dataset.hand, { id: btn.dataset.id }); toast(btn.dataset.hand === "preuzeto" ? "Vozilo je označeno kao preuzeto." : "Vozilo je vraćeno i ponovo je slobodno."); await refresh(); }
+    catch (err) { toast(err.message); btn.disabled = false; }
+  }));
 }
 
 // ---------- 2. bookings ----------
 const FILTERS = [
   ["na_cekanju", "Na čekanju", (b) => b.status === "na_cekanju"],
-  ["aktivni", "Potvrđeni", (b) => ["predstoji", "u_najmu"].includes(st(b))],
-  ["zavrseni", "Završeni", (b) => st(b) === "zavrseno"],
+  ["aktivni", "Potvrđeni", (b) => ["predstoji", "ceka_preuzimanje"].includes(st(b))],
+  ["najam", "U najmu", (b) => ["u_najmu", "kasni"].includes(st(b))],
+  ["zavrseni", "Završeni", (b) => ["vraceno", "nije_preuzeto"].includes(st(b))],
   ["odbijeni", "Odbijeni i otkazani", (b) => ["odbijeno", "otkazano"].includes(b.status)],
   ["blokade", "Blokade", (b) => b.status === "blokirano"],
   ["svi", "Svi", () => true],
@@ -216,7 +240,7 @@ function renderBookings() {
   const f = FILTERS.find((x) => x[0] === ui.filter) || FILTERS[0];
   const q = ui.q.trim().toLowerCase();
   let rows = D.najmovi.filter(f[2]).filter((b) => !q || [b.ref, name(b), b.email, b.phone, vname(b._v)].join(" ").toLowerCase().includes(q));
-  rows.sort((a, b) => ["na_cekanju", "aktivni"].includes(ui.filter) ? a.start_at.localeCompare(b.start_at) : b.start_at.localeCompare(a.start_at));
+  rows.sort((a, b) => ["na_cekanju", "aktivni", "najam"].includes(ui.filter) ? a.start_at.localeCompare(b.start_at) : b.start_at.localeCompare(a.start_at));
   $("view").innerHTML = `
   <div class="ph"><div><h1>Zahtjevi i najmovi</h1><p>Sve rezervacije s web stranice, WhatsAppa i Instagrama na jednom mjestu.</p></div>
     <div class="acts"><button class="btn primary" id="addManual">${ic("plus")}Blokada / ručni najam</button></div></div>
@@ -247,8 +271,8 @@ function renderCalendar() {
   const t0 = startMs - off, t1 = t0 + days * DAY;
   const keys = Array.from({ length: days }, (_, i) => addDays(s0, i));
   const pct = (ms) => ((ms - t0) / (t1 - t0)) * 100;
-  const bars = (v) => D.najmovi.filter((b) => b.vehicle_id === v.id && ["na_cekanju", "odobreno", "blokirano"].includes(b.status) && +new Date(b.end_at) > t0 && +new Date(b.start_at) < t1)
-    .map((b) => { const l = Math.max(0, pct(+new Date(b.start_at))), r = Math.min(100, pct(+new Date(b.end_at)));
+  const bars = (v) => D.najmovi.filter((b) => b.vehicle_id === v.id && ["na_cekanju", "odobreno", "blokirano"].includes(b.status) && realEnd(b) > t0 && +new Date(b.start_at) < t1)
+    .map((b) => { const l = Math.max(0, pct(+new Date(b.picked_up_at || b.start_at))), r = Math.min(100, pct(realEnd(b)));
       return `<div class="g-bar ${st(b)}" data-open="${b.id}" style="left:calc(${l}% + 2px);width:calc(${r - l}% - 4px)" title="${esc(name(b))} · ${dRange(b)}">${esc(b.status === "blokirano" ? (b.note || "Blokada") : name(b))}</div>`; }).join("");
   const nowPct = pct(Date.now());
   const label = (() => { const a = parts(new Date(t0 + 12 * 3600e3).toISOString()), z = parts(new Date(t1 - 12 * 3600e3).toISOString()); return `${a.d}. ${MON[a.m - 1]} – ${z.d}. ${MON[z.m - 1]} ${z.y}.`; })();
@@ -262,7 +286,7 @@ function renderCalendar() {
     ${D.vozila.map((v) => `<div class="g-row"><div class="g-name" data-veh="${v.id}"><b>${esc(vname(v))}</b><small>${v.active ? esc(v.category) + " · " + (v.transmission === "automatic" ? "automatik" : "manuelni") : "isključeno"}</small></div>
       <div class="g-track">${grid}${bars(v)}${nowPct > 0 && nowPct < 100 ? `<div class="g-now" style="left:${nowPct}%"></div>` : ""}</div></div>`).join("")}
   </div>
-  <div class="legend"><span><i style="background:var(--amber-soft);border:1px dashed #f5d48a"></i>Na čekanju</span><span><i style="background:var(--green-soft);border:1px solid #b7e6a0"></i>Potvrđeno</span><span><i style="background:var(--blue-soft);border:1px solid #b8cbfb"></i>U najmu</span><span><i style="background:var(--gray-soft);border:1px solid var(--line-2)"></i>Završeno</span><span><i style="background:repeating-linear-gradient(135deg,#e2e8f0 0 3px,#f1f5f9 3px 6px)"></i>Blokada</span></div>`;
+  <div class="legend"><span><i style="background:var(--amber-soft);border:1px dashed #f5d48a"></i>Na čekanju</span><span><i style="background:var(--green-soft);border:1px solid #b7e6a0"></i>Potvrđeno</span><span><i style="background:#efe9ff;border:1px solid #d4c4fb"></i>Čeka preuzimanje</span><span><i style="background:var(--blue-soft);border:1px solid #b8cbfb"></i>U najmu</span><span><i style="background:var(--red-soft);border:1px solid #f4b4ad"></i>Kasni</span><span><i style="background:var(--gray-soft);border:1px solid var(--line-2)"></i>Vraćeno</span><span><i style="background:repeating-linear-gradient(135deg,#e2e8f0 0 3px,#f1f5f9 3px 6px)"></i>Blokada</span></div>`;
   $("cPrev").onclick = () => { ui.calStart = addDays(ui.calStart, -7); renderCalendar(); };
   $("cNext").onclick = () => { ui.calStart = addDays(ui.calStart, 7); renderCalendar(); };
   $("cToday").onclick = () => { ui.calStart = null; renderCalendar(); };
@@ -272,13 +296,17 @@ function renderCalendar() {
 // ---------- 4. fleet ----------
 function vehicleStats(v) {
   const rs = D.najmovi.filter((b) => b.vehicle_id === v.id && counted(b));
-  const done = rs.filter((b) => st(b) !== "predstoji");
+  const done = rs.filter((b) => b.picked_up_at);
   return { count: done.length, days: done.reduce((s, b) => s + (b.days || 0), 0), revenue: done.reduce((s, b) => s + Number(b.price_total || 0), 0), all: rs };
 }
 function vehicleNow(v) {
   const now = Date.now();
-  const cur = D.najmovi.find((b) => b.vehicle_id === v.id && ["odobreno", "blokirano"].includes(b.status) && +new Date(b.start_at) <= now && +new Date(b.end_at) > now);
-  if (cur) return cur.status === "blokirano" ? `<b>Blokirano</b> do ${dShort(cur.end_at)} ${parts(cur.end_at).hm}` : `<b>U najmu</b> do ${dShort(cur.end_at)} ${parts(cur.end_at).hm} · ${esc(name(cur))}`;
+  const out = D.najmovi.find((b) => b.vehicle_id === v.id && b.status === "odobreno" && b.picked_up_at && !b.returned_at);
+  if (out) return st(out) === "kasni" ? `<b style="color:var(--red)">Kasni s vraćanjem</b> · trebalo ${dShort(out.end_at)} ${parts(out.end_at).hm} · ${esc(name(out))}` : `<b>U najmu</b> do ${dShort(out.end_at)} ${parts(out.end_at).hm} · ${esc(name(out))}`;
+  const cur = D.najmovi.find((b) => b.vehicle_id === v.id && b.status === "blokirano" && +new Date(b.start_at) <= now && +new Date(b.end_at) > now);
+  if (cur) return `<b>Blokirano</b> do ${dShort(cur.end_at)} ${parts(cur.end_at).hm}`;
+  const wait = D.najmovi.find((b) => b.vehicle_id === v.id && st(b) === "ceka_preuzimanje");
+  if (wait) return `<b style="color:var(--amber)">Čeka preuzimanje</b> · ${esc(name(wait))} od ${parts(wait.start_at).hm}`;
   const next = D.najmovi.filter((b) => b.vehicle_id === v.id && ["odobreno", "na_cekanju", "blokirano"].includes(b.status) && +new Date(b.start_at) > now).sort((a, b) => a.start_at.localeCompare(b.start_at))[0];
   return `<b>Slobodno</b>${next ? ` · sljedeće: ${rel(next.start_at)}` : ""}`;
 }
@@ -427,8 +455,8 @@ function openBooking(id) {
   const body = `
     <div class="card sec"><div class="hero"><div class="pic">${carPic(v)}</div><div><b>${esc(vname(v))}</b><small>${v.year || ""} · ${esc(v.category || "")}</small><div style="margin-top:6px">${badge(b)}</div></div></div></div>
     <div class="card sec"><h3>Termin</h3><div class="kv">
-      <span>Preuzimanje</span><b>${dFull(b.start_at)}<br><small style="color:var(--ink-2);font-weight:400">${esc(locName(b.pickup_location))}</small></b>
-      <span>Vraćanje</span><b>${dFull(b.end_at)}<br><small style="color:var(--ink-2);font-weight:400">${esc(locName(b.dropoff_location))}</small></b>
+      <span>Preuzimanje</span><b>${dFull(b.start_at)}${b.pickup_location ? `<br><small style="color:var(--ink-2);font-weight:400">${esc(locName(b.pickup_location))}</small>` : ""}</b>
+      <span>Vraćanje</span><b>${dFull(b.end_at)}${b.dropoff_location ? `<br><small style="color:var(--ink-2);font-weight:400">${esc(locName(b.dropoff_location))}</small>` : ""}${b.planned_end_at && b.planned_end_at !== b.end_at ? `<br><small style="color:var(--ink-3);font-weight:400">dogovoreno: ${dFull(b.planned_end_at)}</small>` : ""}</b>
       <span>Trajanje</span><b>${dana(b.days || 1)}</b>
       ${b.flight_number ? `<span>Let</span><b>${esc(b.flight_number)}</b>` : ""}</div></div>
     ${block ? (b.note ? `<div class="card sec"><h3>Razlog</h3>${esc(b.note)}</div>` : "") : `
@@ -450,11 +478,13 @@ function openBooking(id) {
     ${b.price_total != null ? `<div class="card sec"><h3>Obračun</h3><div class="lines">${lines.map((l) => `<div><span>${esc(label(l))}</span><b class="num">${money(l.total)}</b></div>`).join("")}
       <div class="tot"><span>Ukupno</span><b class="num">${money(b.price_total)}</b></div></div>
       ${b.deposit ? `<small style="display:block;margin-top:8px;color:var(--ink-2)">Depozit pri preuzimanju: <b>${money(b.deposit)}</b> · plaćanje na licu mjesta</small>` : ""}</div>` : ""}`}
+    ${b.status === "odobreno" ? handoverHtml(b) : ""}
     <div class="card sec"><h3>Interna napomena</h3><textarea class="inp" id="ownNote" maxlength="1000" placeholder="Vidite samo Vi, npr. dogovor s kupcem…">${esc(b.owner_note || "")}</textarea>
       <div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn ghost sm" id="saveNote">Sačuvaj napomenu</button></div></div>`;
   let foot = "";
   if (b.status === "na_cekanju") foot = `<button class="btn danger" id="aNo">Odbij</button><button class="btn primary" id="aYes">Odobri zahtjev</button>`;
-  else if (["predstoji", "u_najmu"].includes(s)) foot = `${phone ? `<a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent(customerMessage(b))}">${ic("chat")}Pošalji potvrdu</a>` : ""}<button class="btn danger" id="aCancel">Otkaži najam</button>`;
+  else if (["predstoji", "ceka_preuzimanje"].includes(s)) foot = `<button class="btn danger" id="aCancel">Otkaži</button>${phone ? `<a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent(customerMessage(b))}">${ic("chat")}Potvrda kupcu</a>` : ""}<button class="btn primary" data-hand2="preuzeto">${ic("up")}Preuzeto</button>`;
+  else if (["u_najmu", "kasni"].includes(s)) foot = `<button class="btn primary" data-hand2="vraceno">${ic("down")}Vozilo vraćeno</button>`;
   else if (b.status === "odbijeno" && phone) foot = `<a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent(customerMessage(b))}">${ic("chat")}Javi kupcu na WhatsApp</a>`;
   else if (block && +new Date(b.end_at) > Date.now()) foot = `<button class="btn danger" id="aCancel">${ic("trash")}Ukloni blokadu</button>`;
   const d = drawer(`${block ? "Blokada" : "Zahtjev"} ${esc(b.ref)}`, body, foot);
@@ -469,6 +499,21 @@ function openBooking(id) {
     }));
     const sn = d.querySelector("#saveNote");
     if (sn) sn.onclick = async () => { try { await post("napomena", { id: b.id, napomena: d.querySelector("#ownNote").value }); b.owner_note = d.querySelector("#ownNote").value; toast("Napomena je sačuvana."); } catch (e) { toast(e.message); } };
+    d.querySelectorAll("[data-hand2]").forEach((btn) => (btn.onclick = async () => {
+      const t = d.querySelector("#handTime")?.value;
+      btn.disabled = true;
+      try {
+        await post(btn.dataset.hand2, { id: b.id, ...(t ? { vrijeme: t } : {}) });
+        toast(btn.dataset.hand2 === "preuzeto" ? "Vozilo je označeno kao preuzeto." : "Vozilo je vraćeno i ponovo je slobodno.");
+        await refresh(() => openBooking(id));
+      } catch (e) { toast(e.message); btn.disabled = false; }
+    }));
+    const undo = d.querySelector("#undoHand");
+    if (undo) undo.onclick = async () => {
+      const ok = await confirmBox("Poništiti zadnji korak?", b.returned_at ? "Vozilo će ponovo biti označeno kao u najmu." : "Vozilo više neće biti označeno kao preuzeto.", "Poništi", true, false);
+      if (!ok) return;
+      try { await post("ponisti", { id: b.id }); toast("Poništeno."); await refresh(() => openBooking(id)); } catch (e) { toast(e.message); }
+    };
     const yes = d.querySelector("#aYes"), no = d.querySelector("#aNo"), cancel = d.querySelector("#aCancel");
     if (yes) yes.onclick = async () => {
       yes.disabled = true;
@@ -489,6 +534,25 @@ function openBooking(id) {
   wire();
 }
 
+// Hand-over card: when the customer took the car and brought it back.
+function handoverHtml(b) {
+  const s = st(b), step = (done, label, iso, planned) => `<div class="step ${done ? "ok" : ""}"><i>${done ? ic("check") : ""}</i><div><b>${label}</b><small>${done ? dFull(iso) : "planirano " + dFull(planned)}</small></div></div>`;
+  const plannedEnd = b.planned_end_at || b.end_at;
+  let note = "";
+  if (b.returned_at && b.planned_end_at) {
+    const diffH = Math.round((new Date(b.returned_at) - new Date(b.planned_end_at)) / 3600e3);
+    if (diffH >= 1) note = `<div class="note-box" style="background:var(--red-soft);color:var(--red)">Vraćeno ${diffH} h kasnije od dogovorenog.</div>`;
+    else if (diffH <= -1) note = `<div class="note-box" style="background:var(--green-soft);color:var(--green-dark)">Vraćeno ranije, vozilo je od tada slobodno za nove rezervacije.</div>`;
+  }
+  if (s === "kasni") note = `<div class="note-box" style="background:var(--red-soft);color:var(--red)">Vozilo je trebalo biti vraćeno ${dFull(b.end_at)}. Dok ga ne označite kao vraćeno, ostaje zauzeto na stranici.</div>`;
+  const pickable = ["predstoji", "ceka_preuzimanje", "u_najmu", "kasni"].includes(s);
+  return `<div class="card sec"><h3>Predaja vozila</h3><div class="steps">
+      ${step(!!b.picked_up_at, "Preuzeto", b.picked_up_at, b.start_at)}${step(!!b.returned_at, "Vraćeno", b.returned_at, plannedEnd)}</div>
+    ${note}
+    ${pickable ? `<details class="when"><summary>Upiši drugo vrijeme</summary><input class="inp" id="handTime" type="datetime-local" max="${new Date(Date.now() + 864e5).toISOString().slice(0, 16)}"><small>Ako ne upišete, uzima se trenutno vrijeme.</small></details>` : ""}
+    ${b.picked_up_at ? `<button class="link-btn" id="undoHand">Poništi zadnji korak</button>` : ""}</div>`;
+}
+
 function historyRow(b, showCar) {
   return `<div class="li" data-open="${b.id}"><div class="av">${esc(initials(showCar ? vname(b._v) : name(b)))}</div>
     <div class="t"><b>${esc(showCar ? vname(b._v) : name(b))}</b><small>${dRange(b)} · ${dana(b.days || 1)}${!showCar && b.phone ? " · " + esc(b.phone) : ""}</small></div>
@@ -498,8 +562,8 @@ function historyRow(b, showCar) {
 function openVehicle(vid) {
   const v = veh(vid), s = vehicleStats(v);
   const all = D.najmovi.filter((b) => b.vehicle_id === v.id && isRental(b)).sort((a, b) => b.start_at.localeCompare(a.start_at));
-  const coming = all.filter((b) => ["na_cekanju", "predstoji", "u_najmu"].includes(st(b)));
-  const past = all.filter((b) => st(b) === "zavrseno");
+  const coming = all.filter((b) => ["na_cekanju", ...ACTIVE].includes(st(b)));
+  const past = all.filter((b) => ["vraceno", "nije_preuzeto"].includes(st(b)));
   const other = all.filter((b) => ["odbijeno", "otkazano"].includes(b.status));
   const people = new Set(past.map(clientKey)).size;
   const avg = s.count ? Math.round(s.days / s.count * 10) / 10 : 0;

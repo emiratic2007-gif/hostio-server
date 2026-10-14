@@ -8,11 +8,12 @@ export const LANGS = [
 
 export const T = {
   bs: {
+    st_cars: "vozila u ponudi", st_from: "najniža cijena po danu", st_locs: "lokacije preuzimanja", st_cancel: "sati besplatnog otkazivanja", how_sub: "Rezervacija za par minuta, bez plaćanja unaprijed.", terms_sub: "Jasni uslovi, bez sitnih slova.", fleet_hint: "Izaberite vozilo za detalje, kalendar i cijenu.", sticky: "Pronađi auto", owners: "Za agenciju", trust1: "Bez plaćanja unaprijed", trust2: "Potvrda u najkraćem roku", trust3: "Podrška na WhatsAppu", see_cars: "Pogledaj vozila",
     gate: "Odaberite jezik", nav_fleet: "Vozila", nav_how: "Kako funkcioniše", nav_terms: "Uslovi", nav_contact: "Kontakt",
     demo: "Demo stranica: izmišljena agencija za prikaz Hostio sistema. Rezervacije ovdje nisu stvarne.",
     hero_kicker: "Rent a car · {city}", hero_sub: "Odaberite auto, pošaljite zahtjev za par minuta i platite tek kad preuzmete vozilo.",
     pickup: "Preuzimanje", ret: "Vraćanje", other_return: "Vraćam na drugoj lokaciji", from: "Od", to: "Do", search: "Prikaži slobodna vozila",
-    usp_km: "Neograničena kilometraža", usp_pay: "Plaćanje na licu mjesta", usp_cancel: "Besplatno otkazivanje do {n} h", usp_deliver: "Preuzimanje i na aerodromu",
+    usp_km: "Neograničena kilometraža", usp_pay: "Plaćanje na licu mjesta", usp_cancel: "Besplatno otkazivanje do {n}\u00a0h", usp_deliver: "Preuzimanje i na aerodromu",
     fleet: "Naš vozni park", fleet_sub_dates: "Cijene i dostupnost za {from} – {to}", fleet_sub: "Odaberite datume da vidite tačnu cijenu i dostupnost.",
     cat_all: "Sva vozila", cat_mali: "Mali", cat_kompakt: "Kompaktni", cat_srednji: "Srednji", cat_suv: "SUV", cat_kombi: "Kombi", auto_only: "Automatik",
     none: "Nema vozila za ovaj filter.", featured: "Preporučujemo", from_price: "od", per_day: "/ dan", total_for: "ukupno za {d}",
@@ -63,11 +64,12 @@ export const T = {
     e_mreza: "Nema veze s internetom. Pokušajte ponovo.", busy_pick: "Vozilo je zauzeto u tom terminu.",
   },
   en: {
+    st_cars: "cars in the fleet", st_from: "lowest daily price", st_locs: "pick-up locations", st_cancel: "hours of free cancellation", how_sub: "Book in minutes, nothing to pay in advance.", terms_sub: "Clear terms, no small print.", fleet_hint: "Pick a car for details, calendar and price.", sticky: "Find a car", owners: "Agency login", trust1: "No prepayment", trust2: "Quick confirmation", trust3: "WhatsApp support", see_cars: "See the cars",
     gate: "Choose your language", nav_fleet: "Cars", nav_how: "How it works", nav_terms: "Terms", nav_contact: "Contact",
     demo: "Demo site: a fictional agency showing the Hostio system. Bookings here are not real.",
     hero_kicker: "Car rental · {city}", hero_sub: "Pick a car, send a request in minutes and pay only when you collect the car.",
     pickup: "Pick-up", ret: "Return", other_return: "Return to a different location", from: "From", to: "To", search: "Show available cars",
-    usp_km: "Unlimited mileage", usp_pay: "Pay on pick-up", usp_cancel: "Free cancellation up to {n} h", usp_deliver: "Airport pick-up available",
+    usp_km: "Unlimited mileage", usp_pay: "Pay on pick-up", usp_cancel: "Free cancellation up to {n}\u00a0h", usp_deliver: "Airport pick-up available",
     fleet: "Our fleet", fleet_sub_dates: "Prices and availability for {from} – {to}", fleet_sub: "Choose your dates to see the exact price and availability.",
     cat_all: "All cars", cat_mali: "Small", cat_kompakt: "Compact", cat_srednji: "Mid-size", cat_suv: "SUV", cat_kombi: "Van", auto_only: "Automatic",
     none: "No cars match this filter.", featured: "Recommended", from_price: "from", per_day: "/ day", total_for: "total for {d}",
@@ -118,11 +120,12 @@ export const T = {
     e_mreza: "No internet connection. Please try again.", busy_pick: "The car is booked for these dates.",
   },
   de: {
+    st_cars: "Fahrzeuge in der Flotte", st_from: "günstigster Tagespreis", st_locs: "Abholorte", st_cancel: "Std. kostenlose Stornierung", how_sub: "In wenigen Minuten buchen, ohne Vorauszahlung.", terms_sub: "Klare Bedingungen, kein Kleingedrucktes.", fleet_hint: "Wählen Sie ein Auto für Details, Kalender und Preis.", sticky: "Auto finden", owners: "Agentur-Login", trust1: "Keine Vorauszahlung", trust2: "Schnelle Bestätigung", trust3: "Support per WhatsApp", see_cars: "Fahrzeuge ansehen",
     gate: "Sprache wählen", nav_fleet: "Fahrzeuge", nav_how: "So funktioniert's", nav_terms: "Bedingungen", nav_contact: "Kontakt",
     demo: "Demo-Seite: eine fiktive Agentur zur Vorstellung von Hostio. Buchungen hier sind nicht echt.",
     hero_kicker: "Autovermietung · {city}", hero_sub: "Auto wählen, Anfrage in wenigen Minuten senden und erst bei der Abholung bezahlen.",
     pickup: "Abholung", ret: "Rückgabe", other_return: "Rückgabe an anderem Ort", from: "Von", to: "Bis", search: "Freie Autos anzeigen",
-    usp_km: "Unbegrenzte Kilometer", usp_pay: "Zahlung bei Abholung", usp_cancel: "Kostenlos stornieren bis {n} Std.", usp_deliver: "Abholung auch am Flughafen",
+    usp_km: "Unbegrenzte Kilometer", usp_pay: "Zahlung bei Abholung", usp_cancel: "Kostenlos stornieren bis {n}\u00a0Std.", usp_deliver: "Abholung auch am Flughafen",
     fleet: "Unsere Flotte", fleet_sub_dates: "Preise und Verfügbarkeit für {from} – {to}", fleet_sub: "Wählen Sie Ihre Daten für genauen Preis und Verfügbarkeit.",
     cat_all: "Alle", cat_mali: "Klein", cat_kompakt: "Kompakt", cat_srednji: "Mittelklasse", cat_suv: "SUV", cat_kombi: "Kleinbus", auto_only: "Automatik",
     none: "Keine Fahrzeuge für diesen Filter.", featured: "Empfohlen", from_price: "ab", per_day: "/ Tag", total_for: "gesamt für {d}",
@@ -173,6 +176,7 @@ export const T = {
     e_mreza: "Keine Internetverbindung. Bitte erneut versuchen.", busy_pick: "Das Auto ist in diesem Zeitraum belegt.",
   },
   ar: {
+    st_cars: "سيارة في أسطولنا", st_from: "أقل سعر يومي", st_locs: "مواقع الاستلام", st_cancel: "ساعة إلغاء مجاني", how_sub: "احجز في دقائق دون دفع مسبق.", terms_sub: "شروط واضحة بدون تفاصيل مخفية.", fleet_hint: "اختر سيارة لرؤية التفاصيل والتقويم والسعر.", sticky: "ابحث عن سيارة", owners: "دخول الوكالة", trust1: "بدون دفع مسبق", trust2: "تأكيد سريع", trust3: "دعم عبر واتساب", see_cars: "شاهد السيارات",
     gate: "اختر اللغة", nav_fleet: "السيارات", nav_how: "كيف يعمل", nav_terms: "الشروط", nav_contact: "اتصل بنا",
     demo: "موقع تجريبي: وكالة وهمية لعرض نظام Hostio. الحجوزات هنا ليست حقيقية.",
     hero_kicker: "تأجير سيارات · {city}", hero_sub: "اختر سيارتك وأرسل طلبك في دقائق، وادفع فقط عند استلام السيارة.",

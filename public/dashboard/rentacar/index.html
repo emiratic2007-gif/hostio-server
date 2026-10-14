@@ -141,7 +141,29 @@ nav.bottom{display:none}
 .st.na_cekanju{background:var(--amber-soft);color:var(--amber)}
 .st.predstoji{background:var(--green-soft);color:var(--green-dark)}
 .st.u_najmu{background:var(--blue-soft);color:var(--blue)}
-.st.zavrseno{background:var(--gray-soft);color:var(--gray)}
+.st.zavrseno,.st.vraceno{background:var(--gray-soft);color:var(--gray)}
+.st.ceka_preuzimanje{background:#efe9ff;color:#6d28d9}
+.st.kasni{background:var(--red);color:#fff}
+.st.kasni::before{animation:blink 1.2s infinite}
+.st.nije_preuzeto{background:var(--gray-soft);color:var(--red)}
+@keyframes blink{50%{opacity:.2}}
+.steps{display:grid;gap:10px;margin-bottom:6px}
+.step{display:flex;gap:12px;align-items:center}
+.step i{width:30px;height:30px;border-radius:50%;border:2px dashed var(--line-2);display:grid;place-items:center;flex:none}
+.step.ok i{border:0;background:var(--green);color:var(--green-ink);box-shadow:var(--glow)}
+.step b{display:block;font-weight:500}
+.step small{color:var(--ink-2)}
+.when{margin-top:10px;font-size:13px}
+.when summary{cursor:pointer;color:var(--ink-2);font-weight:500}
+.when .inp{margin-top:8px}
+.when small{display:block;color:var(--ink-3);margin-top:4px}
+.link-btn{margin-top:10px;font-size:12.5px;color:var(--ink-2);text-decoration:underline}
+.note-box+.when,.steps+.note-box{margin-top:10px}
+.li.late{background:#fff6f5}
+.li.done{opacity:.7}
+.li .quick{flex:none}
+.kpi.alert{border-color:#f4b4ad}
+@media(max-width:520px){.li .hide-s{display:none}}
 .st.odbijeno,.st.otkazano{background:var(--red-soft);color:var(--red)}
 .st.blokirano{background:#e2e8f0;color:var(--slate)}
 .src{font-size:12px;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
@@ -204,7 +226,10 @@ nav.bottom{display:none}
 .g-bar.na_cekanju{background:var(--amber-soft);color:var(--amber);border-color:#f5d48a;border-style:dashed}
 .g-bar.predstoji{background:var(--green-soft);color:var(--green-dark);border-color:#b7e6a0}
 .g-bar.u_najmu{background:var(--blue-soft);color:var(--blue);border-color:#b8cbfb}
-.g-bar.zavrseno{background:var(--gray-soft);color:var(--gray);border-color:var(--line-2)}
+.g-bar.zavrseno,.g-bar.vraceno,.g-bar.nije_preuzeto{background:var(--gray-soft);color:var(--gray);border-color:var(--line-2)}
+.g-bar.ceka_preuzimanje{background:#efe9ff;color:#6d28d9;border-color:#d4c4fb}
+.g-bar.kasni{background:var(--red-soft);color:var(--red);border-color:#f4b4ad;animation:pulseR 1.6s infinite}
+@keyframes pulseR{50%{box-shadow:0 0 0 4px rgba(180,35,24,.12)}}
 .g-bar.blokirano{background:repeating-linear-gradient(135deg,#e2e8f0 0 6px,#eef2f6 6px 12px);color:var(--slate);border-color:#cbd5e1}
 .g-now{position:absolute;top:0;bottom:0;width:2px;background:var(--green);box-shadow:0 0 10px var(--green);z-index:2;pointer-events:none}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
