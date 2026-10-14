@@ -411,6 +411,7 @@ async function api(path, opts = {}) {
   const r = await fetch("/api/" + path, { ...opts, headers: { "content-type": "application/json", ...(sess ? { authorization: "Bearer " + sess.access_token } : {}) } });
   const d = await r.json().catch(() => ({}));
   if (r.status === 401) { logout(d.greska); throw new Error("auth"); }
+  if (d.idi) { try { localStorage.setItem("hostio_rc_sess", JSON.stringify(sess)); } catch (e) {} location.href = d.idi; throw new Error("auth"); }
   if (!r.ok) throw new Error(d.greska || "Nešto nije u redu. Pokušajte ponovo.");
   return d;
 }
