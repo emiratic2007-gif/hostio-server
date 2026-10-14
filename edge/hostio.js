@@ -11,6 +11,7 @@ import { verifyChallenge, validSignature, processWebhook, statusReport, log } fr
 import { handleApi } from "../lib/dashboard.js";
 import { handleRentApi } from "../lib/rentacar.js";
 import { handleRcOwner } from "../lib/rc_owner.js";
+import { emailReady } from "../lib/rc_email.js";
 import { connectStart, connectFinish, refreshInstagramTokens, instagramStatus } from "../lib/instagram.js";
 import { db } from "../lib/db.js";
 import { env, Buffer } from "../lib/env.js";
@@ -51,6 +52,7 @@ export async function handle(req) {
     if (!key || key !== env("WHATSAPP_VERIFY_TOKEN")) return json({ greska: "Dodaj ?kljuc=<tvoj WHATSAPP_VERIFY_TOKEN> na kraj adrese." }, 403);
     const base = env("PUBLIC_WEBHOOK_BASE") || `${env("SUPABASE_URL")}/functions/v1/hostio`;
     const rows = await statusReport({ waba: p.get("waba"), subscribe: p.get("pretplati") === "da", redirect: p.get("preusmjeri") === "da", baseUrl: base });
+    rows.push({ name: "Email kupcima (RESEND_API_KEY)", ok: emailReady(), note: emailReady() ? "pošiljalac: " + env("EMAIL_FROM", "onboarding@resend.dev") : "nije podešeno, kupci ne dobijaju email" });
     try { rows.push(...await instagramStatus()); } catch (e) { rows.push({ name: "Instagram", ok: false, note: e.message }); }
     return json({ status: rows });
   }

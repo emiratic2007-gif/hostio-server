@@ -217,6 +217,8 @@ function renderOverview() {
   wireQuick($("view"));
 }
 
+const mailToast = (what, m) => m?.ok ? `${what}. Kupcu je poslan email.` : m && !m.skipped ? `${what}. Email nije poslan: ${m.greska}` : `${what}.`;
+
 // Quick "Preuzeto" / "Vraćeno" buttons (overview list and fleet cards).
 function wireQuick(root) {
   root.querySelectorAll("[data-hand]").forEach((btn) => (btn.onclick = async (e) => {
@@ -470,6 +472,7 @@ function openBooking(id) {
       <span>Izvor</span><b>${SRC[b.source] || esc(b.source)}</b>
       <span>Poslano</span><b>${dFull(b.created_at)}</b></div>
       <div class="contact">${phone ? `<a class="btn ghost sm" href="https://wa.me/${phone}" target="_blank" rel="noopener">${ic("chat")}WhatsApp</a><a class="btn ghost sm" href="tel:+${phone}">${ic("phone")}Pozovi</a>` : ""}${b.email ? `<a class="btn ghost sm" href="mailto:${esc(b.email)}">${ic("mail")}Email</a>` : ""}</div></div>
+    ${emailHtml(b)}
     ${b.note ? `<div class="note-box"><b>Napomena kupca:</b> ${esc(b.note)}</div>` : ""}
     ${b.source !== "vlasnik" ? `<div class="card sec"><h3>Vozačka dozvola</h3><div class="lic">
       <button data-lic="prednja" ${b.ima_prednju ? "" : "disabled"}>${b.ima_prednju ? `${ic("id")}Prednja strana<small style="color:var(--ink-3)">klik za prikaz</small>` : '<span class="none">Nema fotografije</span>'}</button>
@@ -508,6 +511,8 @@ function openBooking(id) {
         await refresh(() => openBooking(id));
       } catch (e) { toast(e.message); btn.disabled = false; }
     }));
+    const rs = d.querySelector("#resend");
+    if (rs) rs.onclick = async () => { rs.disabled = true; try { await post("email", { id: b.id }); toast("Email je poslan kupcu."); await refresh(() => openBooking(id)); } catch (e) { toast(e.message); rs.disabled = false; } };
     const undo = d.querySelector("#undoHand");
     if (undo) undo.onclick = async () => {
       const ok = await confirmBox("Poništiti zadnji korak?", b.returned_at ? "Vozilo će ponovo biti označeno kao u najmu." : "Vozilo više neće biti označeno kao preuzeto.", "Poništi", true, false);
@@ -517,13 +522,13 @@ function openBooking(id) {
     const yes = d.querySelector("#aYes"), no = d.querySelector("#aNo"), cancel = d.querySelector("#aCancel");
     if (yes) yes.onclick = async () => {
       yes.disabled = true;
-      try { await post("odluka", { id: b.id, odluka: "odobri", napomena: d.querySelector("#ownNote")?.value }); toast("Zahtjev je odobren."); await refresh(() => openBooking(id)); }
+      try { const r = await post("odluka", { id: b.id, odluka: "odobri", napomena: d.querySelector("#ownNote")?.value }); toast(mailToast("Zahtjev je odobren", r.email)); await refresh(() => openBooking(id)); }
       catch (e) { toast(e.message); yes.disabled = false; }
     };
     if (no) no.onclick = async () => {
       const ok = await confirmBox("Odbiti zahtjev?", `Vozilo ${esc(vname(v))} će ponovo biti slobodno za ${dRange(b)}.`, "Odbij zahtjev", true, false);
       if (!ok) return;
-      try { await post("odluka", { id: b.id, odluka: "odbij", napomena: d.querySelector("#ownNote")?.value }); toast("Zahtjev je odbijen."); await refresh(() => openBooking(id)); } catch (e) { toast(e.message); }
+      try { const r = await post("odluka", { id: b.id, odluka: "odbij", napomena: d.querySelector("#ownNote")?.value }); toast(mailToast("Zahtjev je odbijen", r.email)); await refresh(() => openBooking(id)); } catch (e) { toast(e.message); }
     };
     if (cancel) cancel.onclick = async () => {
       const ok = await confirmBox(block ? "Ukloniti blokadu?" : "Otkazati najam?", block ? "Vozilo će ponovo biti slobodno u tom periodu." : `Najam ${esc(b.ref)} (${esc(name(b))}) bit će otkazan i vozilo ponovo slobodno. Kupca obavijestite sami.`, block ? "Ukloni" : "Otkaži najam", true, false);
@@ -532,6 +537,16 @@ function openBooking(id) {
     };
   };
   wire();
+}
+
+// Emails sent to the customer about this booking.
+const MAILK = { primljen: "Potvrda prijema zahtjeva", potvrdjen: "Potvrda rezervacije", odbijen: "Obavijest da zahtjev nije potvrđen", otkazan: "Obavijest o otkazivanju" };
+function emailHtml(b) {
+  if (b.status === "blokirano") return "";
+  const logs = (b.email_log || []).slice(-4).reverse();
+  return `<div class="card sec"><h3>Email kupcu</h3>
+    ${!b.email ? '<p style="margin:0;color:var(--ink-3)">Kupac nije ostavio email.</p>' : logs.length ? `<div class="mails">${logs.map((m) => `<div class="mail ${m.ok ? "ok" : "bad"}"><i>${ic(m.ok ? "check" : "x")}</i><div><b>${MAILK[m.vrsta] || m.vrsta}</b><small>${m.ok ? "poslano " + dFull(m.at) : "nije poslano: " + esc(m.greska || "")}</small></div></div>`).join("")}</div>` : '<p style="margin:0;color:var(--ink-3)">Još nije poslan nijedan email.</p>'}
+    ${b.email && ["na_cekanju", "odobreno", "odbijeno", "otkazano"].includes(b.status) ? `<button class="link-btn" id="resend">${ic("mail")} Pošalji ponovo na ${esc(b.email)}</button>` : ""}</div>`;
 }
 
 // Hand-over card: when the customer took the car and brought it back.

@@ -157,7 +157,14 @@ nav.bottom{display:none}
 .when summary{cursor:pointer;color:var(--ink-2);font-weight:500}
 .when .inp{margin-top:8px}
 .when small{display:block;color:var(--ink-3);margin-top:4px}
-.link-btn{margin-top:10px;font-size:12.5px;color:var(--ink-2);text-decoration:underline}
+.mails{display:grid;gap:10px}
+.mail{display:flex;gap:10px;align-items:center}
+.mail i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.mail.ok i{background:var(--green-soft);color:var(--green-dark)}
+.mail.bad i{background:var(--red-soft);color:var(--red)}
+.mail b{display:block;font-weight:500;font-size:13.5px}
+.mail small{color:var(--ink-2);font-size:12px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;color:var(--ink-2);text-decoration:underline}
 .note-box+.when,.steps+.note-box{margin-top:10px}
 .li.late{background:#fff6f5}
 .li.done{opacity:.7}
