@@ -5,10 +5,12 @@
 //   /api/rc/*         rent-a-car agency websites
 //   /api/ig/povezi    connect a business's Instagram account (then /api/ig/povratak)
 //   /cron             daily maintenance (Instagram token renewal)
-//   /api/*            owner dashboard
+//   /api/rco/*        rent-a-car owner dashboard
+//   /api/*            salon owner dashboard (and login for both)
 import { verifyChallenge, validSignature, processWebhook, statusReport, log } from "../lib/hostio.js";
 import { handleApi } from "../lib/dashboard.js";
 import { handleRentApi } from "../lib/rentacar.js";
+import { handleRcOwner } from "../lib/rc_owner.js";
 import { connectStart, connectFinish, refreshInstagramTokens, instagramStatus } from "../lib/instagram.js";
 import { db } from "../lib/db.js";
 import { env, Buffer } from "../lib/env.js";
@@ -63,6 +65,7 @@ export async function handle(req) {
   if (path === "/api/ig/povezi") return connectStart(url);
   if (path === "/api/ig/povratak") return connectFinish(url);
   if (path.startsWith("/api/rc/")) return handleRentApi(await withPath(req, path));
+  if (path.startsWith("/api/rco/")) return handleRcOwner(await withPath(req, path));
   if (path.startsWith("/api/")) return handleApi(await withPath(req, path));
   return json({ greska: "nepoznato" }, 404);
 }
