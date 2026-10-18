@@ -1080,8 +1080,8 @@ intro.from(".nav-in", { y: -40, opacity: 0, duration: 1 })
   .from(".hero .lead, .hero .cta-row, .hero .trust", { y: 30, opacity: 0, duration: .9, stagger: .1 }, "-=.9")
   .from("#phone", { y: 120, rotateX: 25, rotateY: -18, opacity: 0, duration: 1.4, ease: "expo.out" }, .5)
   .from("#scen", { y: 20, opacity: 0, duration: .8 }, "-=.8")
-  .from("#fc2", { x: -40, opacity: 0, duration: .9, ease: "back.out(1.6)" }, "-=.5")
-  .add(() => playChat(0), "-=1");
+  .from("#fc2", { x: -40, opacity: 0, duration: .9, ease: "back.out(1.6)" }, "-=.5");
+setTimeout(() => playChat(0), 1600);
 
 /* floating idle */
 gsap.to("#fc2", { y: -12, duration: 2.6, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 2.5 });
