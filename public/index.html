@@ -10,6 +10,8 @@
 <meta property="og:description" content="Svaka neodgovorena poruka je mušterija koja je otišla konkurenciji. Hostio odgovara za nekoliko sekundi, 24/7.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230E0F0C'/%3E%3Crect x='17' y='24' width='8' height='26' rx='2' fill='%237ED957'/%3E%3Ccircle cx='21' cy='15' r='5' fill='%237ED957'/%3E%3Ccircle cx='41' cy='37' r='11' fill='none' stroke='%237ED957' stroke-width='8'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("mp")</script>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
@@ -34,6 +36,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
 .g{color:var(--g)}
 .loss{color:var(--loss)}
+html.mp .hero .wrap{opacity:0;animation:mpReveal 0s 3s forwards}
+@keyframes mpReveal{to{opacity:1}}
 section{position:relative;overflow-x:clip}
 .hero,section{contain:paint}
 .marquee{position:relative}
@@ -862,9 +866,6 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 
 <div class="mcta" id="mcta"><a href="#demo" class="btn lg">Besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (() => {
 "use strict";
@@ -1018,13 +1019,26 @@ addEventListener("scroll", () => {
   mcta.classList.toggle("show", y > innerHeight * .8 && demoTop > innerHeight * .9);
 }, { passive: true });
 
-/* ---------- No GSAP: show everything, start chat, done ---------- */
-if (!window.gsap || reduce) {
+/* ---------- Load motion libraries (with backup CDN); without them the page still works ---------- */
+let fellBack = false;
+function fallback() {
+  if (fellBack) return; fellBack = true;
+  document.documentElement.classList.remove("mp");
   playChat(0); $("#strike").style.setProperty("--s", 1); $$(".count").forEach(c => c.textContent = c.dataset.to);
   $("#stepsLine").style.transform = "scaleX(1)";
-  return;
 }
+const load = src => new Promise((res, rej) => { const sc = document.createElement("script"); sc.src = src; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); });
+const tryLoad = list => list.reduce((p, src) => p.catch(() => load(src)), Promise.reject());
+if (reduce) { fallback(); return; }
+const safety = setTimeout(fallback, 6000);
+tryLoad(["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"])
+  .then(() => tryLoad(["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js", "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"]))
+  .then(() => tryLoad(["https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js", "https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"]).catch(() => {}))
+  .then(() => { if (!window.gsap || !window.ScrollTrigger) throw new Error("no gsap"); clearTimeout(safety); if (!fellBack) motion(); })
+  .catch(fallback);
 
+function motion() {
+document.documentElement.classList.remove("mp");
 gsap.registerPlugin(ScrollTrigger);
 
 /* smooth scroll */
@@ -1173,7 +1187,9 @@ if (fine) $$(".magnetic").forEach(b => {
   b.addEventListener("pointerleave", () => gsap.to(b, { x: 0, y: 0, duration: .7, ease: "elastic.out(1,.4)" }));
 });
 
+ScrollTrigger.refresh();
 addEventListener("load", () => ScrollTrigger.refresh());
+}
 })();
 </script>
 </body>
