@@ -22,7 +22,8 @@
   --r:22px; --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{font-family:Poppins,system-ui,sans-serif;background:var(--ink);color:var(--paper);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -33,7 +34,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
 .g{color:var(--g)}
 .loss{color:var(--loss)}
-section{position:relative}
+section{position:relative;overflow-x:clip}
+.marquee{position:relative}
 
 /* grain */
 body::after{content:"";position:fixed;inset:-50%;z-index:9998;pointer-events:none;opacity:.05;
@@ -158,6 +160,7 @@ h1 .w>span{display:inline-block}
 .sec{padding:clamp(90px,12vw,160px) 0}
 .light{background:var(--paper);color:var(--ink)}
 .light .lead,.light .sub{color:#55574F}
+.light .lead strong{color:var(--ink)}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
 .light .eyebrow{color:var(--g2)}
 .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
@@ -332,7 +335,7 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radiu
 @media (max-width:480px){.why-grid{grid-template-columns:1fr}}
 .stat{padding:30px;border-radius:24px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
 .stat b{display:block;font-size:clamp(2.6rem,5vw,3.8rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--g)}
-.stat span{display:block;margin-top:10px;font-size:.92rem;color:#A9ABA2}
+.stat>span{display:block;margin-top:10px;font-size:.92rem;color:#A9ABA2}
 .why-cols{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){.why-cols{grid-template-columns:1fr}}
 .why-col{padding:36px;border-radius:28px;background:linear-gradient(160deg,#1A1B17,#111210);box-shadow:inset 0 0 0 1px var(--line)}
@@ -548,7 +551,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
           </div>
         </div>
         <div>
-          <div class="ticker"><span class="dot"></span><span>Od kad ste otvorili ovu stranicu, po vašim brojkama, prošlo je <b id="tick">0,00 KM</b> izgubljene zarade.</span></div>
+          <div class="ticker"><span class="dot"></span><span>Svaki dan bez Hostia: <b id="perDay">0 KM</b> manje u kasi. Dok čitate ovu stranicu: <b id="tick">0,000 KM</b>.</span></div>
           <a href="#demo" class="btn lg" style="width:100%;justify-content:center;margin-top:16px">Želim to vratiti <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <p class="note">Procjena je informativna i računa se isključivo iz vrijednosti koje ste postavili. Gubitak = propušteni upiti koji odu drugome × vrijednost mušterije, plus mušterije koje ne dođu na termin.</p>
         </div>
@@ -935,6 +938,7 @@ function calc() {
   const hrs = q * 30 * mins / 60;
   perSecond = lossM / (30 * 24 * 3600);
   $("#lossY").textContent = fmt(lossM * 12) + " KM";
+  $("#perDay").textContent = fmt(lossM / 30) + " KM";
   $("#hrs").textContent = fmt(hrs) + " h";
   $("#lost").textContent = fmt(lostCust);
   if (!window.gsap || reduce) { $("#lossM").textContent = fmt(lossM); return; }
@@ -947,7 +951,7 @@ calc();
 const t0 = performance.now();
 setInterval(() => {
   const v = perSecond * (performance.now() - t0) / 1000;
-  $("#tick").textContent = v.toFixed(2).replace(".", ",") + " KM";
+  $("#tick").textContent = v.toFixed(3).replace(".", ",") + " KM";
 }, 100);
 
 /* ---------- Hero chat demo ---------- */
