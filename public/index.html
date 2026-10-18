@@ -2,7 +2,7 @@
 <html lang="bs">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hostio · Custom AI koji odgovara i zakazuje umjesto vas</title>
 <meta name="description" content="Hostio je custom AI za vaš biznis: odgovara mušterijama na WhatsAppu, Viberu i Instagramu 24/7, zakazuje termine, šalje podsjetnike i vodi rezervacije. Prestanite gubiti mušterije zbog neodgovorenih poruka.">
 <meta name="theme-color" content="#0E0F0C">
@@ -81,7 +81,25 @@ nav.hide .nav-in{transform:translateY(-140%)}
 .nav-links a:hover{background:rgba(255,255,255,.06);color:var(--paper)}
 .nav-in .btn{padding:12px 22px;font-size:.92rem}
 @media (max-width:900px){.nav-links{display:none}}
-@media (max-width:420px){.nav-in .btn span.long{display:none}}
+.nav-right{display:flex;align-items:center;gap:8px}
+.cta-short{display:none}
+@media (max-width:420px){.cta-full{display:none}.cta-short{display:inline}}
+.burger{display:none;position:relative;width:46px;height:46px;flex:none;border:0;border-radius:50%;background:rgba(255,255,255,.08);cursor:pointer}
+.burger span{position:absolute;left:14px;right:14px;height:2px;border-radius:2px;background:var(--paper);transition:transform .4s var(--ease),top .4s var(--ease)}
+.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:26px}
+body.menu-open .burger span:nth-child(1){top:22px;transform:rotate(45deg)}
+body.menu-open .burger span:nth-child(2){top:22px;transform:rotate(-45deg)}
+@media (max-width:900px){.burger{display:block}}
+.mmenu{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:96px 24px calc(28px + env(safe-area-inset-bottom));
+  background:rgba(14,15,12,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s;overflow-y:auto;overscroll-behavior:contain}
+body.menu-open .mmenu{opacity:1;visibility:visible}
+.mmenu .ml{display:flex;flex-direction:column}
+.mmenu .ml a{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:8px 0;border-bottom:1px solid var(--line);font-size:clamp(1.5rem,7.5vw,2.3rem);font-weight:700;letter-spacing:-.03em;opacity:0;transform:translateY(18px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.mmenu .ml a .n{font-size:.8rem;font-weight:600;letter-spacing:0;color:var(--g)}
+body.menu-open .mmenu .ml a{opacity:1;transform:none}
+body.menu-open .mmenu .ml a:nth-child(2){transition-delay:.04s}body.menu-open .mmenu .ml a:nth-child(3){transition-delay:.08s}body.menu-open .mmenu .ml a:nth-child(4){transition-delay:.12s}body.menu-open .mmenu .ml a:nth-child(5){transition-delay:.16s}body.menu-open .mmenu .ml a:nth-child(6){transition-delay:.2s}body.menu-open .mmenu .ml a:nth-child(7){transition-delay:.24s}
+.mmenu .btn{justify-content:center}
+@media (min-width:901px){.mmenu{display:none}}
 
 /* HERO */
 .hero{min-height:100svh;padding:140px 0 80px;display:flex;align-items:center;overflow:hidden}
@@ -402,7 +420,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 .giant b{background:linear-gradient(180deg,rgba(126,217,87,.35),rgba(126,217,87,0));-webkit-background-clip:text;background-clip:text}
 
 /* sticky mobile CTA */
-.mcta{position:fixed;left:16px;right:16px;bottom:16px;z-index:999;display:none;transform:translateY(160%);transition:transform .5s var(--ease)}
+.mcta{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:999;display:none;transform:translateY(160%);transition:transform .5s var(--ease)}
 .mcta.show{transform:none}
 .mcta .btn{width:100%;justify-content:center}
 @media (max-width:700px){.mcta{display:block}}
@@ -474,6 +492,145 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 .pr b{display:block;font-weight:700;font-size:1rem;letter-spacing:-.02em;margin-bottom:4px}
 .pr span{font-size:.88rem;color:#A9ABA2}
 
+
+/* ================= PHONES ================= */
+@media (max-width:600px){
+  nav{inset:10px 0 auto}
+  .nav-in{padding:6px 6px 6px 18px;gap:10px}
+  .logo{font-size:1.45rem}
+  .nav-in .btn{padding:11px 16px;font-size:.86rem}
+  .nav-in .btn svg{width:16px;height:16px}
+  body::after,#cursor,.b3{display:none}
+  .blob{filter:blur(60px)}
+  .b1{width:380px;height:380px;top:-140px;right:-140px}
+  .b2{width:340px;height:340px}
+  .hero{min-height:auto;padding:104px 0 56px}
+  .hero-grid{gap:44px}
+  .pill{font-size:.76rem;padding:6px 14px 6px 6px;gap:8px}
+  h1{font-size:clamp(2.1rem,10.4vw,3.3rem);margin:20px 0 18px}
+  .hl{white-space:normal;padding-bottom:.04em;background:linear-gradient(var(--g),var(--g)) 0 100%/100% .07em no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .hl svg{display:none}
+  .lead{font-size:1rem}
+  .cta-row{flex-direction:column;align-items:stretch;gap:12px;margin-top:28px}
+  .cta-row .btn{justify-content:center}
+  .btn.lg{padding:18px 24px;font-size:1rem}
+  .trust{gap:10px 18px;margin-top:26px;font-size:.84rem}
+  .stage{flex-direction:column;align-items:center}
+  .scen{position:relative;top:auto;left:auto;transform:none;margin:0 auto 16px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .scen::-webkit-scrollbar{display:none}
+  .scen button{padding:8px 12px;font-size:.74rem}
+  .phone{width:min(300px,80vw);border-radius:42px;padding:10px}
+  .screen{border-radius:33px}
+  .chat-head{padding:42px 14px 10px}
+  .msg{font-size:.8rem}
+  .float-card{padding:10px 12px;gap:10px;font-size:.76rem;min-width:0;transform:none;border-radius:14px}
+  .float-card b{font-size:.8rem}
+  .float-card .ic{width:34px;height:34px;border-radius:10px}
+  .float-card .ic svg{width:18px;height:18px}
+  .fc1{right:-4px;top:18%}
+  .fc2{left:-4px;bottom:6%}
+  .marquee{padding:20px 0}
+  .mq{gap:36px}.mq span{gap:36px}
+  .sec{padding:76px 0}
+  .eyebrow{font-size:.72rem;letter-spacing:.12em}
+  h2{font-size:clamp(1.85rem,8.6vw,2.6rem);margin:14px 0}
+  h2 br{display:none}
+  .sub{font-size:.98rem}
+  .tl{margin-top:44px;gap:12px}
+  .tl-card{padding:22px 20px}
+  .tl-card time{font-size:1.7rem}
+  .verdict{margin-top:44px;font-size:1.4rem}
+  .pains{margin-top:48px;gap:12px}
+  .pain{padding:22px}
+  .calc-grid{margin-top:40px;gap:16px}
+  .panel{border-radius:22px}
+  .field{margin-bottom:22px}
+  .field label{font-size:.9rem}
+  input[type=range]{height:10px}
+  input[type=range]::-webkit-slider-thumb{width:30px;height:30px}
+  input[type=range]::-moz-range-thumb{width:30px;height:30px}
+  .big{font-size:clamp(2.6rem,13vw,3.6rem)}
+  .res-rows{gap:10px;margin:20px 0}
+  .res-rows div{padding:14px}
+  .res-rows b{font-size:1.35rem}
+  .ticker{font-size:.84rem;padding:14px}
+  .ch-grid{margin-top:40px;gap:14px}
+  .ch{padding:22px 18px 18px;border-radius:24px}
+  .ch-ic{width:46px;height:46px;border-radius:14px}
+  .ch-ic svg{width:24px;height:24px}
+  .ch-top b{font-size:1.2rem}
+  .ch-desc{min-height:0;font-size:.9rem;margin:14px 0 16px}
+  .mini{height:220px;border-radius:16px}
+  .flowbox{margin-top:44px;border-radius:24px}
+  .flowbox>p{font-size:.92rem}
+  .eq{gap:8px;flex-wrap:nowrap}
+  .eq em{display:none}
+  .eq div{flex:1 1 0;min-width:0;padding:12px 6px;border-radius:16px}
+  .eq b{font-size:1.9rem}
+  .eq span{display:block;font-size:.7rem;line-height:1.3}
+  .proof{gap:10px}
+  .pr{padding:18px}
+  .ai-list{margin-top:26px}
+  .ai-list li{font-size:.95rem}
+  .brain{aspect-ratio:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .brain svg.net{display:none}
+  .core{position:relative;inset:auto;flex:0 0 150px;width:150px;height:150px;margin:0 calc(50% - 75px) 16px}
+  .core .logo{font-size:1.5rem}
+  .node{position:static!important;font-size:.82rem;padding:9px 13px}
+  .bento{margin-top:40px;gap:12px}
+  .card{padding:22px;border-radius:22px}
+  .card h3{font-size:1.1rem}
+  .card.w6{display:flex!important;flex-direction:column;align-items:flex-start;gap:16px!important}
+  .card.w6 .btn{white-space:normal!important}
+  .badge{top:18px;right:18px}
+  .dash-row{flex-wrap:wrap;gap:6px 12px}
+  .dash-row b{flex:1 1 55%}
+  .remind{max-width:none}
+  .steps{margin-top:44px;gap:28px}
+  .step .num{width:60px;height:60px;border-radius:18px;font-size:1.3rem}
+  .step h3{margin-top:16px}
+  .switch{margin-bottom:24px}
+  .sw button{padding:12px 18px;font-size:.88rem}
+  .cmp-wrap{margin-top:36px}
+  .cmp{gap:12px}
+  .cmp-item{padding:22px;min-height:0}
+  .vert{margin-top:40px;gap:12px}
+  .v-card{min-height:0;padding:22px}
+  .why-grid{margin-top:40px;gap:12px}
+  .stat{padding:22px}
+  .why-cols{gap:12px}
+  .why-col{padding:24px;border-radius:22px}
+  .why-col h3{font-size:1.3rem}
+  .faq{margin-top:32px}
+  .q button{padding:20px 0}
+  .q .a p{padding:0 0 20px}
+  .final h2{font-size:clamp(1.95rem,9vw,2.8rem)}
+  .form-grid{margin-top:40px;gap:16px}
+  .offer{padding:24px;border-radius:22px}
+  .offer h3{font-size:1.45rem}
+  .inp input,.inp select,.inp textarea{font-size:16px}
+  footer{padding:44px 0 calc(110px + env(safe-area-inset-bottom))}
+  .foot{flex-direction:column;align-items:flex-start;gap:18px}
+  .giant{margin-top:30px}
+}
+@media (max-width:360px){
+  .wrap{width:calc(100% - 24px)}
+  .nav-in{padding-left:14px}
+  .logo{font-size:1.3rem}
+  .nav-in .btn{padding:10px 13px}
+  .burger{width:42px;height:42px}
+  .burger span{left:12px;right:12px}
+  .burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:24px}
+  body.menu-open .burger span:nth-child(1),body.menu-open .burger span:nth-child(2){top:20px}
+  h1{font-size:2rem}
+  .scen button{padding:7px 9px;font-size:.7rem}
+  .res-rows{grid-template-columns:1fr}
+  .tl-card .tag{position:static;display:inline-block;margin-bottom:10px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .mmenu{justify-content:flex-start}
+  .hero{min-height:auto}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   body::after{display:none}
@@ -496,9 +653,25 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
       <a href="#za-koga">Za koga</a>
       <a href="#faq">Pitanja</a>
     </div>
-    <a href="#demo" class="btn magnetic"><span>Besplatan demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="nav-right">
+      <a href="#demo" class="btn magnetic"><span class="cta-full">Besplatan demo</span><span class="cta-short">Demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="burger" id="burger" type="button" aria-label="Otvori meni" aria-expanded="false" aria-controls="mmenu"><span></span><span></span></button>
+    </div>
   </div>
 </nav>
+
+<div class="mmenu" id="mmenu" aria-hidden="true" data-lenis-prevent>
+  <div class="ml">
+    <a href="#gubitak">Problem <span class="n">01</span></a>
+    <a href="#kanali">Kanali <span class="n">02</span></a>
+    <a href="#kalkulator">Kalkulator <span class="n">03</span></a>
+    <a href="#mogucnosti">Mogućnosti <span class="n">04</span></a>
+    <a href="#kako">Kako radi <span class="n">05</span></a>
+    <a href="#za-koga">Za koga <span class="n">06</span></a>
+    <a href="#faq">Pitanja <span class="n">07</span></a>
+  </div>
+  <a href="#demo" class="btn lg">Zakažite besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -1196,11 +1369,27 @@ $$("#scen button").forEach(b => b.addEventListener("click", () => { chatAuto = f
 const langs = $$("#langs span"); let li = 0;
 setInterval(() => { langs.forEach(s => s.classList.remove("on")); li = (li + 1) % langs.length; langs[li].classList.add("on"); }, 1400);
 
+/* ---------- Mobile menu ---------- */
+const burger = $("#burger"), mmenu = $("#mmenu");
+function setMenu(open) {
+  document.body.classList.toggle("menu-open", open);
+  burger.setAttribute("aria-expanded", open ? "true" : "false");
+  burger.setAttribute("aria-label", open ? "Zatvori meni" : "Otvori meni");
+  mmenu.setAttribute("aria-hidden", open ? "false" : "true");
+  if (window.__lenis) { open ? window.__lenis.stop() : window.__lenis.start(); }
+  else document.documentElement.style.overflow = open ? "hidden" : "";
+  $("#nav").classList.remove("hide");
+}
+burger.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+$$("a", mmenu).forEach(a => a.addEventListener("click", () => setMenu(false)));
+addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("menu-open")) setMenu(false); });
+addEventListener("resize", () => { if (innerWidth > 900 && document.body.classList.contains("menu-open")) setMenu(false); });
+
 /* ---------- Nav hide on scroll + mobile CTA ---------- */
 let lastY = 0; const nav = $("#nav"), mcta = $("#mcta");
 addEventListener("scroll", () => {
   const y = scrollY;
-  nav.classList.toggle("hide", y > lastY && y > 300);
+  nav.classList.toggle("hide", y > lastY && y > 300 && !document.body.classList.contains("menu-open"));
   lastY = y;
   const demoTop = $("#demo").getBoundingClientRect().top;
   mcta.classList.toggle("show", y > innerHeight * .8 && demoTop > innerHeight * .9);
@@ -1264,6 +1453,7 @@ gsap.registerPlugin(ScrollTrigger);
 let lenis = null;
 if (window.Lenis) {
   lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+  window.__lenis = lenis;
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
   $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
