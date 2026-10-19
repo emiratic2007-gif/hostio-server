@@ -694,6 +694,16 @@ const qLang = new URLSearchParams(location.search).get("lang"); if (T[qLang]) la
 if (!lang) lang = "bs";
 const t = k => (T[lang][k] ?? T.bs[k]);
 const LOC = { bs: "bs-BA", en: "en-GB", de: "de-DE" };
+/* Bosnian names spelled out: many browsers have no Bosnian calendar data */
+const BS_M = ["januar","februar","mart","april","maj","juni","juli","august","septembar","oktobar","novembar","decembar"];
+const BS_MS = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
+const BS_WD = ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"];
+const BS_WS = ["ned","pon","uto","sri","čet","pet","sub"];
+const fMonth = d => lang === "bs" ? `${BS_M[d.getMonth()]} ${d.getFullYear()}` : new Intl.DateTimeFormat(LOC[lang], { month: "long", year: "numeric" }).format(d);
+const fLong = d => lang === "bs" ? `${BS_WD[d.getDay()]}, ${d.getDate()}. ${BS_M[d.getMonth()]}` : new Intl.DateTimeFormat(LOC[lang], { weekday: "long", day: "numeric", month: "long" }).format(d);
+const fShort = d => lang === "bs" ? `${BS_WS[d.getDay()]}, ${d.getDate()}. ${BS_MS[d.getMonth()]}` : new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short", weekday: "short" }).format(d);
+const fDM = d => lang === "bs" ? `${d.getDate()}. ${BS_MS[d.getMonth()]}` : new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short" }).format(d);
+const dowNames = () => lang === "bs" ? ["Po","Ut","Sr","Če","Pe","Su","Ne"] : [...Array(7)].map((_, i) => new Intl.DateTimeFormat(LOC[lang], { weekday: "short" }).format(new Date(2024, 0, 1 + i)).slice(0, 2));
 
 function applyLang() {
   document.documentElement.lang = lang;
@@ -773,15 +783,12 @@ function rangeFree(a, b) { for (let d = a; d < b; d = addDays(d, 1)) if (busy.ha
 function renderCal() {
   const box = $("#months"); if (!box) return;
   box.innerHTML = "";
-  const fmtM = new Intl.DateTimeFormat(LOC[lang], { month: "long", year: "numeric" });
-  const fmtD = new Intl.DateTimeFormat(LOC[lang], { weekday: "long", day: "numeric", month: "long" });
-  const dowFmt = new Intl.DateTimeFormat(LOC[lang], { weekday: "short" });
-  const dows = [...Array(7)].map((_, i) => dowFmt.format(new Date(2024, 0, 1 + i)).slice(0, 2));
+  const dows = dowNames();
   const limit = selIn && !selOut ? firstBusyAfter(selIn) : null;
   for (let mi = 0; mi < 2; mi++) {
     const m0 = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + mi, 1);
     const wrap = document.createElement("div"); wrap.className = "m";
-    const h = document.createElement("h3"); h.textContent = fmtM.format(m0); wrap.append(h);
+    const h = document.createElement("h3"); h.textContent = fMonth(m0); wrap.append(h);
     const dw = document.createElement("div"); dw.className = "dow"; dw.setAttribute("aria-hidden", "true");
     dows.forEach(x => { const s = document.createElement("span"); s.textContent = x; dw.append(s); }); wrap.append(dw);
     const grid = document.createElement("div"); grid.className = "days";
@@ -807,7 +814,7 @@ function renderCal() {
       if (selOut && +d === +selOut) b.classList.add("sel", "sel-end");
       if (selIn && selOut && d > selIn && d < selOut) b.classList.add("in-range");
       b.disabled = disabled;
-      b.setAttribute("aria-label", fmtD.format(d) + (isBusy ? ` · ${t("legBusy")}` : ""));
+      b.setAttribute("aria-label", fLong(d) + (isBusy ? ` · ${t("legBusy")}` : ""));
       if (b.classList.contains("sel")) b.setAttribute("aria-pressed", "true");
       b.addEventListener("click", () => pick(d));
       grid.append(b);
@@ -843,9 +850,8 @@ function quote() {
   return { n, base, disc, total: base - disc + CLEAN };
 }
 function renderSummary() {
-  const f = new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short", weekday: "short" });
-  $("#sIn").textContent = selIn ? f.format(selIn) : "—";
-  $("#sOut").textContent = selOut ? f.format(selOut) : "—";
+  $("#sIn").textContent = selIn ? fShort(selIn) : "—";
+  $("#sOut").textContent = selOut ? fShort(selOut) : "—";
   $("#gOut").textContent = guests; $("#gLbl").textContent = t("guestsLbl")(guests);
   $("#gMinus").disabled = guests <= 1; $("#gPlus").disabled = guests >= MAX_GUESTS;
   const q = quote(), L = $("#lines");
@@ -896,8 +902,7 @@ form.addEventListener("submit", async e => {
       if (txt.includes("TERMIN_ZAUZET")) { out.className = "form-msg err"; out.textContent = t("taken"); selIn = selOut = null; await loadBusy(); renderSummary(); return; }
       throw new Error(r.status);
     }
-    const f = new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short" });
-    $("#recap").textContent = `${f.format(selIn)} – ${f.format(selOut)} · ${t("guestsLbl")(guests)} · ${km(q.total)}`;
+    $("#recap").textContent = `${fDM(selIn)} – ${fDM(selOut)} · ${t("guestsLbl")(guests)} · ${km(q.total)}`;
     $("#bookForm").hidden = true; $("#done").hidden = false; out.textContent = "";
     form.reset(); selIn = selOut = null;
     await loadBusy(); renderSummary();
