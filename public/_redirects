@@ -1,4 +1,6 @@
+# Business websites: /r/{slug} rent-a-car, /a/{slug} apartments, /s/{slug} auto service
 # Rent-a-car agency websites: /r/{slug}
 /r/*  /rent/  200
 # Apartment websites: /a/{slug}
 /a/*  /apartmani/  200
+/s/*  /servis/  200

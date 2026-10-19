@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obrtaj · Auto servis Sarajevo · Cijena unaprijed i online termin</title>
+<meta name="description" content="Auto servis Obrtaj: okvirna cijena i trajanje za vaš auto prije dolaska, online termin za 30 sekundi i praćenje popravke uživo s telefona.">
+<meta name="theme-color" content="#0F1215">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F1215'/%3E%3Cpath d='M14 40a18 18 0 1 1 36 0' fill='none' stroke='%23FF6B1A' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M32 40 43 26' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0F1215; --bg2:#151A1F; --bg3:#1C2229; --line:rgba(255,255,255,.09); --txt:#ECEEF0; --mut:#9AA3AD;
+  --or:#FF6B1A; --or2:#FF8A47; --orD:#C24A06; --paper:#F3F2EE; --ink:#111417; --inkM:#545C64; --lineD:rgba(17,20,23,.12);
+  --ok:#2FBF71; --warn:#FFC22E; --bad:#FF4D4D;
+  --mono:"IBM Plex Mono",ui-monospace,monospace; --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{font-family:Archivo,system-ui,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px;border-radius:6px}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-stretch:118%;font-weight:850;letter-spacing:-.02em;line-height:1.02}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
+.kicker::before{content:"";width:22px;height:2px;background:currentColor}
+.light{background:var(--paper);color:var(--ink)}
+.light .kicker{color:var(--orD)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:14px 24px;border-radius:12px;border:0;cursor:pointer;font-weight:800;font-stretch:105%;font-size:1rem;text-decoration:none;transition:transform .15s,background .25s,box-shadow .25s}
+.btn svg{width:18px;height:18px}
+.btn-or{background:var(--or);color:#140800;box-shadow:0 12px 30px -14px rgba(255,107,26,.9)}
+.btn-or:hover{background:var(--or2)}
+.btn-line{background:transparent;color:var(--txt);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.btn-line:hover{box-shadow:inset 0 0 0 1.5px var(--or)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.4;cursor:not-allowed;box-shadow:none}
+section{padding:clamp(64px,9vw,112px) 0}
+.sec-h{max-width:760px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-h h2{font-size:clamp(2rem,4.6vw,3.4rem);margin:12px 0 12px}
+.sec-h p{color:var(--mut);font-size:1.05rem}
+.light .sec-h p{color:var(--inkM)}
+
+/* ribbon */
+.ribbon{background:#0A0B09;color:#E9EBE4;font-size:.84rem;border-bottom:1px solid var(--line)}
+.ribbon .wrap{display:flex;align-items:center;justify-content:center;gap:8px 14px;flex-wrap:wrap;padding:9px 0;text-align:center}
+.ribbon b{font-family:Archivo,sans-serif;font-stretch:100%;font-weight:800;letter-spacing:-.03em}
+.ribbon b span{color:#7ED957}
+.ribbon a{color:#7ED957;font-weight:700;text-decoration:none;white-space:nowrap}
+.ribbon .tag{font-size:.66rem;font-weight:800;letter-spacing:.12em;padding:3px 9px;border-radius:999px;background:#7ED957;color:#0E0F0C}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(15,18,21,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.logo svg{width:36px;height:36px;flex:none}
+.logo b{font-stretch:125%;font-weight:900;font-size:1.3rem;letter-spacing:.02em}
+.open{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--bg3);font-size:.8rem;font-weight:700;white-space:nowrap}
+.open i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(47,191,113,.6);animation:pulse 1.8s infinite}
+.open.closed i{background:var(--bad);animation:none}
+.open-d{color:var(--mut);font-weight:600}
+@media (max-width:420px){.open-d{display:none}}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(47,191,113,0)}100%{box-shadow:0 0 0 0 rgba(47,191,113,0)}}
+.tnav{display:flex;gap:2px}
+.tnav a{padding:10px 12px;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:600;color:#C4CAD0}
+.tnav a:hover{background:var(--bg3);color:#fff}
+.top .btn{min-height:44px;padding:10px 18px;font-size:.92rem}
+@media (max-width:1020px){.tnav{display:none}}
+@media (max-width:560px){.top .btn{display:none}.open{font-size:.74rem;padding:7px 10px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:clamp(48px,7vw,88px) 0 clamp(48px,6vw,72px)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 70% 40%,#000 20%,transparent 75%)}
+.hero::after{content:"";position:absolute;width:640px;height:640px;right:-200px;top:-180px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.22),transparent 65%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.9rem);margin:16px 0 18px}
+.hero h1 em{font-style:normal;color:var(--or)}
+.hero p.lead{font-size:clamp(1.02rem,1.5vw,1.18rem);color:#C4CAD0;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+@media (max-width:560px){.cta .btn{flex:1 1 100%}}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:34px;max-width:560px}
+.stats div{padding:14px;border-radius:14px;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--line)}
+.stats b{display:block;font-stretch:118%;font-weight:900;font-size:1.5rem;color:#fff;line-height:1.1}
+.stats span{font-size:.8rem;color:var(--mut)}
+@media (max-width:420px){.stats{gap:6px}.stats div{padding:12px 10px}.stats b{font-size:1.15rem}.stats span{font-size:.72rem}}
+.bp{position:relative;width:100%;max-width:600px;margin-inline:auto}
+.bp svg{width:100%;height:auto;overflow:visible}
+.bp .draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s var(--ease) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.bp .tag{opacity:0;animation:fade .6s var(--ease) forwards}
+@keyframes fade{to{opacity:1}}
+.bp text{font-family:var(--mono);font-size:13px;font-weight:600}
+
+/* unique */
+.uni{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.uni{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.uni{grid-template-columns:1fr}}
+.u{position:relative;padding:24px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--lineD);overflow:hidden}
+.u .n{font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--orD)}
+.u .ic{width:52px;height:52px;border-radius:14px;background:var(--ink);display:grid;place-items:center;margin:14px 0 16px}
+.u .ic svg{width:26px;height:26px;color:var(--or)}
+.u h3{font-size:1.25rem;margin-bottom:8px}
+.u p{color:var(--inkM);font-size:.95rem}
+.u a{display:inline-flex;margin-top:14px;font-weight:800;color:var(--orD);text-decoration:none}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.svc{grid-template-columns:1fr}}
+.s{display:flex;flex-direction:column;padding:22px;border-radius:18px;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--line)}
+.s-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.s h3{font-size:1.15rem;font-stretch:110%}
+.s .dur{flex:none;font-family:var(--mono);font-size:.78rem;font-weight:600;padding:5px 9px;border-radius:8px;background:var(--bg3);color:#D5DADF;white-space:nowrap}
+.s p{color:var(--mut);font-size:.92rem;margin:8px 0 16px;flex:1}
+.s-bot{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.s .price{font-stretch:112%;font-weight:850;font-size:1.15rem}
+.s .price small{font-weight:600;font-size:.78rem;color:var(--mut);font-stretch:100%}
+.s button{min-height:44px;padding:8px 14px;border-radius:10px;border:0;background:var(--bg3);color:#fff;font-weight:800;font-size:.86rem;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}
+.s button[aria-pressed="true"]{background:var(--or);color:#140800}
+.note{margin-top:16px;font-size:.84rem;color:var(--mut)}
+
+/* warning lights */
+.dash{display:grid;grid-template-columns:1fr 1.1fr;gap:16px;align-items:start}
+@media (max-width:900px){.dash{grid-template-columns:1fr}}
+.cluster{padding:22px;border-radius:24px;background:radial-gradient(ellipse at 50% 0%,#20262E,#0B0E11 70%);box-shadow:inset 0 0 0 1px var(--line),0 30px 60px -30px #000}
+.cluster-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-family:var(--mono);font-size:.76rem;color:var(--mut)}
+.lights{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:420px){.lights{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.lt{aspect-ratio:1/1;min-height:56px;border:0;border-radius:14px;background:#0A0C0F;display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);transition:box-shadow .25s,transform .15s}
+.lt svg{width:58%;height:58%;opacity:.38;transition:opacity .25s,filter .25s}
+.lt.y svg{color:#FFC22E}.lt.r svg{color:#FF4D4D}
+.lt:hover svg,.lt[aria-pressed="true"] svg{opacity:1;filter:drop-shadow(0 0 8px currentColor)}
+.lt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--or)}
+.lt:active{transform:scale(.95)}
+.lexp{padding:26px;border-radius:24px;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--line);min-height:100%}
+.lexp h3{font-size:1.5rem;margin:12px 0 10px}
+.lvl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;font-weight:800;font-size:.84rem}
+.lvl.l1{background:rgba(47,191,113,.14);color:#5EE09A}
+.lvl.l2{background:rgba(255,194,46,.14);color:#FFD466}
+.lvl.l3{background:rgba(255,77,77,.16);color:#FF8080}
+.lvl i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.lexp p{color:#C4CAD0;margin-bottom:10px}
+.lexp .do{padding:14px 16px;border-radius:14px;background:var(--bg3);margin:14px 0 18px}
+.lexp .do b{display:block;font-size:.8rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--or);margin-bottom:4px}
+.lexp-empty{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;min-height:260px;color:var(--mut)}
+
+/* booking wizard */
+.book-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;align-items:start}
+@media (max-width:980px){.book-grid{grid-template-columns:1fr}}
+.wz{padding:clamp(18px,3vw,28px);border-radius:24px;background:#fff;box-shadow:0 0 0 1px var(--lineD),0 30px 60px -40px rgba(0,0,0,.4)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:22px}
+.steps button{border:0;background:none;padding:0;text-align:left;cursor:pointer;color:var(--inkM)}
+.steps button[disabled]{cursor:default}
+.steps i{display:block;height:5px;border-radius:5px;background:#E4E3DE;margin-bottom:8px;transition:background .3s}
+.steps span{font-size:.78rem;font-weight:800;font-family:var(--mono)}
+.steps em{font-style:normal}
+@media (max-width:520px){.steps em{display:none}.steps span{font-size:.7rem}}
+.steps .on i,.steps .done i{background:var(--or)}
+.steps .on span{color:var(--ink)}
+.pane[hidden]{display:none}
+.pane h3{font-size:1.45rem;margin-bottom:6px}
+.pane .sub{color:var(--inkM);margin-bottom:18px;font-size:.95rem}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.fg{grid-template-columns:1fr}}
+.f label{display:block;font-size:.84rem;font-weight:800;margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1px solid #CCD1D6;background:#fff;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.f textarea{min-height:80px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(255,107,26,.3)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{min-height:44px;padding:10px 16px;border-radius:999px;border:1px solid #CCD1D6;background:#fff;font-weight:700;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.pick{grid-template-columns:1fr}}
+.pk{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;border:1.5px solid #DADDE0;background:#fff;cursor:pointer;text-align:left;min-height:64px;transition:border-color .2s,background .2s}
+.pk[aria-pressed="true"]{border-color:var(--or);background:#FFF4EC}
+.pk .box{width:22px;height:22px;border-radius:7px;border:2px solid #B7BDC3;flex:none;margin-top:2px;display:grid;place-items:center}
+.pk[aria-pressed="true"] .box{background:var(--or);border-color:var(--or)}
+.pk .box svg{width:14px;height:14px;color:#140800;opacity:0}
+.pk[aria-pressed="true"] .box svg{opacity:1}
+.pk b{display:block;font-size:.95rem}
+.pk span{display:block;font-size:.8rem;color:var(--inkM);font-family:var(--mono)}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;margin-bottom:14px}
+.days::-webkit-scrollbar{display:none}
+.dd{flex:none;width:72px;min-height:76px;border-radius:14px;border:1.5px solid #DADDE0;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.dd small{font-size:.72rem;font-weight:800;color:var(--inkM);text-transform:uppercase}
+.dd b{font-stretch:115%;font-size:1.35rem;line-height:1}
+.dd span{font-size:.68rem;font-weight:700;color:var(--ok)}
+.dd span.full{color:var(--bad)}
+.dd[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.dd[aria-pressed="true"] small{color:#AEB6BE}
+.dd[disabled]{opacity:.4;cursor:default}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px}
+.sl{min-height:48px;border-radius:12px;border:1.5px solid #DADDE0;background:#fff;font-family:var(--mono);font-weight:600;cursor:pointer}
+.sl[aria-pressed="true"]{background:var(--or);border-color:var(--or);color:#140800}
+.sl[disabled]{background:repeating-linear-gradient(-45deg,#F1F0EC 0 4px,#fff 4px 8px);color:#B0B5BA;text-decoration:line-through;cursor:default}
+.modes{display:grid;gap:8px;margin-top:18px}
+.md{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;border:1.5px solid #DADDE0;background:#fff;cursor:pointer;text-align:left}
+.md[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.md[disabled]{opacity:.45;cursor:default}
+.md .ic{width:42px;height:42px;border-radius:12px;background:#F1F0EC;display:grid;place-items:center;flex:none}
+.md .ic svg{width:22px;height:22px}
+.md b{display:block;font-size:.95rem}
+.md span{display:block;font-size:.84rem;color:var(--inkM)}
+.chk{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:700;cursor:pointer;min-height:44px}
+.chk input{width:22px;height:22px;accent-color:var(--or)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.nav .btn{min-height:50px}
+.live{margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--ink);color:#fff;font-weight:700;display:none}
+.live.on{display:block}
+.live b{color:var(--or)}
+@media (min-width:981px){.live.on{display:none}}
+.msg{min-height:1.3em;margin-top:10px;font-weight:700;font-size:.9rem;color:#B42318}
+.empty{padding:16px;border-radius:12px;background:#F6F5F1;color:var(--inkM);font-size:.92rem}
+.sum{position:sticky;top:84px;padding:22px;border-radius:24px;background:var(--ink);color:#fff}
+@media (max-width:980px){.sum{position:static}}
+.sum h4{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:14px}
+.sum .row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.92rem}
+.sum .row span:first-child{color:#9AA3AD}
+.sum .row span:last-child{text-align:right;font-weight:700}
+.sum .tot{margin-top:14px}
+.sum .tot small{display:block;color:#9AA3AD;font-size:.8rem}
+.sum .tot b{display:block;font-stretch:118%;font-weight:900;font-size:2rem;line-height:1.1}
+.sum .disc{margin-top:10px;font-size:.78rem;color:#9AA3AD}
+.done{text-align:center;padding:10px 0}
+.done .ok{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;background:#E5F7EE;display:grid;place-items:center}
+.done .ok svg{width:38px;height:38px;color:#16884A}
+.done h3{font-size:1.7rem;margin-bottom:8px}
+.done p{color:var(--inkM);margin:0 auto 10px;max-width:460px}
+.codebox{display:inline-flex;flex-direction:column;gap:2px;margin:10px 0 18px;padding:14px 22px;border-radius:14px;background:var(--ink);color:#fff}
+.codebox small{font-size:.72rem;font-family:var(--mono);color:#9AA3AD;letter-spacing:.1em}
+.codebox b{font-family:var(--mono);font-size:1.6rem;letter-spacing:.06em;color:var(--or)}
+
+/* tracker */
+.trk{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px;align-items:start}
+@media (max-width:900px){.trk{grid-template-columns:1fr}}
+.trk-in{padding:26px;border-radius:24px;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--line)}
+.trk-in form{display:flex;gap:8px;margin:16px 0 12px}
+.trk-in input{flex:1;min-width:0;min-height:52px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:var(--bg);color:#fff;font-family:var(--mono);font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+.trk-in input:focus{outline:none;border-color:var(--or)}
+.demo-code{border:0;background:none;color:var(--or);font-weight:800;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+.trk-out{padding:26px;border-radius:24px;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--line);min-height:320px}
+.car-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.car-h b{display:block;font-stretch:112%;font-size:1.3rem}
+.car-h span{font-family:var(--mono);font-size:.8rem;color:var(--mut)}
+.eta{font-family:var(--mono);font-size:.82rem;padding:8px 12px;border-radius:10px;background:var(--bg3)}
+.eta b{color:var(--or);font-size:.82rem;display:inline}
+.tl{list-style:none;position:relative;margin:4px 0 6px}
+.tl li{position:relative;padding:0 0 18px 34px}
+.tl li::before{content:"";position:absolute;left:10px;top:20px;bottom:0;width:2px;background:var(--bg3)}
+.tl li:last-child::before{display:none}
+.tl .dot{position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--bg3);display:grid;place-items:center}
+.tl .dot svg{width:13px;height:13px;color:#140800}
+.tl li.done .dot{background:var(--ok)}
+.tl li.done::before{background:var(--ok)}
+.tl li.now .dot{background:var(--or);box-shadow:0 0 0 0 rgba(255,107,26,.6);animation:pulseO 1.6s infinite}
+@keyframes pulseO{70%{box-shadow:0 0 0 10px rgba(255,107,26,0)}100%{box-shadow:0 0 0 0 rgba(255,107,26,0)}}
+.tl b{display:block;font-size:.98rem}
+.tl span{display:block;font-size:.82rem;color:var(--mut);font-family:var(--mono)}
+.tl li:not(.done):not(.now) b{color:#6E7781}
+.findings{margin-top:8px;display:grid;gap:10px}
+.fd{padding:16px;border-radius:16px;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
+.fd-h{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.fd-h b{font-size:1rem}
+.fd-h .p{font-stretch:112%;font-weight:850;white-space:nowrap}
+.fd p{font-size:.88rem;color:var(--mut);margin:6px 0 10px}
+.wear{height:10px;border-radius:6px;background:var(--bg3);overflow:hidden;margin:4px 0 4px}
+.wear i{display:block;height:100%;border-radius:6px}
+.wear-l{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:var(--mut)}
+.fd-act{display:flex;gap:8px;margin-top:12px}
+.fd-act button{flex:1;min-height:44px;border-radius:10px;border:0;font-weight:800;cursor:pointer;background:var(--bg3);color:#fff}
+.fd-act button.yes[aria-pressed="true"]{background:var(--ok);color:#06210F}
+.fd-act button.no[aria-pressed="true"]{background:#3A424B}
+.fd .tagp{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:999px;margin-top:4px}
+.tagp.r{background:rgba(255,77,77,.16);color:#FF8080}.tagp.y{background:rgba(255,194,46,.14);color:#FFD466}.tagp.g{background:rgba(47,191,113,.14);color:#5EE09A}
+.appr{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--bg3)}
+.appr b{font-stretch:112%;font-size:1.3rem}
+.prog{height:8px;border-radius:6px;background:var(--bg3);overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--or),var(--or2));width:0;transition:width 1.2s var(--ease)}
+.trk-empty{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:270px;color:var(--mut)}
+
+/* location */
+.loc{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:stretch}
+@media (max-width:900px){.loc{grid-template-columns:1fr}}
+.map{border-radius:24px;overflow:hidden;background:#E3E1DA;min-height:320px}
+.map svg{width:100%;height:100%;display:block}
+.hours{padding:26px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px var(--lineD)}
+.hours h3{font-size:1.5rem;margin:10px 0 6px}
+.hours .addr{color:var(--inkM);margin-bottom:16px}
+.hrs{display:grid;gap:2px;margin-bottom:18px}
+.hrs div{display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;font-weight:600}
+.hrs div.today{background:#FFF0E5;color:#8A3300;font-weight:800}
+.hrs div span:last-child{font-family:var(--mono);font-size:.92rem}
+.hours .btns{display:flex;flex-wrap:wrap;gap:8px}
+.hours .btns .btn{flex:1 1 180px}
+
+/* faq */
+.faq{max-width:840px}
+.faq details{border-bottom:1px solid var(--lineD)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:800;font-size:1.05rem;min-height:56px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.6rem;font-weight:500;color:var(--orD);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--inkM)}
+
+footer{padding:44px 0 calc(110px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+.powered{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:#0A0B09;box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;font-size:.88rem;font-weight:600}
+.powered b{font-stretch:100%;font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
+.powered b span{color:#7ED957}
+.fnote{margin-top:18px;font-size:.8rem;color:#7E8893}
+@media (min-width:761px){footer{padding-bottom:44px}}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(15,18,21,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease)}
+.mbar.show{transform:none}
+.mbar .btn{flex:1;min-height:50px;padding:10px 12px;font-size:.95rem}
+@media (max-width:760px){.mbar{display:flex}}
+
+.chat-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:45;display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 18px 8px 8px;border:0;border-radius:999px;background:#25D366;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}
+.chat-fab .ic{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center}
+.chat-fab svg{width:22px;height:22px}
+@media (max-width:760px){.chat-fab{bottom:calc(82px + env(safe-area-inset-bottom));padding:8px}.chat-fab .lbl{display:none}}
+.chat{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:46;width:min(370px,calc(100vw - 32px));max-height:min(540px,calc(100svh - 150px));display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#0B141A;box-shadow:0 30px 70px -20px rgba(0,0,0,.7);opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s,transform .3s var(--ease),visibility 0s linear .3s}
+.chat.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s var(--ease),visibility 0s}
+@media (max-width:760px){.chat{bottom:calc(148px + env(safe-area-inset-bottom))}}
+.chat-h{display:flex;align-items:center;gap:10px;padding:14px;background:#1F2C33}
+.chat-h .av{width:40px;height:40px;border-radius:50%;background:var(--or);display:grid;place-items:center;font-weight:900;color:#140800;flex:none}
+.chat-h b{display:block;font-size:.95rem}
+.chat-h small{display:block;font-size:.74rem;color:#7ED957}
+.chat-h button{margin-left:auto;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:grid;place-items:center}
+.chat-h button svg{width:18px;height:18px}
+.chat-b{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.cm{max-width:84%;padding:8px 11px;border-radius:12px;font-size:.88rem;line-height:1.4;color:#E9EDEF;animation:pop .35s var(--ease) both}
+.cm.in{align-self:flex-start;background:#202C33;border-top-left-radius:4px}
+.cm.out{align-self:flex-end;background:#005C4B;border-top-right-radius:4px}
+.cm.ty{display:flex;gap:4px;padding:12px}
+.cm.ty i{width:6px;height:6px;border-radius:50%;background:#8EA3AD;animation:bounce 1.2s infinite}
+.cm.ty i:nth-child(2){animation-delay:.15s}.cm.ty i:nth-child(3){animation-delay:.3s}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes bounce{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.chat-f{padding:10px 12px;background:#111B21;color:#8EA3AD;font-size:.76rem;text-align:center}
+.chat-f a{color:#7ED957;font-weight:700;text-decoration:none}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.bp .draw{stroke-dashoffset:0}.bp .tag{opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="ribbon" role="note">
+  <div class="wrap">
+    <span class="tag">DEMO</span>
+    <span>Ovo je primjer stranice koju</span> <b>host<span>io.</span></b> <span>pravi za vaš servis.</span>
+    <a href="/#demo">Želim ovakvu stranicu →</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Obrtaj auto servis">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#1C2229"/><path d="M9 26a11 11 0 1 1 22 0" fill="none" stroke="#FF6B1A" stroke-width="4" stroke-linecap="round"/><path d="M20 26 27 17" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><circle cx="20" cy="26" r="2.6" fill="#fff"/></svg>
+      <b>OBRTAJ</b>
+    </a>
+    <nav class="tnav" aria-label="Glavni meni">
+      <a href="#usluge">Usluge i cijene</a>
+      <a href="#lampice">Lampice</a>
+      <a href="#prati">Prati auto</a>
+      <a href="#lokacija">Lokacija</a>
+    </nav>
+    <span class="open" id="openPill"><i></i><span id="openTxt">Otvoreno</span><span class="open-d" id="openD"></span></span>
+    <a href="#zakazi" class="btn btn-or">Zakaži termin</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Auto servis · Sarajevo, Stup</span>
+      <h1>Znate cijenu <em>prije nego što</em> uđete u servis.</h1>
+      <p class="lead">Izaberite auto i uslugu, odmah vidite okvirnu cijenu i koliko traje, rezervišite termin za 30 sekundi i pratite popravku uživo s telefona.</p>
+      <div class="cta">
+        <a href="#zakazi" class="btn btn-or">Izračunaj cijenu i zakaži <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#prati" class="btn btn-line">Prati moj auto</a>
+      </div>
+      <div class="stats">
+        <div><b>3</b><span>radna mjesta, bez čekanja na red</span></div>
+        <div><b>12 mj.</b><span>garancija na rad</span></div>
+        <div><b>24/7</b><span>odgovor na WhatsApp i Viber</span></div>
+      </div>
+    </div>
+    <div class="bp" aria-hidden="true">
+      <svg viewBox="0 0 600 360">
+        <g fill="none" stroke="#5E6873" stroke-width="1" opacity=".55">
+          <path d="M20 300 H580"/><path d="M40 300 v8 M140 300 v8 M240 300 v8 M340 300 v8 M440 300 v8 M540 300 v8"/>
+        </g>
+        <g fill="none" stroke="#ECEEF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path class="draw" d="M60 262 C 58 232, 70 214, 104 206 L 168 196 C 196 160, 232 132, 290 126 L 392 124 C 432 124, 462 146, 494 186 L 532 194 C 556 200, 566 220, 564 252 L 562 262"/>
+          <path class="draw" style="animation-delay:.5s" d="M60 262 H112 M208 262 H432 M528 262 H562"/>
+          <path class="draw" style="animation-delay:.7s" d="M194 192 C 218 160, 246 142, 290 140 L 334 140 L 334 192 Z M350 140 L 392 140 C 420 140, 444 158, 466 190 L 350 192 Z"/>
+          <circle class="draw" style="animation-delay:.9s" cx="160" cy="262" r="40"/><circle class="draw" style="animation-delay:1s" cx="160" cy="262" r="18"/>
+          <circle class="draw" style="animation-delay:.95s" cx="480" cy="262" r="40"/><circle class="draw" style="animation-delay:1.05s" cx="480" cy="262" r="18"/>
+          <path class="draw" style="animation-delay:1.1s" d="M350 216 h22"/>
+        </g>
+        <g class="tag" style="animation-delay:1.6s">
+          <path d="M530 216 L 560 90 H 590" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-dasharray="4 5"/><circle cx="530" cy="216" r="5" fill="#FF6B1A"/>
+          <text x="500" y="82" fill="#FF6B1A">MOTOR</text>
+        </g>
+        <g class="tag" style="animation-delay:1.85s">
+          <path d="M160 262 L 110 100 H 40" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-dasharray="4 5"/><circle cx="160" cy="262" r="5" fill="#FF6B1A"/>
+          <text x="20" y="92" fill="#FF6B1A">KOČNICE</text>
+        </g>
+        <g class="tag" style="animation-delay:2.1s">
+          <path d="M300 170 L 300 40" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-dasharray="4 5"/><circle cx="300" cy="170" r="5" fill="#FF6B1A"/>
+          <text x="262" y="30" fill="#FF6B1A">KLIMA</text>
+        </g>
+        <g class="tag" style="animation-delay:2.35s">
+          <path d="M480 302 L 480 340 H 400" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-dasharray="4 5"/><circle cx="480" cy="302" r="5" fill="#FF6B1A"/>
+          <text x="330" y="345" fill="#FF6B1A">GUME</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="drugacije">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Drugačiji servis</span>
+      <h2>Bez iznenađenja na računu. Bez zvanja „je li gotovo?”</h2>
+      <p>Sve ono što vas nervira kod servisa, riješili smo unaprijed.</p>
+    </div>
+    <div class="uni">
+      <div class="u rv"><span class="n">01</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h8"/></svg></span><h3>Cijena unaprijed</h3><p>Izaberete auto i uslugu i odmah vidite okvirnu cijenu i trajanje. Bez „vidjet ćemo kad otvorimo”.</p><a href="#zakazi">Izračunaj →</a></div>
+      <div class="u rv"><span class="n">02</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Popravka uživo</h3><p>S kodom pratite gdje je vaš auto: primljen, dijagnostika, popravka, gotov. Nema zvanja i čekanja na telefonu.</p><a href="#prati">Probaj →</a></div>
+      <div class="u rv"><span class="n">03</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><h3>Vi odobravate radove</h3><p>Ako nađemo još nešto, dobijete nalaz s cijenom i stepenom istrošenosti. Odobrite ili odbijete jednim klikom.</p><a href="#prati">Pogledaj primjer →</a></div>
+      <div class="u rv"><span class="n">04</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h2l1-4h12l1 4h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M6 13l2-5h8l2 5"/></svg></span><h3>Dovoz i odvoz</h3><p>Nemate vremena? Preuzmemo auto s vaše adrese i vratimo ga servisiranog. Po potrebi i zamjensko vozilo.</p><a href="#zakazi">Zakaži →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="usluge">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Usluge i cijene</span>
+      <h2>Koliko košta i koliko traje.</h2>
+      <p>Okvirne cijene uključuju rad i standardne dijelove za većinu auta. Tačnu cijenu za vaš auto vidite u rezervaciji.</p>
+    </div>
+    <div class="svc" id="svcGrid"></div>
+    <p class="note">Cijene su okvirne i informativne. Konačna cijena se potvrđuje nakon pregleda vozila, a svaki dodatni rad radimo tek kad ga odobrite.</p>
+  </div>
+</section>
+
+<section class="light" id="lampice" style="background:#E9E8E3">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Upalila se lampica?</span>
+      <h2>Kliknite lampicu. Recimo vam smijete li dalje voziti.</h2>
+      <p>Najčešće lampice na tabli, objašnjene jednostavno: šta znače, koliko je hitno i šta da uradite sada.</p>
+    </div>
+    <div class="dash">
+      <div class="cluster rv">
+        <div class="cluster-h"><span>KONTROLNA TABLA</span><span>Izaberite lampicu</span></div>
+        <div class="lights" id="lights"></div>
+      </div>
+      <div class="lexp rv" id="lexp" aria-live="polite">
+        <div class="lexp-empty"><span class="kicker">Objašnjenje</span><p>Izaberite lampicu koja vam svijetli na tabli.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="zakazi">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Online termin</span>
+      <h2>Termin za 30 sekundi.</h2>
+      <p>Vidite slobodne termine u stvarnom vremenu. Potvrda i podsjetnik dan prije stižu na WhatsApp ili Viber.</p>
+    </div>
+    <div class="book-grid">
+      <div class="wz" id="wz">
+        <div class="steps" id="stepsBar">
+          <button type="button" data-go="0" class="on"><i></i><span><em>1 · </em>AUTO</span></button>
+          <button type="button" data-go="1" disabled><i></i><span><em>2 · </em>USLUGE</span></button>
+          <button type="button" data-go="2" disabled><i></i><span><em>3 · </em>TERMIN</span></button>
+          <button type="button" data-go="3" disabled><i></i><span><em>4 · </em>KONTAKT</span></button>
+        </div>
+
+        <div class="pane" data-step="0">
+          <h3>Koji je vaš auto?</h3>
+          <p class="sub">Da cijena i trajanje budu tačni za vaš auto.</p>
+          <div class="fg">
+            <div class="f"><label for="cMake">Marka</label><select id="cMake"><option value="">Izaberite marku</option></select></div>
+            <div class="f"><label for="cModel">Model</label><input id="cModel" maxlength="60" placeholder="npr. Golf 7, Octavia" autocomplete="off"></div>
+            <div class="f"><label for="cYear">Godište</label><select id="cYear"></select></div>
+            <div class="f"><label>Gorivo</label><div class="pills" id="fuel" role="group" aria-label="Gorivo">
+              <button type="button" class="pill" data-v="dizel" aria-pressed="true">Dizel</button><button type="button" class="pill" data-v="benzin" aria-pressed="false">Benzin</button><button type="button" class="pill" data-v="hibrid" aria-pressed="false">Hibrid</button><button type="button" class="pill" data-v="plin" aria-pressed="false">Plin</button>
+            </div></div>
+          </div>
+          <p class="msg" id="m0" role="status"></p>
+          <div class="nav"><span></span><button class="btn btn-dark" type="button" data-next>Dalje</button></div>
+        </div>
+
+        <div class="pane" data-step="1" hidden>
+          <h3>Šta treba uraditi?</h3>
+          <p class="sub">Možete izabrati više usluga. Ne znate šta je kvar? Izaberite dijagnostiku.</p>
+          <div class="pick" id="pick"></div>
+          <p class="live" id="liveEst" aria-live="polite"></p>
+          <p class="msg" id="m1" role="status"></p>
+          <div class="nav"><button class="btn btn-line" style="color:var(--ink);box-shadow:inset 0 0 0 1.5px #CCD1D6" type="button" data-prev>Nazad</button><button class="btn btn-dark" type="button" data-next>Dalje</button></div>
+        </div>
+
+        <div class="pane" data-step="2" hidden>
+          <h3>Kada vam odgovara?</h3>
+          <p class="sub" id="slotSub">Prikazani su samo termini u kojima stvarno imamo slobodno radno mjesto.</p>
+          <div class="days" id="days" role="group" aria-label="Dan"></div>
+          <div class="slots" id="slots" role="group" aria-label="Vrijeme"></div>
+          <div class="modes" id="modes" role="group" aria-label="Kako dolazite">
+            <button type="button" class="md" data-v="cekam"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg></span><span><b>Čekam u servisu</b><span>Kafa i Wi-Fi dok radimo. Za usluge do 1,5 h.</span></span></button>
+            <button type="button" class="md" data-v="ostavljam" aria-pressed="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 7a4 4 0 1 1-4 4"/><path d="M11 11 3 19l2 2M6 16l2 2"/></svg></span><span><b>Ostavljam auto</b><span>Javimo vam kad je gotovo.</span></span></button>
+            <button type="button" class="md" data-v="dovoz"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h2l1-4h12l1 4h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M6 13l2-5h8l2 5"/></svg></span><span><b>Dovoz i odvoz (+20 KM)</b><span>Preuzmemo i vratimo auto, do 10 km.</span></span></button>
+          </div>
+          <label class="chk"><input type="checkbox" id="loaner"> Treba mi zamjensko vozilo (+30 KM / dan)</label>
+          <p class="msg" id="m2" role="status"></p>
+          <div class="nav"><button class="btn btn-line" style="color:var(--ink);box-shadow:inset 0 0 0 1.5px #CCD1D6" type="button" data-prev>Nazad</button><button class="btn btn-dark" type="button" data-next>Dalje</button></div>
+        </div>
+
+        <div class="pane" data-step="3" hidden>
+          <h3>Gdje da vam pošaljemo potvrdu?</h3>
+          <p class="sub">Potvrda i podsjetnik dan prije stižu na WhatsApp ili Viber.</p>
+          <form id="bf" novalidate>
+            <div class="fg">
+              <div class="f"><label for="bName">Ime i prezime</label><input id="bName" required maxlength="120" autocomplete="name"></div>
+              <div class="f"><label for="bPhone">Telefon (WhatsApp / Viber)</label><input id="bPhone" type="tel" required maxlength="40" autocomplete="tel" placeholder="+387 6x xxx xxx"></div>
+              <div class="f"><label for="bEmail">Email (opcionalno)</label><input id="bEmail" type="email" maxlength="160" autocomplete="email"></div>
+              <div class="f"><label for="bPlate">Registracija (opcionalno)</label><input id="bPlate" maxlength="20" autocomplete="off" placeholder="npr. A12-K-345"></div>
+            </div>
+            <div class="f" style="margin-top:12px"><label for="bNote">Opišite problem (opcionalno)</label><textarea id="bNote" maxlength="1500" placeholder="npr. Čuje se škripa pri kočenju, lampica motora svijetli od jučer…"></textarea></div>
+            <input class="hp" name="website" id="bHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <p class="msg" id="m3" role="status"></p>
+            <div class="nav"><button class="btn btn-line" style="color:var(--ink);box-shadow:inset 0 0 0 1.5px #CCD1D6" type="button" data-prev>Nazad</button><button class="btn btn-or" type="submit" id="bSubmit">Potvrdi termin</button></div>
+          </form>
+        </div>
+
+        <div class="pane done" data-step="4" hidden>
+          <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Termin je rezervisan!</h3>
+          <p id="doneTxt"></p>
+          <div class="codebox"><small>VAŠ KOD ZA PRAĆENJE</small><b id="doneCode"></b></div>
+          <p>Potvrdu i podsjetnik dan prije šaljemo na WhatsApp ili Viber. S kodom pratite popravku uživo.</p>
+          <div class="nav" style="justify-content:center;flex-wrap:wrap"><button class="btn btn-or" type="button" id="goTrack">Prati status</button><button class="btn btn-dark" type="button" id="again">Novi termin</button></div>
+        </div>
+      </div>
+
+      <aside class="sum" aria-live="polite">
+        <h4>Vaša procjena</h4>
+        <div class="row"><span>Auto</span><span id="sCar">—</span></div>
+        <div class="row"><span>Usluge</span><span id="sSvc">—</span></div>
+        <div class="row"><span>Trajanje</span><span id="sDur">—</span></div>
+        <div class="row"><span>Termin</span><span id="sSlot">—</span></div>
+        <div class="tot"><small>Okvirna cijena</small><b id="sPrice">—</b></div>
+        <p class="disc">Procjena za izabrani auto. Ako pri pregledu nađemo još nešto, radimo tek kad vi odobrite.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="prati">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Prati auto</span>
+      <h2>Gdje je moj auto? Pogledajte sami.</h2>
+      <p>Svaka rezervacija dobije kod. Upišite ga i vidite status u stvarnom vremenu, nalaze mehaničara i šta čeka vaše odobrenje.</p>
+    </div>
+    <div class="trk">
+      <div class="trk-in rv">
+        <span class="kicker">Kod za praćenje</span>
+        <form id="tf">
+          <label class="hp" for="tCode">Kod</label>
+          <input id="tCode" placeholder="OBR-XXXX" maxlength="9" autocomplete="off" spellcheck="false">
+          <button class="btn btn-or" type="submit">Prati</button>
+        </form>
+        <button type="button" class="demo-code" id="demoCode">Probajte demo kod OBR-2417</button>
+        <p style="color:var(--mut);font-size:.9rem;margin-top:12px">Kod dobijete odmah nakon rezervacije, u potvrdi na WhatsAppu ili Viberu.</p>
+      </div>
+      <div class="trk-out" id="trkOut" aria-live="polite">
+        <div class="trk-empty"><span class="kicker">Status</span><p>Upišite kod ili probajte demo da vidite kako izgleda praćenje popravke.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="lokacija">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Lokacija</span>
+      <h2>Lako nas je naći. Parking ispred.</h2>
+    </div>
+    <div class="loc">
+      <div class="map rv" aria-hidden="true">
+        <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="420" fill="#E3E1DA"/>
+          <path d="M-20 300 C 140 280, 260 320, 420 290 S 560 260, 640 270" fill="none" stroke="#BCD4DF" stroke-width="26" stroke-linecap="round"/>
+          <path d="M-20 170 L 640 150" stroke="#FFFFFF" stroke-width="30"/>
+          <path d="M-20 170 L 640 150" stroke="#F5C9A9" stroke-width="3" stroke-dasharray="18 14"/>
+          <g stroke="#F7F6F2" stroke-width="10" stroke-linecap="round" fill="none"><path d="M120 0 V420"/><path d="M330 0 C 320 120, 340 260, 330 420"/><path d="M500 0 V420"/><path d="M0 70 H600"/><path d="M0 370 H600"/></g>
+          <g fill="#D4D1C7"><rect x="150" y="90" width="150" height="50" rx="8"/><rect x="360" y="85" width="110" height="55" rx="8"/><rect x="150" y="190" width="150" height="70" rx="8"/><rect x="520" y="190" width="70" height="70" rx="8"/><rect x="20" y="190" width="80" height="70" rx="8"/></g>
+          <rect x="358" y="186" width="122" height="78" rx="10" fill="#111417"/>
+          <path d="M374 240a16 16 0 1 1 32 0" fill="none" stroke="#FF6B1A" stroke-width="5" stroke-linecap="round"/>
+          <text x="414" y="236" font-family="Archivo,sans-serif" font-size="17" font-weight="900" fill="#fff">OBRTAJ</text>
+          <text x="414" y="254" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9AA3AD">P · 8 mjesta</text>
+          <text x="24" y="162" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#6B655B">GLAVNA CESTA</text>
+          <text x="24" y="58" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#6B655B">STUP</text>
+        </svg>
+      </div>
+      <div class="hours rv">
+        <span class="kicker">Radno vrijeme</span>
+        <h3>Obrtaj auto servis</h3>
+        <p class="addr">Sarajevo, Stup · uz glavnu cestu, parking ispred servisa</p>
+        <div class="hrs" id="hrs"></div>
+        <div class="btns">
+          <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=Stup%2C+Sarajevo" target="_blank" rel="noopener">Navigacija</a>
+          <a class="btn btn-or" href="#zakazi">Zakaži termin</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="kicker">Pitanja</span>
+      <h2>Prije nego što dođete.</h2>
+    </div>
+    <div class="faq rv">
+      <details><summary>Je li cijena sa stranice konačna?</summary><p>Cijena je okvirna za vaš auto i uključuje rad i standardne dijelove. Ako pri pregledu nađemo nešto dodatno, dobijete nalaz s cijenom i radimo tek kad odobrite.</p></details>
+      <details><summary>Mogu li donijeti svoje dijelove?</summary><p>Možete. Tada naplaćujemo samo rad, a garancija važi na rad, ne na dijelove.</p></details>
+      <details><summary>Kako funkcioniše dovoz i odvoz?</summary><p>U dogovoreno vrijeme preuzmemo auto s vaše adrese (do 10 km), servisiramo ga i vratimo. Cijena je 20 KM u oba smjera.</p></details>
+      <details><summary>Šta ako kasnim ili moram otkazati?</summary><p>Pošaljite poruku na WhatsApp ili Viber. Termin pomjeramo ili otkazujemo bez troškova.</p></details>
+      <details><summary>Kakva je garancija?</summary><p>12 mjeseci na izvršeni rad. Na dijelove važi garancija proizvođača.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="logo" href="#top" style="margin:0"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#1C2229"/><path d="M9 26a11 11 0 1 1 22 0" fill="none" stroke="#FF6B1A" stroke-width="4" stroke-linecap="round"/><path d="M20 26 27 17" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><circle cx="20" cy="26" r="2.6" fill="#fff"/></svg><b>OBRTAJ</b></a>
+      <a class="powered" href="/">Termine i poruke vodi <b>host<span>io.</span></b></a>
+    </div>
+    <p class="fnote">Demo stranica. Servis Obrtaj je izmišljen primjer, a cijene su okvirne i informativne. Termini u ovom demou su stvarno spremljeni, ali niko vas neće čekati u servisu.</p>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <a href="#prati" class="btn btn-line">Prati auto</a>
+  <a href="#zakazi" class="btn btn-or">Zakaži termin</a>
+</div>
+
+<button class="chat-fab" type="button" id="chatFab" aria-expanded="false" aria-controls="chat">
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.2L3 20l1.4-4.9A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+  <span class="lbl">Pitajte majstora</span>
+</button>
+<div class="chat" id="chat" role="dialog" aria-label="Chat" aria-hidden="true">
+  <div class="chat-h">
+    <span class="av">O</span>
+    <span><b>Obrtaj servis</b><small>online · odgovara odmah</small></span>
+    <button type="button" id="chatClose" aria-label="Zatvori chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="chat-b" id="chatB"></div>
+  <div class="chat-f">Primjer razgovora: ovako <a href="/">hostio.</a> odgovara mušterijama na WhatsAppu, Viberu i Instagramu.</div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const SHOP = "obrtaj";
+const SB_URL = "https://eauwnwvieyepzrbildqt.supabase.co";
+const SB_KEY = "sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
+const LIFTS = 3, OPEN = 480, CLOSE = [null, 1020, 1020, 1020, 1020, 1020, 780, null]; // index = ISO weekday
+const sb = (path, body) => fetch(`${SB_URL}/rest/v1/${path}`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify(body) });
+
+/* ---------- catalog ---------- */
+const SVC = [
+  { id: "mali", n: "Mali servis", d: "Ulje, filter ulja, zraka i kabine, provjera 30 tačaka", t: 60, lo: 120, hi: 220 },
+  { id: "dijag", n: "Kompjuterska dijagnostika", d: "Očitavanje grešaka svih sistema i pisani izvještaj", t: 30, lo: 30, hi: 50 },
+  { id: "plocice", n: "Kočione pločice", d: "Zamjena pločica na jednoj osovini, provjera diskova", t: 60, lo: 80, hi: 160 },
+  { id: "diskovi", n: "Diskovi i pločice", d: "Zamjena diskova i pločica na jednoj osovini", t: 120, lo: 180, hi: 360 },
+  { id: "klima", n: "Servis klime", d: "Punjenje plina, dezinfekcija, novi filter kabine", t: 60, lo: 70, hi: 130 },
+  { id: "gume", n: "Zamjena i balans guma", d: "Sva 4 točka, balansiranje i provjera pritiska", t: 30, lo: 30, hi: 50 },
+  { id: "trap", n: "Geometrija trapa", d: "Kompjutersko podešavanje i ispis mjerenja", t: 60, lo: 40, hi: 70 },
+  { id: "aku", n: "Test i zamjena akumulatora", d: "Test baterije i alternatora, ugradnja (akumulator posebno)", t: 30, lo: 15, hi: 25 },
+  { id: "tehnicki", n: "Priprema za tehnički", d: "Svjetla, kočnice, ispuh i ovjes, prije pregleda", t: 60, lo: 40, hi: 70 },
+  { id: "veliki", n: "Veliki servis", d: "Zupčasti remen, pumpa vode, zatezači i mali servis", t: 300, lo: 380, hi: 750 },
+  { id: "kvacilo", n: "Zamjena kvačila", d: "Komplet kvačila, po potrebi zamašnjak", t: 360, lo: 450, hi: 900 }
+];
+const byId = Object.fromEntries(SVC.map(s => [s.id, s]));
+const MAKES = ["Volkswagen","Škoda","Audi","Opel","Renault","Peugeot","Citroën","Mercedes-Benz","BMW","Toyota","Hyundai","Kia","Dacia","Fiat","Ford","Seat","Nissan","Mazda","Volvo","Drugo"];
+const PREMIUM = new Set(["Audi","Mercedes-Benz","BMW","Volvo"]);
+const km = n => `${Math.round(n).toLocaleString("de-DE")} KM`;
+const hm = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+const durTxt = m => m < 60 ? `${m} min` : (m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
+
+/* ---------- service cards ---------- */
+const sel = new Set();
+function renderSvcGrid() {
+  const g = $("#svcGrid"); g.innerHTML = "";
+  SVC.forEach(s => {
+    const c = document.createElement("div"); c.className = "s rv in";
+    c.innerHTML = `<div class="s-top"><h3></h3><span class="dur"></span></div><p></p><div class="s-bot"><span class="price"></span><button type="button"></button></div>`;
+    c.querySelector("h3").textContent = s.n;
+    c.querySelector(".dur").textContent = "⏱ " + durTxt(s.t);
+    c.querySelector("p").textContent = s.d;
+    c.querySelector(".price").innerHTML = `${km(s.lo)} <small>– ${km(s.hi)}</small>`;
+    const b = c.querySelector("button");
+    const sync = () => { b.setAttribute("aria-pressed", sel.has(s.id) ? "true" : "false"); b.textContent = sel.has(s.id) ? "✓ Dodano" : "+ Rezerviši"; };
+    sync(); b._sync = sync;
+    b.addEventListener("click", () => { sel.has(s.id) ? sel.delete(s.id) : sel.add(s.id); refreshAll(); });
+    g.append(c);
+  });
+}
+
+/* ---------- warning lights ---------- */
+const ICON = {
+  engine: '<path d="M4 10h2V8h4V6h4v2h3l2 2h2v6h-2l-2 2H9l-2-2H4z"/><path d="M2 11v4M14 6V4h-4"/>',
+  oil: '<path d="M3 13h9l6-4 4 1-6 7H6z"/><path d="M12 13V9H7v4M20 14c0 1.5 1 2.4 1 3.2a1 1 0 0 1-2 0c0-.8 1-1.7 1-3.2z"/>',
+  battery: '<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h2v2M15 7V5h2v2M6 13h4M15 11v4M13 13h4"/>',
+  temp: '<path d="M12 3v11"/><circle cx="12" cy="17" r="3"/><path d="M12 6h3M12 9h3M3 21c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/>',
+  abs: '<circle cx="12" cy="12" r="7"/><path d="M4 6a10 10 0 0 0 0 12M20 6a10 10 0 0 1 0 12"/><text x="12" y="14.5" text-anchor="middle" font-size="6.5" font-weight="800" fill="currentColor" stroke="none" font-family="Archivo,sans-serif">ABS</text>',
+  brake: '<circle cx="12" cy="12" r="7"/><path d="M4 6a10 10 0 0 0 0 12M20 6a10 10 0 0 1 0 12M12 8v5"/><circle cx="12" cy="15.8" r=".6" fill="currentColor"/>',
+  airbag: '<circle cx="8" cy="5" r="2"/><path d="M7 8l-2 8h4l2 5M9 12h4"/><circle cx="16" cy="12" r="4.5"/>',
+  tpms: '<path d="M6 7c-2 3-2 7 0 10M18 7c2 3 2 7 0 10M6 17h12M8 6h8"/><path d="M12 9v4"/><circle cx="12" cy="15" r=".6" fill="currentColor"/>',
+  glow: '<path d="M3 9c3 0 3 6 6 6s3-6 6-6 3 6 6 6"/><path d="M3 15c3 0 3-6 6-6"/>',
+  dpf: '<rect x="4" y="7" width="16" height="10" rx="3"/><circle cx="9" cy="11" r=".9" fill="currentColor"/><circle cx="12" cy="13" r=".9" fill="currentColor"/><circle cx="15" cy="11" r=".9" fill="currentColor"/><path d="M1 12h3M20 12h3"/>'
+};
+const LIGHTS = [
+  { k: "engine", c: "y", n: "Lampica motora (Check engine)", lvl: 2, lvlT: "Dođite u narednih par dana", m: "Elektronika je zabilježila grešku u radu motora ili ispušnog sistema. Uzrok može biti sitnica (labav čep goriva) ili ozbiljniji kvar.", d: "Ako svijetli stalno: vozite mirno i dođite na dijagnostiku. Ako trepće: smanjite gas i stanite čim možete, jer može oštetiti katalizator.", s: "dijag" },
+  { k: "oil", c: "r", n: "Pritisak ulja", lvl: 3, lvlT: "Stanite odmah", m: "Motor nema dovoljan pritisak ulja. Vožnja i nekoliko minuta može trajno oštetiti motor.", d: "Stanite čim je sigurno i ugasite motor. Provjerite nivo ulja. Ne vozite dalje dok se kvar ne provjeri, pozovite nas.", s: "dijag" },
+  { k: "battery", c: "r", n: "Punjenje akumulatora", lvl: 3, lvlT: "Dođite odmah", m: "Alternator ne puni akumulator. Auto još kratko radi na bateriji, a onda se ugasi.", d: "Ugasite klimu, radio i grijače sjedišta i vozite pravo do servisa. Ne gasite motor usput ako ne morate.", s: "aku" },
+  { k: "temp", c: "r", n: "Temperatura motora", lvl: 3, lvlT: "Stanite odmah", m: "Motor se pregrijava. Najčešće zbog manjka rashladne tečnosti, termostata ili ventilatora.", d: "Stanite i ugasite motor. Ne otvarajte čep hladnjaka dok je motor vruć. Pozovite nas prije daljnje vožnje.", s: "dijag" },
+  { k: "abs", c: "y", n: "ABS", lvl: 2, lvlT: "Dođite uskoro", m: "Kočnice rade, ali bez ABS sistema. Na mokrom ili pri naglom kočenju točkovi se mogu blokirati.", d: "Vozite opreznije, s većim razmakom, i zakažite dijagnostiku. Najčešće je kriv senzor na točku.", s: "dijag" },
+  { k: "brake", c: "r", n: "Kočioni sistem", lvl: 3, lvlT: "Ne vozite", m: "Ili je podignuta ručna kočnica, ili je nizak nivo kočione tečnosti, što može značiti curenje.", d: "Provjerite ručnu kočnicu. Ako je spuštena, a lampica svijetli, ne vozite dalje. Organizujemo prevoz do servisa.", s: "plocice" },
+  { k: "airbag", c: "r", n: "Zračni jastuci (Airbag)", lvl: 2, lvlT: "Dođite što prije", m: "Sistem zračnih jastuka ima grešku. U sudaru se jastuci možda neće aktivirati.", d: "Auto možete voziti, ali je sigurnost smanjena. Zakažite dijagnostiku u narednim danima.", s: "dijag" },
+  { k: "tpms", c: "y", n: "Pritisak u gumama", lvl: 1, lvlT: "Riješite danas", m: "Bar jedna guma ima nizak pritisak, ili polako gubi zrak.", d: "Na prvoj pumpi provjerite i napumpajte sve gume. Ako se lampica vrati za dan-dva, guma je vjerovatno probušena.", s: "gume" },
+  { k: "glow", c: "y", n: "Grijači (dizel)", lvl: 1, lvlT: "Normalno pri paljenju", m: "Kratko svjetlo pri paljenju je normalno: grijači zagrijavaju motor. Ako ostaje upaljena ili trepće u vožnji, postoji greška.", d: "Ako se ugasi nakon paljenja, sve je u redu. Ako trepće u vožnji, zakažite dijagnostiku.", s: "dijag" },
+  { k: "dpf", c: "y", n: "Filter čestica (DPF)", lvl: 2, lvlT: "Dođite ako ne prestane", m: "Filter čestica kod dizela je pun čađi i treba se pročistiti, što se dešava pri dužoj vožnji.", d: "Vozite 15–20 minuta autoputem, iznad 2500 obrtaja. Ako lampica ne nestane, dođite na dijagnostiku.", s: "dijag" }
+];
+function renderLights() {
+  const box = $("#lights");
+  LIGHTS.forEach((L, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "lt " + L.c;
+    b.setAttribute("aria-label", L.n); b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[L.k]}</svg>`;
+    b.addEventListener("click", () => showLight(i));
+    box.append(b);
+  });
+}
+function showLight(i) {
+  const L = LIGHTS[i];
+  $$("#lights .lt").forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+  const e = $("#lexp"); e.innerHTML = "";
+  const lv = document.createElement("span"); lv.className = "lvl l" + L.lvl; lv.innerHTML = "<i></i>"; lv.append(document.createTextNode(L.lvlT));
+  const h = document.createElement("h3"); h.textContent = L.n;
+  const p = document.createElement("p"); p.textContent = L.m;
+  const d = document.createElement("div"); d.className = "do"; d.innerHTML = "<b>Šta da uradite sada</b>"; d.append(document.createTextNode(L.d));
+  const btn = document.createElement("a"); btn.className = "btn btn-or"; btn.href = "#zakazi";
+  btn.textContent = `Zakaži: ${byId[L.s].n}`;
+  btn.addEventListener("click", () => { sel.add(L.s); refreshAll(); });
+  e.append(lv, h, p, d, btn);
+  if (innerWidth < 900) e.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+/* ---------- wizard ---------- */
+let step = 0, fuel = "dizel", mode = "ostavljam", day = null, slot = null;
+const busyByDay = {};
+const today0 = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const isoDow = d => d.getDay() === 0 ? 7 : d.getDay();
+const DN = ["ned", "pon", "uto", "sri", "čet", "pet", "sub"];
+const DNF = ["nedjelja", "ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota"];
+const MN = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+
+function initCar() {
+  const mk = $("#cMake"); MAKES.forEach(m => { const o = document.createElement("option"); o.textContent = m; o.value = m; mk.append(o); });
+  const y = $("#cYear"), now = new Date().getFullYear();
+  for (let v = now + 1; v >= 1990; v--) { const o = document.createElement("option"); o.value = v; o.textContent = v; if (v === 2016) o.selected = true; y.append(o); }
+  mk.addEventListener("change", refreshAll); $("#cModel").addEventListener("input", refreshAll); y.addEventListener("change", refreshAll);
+  $$("#fuel .pill").forEach(b => b.addEventListener("click", () => { fuel = b.dataset.v; $$("#fuel .pill").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); refreshAll(); }));
+}
+function quote() {
+  if (!sel.size) return null;
+  const make = $("#cMake").value, year = +$("#cYear").value;
+  let lo = 0, hi = 0, t = 0;
+  sel.forEach(id => { const s = byId[id]; lo += s.lo; hi += s.hi; t += s.t; });
+  const mult = (PREMIUM.has(make) ? 1.25 : 1) * (fuel === "dizel" && sel.has("mali") ? 1.05 : 1);
+  if (year && year < new Date().getFullYear() - 15) t = Math.ceil(t * 1.15 / 30) * 30;
+  t = Math.min(Math.ceil(t / 30) * 30, 540);
+  let extra = 0;
+  if (mode === "dovoz") extra += 20;
+  if ($("#loaner").checked) extra += 30;
+  return { lo: lo * mult + extra, hi: hi * mult + extra, t };
+}
+function renderPick() {
+  const box = $("#pick"); box.innerHTML = "";
+  SVC.forEach(s => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "pk"; b.setAttribute("aria-pressed", sel.has(s.id) ? "true" : "false");
+    b.innerHTML = `<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b></b><span></span></span>`;
+    b.querySelector("b").textContent = s.n;
+    b.querySelector("span span").textContent = `${durTxt(s.t)} · ${km(s.lo)}–${km(s.hi)}`;
+    b.addEventListener("click", () => { sel.has(s.id) ? sel.delete(s.id) : sel.add(s.id); refreshAll(); });
+    box.append(b);
+  });
+}
+function renderSummary() {
+  const make = $("#cMake").value, model = $("#cModel").value.trim();
+  $("#sCar").textContent = make ? `${make}${model ? " " + model : ""}, ${$("#cYear").value} · ${fuel}` : "—";
+  $("#sSvc").textContent = sel.size ? [...sel].map(id => byId[id].n).join(", ") : "—";
+  const q = quote();
+  $("#sDur").textContent = q ? durTxt(q.t) : "—";
+  $("#sPrice").textContent = q ? `${km(q.lo)} – ${km(q.hi)}` : "—";
+  const le = $("#liveEst"); le.classList.toggle("on", !!q);
+  le.innerHTML = q ? `Okvirno <b>${km(q.lo)} – ${km(q.hi)}</b> · traje oko ${durTxt(q.t)}` : "";
+  $("#sSlot").textContent = day && slot != null ? `${DN[day.getDay()]} ${day.getDate()}. ${MN[day.getMonth()]}, ${hm(slot)}` : "—";
+}
+function refreshAll() {
+  $$("#svcGrid button").forEach(b => b._sync && b._sync());
+  renderPick(); renderSummary();
+  const q = quote();
+  const cek = $('.md[data-v="cekam"]');
+  if (cek) { cek.disabled = !!(q && q.t > 90); if (cek.disabled && mode === "cekam") setMode("ostavljam"); }
+  if (step === 2) { renderDays(); }
+}
+function setMode(v) { mode = v; $$("#modes .md").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === v ? "true" : "false")); renderSummary(); }
+$$("#modes .md").forEach(b => b.addEventListener("click", () => { if (!b.disabled) setMode(b.dataset.v); }));
+$("#loaner").addEventListener("change", renderSummary);
+
+function goStep(n) {
+  step = n;
+  $$(".pane").forEach(p => p.hidden = +p.dataset.step !== n);
+  $$("#stepsBar button").forEach((b, i) => { b.classList.toggle("on", i === n); b.classList.toggle("done", i < n); b.disabled = i > n || n === 4; });
+  if (n === 2) loadBusy().then(renderDays);
+  const wz = $("#wz"); const r = wz.getBoundingClientRect();
+  if (r.top < 0 || r.top > innerHeight * .4) wz.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+$$("#stepsBar button").forEach(b => b.addEventListener("click", () => { if (!b.disabled) goStep(+b.dataset.go); }));
+$$("[data-prev]").forEach(b => b.addEventListener("click", () => goStep(step - 1)));
+$$("[data-next]").forEach(b => b.addEventListener("click", () => {
+  const m = $("#m" + step); m.textContent = "";
+  if (step === 0 && !$("#cMake").value) { m.textContent = "Izaberite marku auta."; $("#cMake").focus(); return; }
+  if (step === 1 && !sel.size) { m.textContent = "Izaberite bar jednu uslugu."; return; }
+  if (step === 2 && (!day || slot == null)) { m.textContent = "Izaberite dan i vrijeme."; return; }
+  goStep(step + 1);
+}));
+
+async function loadBusy() {
+  const from = today0(), to = new Date(from.getFullYear(), from.getMonth(), from.getDate() + 21);
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/rpc/svc_busy`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ p_shop: SHOP, p_from: iso(from), p_to: iso(to) }) });
+    if (!r.ok) throw 0;
+    const rows = await r.json();
+    for (const k in busyByDay) delete busyByDay[k];
+    rows.forEach(x => (busyByDay[x.day] ||= []).push([x.start_min, x.dur_min]));
+  } catch (e) { /* server re-checks on submit */ }
+}
+function freeSlots(d, dur) {
+  const dw = isoDow(d), close = CLOSE[dw]; if (!close) return [];
+  const jobs = busyByDay[iso(d)] || [];
+  const now = new Date(), isToday = iso(d) === iso(now), nowMin = now.getHours() * 60 + now.getMinutes();
+  const out = [];
+  for (let s = OPEN; s + dur <= close; s += 30) {
+    let ok = !(isToday && s < nowMin + 60);
+    for (let t = s; ok && t < s + dur; t += 30) {
+      const n = jobs.filter(([a, l]) => a <= t && t < a + l).length;
+      if (n >= LIFTS) ok = false;
+    }
+    out.push([s, ok]);
+  }
+  return out;
+}
+function renderDays() {
+  const q = quote(); if (!q) return;
+  const box = $("#days"); box.innerHTML = "";
+  const base = today0(); let shown = 0;
+  $("#slotSub").textContent = q.t >= 240 ? `Posao traje oko ${durTxt(q.t)}, zato nudimo jutarnje termine da auto bude gotov isti dan.` : "Prikazani su samo termini u kojima stvarno imamo slobodno radno mjesto.";
+  for (let i = 0; shown < 14 && i < 21; i++) {
+    const d = new Date(base.getFullYear(), base.getMonth(), base.getDate() + i);
+    if (!CLOSE[isoDow(d)]) continue;
+    shown++;
+    const free = freeSlots(d, q.t).filter(x => x[1]).length;
+    const b = document.createElement("button"); b.type = "button"; b.className = "dd";
+    b.innerHTML = `<small>${i === 0 ? "danas" : i === 1 ? "sutra" : DN[d.getDay()]}</small><b>${d.getDate()}</b><span class="${free ? "" : "full"}">${free ? free + " slobodno" : "popunjeno"}</span>`;
+    b.setAttribute("aria-label", `${DNF[d.getDay()]} ${d.getDate()}. ${MN[d.getMonth()]}, ${free ? free + " slobodnih termina" : "popunjeno"}`);
+    b.disabled = !free;
+    b.setAttribute("aria-pressed", day && iso(day) === iso(d) ? "true" : "false");
+    b.addEventListener("click", () => { day = d; slot = null; renderDays(); renderSummary(); });
+    box.append(b);
+    if (!day && free) { day = d; }
+  }
+  if (day) $$("#days .dd").forEach(b => { if (b.getAttribute("aria-label").startsWith(`${DNF[day.getDay()]} ${day.getDate()}.`)) b.setAttribute("aria-pressed", "true"); });
+  renderSlots(); renderSummary();
+}
+function renderSlots() {
+  const q = quote(), box = $("#slots"); box.innerHTML = "";
+  if (!day || !q) return;
+  const list = freeSlots(day, q.t);
+  if (!list.some(x => x[1])) { box.innerHTML = `<div class="empty" style="grid-column:1/-1">Ovaj dan je popunjen. Izaberite drugi dan.</div>`; return; }
+  list.forEach(([s, ok]) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "sl"; b.textContent = hm(s); b.disabled = !ok;
+    b.setAttribute("aria-pressed", slot === s ? "true" : "false");
+    if (!ok) b.setAttribute("aria-label", hm(s) + " zauzeto");
+    b.addEventListener("click", () => { slot = s; renderSlots(); renderSummary(); $("#m2").textContent = ""; });
+    box.append(b);
+  });
+}
+
+/* ---------- submit ---------- */
+const ALPH = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const newCode = () => { const a = new Uint32Array(4); crypto.getRandomValues(a); return "OBR-" + [...a].map(x => ALPH[x % ALPH.length]).join(""); };
+$("#bf").addEventListener("submit", async e => {
+  e.preventDefault();
+  if ($("#bHp").value) return;
+  const m = $("#m3"); m.textContent = "";
+  const name = $("#bName").value.trim(), phone = $("#bPhone").value.trim();
+  if (name.length < 2) { m.textContent = "Upišite ime i prezime."; $("#bName").focus(); return; }
+  if (phone.replace(/\D/g, "").length < 6) { m.textContent = "Upišite broj telefona da vam pošaljemo potvrdu."; $("#bPhone").focus(); return; }
+  const q = quote(); if (!q || !day || slot == null) { goStep(2); return; }
+  const btn = $("#bSubmit"); btn.disabled = true; btn.textContent = "Šaljem…";
+  try {
+    let code, r;
+    for (let tries = 0; tries < 3; tries++) {
+      code = newCode();
+      r = await sb("svc_bookings", {
+        shop: SHOP, code, day: iso(day), start_min: slot, dur_min: q.t, services: [...sel],
+        car_make: $("#cMake").value || null, car_model: $("#cModel").value.trim() || null, car_year: +$("#cYear").value || null, fuel,
+        plate: $("#bPlate").value.trim() || null, mode, loaner: $("#loaner").checked, name, phone,
+        email: $("#bEmail").value.trim() || null, note: $("#bNote").value.trim() || null,
+        est_min: Math.round(q.lo), est_max: Math.round(q.hi)
+      });
+      if (r.ok) break;
+      const txt = await r.text();
+      if (txt.includes("TERMIN_ZAUZET") || txt.includes("VAN_RADNOG")) {
+        m.textContent = "Taj termin je upravo zauzet. Izaberite drugi."; slot = null; goStep(2); return;
+      }
+      if (!txt.includes("23505")) throw new Error(txt);
+    }
+    if (!r.ok) throw new Error("code");
+    $("#doneTxt").textContent = `${DNF[day.getDay()]}, ${day.getDate()}. ${MN[day.getMonth()]} u ${hm(slot)} · ${[...sel].map(id => byId[id].n).join(", ")} · okvirno ${km(q.lo)}–${km(q.hi)}`;
+    $("#doneCode").textContent = code;
+    $("#goTrack").onclick = () => { $("#tCode").value = code; $("#prati").scrollIntoView({ behavior: "smooth" }); track(code); };
+    goStep(4);
+    loadBusy();
+  } catch (err) {
+    m.textContent = "Slanje nije uspjelo. Provjerite internet i pokušajte ponovo.";
+  } finally { btn.disabled = false; btn.textContent = "Potvrdi termin"; }
+});
+$("#again").addEventListener("click", () => { sel.clear(); day = null; slot = null; $("#bf").reset(); refreshAll(); goStep(0); });
+
+/* ---------- tracker ---------- */
+const STEPS = [["novo", "Termin rezervisan"], ["primljeno", "Auto primljeno u servis"], ["dijagnostika", "Pregled i dijagnostika"], ["odobrenje", "Čeka vaše odobrenje"], ["popravka", "Popravka u toku"], ["gotovo", "Gotovo, možete preuzeti"]];
+const ORDER = { novo: 0, potvrdjeno: 0, primljeno: 1, dijagnostika: 2, odobrenje: 3, popravka: 4, gotovo: 5, preuzeto: 5 };
+const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+function tl(cur, times) {
+  const ul = document.createElement("ul"); ul.className = "tl";
+  STEPS.forEach(([k, label], i) => {
+    const li = document.createElement("li"); li.className = i < cur ? "done" : i === cur ? "now" : "";
+    li.innerHTML = `<span class="dot">${i < cur ? tick : ""}</span><b></b><span></span>`;
+    li.querySelector("b").textContent = label;
+    li.querySelector("span:last-child").textContent = times[i] || (i === cur ? "sada" : "");
+    ul.append(li);
+  });
+  return ul;
+}
+function head(car, sub, eta) {
+  const h = document.createElement("div"); h.className = "car-h";
+  h.innerHTML = `<div><b></b><span></span></div>${eta ? '<div class="eta"></div>' : ""}`;
+  h.querySelector("b").textContent = car; h.querySelector("span").textContent = sub;
+  if (eta) h.querySelector(".eta").innerHTML = eta;
+  return h;
+}
+async function track(raw) {
+  const code = raw.trim().toUpperCase();
+  const out = $("#trkOut");
+  if (!code) return;
+  if (code === "OBR-2417") return demoTrack();
+  out.innerHTML = `<div class="trk-empty"><p>Tražim…</p></div>`;
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/rpc/svc_track`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ p_code: code }) });
+    const rows = r.ok ? await r.json() : [];
+    if (!rows.length) { out.innerHTML = `<div class="trk-empty"><span class="kicker">Nije pronađeno</span><p>Nema rezervacije s tim kodom. Provjerite kod iz potvrde ili probajte demo kod OBR-2417.</p></div>`; return; }
+    const b = rows[0], d = new Date(b.day + "T00:00:00");
+    out.innerHTML = "";
+    if (b.status === "otkazano") { out.append(head(`${b.car_make || "Vaše vozilo"} ${b.car_model || ""}`, b.code)); out.insertAdjacentHTML("beforeend", `<p style="color:var(--mut)">Ovaj termin je otkazan.</p>`); return; }
+    out.append(head(`${b.car_make || "Vaše vozilo"} ${b.car_model || ""}`.trim(), `${b.code} · ${b.services.map(id => byId[id]?.n || id).join(", ")}`, `Termin: <b>${DN[d.getDay()]} ${d.getDate()}. ${MN[d.getMonth()]}, ${hm(b.start_min)}</b>`));
+    out.append(tl(ORDER[b.status] ?? 0, [`rezervisano ${new Date(b.created_at).toLocaleDateString("de-DE")}`]));
+    out.insertAdjacentHTML("beforeend", `<p style="color:var(--mut);font-size:.9rem">Kad dovezete auto, status se ovdje mijenja uživo. O svakom nalazu dobijete poruku na WhatsApp ili Viber.</p>`);
+  } catch (e) { out.innerHTML = `<div class="trk-empty"><p>Provjera nije uspjela. Pokušajte ponovo.</p></div>`; }
+}
+function demoTrack() {
+  const out = $("#trkOut"); out.innerHTML = "";
+  const now = new Date(), t = m => hm(Math.max(480, Math.min(now.getHours() * 60 + now.getMinutes() - m, 1000)));
+  out.append(head("Škoda Octavia 1.6 TDI · 2017", "OBR-2417 · Mali servis", `Danas · primljeno u <b>${t(150)}</b>`));
+  out.append(tl(3, ["jučer, 18:42", `danas, ${t(150)}`, `danas, ${t(95)} · 3 nalaza`]));
+  const F = [
+    { n: "Prednje kočione pločice", p: 130, add: 60, w: 82, wl: "3 mm od 12 mm", tag: ["r", "Preporuka: zamijeniti sada"], d: "Pločice su skoro istrošene. Još malo i oštetit će diskove, a tada je popravka oko dva puta skuplja." },
+    { n: "Metlice brisača", p: 35, add: 10, w: 60, wl: "guma ispucala", tag: ["y", "Može i kasnije"], d: "Ostavljaju trake na staklu. Nije hitno, ali je jeftino zamijeniti dok je auto ovdje." },
+    { n: "Akumulator", p: 0, add: 0, w: 22, wl: "78% zdravlja", tag: ["g", "U redu, pratimo"], d: "Akumulator je u dobrom stanju. Samo bilježimo za sljedeći servis." }
+  ];
+  const dec = {};
+  const box = document.createElement("div"); box.className = "findings";
+  const lead = document.createElement("p"); lead.style.cssText = "color:var(--mut);font-size:.92rem"; lead.textContent = "Mali servis (185 KM) je odobren. Tokom pregleda mehaničar je našao:"; box.append(lead);
+  const appr = document.createElement("div"); appr.className = "appr";
+  const total = () => 185 + F.reduce((s, f, i) => s + (dec[i] === true ? f.p : 0), 0);
+  F.forEach((f, i) => {
+    const c = document.createElement("div"); c.className = "fd";
+    c.innerHTML = `<div class="fd-h"><div><b></b><br><span class="tagp ${f.tag[0]}"></span></div><span class="p"></span></div><p></p><div class="wear"><i></i></div><div class="wear-l"><span>istrošenost</span><span></span></div>`;
+    c.querySelector("b").textContent = f.n; c.querySelector(".tagp").textContent = f.tag[1];
+    c.querySelector(".p").textContent = f.p ? "+ " + km(f.p) : "0 KM"; c.querySelector("p").textContent = f.d;
+    const bar = c.querySelector(".wear i"); bar.style.width = f.w + "%"; bar.style.background = f.w > 70 ? "var(--bad)" : f.w > 45 ? "var(--warn)" : "var(--ok)";
+    c.querySelector(".wear-l span:last-child").textContent = f.wl;
+    if (f.p) {
+      dec[i] = null;
+      const act = document.createElement("div"); act.className = "fd-act";
+      act.innerHTML = `<button type="button" class="yes" aria-pressed="false">Odobri</button><button type="button" class="no" aria-pressed="false">Ne sada</button>`;
+      act.querySelectorAll("button").forEach(bt => bt.addEventListener("click", () => {
+        dec[i] = bt.classList.contains("yes");
+        act.querySelector(".yes").setAttribute("aria-pressed", dec[i] ? "true" : "false");
+        act.querySelector(".no").setAttribute("aria-pressed", dec[i] ? "false" : "true");
+        syncAppr();
+      }));
+      c.append(act);
+    }
+    box.append(c);
+  });
+  function syncAppr() {
+    const open = Object.values(dec).some(v => v === null);
+    appr.innerHTML = `<div><small style="color:var(--mut);display:block">Ukupno s odobrenim</small><b>${km(total())}</b></div>`;
+    const go = document.createElement("button"); go.className = "btn btn-or"; go.type = "button"; go.disabled = open;
+    go.textContent = open ? "Odlučite za svaki nalaz" : "Pošalji odluku";
+    go.addEventListener("click", finish); appr.append(go);
+  }
+  function finish() {
+    const extra = F.reduce((s, f, i) => s + (dec[i] === true ? f.add : 0), 0);
+    const nowM = new Date().getHours() * 60 + new Date().getMinutes();
+    const eta = Math.ceil((Math.max(nowM, 480) + 40 + extra) / 15) * 15;
+    out.innerHTML = "";
+    out.append(head("Škoda Octavia 1.6 TDI · 2017", "OBR-2417 · " + ["Mali servis", ...F.filter((f, i) => dec[i]).map(f => f.n)].join(", "), `Gotovo oko <b>${hm(Math.min(eta, 1020))}</b>`));
+    out.append(tl(4, ["jučer, 18:42", `danas, ${t(150)}`, `danas, ${t(95)} · 3 nalaza`, "odobreno upravo sada"]));
+    const pr = document.createElement("div"); pr.innerHTML = `<div class="wear-l"><span>Popravka u toku</span><span>${km(total())}</span></div><div class="prog"><i></i></div><p style="color:var(--mut);font-size:.9rem;margin-top:10px">Hvala! Mehaničar je dobio vašu odluku. Kad auto bude gotov, stiže vam poruka na WhatsApp ili Viber s konačnim računom.</p>`;
+    out.append(pr); requestAnimationFrame(() => requestAnimationFrame(() => { pr.querySelector(".prog i").style.width = "38%"; }));
+  }
+  syncAppr(); box.append(appr); out.append(box);
+}
+$("#tf").addEventListener("submit", e => { e.preventDefault(); track($("#tCode").value); });
+$("#demoCode").addEventListener("click", () => { $("#tCode").value = "OBR-2417"; demoTrack(); if (innerWidth < 900) $("#trkOut").scrollIntoView({ behavior: "smooth", block: "start" }); });
+
+/* ---------- open now + hours ---------- */
+function sarajevoNow() {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Sarajevo", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()).map(x => [x.type, x.value]));
+  const dw = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }[p.weekday];
+  return { dw, m: (+p.hour % 24) * 60 + +p.minute };
+}
+function renderOpen() {
+  const { dw, m } = sarajevoNow(), close = CLOSE[dw];
+  const pill = $("#openPill"), txt = $("#openTxt");
+  const det = $("#openD");
+  if (close && m >= OPEN && m < close) { pill.classList.remove("closed"); txt.textContent = "Otvoreno"; det.textContent = ` · do ${hm(close)}`; }
+  else {
+    pill.classList.add("closed"); txt.textContent = "Zatvoreno";
+    let nd = dw;
+    if (close && m < OPEN) det.textContent = " · otvaramo u 08:00";
+    else { do { nd = nd % 7 + 1; } while (!CLOSE[nd]); det.textContent = ` · otvaramo ${nd === dw % 7 + 1 ? "sutra" : DNF[nd % 7]} u 08:00`; }
+  }
+  const H = [["Ponedjeljak – petak", "08:00 – 17:00", [1, 2, 3, 4, 5]], ["Subota", "08:00 – 13:00", [6]], ["Nedjelja", "zatvoreno", [7]]];
+  $("#hrs").innerHTML = "";
+  H.forEach(([a, b, ds]) => { const r = document.createElement("div"); if (ds.includes(dw)) r.className = "today"; r.innerHTML = "<span></span><span></span>"; r.children[0].textContent = a + (ds.includes(dw) ? " (danas)" : ""); r.children[1].textContent = b; $("#hrs").append(r); });
+}
+
+/* ---------- chat demo ---------- */
+const CHAT = [["in", "Pozdrav, koliko košta mali servis za Golf 7 dizel?"], ["out", "Pozdrav! 👋 Za Golf 7 dizel mali servis je okvirno 130–230 KM, s uljem i filterima. Traje oko sat vremena."], ["in", "Imate li sutra ujutro?"], ["out", "Imamo sutra u 08:30 i 10:00. Evo linka, termin je već izabran, samo potvrdite: hostio · /s/obrtaj 🔧"]];
+const chat = $("#chat"), chatB = $("#chatB"), fab = $("#chatFab"); let ct = [];
+function addMsg(c, x) { const d = document.createElement("div"); d.className = "cm " + c; d.textContent = x; chatB.append(d); chatB.scrollTop = chatB.scrollHeight; return d; }
+function playChat() {
+  ct.forEach(clearTimeout); ct = []; chatB.innerHTML = ""; let at = 300;
+  CHAT.forEach(([w, x]) => {
+    if (w === "out") { ct.push(setTimeout(() => { addMsg("in ty", "").innerHTML = "<i></i><i></i><i></i>"; }, at)); at += 1300; ct.push(setTimeout(() => { chatB.querySelector(".ty")?.remove(); addMsg("out", x); }, at)); at += 1200; }
+    else { ct.push(setTimeout(() => addMsg("in", x), at)); at += 1000; }
+  });
+}
+function setChat(o) { chat.classList.toggle("open", o); chat.setAttribute("aria-hidden", o ? "false" : "true"); fab.setAttribute("aria-expanded", o ? "true" : "false"); o ? playChat() : (ct.forEach(clearTimeout), ct = []); }
+fab.addEventListener("click", () => setChat(!chat.classList.contains("open")));
+$("#chatClose").addEventListener("click", () => setChat(false));
+addEventListener("keydown", e => { if (e.key === "Escape" && chat.classList.contains("open")) setChat(false); });
+
+/* ---------- reveal + sticky ---------- */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .1 }) : null;
+$$(".rv").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+const mbar = $("#mbar");
+addEventListener("scroll", () => {
+  const z = $("#zakazi").getBoundingClientRect(), p = $("#prati").getBoundingClientRect();
+  const inForm = (z.top < innerHeight * .5 && z.bottom > 0) || (p.top < innerHeight * .5 && p.bottom > 0);
+  mbar.classList.toggle("show", scrollY > innerHeight * .7 && !inForm);
+}, { passive: true });
+
+renderSvcGrid(); renderLights(); initCar(); refreshAll(); renderOpen(); setInterval(renderOpen, 60000);
+})();
+</script>
+</body>
+</html>
