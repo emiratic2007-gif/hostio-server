@@ -77,7 +77,7 @@ header.top{position:sticky;top:0;z-index:50;background:rgba(255,253,249,.88);-we
 .hero h1 em{font-style:italic;color:var(--amber)}
 .hero p.lead{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:600px;color:#E8EDF2}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.facts span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:.88rem;font-weight:600}
+.facts>span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:.88rem;font-weight:600}
 .facts svg{width:16px;height:16px}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:28px}
 .price-pill{font-size:1rem;color:#fff}
@@ -691,7 +691,7 @@ Object.assign(T.bs, BS);
 let lang = null;
 try { const s = localStorage.getItem("vidik-lang"); if (T[s]) lang = s; } catch (e) {}
 const qLang = new URLSearchParams(location.search).get("lang"); if (T[qLang]) lang = qLang;
-if (!lang) { const nav = (navigator.language || "").slice(0, 2).toLowerCase(); lang = nav === "de" ? "de" : nav === "en" ? "en" : "bs"; }
+if (!lang) lang = "bs";
 const t = k => (T[lang][k] ?? T.bs[k]);
 const LOC = { bs: "bs-BA", en: "en-GB", de: "de-DE" };
 
