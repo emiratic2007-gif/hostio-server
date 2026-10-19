@@ -1,2 +1,4 @@
 # Rent-a-car agency websites: /r/{slug}
 /r/*  /rent/  200
+# Apartment websites: /a/{slug}
+/a/*  /apartmani/  200

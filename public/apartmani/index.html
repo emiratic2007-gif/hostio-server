@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apartman Vidik · Sarajevo · Direktna rezervacija</title>
+<meta name="description" content="Apartman Vidik u Sarajevu: pogled na stari grad, 5 minuta do Baščaršije. Provjerite slobodne termine i rezervišite direktno, bez provizije.">
+<meta name="theme-color" content="#13212E">
+<meta property="og:title" content="Apartman Vidik · Sarajevo">
+<meta property="og:description" content="Probudite se iznad Sarajeva. Rezervišite direktno, bez provizije.">
+<meta property="og:image" content="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2313212E'/%3E%3Cpath d='M14 44 L32 18 L50 44' fill='none' stroke='%23E0A43A' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#13212E; --ink2:#1E3242; --sand:#F5F0E8; --paper:#FFFDF9; --amber:#E0A43A; --amberL:#FBEFD8; --amberD:#9A6414;
+  --muted:#56616C; --line:rgba(19,33,46,.12); --ok:#2F7D4F; --bad:#B4382C;
+  --r:20px; --ease:cubic-bezier(.2,.8,.2,1);
+  --serif:"Fraunces",Georgia,serif; --sans:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;line-height:1.08}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amberD)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:52px;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .2s,box-shadow .3s,background .3s}
+.btn svg{width:18px;height:18px}
+.btn-amber{background:var(--amber);color:var(--ink);box-shadow:0 10px 28px -12px rgba(224,164,58,.8)}
+.btn-amber:hover{background:#EBB252;box-shadow:0 14px 34px -12px rgba(224,164,58,.9)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--ink2)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+
+/* Hostio demo ribbon */
+.ribbon{position:relative;z-index:60;background:#0E0F0C;color:#E9EBE4;font-size:.84rem}
+.ribbon .wrap{display:flex;align-items:center;justify-content:center;gap:10px 16px;flex-wrap:wrap;padding:9px 0;text-align:center}
+.ribbon b{font-weight:800;letter-spacing:-.03em}
+.ribbon b span{color:#7ED957}
+.ribbon a{color:#7ED957;font-weight:700;text-decoration:none;white-space:nowrap}
+.ribbon a:hover{text-decoration:underline}
+.ribbon .tag{font-size:.68rem;font-weight:800;letter-spacing:.12em;padding:3px 9px;border-radius:999px;background:#7ED957;color:#0E0F0C}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(255,253,249,.88);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--ink);display:grid;place-items:center;flex:none}
+.brand-mark svg{width:22px;height:22px}
+.brand b{font-family:var(--serif);font-size:1.3rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.brand small{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.04em;margin-top:2px}
+.top-right{display:flex;align-items:center;gap:10px}
+.langs{display:flex;padding:4px;border-radius:999px;background:var(--sand)}
+.langs button{border:0;background:none;min-width:40px;min-height:36px;padding:0 10px;border-radius:999px;font-size:.8rem;font-weight:800;color:var(--muted);cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.top .btn{min-height:44px;padding:10px 20px;font-size:.92rem}
+@media (max-width:640px){.top .btn{display:none}.brand small{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:min(86svh,780px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;isolation:isolate}
+.hero-img{position:absolute;inset:0;z-index:-2}
+.hero-img img{width:100%;height:100%;object-fit:cover;animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{to{transform:scale(1.08) translate(-1%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(19,33,46,.15) 0%,rgba(19,33,46,.25) 40%,rgba(19,33,46,.88) 100%)}
+.hero .wrap{padding:120px 0 48px}
+.hero .eyebrow{color:#FCD9A0}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);margin:14px 0 16px;max-width:820px}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero p.lead{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:600px;color:#E8EDF2}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.facts span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:.88rem;font-weight:600}
+.facts svg{width:16px;height:16px}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:28px}
+.price-pill{font-size:1rem;color:#fff}
+.price-pill b{font-family:var(--serif);font-size:1.8rem;font-weight:700}
+.price-pill small{color:#CBD5DE}
+@media (max-width:600px){.hero{min-height:88svh}.hero .wrap{padding:100px 0 32px}.hero-cta .btn{flex:1 1 100%}}
+
+/* highlights */
+.hl{background:var(--ink);color:#fff}
+.hl .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.08)}
+.hl-item{background:var(--ink);display:flex;align-items:center;gap:14px;padding:22px 18px}
+.hl-item .ic{width:46px;height:46px;border-radius:14px;background:rgba(224,164,58,.14);display:grid;place-items:center;flex:none}
+.hl-item .ic svg{width:24px;height:24px;color:var(--amber)}
+.hl-item b{display:block;font-size:.98rem}
+.hl-item span{display:block;font-size:.82rem;color:#A9B6C2}
+@media (max-width:900px){.hl .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.hl-item{padding:16px 10px;gap:10px}.hl-item .ic{width:38px;height:38px}.hl-item b{font-size:.88rem}.hl-item span{font-size:.74rem}}
+
+section{padding:clamp(64px,9vw,112px) 0}
+.sec-head{max-width:720px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.2rem);margin:10px 0 12px}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:10px}
+.gallery button{position:relative;border:0;padding:0;border-radius:18px;overflow:hidden;cursor:zoom-in;background:var(--sand)}
+.gallery button:first-child{grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gallery button:hover img{transform:scale(1.05)}
+.gallery .cap{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(19,33,46,.72);color:#fff;font-size:.8rem;font-weight:700}
+.gallery .more{position:absolute;right:12px;bottom:12px;padding:8px 14px;border-radius:999px;background:#fff;color:var(--ink);font-size:.82rem;font-weight:800}
+@media (max-width:760px){
+  .gallery{grid-template-columns:repeat(5,82%);grid-template-rows:280px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none;margin-right:-16px}
+  .gallery::-webkit-scrollbar{display:none}
+  .gallery button{scroll-snap-align:start}
+  .gallery button:first-child{grid-row:auto}
+}
+dialog.lb{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;margin:0}
+dialog.lb::backdrop{background:rgba(10,16,22,.94)}
+.lb-in{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:56px 12px}
+.lb-in img{max-width:100%;max-height:100%;border-radius:12px;object-fit:contain}
+.lb-btn{position:absolute;width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:grid;place-items:center}
+.lb-btn svg{width:24px;height:24px}
+.lb-close{top:12px;right:12px}.lb-prev{left:12px;top:50%;transform:translateY(-50%)}.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:#fff;font-weight:700;font-size:.9rem}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
+.about p{color:#33414E;font-size:1.06rem;margin-bottom:14px}
+.rooms{display:grid;gap:10px}
+.room{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:16px;background:var(--sand)}
+.room .ic{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;flex:none}
+.room .ic svg{width:22px;height:22px;color:var(--ink)}
+.room b{display:block}
+.room span{font-size:.9rem;color:var(--muted)}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+
+.amen{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:40px}
+.amen div{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:16px;border:1px solid var(--line);font-weight:700;font-size:.92rem}
+.amen svg{width:24px;height:24px;color:var(--amberD)}
+@media (max-width:900px){.amen{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.amen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* direct */
+.direct{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(28px,5vw,56px);position:relative;overflow:hidden}
+.direct::before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(224,164,58,.35),transparent 65%)}
+.direct h2{font-size:clamp(1.9rem,4vw,3rem);max-width:700px;position:relative}
+.direct h2 em{color:var(--amber)}
+.direct-grid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
+.dg{padding:20px;border-radius:18px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.dg b{display:block;font-family:var(--serif);font-size:1.6rem;color:var(--amber);line-height:1.1;margin-bottom:6px}
+.dg span{font-size:.92rem;color:#C9D3DC}
+@media (max-width:900px){.direct-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.direct-grid{grid-template-columns:1fr}}
+
+/* location */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:center}
+.map{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:#EAE3D6}
+.map svg{width:100%;height:100%}
+.dist{display:grid;gap:8px}
+.dist div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 4px;border-bottom:1px solid var(--line)}
+.dist b{font-weight:700}
+.dist span{font-size:.9rem;color:var(--muted);white-space:nowrap}
+@media (max-width:860px){.loc{grid-template-columns:1fr}.map{aspect-ratio:4/3}}
+
+/* booking */
+.book{background:var(--sand)}
+.book-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:start}
+@media (max-width:980px){.book-grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:24px;padding:clamp(18px,3vw,28px);box-shadow:0 20px 50px -30px rgba(19,33,46,.35)}
+.urgency{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--amberL);color:#6B4610;font-weight:700;font-size:.92rem;margin-bottom:18px}
+.urgency svg{width:20px;height:20px;flex:none}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center}
+.cal-nav svg{width:20px;height:20px}
+.cal-nav[disabled]{opacity:.3;cursor:default}
+.months{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:700px){.months{grid-template-columns:1fr}.months .m:nth-child(2){display:none}}
+.m h3{font-family:var(--sans);font-size:1rem;font-weight:800;text-align:center;margin-bottom:8px;text-transform:capitalize}
+.dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.dow span{text-align:center;font-size:.72rem;font-weight:800;color:var(--muted);padding:4px 0}
+.day{position:relative;aspect-ratio:1/1;min-height:40px;border:0;border-radius:10px;background:none;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s,color .2s}
+.day:hover:not([disabled]){background:var(--sand)}
+.day[disabled]{cursor:default;color:#B5BCC3}
+.day.busy{color:#B5BCC3;text-decoration:line-through;background:repeating-linear-gradient(-45deg,#F3F1EC 0 4px,#fff 4px 8px)}
+.day.out-ok{color:var(--ink);text-decoration:none}
+.day.today::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--amber);transform:translateX(-50%)}
+.day.in-range{background:var(--amberL);border-radius:0}
+.day.sel{background:var(--ink)!important;color:#fff!important;text-decoration:none}
+.day.sel-start{border-radius:10px 0 0 10px}.day.sel-end{border-radius:0 10px 10px 0}.day.sel-start.sel-end{border-radius:10px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.82rem;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+.cal-msg{margin-top:12px;min-height:1.4em;font-size:.9rem;font-weight:600;color:var(--muted)}
+.sum-dates{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.sum-dates div{padding:12px 14px}
+.sum-dates div+div{border-left:1px solid var(--line)}
+.sum-dates small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sum-dates b{font-size:1rem}
+.guests{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:10px 14px;border:1px solid var(--line);border-radius:16px}
+.guests small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stepper{display:flex;align-items:center;gap:12px}
+.stepper button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1.3rem;font-weight:700;cursor:pointer}
+.stepper button[disabled]{opacity:.35;cursor:default}
+.stepper output{min-width:20px;text-align:center;font-weight:800;font-size:1.1rem}
+.lines{margin:16px 0;display:grid;gap:8px;font-size:.95rem}
+.lines div{display:flex;justify-content:space-between;gap:12px}
+.lines .disc{color:var(--ok);font-weight:700}
+.lines .tot{padding-top:10px;border-top:1px solid var(--line);font-weight:800;font-size:1.1rem}
+.lines .tot span:last-child{font-family:var(--serif);font-size:1.35rem}
+.small{font-size:.82rem;color:var(--muted)}
+form.bf{display:grid;gap:12px;margin-top:16px}
+.f label{display:block;font-size:.84rem;font-weight:700;margin-bottom:6px}
+.f input,.f textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:14px;border:1px solid #CFD5DB;background:#fff;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.f textarea{min-height:84px;resize:vertical}
+.f input:focus,.f textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(224,164,58,.35)}
+.form-msg{min-height:1.3em;font-size:.9rem;font-weight:700}
+.form-msg.err{color:var(--bad)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.done{text-align:center;padding:12px 4px}
+.done .ok{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;background:#E3F3E9;display:grid;place-items:center}
+.done .ok svg{width:36px;height:36px;color:var(--ok)}
+.done h3{font-size:1.6rem;margin-bottom:8px}
+.done p{color:var(--muted);margin-bottom:10px}
+.done .recap{display:inline-block;margin:6px 0 14px;padding:10px 16px;border-radius:12px;background:var(--sand);font-weight:700}
+.side .card+.card{margin-top:16px}
+.ask{display:flex;gap:14px;align-items:center}
+.ask .ic{width:48px;height:48px;border-radius:14px;background:#25D366;display:grid;place-items:center;flex:none}
+.ask .ic svg{width:26px;height:26px;color:#fff}
+.ask b{display:block}
+.ask span{font-size:.88rem;color:var(--muted)}
+
+/* faq */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:800;font-size:1.05rem;min-height:56px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;font-weight:500;color:var(--amberD);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--muted)}
+
+footer{background:var(--ink);color:#C9D3DC;padding:44px 0 calc(110px + env(safe-area-inset-bottom))}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+.foot .brand b{color:#fff}
+.foot .brand small{color:#9FB0BE;display:block}
+.powered{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:#0E0F0C;color:#E9EBE4;text-decoration:none;font-size:.88rem;font-weight:600}
+.powered b{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
+.powered b span{color:#7ED957}
+.foot-note{margin-top:22px;font-size:.8rem;color:#8A9AA8}
+@media (min-width:761px){footer{padding-bottom:44px}}
+
+/* sticky mobile bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,253,249,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease)}
+.mbar.show{transform:none}
+.mbar b{font-family:var(--serif);font-size:1.35rem}
+.mbar small{display:block;font-size:.78rem;color:var(--muted)}
+.mbar .btn{min-height:48px;padding:12px 22px}
+@media (max-width:760px){.mbar{display:flex}}
+
+/* chat (Hostio demo) */
+.chat-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:45;display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 18px 8px 8px;border:0;border-radius:999px;background:#25D366;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
+.chat-fab .ic{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center}
+.chat-fab svg{width:22px;height:22px}
+@media (max-width:760px){.chat-fab{bottom:calc(84px + env(safe-area-inset-bottom));padding:8px;}.chat-fab .lbl{display:none}}
+.chat{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:46;width:min(370px,calc(100vw - 32px));max-height:min(560px,calc(100svh - 140px));display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:#0B141A;box-shadow:0 30px 70px -20px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(16px) scale(.98);transition:opacity .3s,transform .3s var(--ease),visibility 0s linear .3s}
+.chat.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s var(--ease),visibility 0s}
+@media (max-width:760px){.chat{bottom:calc(150px + env(safe-area-inset-bottom))}}
+.chat-h{display:flex;align-items:center;gap:10px;padding:14px;background:#1F2C33;color:#E9EDEF}
+.chat-h .av{width:40px;height:40px;border-radius:50%;background:var(--amber);display:grid;place-items:center;font-family:var(--serif);font-weight:700;color:var(--ink);flex:none}
+.chat-h b{display:block;font-size:.95rem}
+.chat-h small{display:block;font-size:.74rem;color:#7ED957}
+.chat-h button{margin-left:auto;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:grid;place-items:center}
+.chat-h button svg{width:18px;height:18px}
+.chat-b{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.cm{max-width:84%;padding:8px 11px;border-radius:12px;font-size:.88rem;line-height:1.4;color:#E9EDEF;animation:pop .35s var(--ease) both}
+.cm.in{align-self:flex-start;background:#202C33;border-top-left-radius:4px}
+.cm.out{align-self:flex-end;background:#005C4B;border-top-right-radius:4px}
+.cm.ty{display:flex;gap:4px;padding:12px}
+.cm.ty i{width:6px;height:6px;border-radius:50%;background:#8EA3AD;animation:bounce 1.2s infinite}
+.cm.ty i:nth-child(2){animation-delay:.15s}.cm.ty i:nth-child(3){animation-delay:.3s}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes bounce{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.chat-f{padding:10px 12px;background:#111B21;color:#8EA3AD;font-size:.76rem;text-align:center}
+.chat-f a{color:#7ED957;font-weight:700;text-decoration:none}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="ribbon" role="note">
+  <div class="wrap">
+    <span class="tag">DEMO</span>
+    <span data-i="ribbon">Ovo je primjer stranice koju</span>
+    <b>host<span>io.</span></b>
+    <span data-i="ribbon2">pravi za vaš apartman.</span>
+    <a href="/#demo" data-i="ribbonCta">Želim ovakvu stranicu →</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#E0A43A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18 12 6l8 12"/><path d="M9 18h6"/></svg></span>
+      <span><b>Vidik</b><small data-i="brandSub">Apartman · Sarajevo</small></span>
+    </a>
+    <div class="top-right">
+      <div class="langs" role="group" aria-label="Jezik / Language">
+        <button type="button" data-lang="bs" aria-pressed="true">BS</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+      <a href="#rezervacija" class="btn btn-amber" data-i="bookNow">Rezervišite</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="hero-img"><img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" srcset="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800 800w, https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600 1600w, https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=2400 2400w" sizes="100vw" alt="Svijetli dnevni boravak apartmana Vidik" fetchpriority="high"></div>
+  <div class="wrap">
+    <div class="eyebrow" data-i="heroEyebrow">Sarajevo · Stari grad</div>
+    <h1 data-i-html="heroTitle">Probudite se <em>iznad Sarajeva.</em></h1>
+    <p class="lead" data-i="heroLead">Svijetao apartman s balkonom i pogledom na stari grad. Pet minuta pješke do Baščaršije, a dovoljno visoko da je noću tiho.</p>
+    <div class="facts">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg><span data-i="fact1">62 m²</span></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span data-i="fact2">Do 4 gosta</span></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-i="fact3">5 min do Baščaršije</span></span>
+    </div>
+    <div class="hero-cta">
+      <a href="#rezervacija" class="btn btn-amber" data-i="checkDates">Provjerite slobodne datume</a>
+      <div class="price-pill"><small data-i="from">od</small> <b>95 KM</b> <small data-i="perNight">/ noć</small> <small>· ≈ 49 €</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="hl">
+  <div class="wrap">
+    <div class="hl-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20V10l4-3 4 3v10"/><path d="M13 20v-6l4-3 4 3v6"/></svg></span><div><b data-i="h1t">Pogled na stari grad</b><span data-i="h1s">s vlastitog balkona</span></div></div>
+    <div class="hl-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b data-i="h2t">Samostalni ulazak 0–24</b><span data-i="h2s">šifra stiže porukom</span></div></div>
+    <div class="hl-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span><div><b data-i="h3t">Besplatan parking</b><span data-i="h3s">u dvorištu zgrade</span></div></div>
+    <div class="hl-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M2 9a14 14 0 0 1 20 0"/><circle cx="12" cy="19.5" r="1"/></svg></span><div><b data-i="h4t">Brzi Wi-Fi</b><span data-i="h4s">idealno i za rad</span></div></div>
+  </div>
+</div>
+
+<section id="galerija">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow" data-i="galEyebrow">Galerija</div>
+      <h2 data-i="galTitle">Prostor u kojem se odmah opustite.</h2>
+    </div>
+    <div class="gallery rv" id="gallery"></div>
+  </div>
+</section>
+
+<dialog class="lb" id="lb" aria-label="Galerija">
+  <div class="lb-in">
+    <img id="lbImg" alt="">
+    <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Zatvori"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Prethodna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Sljedeća"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+</dialog>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="about">
+      <div class="rv">
+        <div class="eyebrow" data-i="aboutEyebrow">O apartmanu</div>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);margin:10px 0 18px" data-i="aboutTitle">Sve što vam treba. Ništa suvišno.</h2>
+        <p data-i="about1">Vidik je potpuno opremljen apartman na četvrtom spratu, s liftom. Ujutro sunce ulazi u dnevni boravak, a navečer s balkona gledate kako se pale svjetla Baščaršije.</p>
+        <p data-i="about2">Savršen je za par koji želi upoznati Sarajevo pješice, ali i za porodicu ili prijatelje: kauč u dnevnom boravku se razvlači u udoban krevet za dvoje.</p>
+      </div>
+      <div class="rooms rv">
+        <div class="room"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18h18M3 21v-3M21 21v-3"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg></span><div><b data-i="r1t">Spavaća soba</b><span data-i="r1s">Bračni krevet 160 × 200, ormar</span></div></div>
+        <div class="room"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M2 13a2 2 0 0 1 4 0v2h12v-2a2 2 0 0 1 4 0v5H2z"/><path d="M5 18v2M19 18v2"/></svg></span><div><b data-i="r2t">Dnevni boravak</b><span data-i="r2s">Kauč na razvlačenje, Smart TV</span></div></div>
+        <div class="room"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18"/><path d="M5 11V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v6"/><path d="M5 11v9M19 11v9"/><circle cx="9" cy="7.5" r=".6"/><circle cx="15" cy="7.5" r=".6"/></svg></span><div><b data-i="r3t">Kuhinja</b><span data-i="r3s">Ploča, rerna, frižider, aparat za kafu</span></div></div>
+        <div class="room"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V5a2 2 0 0 1 4 0"/><path d="M7 20l-1 2M17 20l1 2"/></svg></span><div><b data-i="r4t">Kupatilo</b><span data-i="r4s">Tuš kabina, fen, peškiri</span></div></div>
+        <div class="room"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21v-8h14v8"/><path d="M5 13V5h14v8"/><path d="M9 13v8M15 13v8"/></svg></span><div><b data-i="r5t">Balkon</b><span data-i="r5s">Sto za dvoje i pogled na grad</span></div></div>
+      </div>
+    </div>
+
+    <div class="amen rv" aria-label="Sadržaji">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg><span data-i="a1">Wi-Fi</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/></svg><span data-i="a2">Klima</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg><span data-i="a3">Centralno grijanje</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg><span data-i="a4">Parking</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="13" r="5"/><path d="M8 6h.01M11 6h.01"/></svg><span data-i="a5">Mašina za veš</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span data-i="a6">Smart TV</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg><span data-i="a7">Aparat za kafu</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span data-i="a8">Posteljina i peškiri</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12"/><path d="M10 21v-6h4v6"/></svg><span data-i="a9">Lift</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i="a10">Samostalni ulazak</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="direct rv">
+      <div class="eyebrow" style="color:#FCD9A0" data-i="dirEyebrow">Direktna rezervacija</div>
+      <h2 style="margin-top:10px" data-i-html="dirTitle">Rezervišite ovdje i <em>platite manje.</em></h2>
+      <div class="direct-grid">
+        <div class="dg"><b>0 %</b><span data-i="d1">provizije posrednika. Cijena je najniža upravo ovdje.</span></div>
+        <div class="dg"><b>−10 %</b><span data-i="d2">za boravak od 7 noći ili duže, automatski u cijeni.</span></div>
+        <div class="dg"><b data-i="d3t">3 dana</b><span data-i="d3">besplatno otkazivanje do 3 dana prije dolaska.</span></div>
+        <div class="dg"><b>24/7</b><span data-i="d4">odgovor na vaša pitanja, i u ponoć.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lokacija" style="padding-top:0">
+  <div class="wrap">
+    <div class="loc">
+      <div class="map rv" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <rect width="400" height="400" fill="#EAE3D6"/>
+          <path d="M-10 250 C 80 230, 140 270, 220 248 S 340 220, 420 236" fill="none" stroke="#B9D3DE" stroke-width="22" stroke-linecap="round"/>
+          <g stroke="#FFFDF9" stroke-width="9" stroke-linecap="round" fill="none">
+            <path d="M0 200 H400"/><path d="M60 0 V400"/><path d="M180 0 C 170 120, 200 220, 190 400"/><path d="M300 0 V400"/><path d="M0 120 C 120 130, 260 100, 400 110"/><path d="M0 320 H400"/>
+          </g>
+          <g fill="#DDD3C1"><rect x="80" y="20" width="80" height="80" rx="10"/><rect x="210" y="20" width="70" height="70" rx="10"/><rect x="320" y="130" width="70" height="55" rx="10"/><rect x="80" y="140" width="80" height="45" rx="10"/><rect x="210" y="130" width="70" height="55" rx="10"/><rect x="80" y="335" width="90" height="55" rx="10"/><rect x="210" y="335" width="80" height="55" rx="10"/></g>
+          <circle cx="250" cy="215" r="10" fill="#13212E"/><text x="266" y="210" font-family="Manrope,sans-serif" font-size="13" font-weight="800" fill="#13212E">Baščaršija</text>
+          <circle cx="110" cy="245" r="8" fill="#13212E" opacity=".7"/><text x="62" y="282" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#13212E" opacity=".8">Vijećnica</text>
+          <circle cx="330" cy="70" r="8" fill="#13212E" opacity=".7"/><text x="282" y="52" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#13212E" opacity=".8">Žuta tabija</text>
+          <path d="M200 150 C 220 175, 236 195, 246 208" fill="none" stroke="#E0A43A" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>
+          <circle cx="200" cy="150" r="34" fill="#E0A43A" opacity=".25"/>
+          <path d="M200 112 c -16 0 -26 12 -26 25 c 0 18 26 40 26 40 s 26 -22 26 -40 c 0 -13 -10 -25 -26 -25 z" fill="#13212E"/>
+          <path d="M190 140 200 126 210 140" fill="none" stroke="#E0A43A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="rv">
+        <div class="eyebrow" data-i="locEyebrow">Lokacija</div>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);margin:10px 0 18px" data-i="locTitle">Sve je na par koraka.</h2>
+        <div class="dist">
+          <div><b data-i="l1">Baščaršija i Sebilj</b><span data-i="l1d">5 min pješke</span></div>
+          <div><b data-i="l2">Vijećnica</b><span data-i="l2d">8 min pješke</span></div>
+          <div><b data-i="l3">Žuta tabija (vidikovac)</b><span data-i="l3d">12 min pješke</span></div>
+          <div><b data-i="l4">Pekara i market</b><span data-i="l4d">2 min pješke</span></div>
+          <div><b data-i="l5">Aerodrom Sarajevo</b><span data-i="l5d">20 min autom</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="rezervacija">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow" data-i="bookEyebrow">Rezervacija</div>
+      <h2 data-i="bookTitle">Izaberite datume.</h2>
+      <p data-i="bookSub">Kalendar pokazuje stvarnu dostupnost. Zahtjev stiže vlasniku odmah, a potvrdu dobijate na email.</p>
+    </div>
+    <div class="book-grid">
+      <div class="card">
+        <div class="urgency" id="urgency" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4-1-6 1-9z"/></svg><span id="urgencyTxt"></span></div>
+        <div class="cal-head">
+          <button class="cal-nav" type="button" id="calPrev" aria-label="Prethodni mjesec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <span class="small" id="calHint" aria-live="polite"></span>
+          <button class="cal-nav" type="button" id="calNext" aria-label="Sljedeći mjesec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="months" id="months"></div>
+        <div class="legend">
+          <span><i style="background:var(--ink)"></i><span data-i="legSel">Vaši datumi</span></span>
+          <span><i style="background:repeating-linear-gradient(-45deg,#E6E2DA 0 3px,#fff 3px 6px);border:1px solid #DDD"></i><span data-i="legBusy">Zauzeto</span></span>
+          <span><i style="border:1px solid #DDD"></i><span data-i="legFree">Slobodno</span></span>
+        </div>
+        <div class="cal-msg" id="calMsg" aria-live="polite"></div>
+      </div>
+
+      <div class="side">
+        <div class="card" id="bookCard">
+          <div id="bookForm">
+            <div class="sum-dates">
+              <div><small data-i="checkIn">Dolazak</small><b id="sIn">—</b></div>
+              <div><small data-i="checkOut">Odlazak</small><b id="sOut">—</b></div>
+            </div>
+            <div class="guests">
+              <div><small data-i="guests">Gosti</small><b id="gLbl"></b></div>
+              <div class="stepper">
+                <button type="button" id="gMinus" aria-label="Manje gostiju">−</button>
+                <output id="gOut" aria-live="polite">2</output>
+                <button type="button" id="gPlus" aria-label="Više gostiju">+</button>
+              </div>
+            </div>
+            <div class="lines" id="lines"><div class="small" data-i="pickHint">Izaberite datum dolaska i odlaska u kalendaru.</div></div>
+            <form class="bf" id="bf" novalidate>
+              <div class="f"><label for="bName" data-i="fName">Ime i prezime</label><input id="bName" name="name" required minlength="2" maxlength="120" autocomplete="name"></div>
+              <div class="f"><label for="bEmail" data-i="fEmail">Email</label><input id="bEmail" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+              <div class="f"><label for="bPhone" data-i="fPhone">Telefon (WhatsApp / Viber)</label><input id="bPhone" name="phone" type="tel" maxlength="40" autocomplete="tel"></div>
+              <div class="f"><label for="bMsg" data-i="fMsg">Poruka vlasniku (opcionalno)</label><textarea id="bMsg" name="message" maxlength="1500"></textarea></div>
+              <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-amber" type="submit" id="bSubmit" disabled data-i="sendReq">Pošaljite zahtjev za rezervaciju</button>
+              <p class="small" data-i="noPay">Ne plaćate ništa sada. Plaćanje pri dolasku, gotovinom ili karticom.</p>
+              <p class="form-msg" id="bMsgOut" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <div class="done" id="done" hidden>
+            <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3 data-i="doneTitle">Zahtjev je poslan!</h3>
+            <div class="recap" id="recap"></div>
+            <p data-i="doneTxt">Vlasnik je upravo dobio vaš zahtjev. Potvrdu ćete dobiti na email, obično u roku od sat vremena. Datumi su za vas rezervisani dok čekate.</p>
+            <button class="btn btn-ink" type="button" id="again" data-i="again">Nova rezervacija</button>
+          </div>
+        </div>
+        <div class="card">
+          <button type="button" class="ask" id="askBtn" style="border:0;background:none;width:100%;text-align:left;cursor:pointer">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.2L3 20l1.4-4.9A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span><b data-i="askT">Imate pitanje?</b><span data-i="askS">Pišite nam na WhatsApp ili Viber. Odgovaramo odmah, i u ponoć.</span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pitanja">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow" data-i="faqEyebrow">Česta pitanja</div>
+      <h2 data-i="faqTitle">Dobro je znati.</h2>
+    </div>
+    <div class="faq rv">
+      <details><summary data-i="q1">Kada je ulazak i izlazak?</summary><p data-i="a1x">Ulazak je od 14:00, izlazak do 10:00. Zahvaljujući samostalnom ulasku možete doći i kasno navečer: šifru za ulaz dobijate porukom dan prije.</p></details>
+      <details><summary data-i="q2">Kako plaćam?</summary><p data-i="a2x">Ništa ne plaćate unaprijed. Plaćanje je pri dolasku, gotovinom (KM ili €) ili karticom.</p></details>
+      <details><summary data-i="q3">Mogu li otkazati?</summary><p data-i="a3x">Da. Otkazivanje je besplatno do 3 dana prije dolaska. Dovoljno je da nam pošaljete poruku.</p></details>
+      <details><summary data-i="q4">Ima li parking?</summary><p data-i="a4x">Da, besplatno parking mjesto u dvorištu zgrade, za jedno vozilo.</p></details>
+      <details><summary data-i="q5">Jesu li dozvoljeni kućni ljubimci?</summary><p data-i="a5x">Mali ljubimci su dobrodošli uz prethodnu najavu. Pušenje u apartmanu nije dozvoljeno, ali je dozvoljeno na balkonu.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#top" style="text-decoration:none">
+        <span class="brand-mark" style="background:#0B1520"><svg viewBox="0 0 24 24" fill="none" stroke="#E0A43A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18 12 6l8 12"/><path d="M9 18h6"/></svg></span>
+        <span><b>Vidik</b><small data-i="brandSub">Apartman · Sarajevo</small></span>
+      </a>
+      <a class="powered" href="/"><span data-i="powered">Rezervacije pokreće</span> <b>host<span>io.</span></b></a>
+    </div>
+    <p class="foot-note" data-i="footNote">Demo stranica. Apartman Vidik je izmišljen primjer, a fotografije su sa Pexelsa. Rezervacije u ovom demou su stvarno spremljene, ali niko neće doći.</p>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <div><b>95 KM</b> <span class="small" data-i="perNight">/ noć</span><small data-i="mbarSub">Bez provizije · plaćanje pri dolasku</small></div>
+  <a href="#rezervacija" class="btn btn-amber" data-i="bookNow">Rezervišite</a>
+</div>
+
+<button class="chat-fab" type="button" id="chatFab" aria-expanded="false" aria-controls="chat">
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.2L3 20l1.4-4.9A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+  <span class="lbl" data-i="chatFab">Pitajte nas</span>
+</button>
+<div class="chat" id="chat" role="dialog" aria-label="Chat" aria-hidden="true">
+  <div class="chat-h">
+    <span class="av">V</span>
+    <span><b>Apartman Vidik</b><small data-i="online">online · odgovara odmah</small></span>
+    <button type="button" id="chatClose" aria-label="Zatvori chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="chat-b" id="chatB"></div>
+  <div class="chat-f"><span data-i="chatFoot">Primjer razgovora: ovako</span> <a href="/">hostio.</a> <span data-i="chatFoot2">odgovara gostima na WhatsAppu, Viberu i Instagramu.</span></div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* ---------- settings ---------- */
+const APT = "vidik";
+const PRICE = 95, CLEAN = 30, MIN_NIGHTS = 2, MAX_NIGHTS = 30, MAX_GUESTS = 4, WEEK_DISC = 0.10, EUR = 1.95583;
+const SB_URL = "https://eauwnwvieyepzrbildqt.supabase.co";
+const SB_KEY = "sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
+const PX = (id, w) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+const PHOTOS = [
+  { id: 1571460, k: "p1" }, { id: 1571468, k: "p2" }, { id: 1571453, k: "p3" },
+  { id: 6782567, k: "p4" }, { id: 2724749, k: "p5" }, { id: 1571463, k: "p6" }
+];
+
+/* ---------- translations ---------- */
+const T = {
+  bs: {},
+  en: {
+    ribbon: "This is an example of the website", ribbon2: "builds for your apartment.", ribbonCta: "I want a site like this →",
+    brandSub: "Apartment · Sarajevo", bookNow: "Book now", heroEyebrow: "Sarajevo · Old Town",
+    heroTitle: "Wake up <em>above Sarajevo.</em>", heroLead: "A bright apartment with a balcony overlooking the Old Town. A five-minute walk to Baščaršija, and high enough to be quiet at night.",
+    fact1: "62 m²", fact2: "Up to 4 guests", fact3: "5 min to Baščaršija", checkDates: "Check available dates", from: "from", perNight: "/ night",
+    h1t: "Old Town view", h1s: "from your own balcony", h2t: "Self check-in 24/7", h2s: "code sent by message", h3t: "Free parking", h3s: "in the building's yard", h4t: "Fast Wi-Fi", h4s: "great for remote work",
+    galEyebrow: "Gallery", galTitle: "A place where you relax right away.",
+    aboutEyebrow: "The apartment", aboutTitle: "Everything you need. Nothing you don't.",
+    about1: "Vidik is a fully equipped fourth-floor apartment with a lift. Morning sun fills the living room, and in the evening you watch the lights of Baščaršija come on from the balcony.",
+    about2: "Perfect for a couple exploring Sarajevo on foot, and just as good for a family or friends: the living-room sofa unfolds into a comfortable double bed.",
+    r1t: "Bedroom", r1s: "Double bed 160 × 200, wardrobe", r2t: "Living room", r2s: "Sofa bed, Smart TV", r3t: "Kitchen", r3s: "Hob, oven, fridge, coffee machine", r4t: "Bathroom", r4s: "Shower, hairdryer, towels", r5t: "Balcony", r5s: "Table for two and a city view",
+    a1: "Wi-Fi", a2: "Air conditioning", a3: "Central heating", a4: "Parking", a5: "Washing machine", a6: "Smart TV", a7: "Coffee machine", a8: "Linen & towels", a9: "Lift", a10: "Self check-in",
+    dirEyebrow: "Book direct", dirTitle: "Book here and <em>pay less.</em>",
+    d1: "booking-platform commission. The lowest price is right here.", d2: "for stays of 7 nights or more, applied automatically.", d3t: "3 days", d3: "free cancellation up to 3 days before arrival.", d4: "answers to your questions, even at midnight.",
+    locEyebrow: "Location", locTitle: "Everything is a few steps away.",
+    l1: "Baščaršija & Sebilj", l1d: "5 min walk", l2: "City Hall (Vijećnica)", l2d: "8 min walk", l3: "Yellow Fortress viewpoint", l3d: "12 min walk", l4: "Bakery & grocery", l4d: "2 min walk", l5: "Sarajevo Airport", l5d: "20 min by car",
+    bookEyebrow: "Booking", bookTitle: "Choose your dates.", bookSub: "The calendar shows real availability. Your request reaches the owner instantly and you get a confirmation by email.",
+    legSel: "Your dates", legBusy: "Booked", legFree: "Available", checkIn: "Check-in", checkOut: "Check-out", guests: "Guests",
+    pickHint: "Choose your check-in and check-out dates in the calendar.",
+    fName: "Full name", fEmail: "Email", fPhone: "Phone (WhatsApp / Viber)", fMsg: "Message to the host (optional)",
+    sendReq: "Send booking request", noPay: "Nothing to pay now. Pay on arrival, in cash or by card.",
+    doneTitle: "Request sent!", doneTxt: "The host has just received your request. You'll get a confirmation by email, usually within an hour. The dates are held for you meanwhile.", again: "New booking",
+    askT: "Got a question?", askS: "Message us on WhatsApp or Viber. We answer right away, even at midnight.",
+    faqEyebrow: "FAQ", faqTitle: "Good to know.",
+    q1: "What are check-in and check-out times?", a1x: "Check-in from 14:00, check-out by 10:00. With self check-in you can arrive late at night: you get the door code by message the day before.",
+    q2: "How do I pay?", a2x: "Nothing is paid in advance. You pay on arrival, in cash (KM or €) or by card.",
+    q3: "Can I cancel?", a3x: "Yes. Cancellation is free up to 3 days before arrival. Just send us a message.",
+    q4: "Is there parking?", a4x: "Yes, one free parking space in the building's yard.",
+    q5: "Are pets allowed?", a5x: "Small pets are welcome if you let us know in advance. No smoking inside; smoking is allowed on the balcony.",
+    powered: "Bookings powered by", footNote: "Demo website. Apartment Vidik is a fictional example and the photos are from Pexels. Bookings in this demo are really saved, but nobody will show up.",
+    mbarSub: "No commission · pay on arrival", chatFab: "Ask us", online: "online · replies instantly",
+    chatFoot: "Example chat: this is how", chatFoot2: "answers guests on WhatsApp, Viber and Instagram.",
+    p1: "Living room", p2: "Lounge", p3: "Dining area", p4: "Bedroom", p5: "Kitchen", p6: "Dining & balcony", more: "All photos",
+    nights: n => n === 1 ? "night" : "nights", guestsLbl: n => n === 1 ? "1 guest" : n + " guests",
+    clean: "Cleaning fee", disc: "Discount 7+ nights", total: "Total",
+    hintIn: "Choose your check-in date", hintOut: "Now choose your check-out date", hintDone: "Dates selected",
+    errMin: n => `Minimum stay is ${n} nights.`, errBusy: "Those dates include a booked night. Choose another range.",
+    urg: n => `Only ${n} free nights left in the next 30 days.`, urg0: "The next 30 days are almost fully booked.",
+    reqName: "Please enter your name.", reqEmail: "Please enter a valid email.", sending: "Sending…",
+    taken: "Someone just booked those dates. The calendar has been refreshed, please choose again.", netErr: "Sending failed. Check your connection and try again.",
+    chat: [["in","Hi! Is the apartment free this weekend for 2 people?"],["out","Hi! 😊 Friday to Sunday is available. 2 nights for 2 people is 220 KM in total, cleaning included."],["in","Great. Is there parking?"],["out","Yes, free parking in the yard. Here's the booking link with your dates filled in: hostio · /a/vidik 🔑"]]
+  },
+  de: {
+    ribbon: "Dies ist ein Beispiel für die Website, die", ribbon2: "für Ihr Apartment erstellt.", ribbonCta: "So eine Seite will ich →",
+    brandSub: "Apartment · Sarajevo", bookNow: "Buchen", heroEyebrow: "Sarajevo · Altstadt",
+    heroTitle: "Aufwachen <em>über Sarajevo.</em>", heroLead: "Ein helles Apartment mit Balkon und Blick auf die Altstadt. Fünf Gehminuten zur Baščaršija und hoch genug, um nachts ruhig zu schlafen.",
+    fact1: "62 m²", fact2: "Bis zu 4 Gäste", fact3: "5 Min. zur Baščaršija", checkDates: "Freie Termine prüfen", from: "ab", perNight: "/ Nacht",
+    h1t: "Blick auf die Altstadt", h1s: "vom eigenen Balkon", h2t: "Self-Check-in 24/7", h2s: "Code per Nachricht", h3t: "Kostenloser Parkplatz", h3s: "im Hof des Hauses", h4t: "Schnelles WLAN", h4s: "ideal auch zum Arbeiten",
+    galEyebrow: "Galerie", galTitle: "Ein Ort, an dem Sie sofort entspannen.",
+    aboutEyebrow: "Das Apartment", aboutTitle: "Alles, was Sie brauchen. Nichts Überflüssiges.",
+    about1: "Vidik ist ein voll ausgestattetes Apartment im vierten Stock mit Aufzug. Morgens scheint die Sonne ins Wohnzimmer, abends sehen Sie vom Balkon die Lichter der Baščaršija angehen.",
+    about2: "Perfekt für Paare, die Sarajevo zu Fuß entdecken, aber auch für Familien oder Freunde: Das Sofa im Wohnzimmer wird zum bequemen Doppelbett.",
+    r1t: "Schlafzimmer", r1s: "Doppelbett 160 × 200, Kleiderschrank", r2t: "Wohnzimmer", r2s: "Schlafsofa, Smart-TV", r3t: "Küche", r3s: "Kochfeld, Ofen, Kühlschrank, Kaffeemaschine", r4t: "Bad", r4s: "Dusche, Föhn, Handtücher", r5t: "Balkon", r5s: "Tisch für zwei und Stadtblick",
+    a1: "WLAN", a2: "Klimaanlage", a3: "Zentralheizung", a4: "Parkplatz", a5: "Waschmaschine", a6: "Smart-TV", a7: "Kaffeemaschine", a8: "Bettwäsche & Handtücher", a9: "Aufzug", a10: "Self-Check-in",
+    dirEyebrow: "Direkt buchen", dirTitle: "Hier buchen und <em>weniger zahlen.</em>",
+    d1: "Provision für Buchungsportale. Der niedrigste Preis ist genau hier.", d2: "ab 7 Nächten, automatisch im Preis.", d3t: "3 Tage", d3: "kostenlose Stornierung bis 3 Tage vor Anreise.", d4: "Antworten auf Ihre Fragen, auch um Mitternacht.",
+    locEyebrow: "Lage", locTitle: "Alles nur ein paar Schritte entfernt.",
+    l1: "Baščaršija & Sebilj", l1d: "5 Min. zu Fuß", l2: "Rathaus (Vijećnica)", l2d: "8 Min. zu Fuß", l3: "Gelbe Festung (Aussicht)", l3d: "12 Min. zu Fuß", l4: "Bäckerei & Supermarkt", l4d: "2 Min. zu Fuß", l5: "Flughafen Sarajevo", l5d: "20 Min. mit dem Auto",
+    bookEyebrow: "Buchung", bookTitle: "Wählen Sie Ihre Daten.", bookSub: "Der Kalender zeigt die echte Verfügbarkeit. Ihre Anfrage geht sofort an den Gastgeber, die Bestätigung kommt per E-Mail.",
+    legSel: "Ihre Daten", legBusy: "Belegt", legFree: "Frei", checkIn: "Anreise", checkOut: "Abreise", guests: "Gäste",
+    pickHint: "Wählen Sie An- und Abreise im Kalender.",
+    fName: "Vor- und Nachname", fEmail: "E-Mail", fPhone: "Telefon (WhatsApp / Viber)", fMsg: "Nachricht an den Gastgeber (optional)",
+    sendReq: "Buchungsanfrage senden", noPay: "Jetzt nichts bezahlen. Zahlung bei Ankunft, bar oder mit Karte.",
+    doneTitle: "Anfrage gesendet!", doneTxt: "Der Gastgeber hat Ihre Anfrage soeben erhalten. Die Bestätigung kommt per E-Mail, meist innerhalb einer Stunde. Die Daten sind bis dahin für Sie reserviert.", again: "Neue Buchung",
+    askT: "Fragen?", askS: "Schreiben Sie uns auf WhatsApp oder Viber. Wir antworten sofort, auch um Mitternacht.",
+    faqEyebrow: "Häufige Fragen", faqTitle: "Gut zu wissen.",
+    q1: "Wann sind Check-in und Check-out?", a1x: "Check-in ab 14:00, Check-out bis 10:00. Dank Self-Check-in können Sie auch spät abends anreisen: Den Türcode erhalten Sie am Vortag per Nachricht.",
+    q2: "Wie bezahle ich?", a2x: "Es wird nichts im Voraus bezahlt. Sie zahlen bei Ankunft, bar (KM oder €) oder mit Karte.",
+    q3: "Kann ich stornieren?", a3x: "Ja. Die Stornierung ist bis 3 Tage vor Anreise kostenlos. Eine Nachricht genügt.",
+    q4: "Gibt es einen Parkplatz?", a4x: "Ja, einen kostenlosen Parkplatz im Hof des Hauses.",
+    q5: "Sind Haustiere erlaubt?", a5x: "Kleine Haustiere sind nach Absprache willkommen. Rauchen nur auf dem Balkon.",
+    powered: "Buchungen mit", footNote: "Demo-Website. Apartment Vidik ist ein erfundenes Beispiel, die Fotos stammen von Pexels. Buchungen in dieser Demo werden wirklich gespeichert, aber niemand kommt.",
+    mbarSub: "Keine Provision · Zahlung bei Ankunft", chatFab: "Fragen Sie uns", online: "online · antwortet sofort",
+    chatFoot: "Beispiel-Chat: So antwortet", chatFoot2: "Gästen auf WhatsApp, Viber und Instagram.",
+    p1: "Wohnzimmer", p2: "Lounge", p3: "Essbereich", p4: "Schlafzimmer", p5: "Küche", p6: "Essen & Balkon", more: "Alle Fotos",
+    nights: n => n === 1 ? "Nacht" : "Nächte", guestsLbl: n => n === 1 ? "1 Gast" : n + " Gäste",
+    clean: "Endreinigung", disc: "Rabatt ab 7 Nächten", total: "Gesamt",
+    hintIn: "Wählen Sie das Anreisedatum", hintOut: "Wählen Sie jetzt das Abreisedatum", hintDone: "Daten gewählt",
+    errMin: n => `Mindestaufenthalt: ${n} Nächte.`, errBusy: "Der Zeitraum enthält eine belegte Nacht. Bitte anders wählen.",
+    urg: n => `Nur noch ${n} freie Nächte in den nächsten 30 Tagen.`, urg0: "Die nächsten 30 Tage sind fast ausgebucht.",
+    reqName: "Bitte geben Sie Ihren Namen ein.", reqEmail: "Bitte geben Sie eine gültige E-Mail ein.", sending: "Wird gesendet…",
+    taken: "Diese Daten wurden gerade gebucht. Der Kalender ist aktualisiert, bitte neu wählen.", netErr: "Senden fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.",
+    chat: [["in","Hallo! Ist das Apartment dieses Wochenende für 2 Personen frei?"],["out","Hallo! 😊 Freitag bis Sonntag ist frei. 2 Nächte für 2 Personen kosten insgesamt 220 KM, inkl. Reinigung."],["in","Super. Gibt es einen Parkplatz?"],["out","Ja, kostenlos im Hof. Hier ist der Buchungslink mit Ihren Daten: hostio · /a/vidik 🔑"]]
+  }
+};
+const BS = {
+  p1: "Dnevni boravak", p2: "Kutak za odmor", p3: "Trpezarija", p4: "Spavaća soba", p5: "Kuhinja", p6: "Trpezarija i balkon", more: "Sve fotografije",
+  nights: n => (n % 10 === 1 && n % 100 !== 11) ? "noć" : "noći",
+  guestsLbl: n => n === 1 ? "1 gost" : n + " gosta",
+  clean: "Završno čišćenje", disc: "Popust od 7 noći", total: "Ukupno",
+  hintIn: "Izaberite datum dolaska", hintOut: "Sada izaberite datum odlaska", hintDone: "Datumi izabrani",
+  errMin: n => `Minimalni boravak je ${n} noći.`, errBusy: "U tom periodu je zauzeta noć. Izaberite druge datume.",
+  urg: n => `U narednih 30 dana slobodno je još samo ${n} noći.`, urg0: "Narednih 30 dana je skoro popunjeno.",
+  reqName: "Upišite ime i prezime.", reqEmail: "Upišite ispravan email.", sending: "Šaljem…",
+  taken: "Neko je upravo rezervisao te datume. Kalendar je osvježen, izaberite ponovo.", netErr: "Slanje nije uspjelo. Provjerite internet i pokušajte ponovo.",
+  chat: [["in","Pozdrav! Je li apartman slobodan ovaj vikend za 2 osobe?"],["out","Pozdrav! 😊 Od petka do nedjelje je slobodno. 2 noći za 2 osobe su ukupno 220 KM, s čišćenjem."],["in","Super. Ima li parking?"],["out","Ima, besplatan u dvorištu. Evo link za rezervaciju s vašim datumima: hostio · /a/vidik 🔑"]]
+};
+// remember the Bosnian originals from the page, then add the dynamic strings
+$$("[data-i]").forEach(el => { T.bs[el.dataset.i] ??= el.textContent; });
+$$("[data-i-html]").forEach(el => { T.bs[el.dataset.iHtml] ??= el.innerHTML; });
+Object.assign(T.bs, BS);
+
+let lang = null;
+try { const s = localStorage.getItem("vidik-lang"); if (T[s]) lang = s; } catch (e) {}
+const qLang = new URLSearchParams(location.search).get("lang"); if (T[qLang]) lang = qLang;
+if (!lang) { const nav = (navigator.language || "").slice(0, 2).toLowerCase(); lang = nav === "de" ? "de" : nav === "en" ? "en" : "bs"; }
+const t = k => (T[lang][k] ?? T.bs[k]);
+const LOC = { bs: "bs-BA", en: "en-GB", de: "de-DE" };
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  $$("[data-i]").forEach(el => { const v = t(el.dataset.i); if (typeof v === "string") el.textContent = v; });
+  $$("[data-i-html]").forEach(el => { el.innerHTML = t(el.dataset.iHtml); });
+  $$(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+  buildGallery(); renderCal(); renderSummary(); updateUrgency(); resetChat();
+}
+$$(".langs button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; try { localStorage.setItem("vidik-lang", lang); } catch (e) {}
+  applyLang();
+}));
+
+/* ---------- gallery + lightbox ---------- */
+function buildGallery() {
+  const g = $("#gallery"); g.innerHTML = "";
+  PHOTOS.slice(1).forEach((p, i) => {
+    const b = document.createElement("button"); b.type = "button";
+    b.setAttribute("aria-label", t(p.k));
+    const img = document.createElement("img");
+    img.loading = "lazy"; img.alt = t(p.k);
+    img.src = PX(p.id, i === 0 ? 1200 : 700);
+    img.srcset = `${PX(p.id, 700)} 700w, ${PX(p.id, 1200)} 1200w`;
+    img.sizes = i === 0 ? "(max-width:760px) 82vw, 60vw" : "(max-width:760px) 82vw, 25vw";
+    const cap = document.createElement("span"); cap.className = "cap"; cap.textContent = t(p.k);
+    b.append(img, cap);
+    if (i === 4) { const m = document.createElement("span"); m.className = "more"; m.textContent = t("more") + " · " + PHOTOS.length; b.append(m); }
+    b.addEventListener("click", () => openLb(i + 1));
+    g.append(b);
+  });
+}
+const lb = $("#lb"); let lbI = 0;
+function showLb() {
+  const p = PHOTOS[lbI];
+  $("#lbImg").src = PX(p.id, 2000); $("#lbImg").alt = t(p.k);
+  $("#lbCount").textContent = `${lbI + 1} / ${PHOTOS.length} · ${t(p.k)}`;
+}
+function openLb(i) { lbI = i; showLb(); if (lb.showModal) lb.showModal(); else lb.setAttribute("open", ""); }
+$("#lbClose").addEventListener("click", () => lb.close());
+$("#lbPrev").addEventListener("click", () => { lbI = (lbI - 1 + PHOTOS.length) % PHOTOS.length; showLb(); });
+$("#lbNext").addEventListener("click", () => { lbI = (lbI + 1) % PHOTOS.length; showLb(); });
+lb.addEventListener("keydown", e => { if (e.key === "ArrowLeft") $("#lbPrev").click(); if (e.key === "ArrowRight") $("#lbNext").click(); });
+lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-in")) lb.close(); });
+let tx = null;
+lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) (dx < 0 ? $("#lbNext") : $("#lbPrev")).click(); tx = null; });
+
+/* ---------- dates ---------- */
+const DAY = 86400000;
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+const nightsBetween = (a, b) => Math.round((b - a) / DAY);
+const today = (() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); })();
+const busy = new Set();   // ISO dates of booked NIGHTS
+let selIn = null, selOut = null;
+let viewMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+const maxMonth = new Date(today.getFullYear(), today.getMonth() + 11, 1);
+
+async function loadBusy() {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/rpc/apt_busy`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ p_apt: APT }) });
+    if (!r.ok) throw new Error(r.status);
+    const rows = await r.json();
+    busy.clear();
+    rows.forEach(({ check_in, check_out }) => { for (let d = parse(check_in); d < parse(check_out); d = addDays(d, 1)) busy.add(iso(d)); });
+  } catch (e) { /* calendar still works; server re-checks on submit */ }
+  renderCal(); updateUrgency();
+}
+
+function firstBusyAfter(d) {
+  for (let x = d, i = 0; i <= MAX_NIGHTS; x = addDays(x, 1), i++) if (busy.has(iso(x))) return x;
+  return null;
+}
+function rangeFree(a, b) { for (let d = a; d < b; d = addDays(d, 1)) if (busy.has(iso(d))) return false; return true; }
+
+function renderCal() {
+  const box = $("#months"); if (!box) return;
+  box.innerHTML = "";
+  const fmtM = new Intl.DateTimeFormat(LOC[lang], { month: "long", year: "numeric" });
+  const fmtD = new Intl.DateTimeFormat(LOC[lang], { weekday: "long", day: "numeric", month: "long" });
+  const dowFmt = new Intl.DateTimeFormat(LOC[lang], { weekday: "short" });
+  const dows = [...Array(7)].map((_, i) => dowFmt.format(new Date(2024, 0, 1 + i)).slice(0, 2));
+  const limit = selIn && !selOut ? firstBusyAfter(selIn) : null;
+  for (let mi = 0; mi < 2; mi++) {
+    const m0 = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + mi, 1);
+    const wrap = document.createElement("div"); wrap.className = "m";
+    const h = document.createElement("h3"); h.textContent = fmtM.format(m0); wrap.append(h);
+    const dw = document.createElement("div"); dw.className = "dow"; dw.setAttribute("aria-hidden", "true");
+    dows.forEach(x => { const s = document.createElement("span"); s.textContent = x; dw.append(s); }); wrap.append(dw);
+    const grid = document.createElement("div"); grid.className = "days";
+    const lead = (m0.getDay() + 6) % 7;
+    for (let i = 0; i < lead; i++) grid.append(document.createElement("span"));
+    const dim = new Date(m0.getFullYear(), m0.getMonth() + 1, 0).getDate();
+    for (let dn = 1; dn <= dim; dn++) {
+      const d = new Date(m0.getFullYear(), m0.getMonth(), dn), k = iso(d);
+      const b = document.createElement("button"); b.type = "button"; b.className = "day"; b.textContent = dn;
+      const past = d < today, isBusy = busy.has(k);
+      let disabled = past;
+      if (!past) {
+        if (selIn && !selOut) {
+          if (d <= selIn) disabled = isBusy;                      // picking a new check-in instead
+          else if (limit && d > limit) disabled = true;            // can't jump over a booked night
+          else if (d > addDays(selIn, MAX_NIGHTS)) disabled = true;
+          if (isBusy && limit && iso(limit) === k) { b.classList.add("out-ok"); disabled = false; }
+        } else disabled = isBusy;
+      }
+      if (isBusy) b.classList.add("busy");
+      if (+d === +today) b.classList.add("today");
+      if (selIn && +d === +selIn) b.classList.add("sel", "sel-start");
+      if (selOut && +d === +selOut) b.classList.add("sel", "sel-end");
+      if (selIn && selOut && d > selIn && d < selOut) b.classList.add("in-range");
+      b.disabled = disabled;
+      b.setAttribute("aria-label", fmtD.format(d) + (isBusy ? ` · ${t("legBusy")}` : ""));
+      if (b.classList.contains("sel")) b.setAttribute("aria-pressed", "true");
+      b.addEventListener("click", () => pick(d));
+      grid.append(b);
+    }
+    wrap.append(grid); box.append(wrap);
+  }
+  $("#calPrev").disabled = viewMonth <= new Date(today.getFullYear(), today.getMonth(), 1);
+  $("#calNext").disabled = viewMonth >= maxMonth;
+  $("#calHint").textContent = !selIn ? t("hintIn") : !selOut ? t("hintOut") : t("hintDone");
+}
+function pick(d) {
+  $("#calMsg").textContent = "";
+  if (!selIn || selOut || d <= selIn) {
+    if (busy.has(iso(d))) return;
+    selIn = d; selOut = null;
+  } else {
+    const n = nightsBetween(selIn, d);
+    if (!rangeFree(selIn, d)) { $("#calMsg").textContent = t("errBusy"); return; }
+    if (n < MIN_NIGHTS) { $("#calMsg").textContent = t("errMin")(MIN_NIGHTS); return; }
+    selOut = d;
+  }
+  renderCal(); renderSummary();
+}
+$("#calPrev").addEventListener("click", () => { viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1); renderCal(); });
+$("#calNext").addEventListener("click", () => { viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1); renderCal(); });
+
+/* ---------- guests + price ---------- */
+let guests = 2;
+const km = n => `${n.toLocaleString(LOC[lang], { maximumFractionDigits: 0 })} KM`;
+function quote() {
+  if (!selIn || !selOut) return null;
+  const n = nightsBetween(selIn, selOut), base = n * PRICE, disc = n >= 7 ? Math.round(base * WEEK_DISC) : 0;
+  return { n, base, disc, total: base - disc + CLEAN };
+}
+function renderSummary() {
+  const f = new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short", weekday: "short" });
+  $("#sIn").textContent = selIn ? f.format(selIn) : "—";
+  $("#sOut").textContent = selOut ? f.format(selOut) : "—";
+  $("#gOut").textContent = guests; $("#gLbl").textContent = t("guestsLbl")(guests);
+  $("#gMinus").disabled = guests <= 1; $("#gPlus").disabled = guests >= MAX_GUESTS;
+  const q = quote(), L = $("#lines");
+  if (!q) { L.innerHTML = `<div class="small">${t("pickHint")}</div>`; }
+  else {
+    L.innerHTML = "";
+    const row = (a, b, cls) => { const d = document.createElement("div"); if (cls) d.className = cls; const x = document.createElement("span"); x.textContent = a; const y = document.createElement("span"); y.textContent = b; d.append(x, y); L.append(d); };
+    row(`${km(PRICE)} × ${q.n} ${t("nights")(q.n)}`, km(q.base));
+    if (q.disc) row(t("disc"), "−" + km(q.disc), "disc");
+    row(t("clean"), km(CLEAN));
+    row(t("total"), `${km(q.total)} · ≈ ${Math.round(q.total / EUR)} €`, "tot");
+  }
+  $("#bSubmit").disabled = !q;
+}
+$("#gMinus").addEventListener("click", () => { if (guests > 1) { guests--; renderSummary(); } });
+$("#gPlus").addEventListener("click", () => { if (guests < MAX_GUESTS) { guests++; renderSummary(); } });
+
+function updateUrgency() {
+  let free = 0;
+  for (let i = 0; i < 30; i++) if (!busy.has(iso(addDays(today, i)))) free++;
+  const u = $("#urgency");
+  if (busy.size === 0) { u.hidden = true; return; }
+  u.hidden = false;
+  $("#urgencyTxt").textContent = free <= 3 ? t("urg0") : t("urg")(free);
+}
+
+/* ---------- booking request ---------- */
+const form = $("#bf"), out = $("#bMsgOut");
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const fd = Object.fromEntries(new FormData(form));
+  if (fd.website) return;
+  const q = quote(); if (!q) return;
+  const name = (fd.name || "").trim(), email = (fd.email || "").trim();
+  out.className = "form-msg err";
+  if (name.length < 2) { out.textContent = t("reqName"); $("#bName").focus(); return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { out.textContent = t("reqEmail"); $("#bEmail").focus(); return; }
+  const btn = $("#bSubmit"); btn.disabled = true; out.className = "form-msg"; out.textContent = t("sending");
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/apt_requests`, {
+      method: "POST",
+      headers: { apikey: SB_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ apt: APT, check_in: iso(selIn), check_out: iso(selOut), guests, name, email,
+        phone: (fd.phone || "").trim() || null, message: (fd.message || "").trim() || null, lang, total_km: q.total })
+    });
+    if (!r.ok) {
+      const txt = await r.text();
+      if (txt.includes("TERMIN_ZAUZET")) { out.className = "form-msg err"; out.textContent = t("taken"); selIn = selOut = null; await loadBusy(); renderSummary(); return; }
+      throw new Error(r.status);
+    }
+    const f = new Intl.DateTimeFormat(LOC[lang], { day: "numeric", month: "short" });
+    $("#recap").textContent = `${f.format(selIn)} – ${f.format(selOut)} · ${t("guestsLbl")(guests)} · ${km(q.total)}`;
+    $("#bookForm").hidden = true; $("#done").hidden = false; out.textContent = "";
+    form.reset(); selIn = selOut = null;
+    await loadBusy(); renderSummary();
+    $("#bookCard").scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (err) {
+    out.className = "form-msg err"; out.textContent = t("netErr");
+  } finally { btn.disabled = !quote(); }
+});
+$("#again").addEventListener("click", () => { $("#done").hidden = true; $("#bookForm").hidden = false; renderSummary(); });
+
+/* ---------- Hostio chat demo ---------- */
+const chat = $("#chat"), chatB = $("#chatB"), fab = $("#chatFab");
+let chatTimers = [];
+function resetChat() { chatTimers.forEach(clearTimeout); chatTimers = []; chatB.innerHTML = ""; if (chat.classList.contains("open")) playChat(); }
+function addMsg(cls, txt) { const m = document.createElement("div"); m.className = "cm " + cls; m.textContent = txt; chatB.append(m); chatB.scrollTop = chatB.scrollHeight; return m; }
+function playChat() {
+  chatTimers.forEach(clearTimeout); chatTimers = []; chatB.innerHTML = "";
+  let at = 300;
+  t("chat").forEach(([who, txt]) => {
+    if (who === "out") {
+      chatTimers.push(setTimeout(() => { const ty = addMsg("in ty", ""); ty.innerHTML = "<i></i><i></i><i></i>"; }, at));
+      at += 1300;
+      chatTimers.push(setTimeout(() => { chatB.querySelector(".ty")?.remove(); addMsg("out", txt); }, at));
+      at += 1200;
+    } else { chatTimers.push(setTimeout(() => addMsg("in", txt), at)); at += 1000; }
+  });
+}
+function setChat(open) {
+  chat.classList.toggle("open", open); chat.setAttribute("aria-hidden", open ? "false" : "true");
+  fab.setAttribute("aria-expanded", open ? "true" : "false");
+  if (open) playChat(); else { chatTimers.forEach(clearTimeout); chatTimers = []; }
+}
+fab.addEventListener("click", () => setChat(!chat.classList.contains("open")));
+$("#chatClose").addEventListener("click", () => setChat(false));
+$("#askBtn").addEventListener("click", () => setChat(true));
+addEventListener("keydown", e => { if (e.key === "Escape" && chat.classList.contains("open")) setChat(false); });
+
+/* ---------- reveal + sticky bar ---------- */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .12 }) : null;
+$$(".rv").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+const mbar = $("#mbar"), bookSec = $("#rezervacija");
+addEventListener("scroll", () => {
+  const r = bookSec.getBoundingClientRect();
+  const inBook = r.top < innerHeight * .6 && r.bottom > 0;
+  mbar.classList.toggle("show", scrollY > innerHeight * .6 && !inBook);
+}, { passive: true });
+
+applyLang();
+loadBusy();
+})();
+</script>
+</body>
+</html>
