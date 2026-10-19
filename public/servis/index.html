@@ -890,6 +890,8 @@ function renderDays() {
   const q = quote(); if (!q) return;
   const box = $("#days"); box.innerHTML = "";
   const base = today0(); let shown = 0;
+  if (day && !freeSlots(day, q.t).some(x => x[1])) { day = null; slot = null; }
+  if (slot != null && day && !freeSlots(day, q.t).some(([s, ok]) => s === slot && ok)) slot = null;
   $("#slotSub").textContent = q.t >= 240 ? `Posao traje oko ${durTxt(q.t)}, zato nudimo jutarnje termine da auto bude gotov isti dan.` : "Prikazani su samo termini u kojima stvarno imamo slobodno radno mjesto.";
   for (let i = 0; shown < 14 && i < 21; i++) {
     const d = new Date(base.getFullYear(), base.getMonth(), base.getDate() + i);
@@ -910,7 +912,8 @@ function renderDays() {
 }
 function renderSlots() {
   const q = quote(), box = $("#slots"); box.innerHTML = "";
-  if (!day || !q) return;
+  if (!q) return;
+  if (!day) { box.innerHTML = `<div class="empty" style="grid-column:1/-1">Za ovaj posao u naredne dvije sedmice nema dovoljno dugog slobodnog termina. Pišite nam na WhatsApp ili Viber i naći ćemo rješenje.</div>`; return; }
   const list = freeSlots(day, q.t);
   if (!list.some(x => x[1])) { box.innerHTML = `<div class="empty" style="grid-column:1/-1">Ovaj dan je popunjen. Izaberite drugi dan.</div>`; return; }
   list.forEach(([s, ok]) => {
