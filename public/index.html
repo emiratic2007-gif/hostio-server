@@ -430,7 +430,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 /* CHANNELS */
 .channels{background:var(--ink);overflow:hidden}
 .channels .blob{opacity:.22}
-.ch-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ch-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:2}
 @media (max-width:980px){.ch-grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}}
 .ch{--c:#25D366;--cg:rgba(37,211,102,.35);position:relative;border-radius:30px;padding:26px 22px 22px;background:linear-gradient(170deg,#1A1B17,#0F100D);box-shadow:inset 0 0 0 1px var(--line);transition:transform .6s var(--ease),box-shadow .6s;overflow:hidden;isolation:isolate}
 .ch::before{content:"";position:absolute;inset:-30% -30% auto auto;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--cg),transparent 65%);z-index:-1;opacity:.5;transition:opacity .6s}
@@ -446,7 +446,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 .ch-top small{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--g);font-weight:600;margin-top:3px}
 .ch-top small .dot{width:7px;height:7px}
 .ch-desc{font-size:.92rem;color:#A9ABA2;margin:16px 0 18px;min-height:3em}
-.mini{height:250px;border-radius:20px;padding:14px 12px;display:flex;flex-direction:column;justify-content:flex-end;gap:7px;overflow:hidden;position:relative}
+.mini{height:300px;border-radius:20px;padding:54px 12px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:7px;overflow:hidden;position:relative}
 .mini .hd{position:absolute;top:0;left:0;right:0;height:42px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:.74rem;font-weight:600;z-index:1}
 .mini .hd i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.62rem;font-weight:800}
 .mini .bb{max-width:84%;padding:8px 11px;border-radius:15px;font-size:.8rem;line-height:1.38;animation:pop .45s var(--ease) both}
@@ -470,7 +470,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 .ch-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
 .ch-tags span{font-size:.72rem;font-weight:500;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);color:#C4C6BD}
 
-.flowbox{margin-top:70px;padding:clamp(22px,4vw,44px);border-radius:32px;background:linear-gradient(170deg,#161713,#0E0F0C);box-shadow:inset 0 0 0 1px var(--line);position:relative;overflow:hidden}
+.flowbox{position:relative;z-index:1;margin-top:96px;padding:clamp(22px,4vw,44px);border-radius:32px;background:linear-gradient(170deg,#161713,#0E0F0C);box-shadow:inset 0 0 0 1px var(--line);position:relative;overflow:hidden}
 .flowbox h3{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-.04em;text-align:center;line-height:1.15}
 .flowbox>p{text-align:center;color:#A9ABA2;max-width:620px;margin:12px auto 0;font-size:.98rem}
 .flow-svg{margin-top:34px;width:100%;height:auto}
@@ -588,8 +588,8 @@ a.card{display:block;color:inherit}
   .ch-ic svg{width:24px;height:24px}
   .ch-top b{font-size:1.2rem}
   .ch-desc{min-height:0;font-size:.9rem;margin:14px 0 16px}
-  .mini{height:220px;border-radius:16px}
-  .flowbox{margin-top:44px;border-radius:24px}
+  .mini{height:270px;border-radius:16px;padding-top:50px}
+  .flowbox{margin-top:56px;border-radius:24px}
   .flowbox>p{font-size:.92rem}
   .eq{gap:8px;flex-wrap:nowrap}
   .eq em{display:none}
@@ -1421,7 +1421,7 @@ const MINI = {
 function runMini(box, script, startDelay) {
   const hd = box.querySelector(".hd");
   const reset = () => { [...box.children].forEach(c => { if (c !== hd) c.remove(); }); };
-  const add = (cls, html) => { const el = document.createElement("div"); el.className = cls; el.innerHTML = html; box.appendChild(el); while (box.children.length > 5) { const f = [...box.children].find(c => c !== hd); f && f.remove(); } return el; };
+  const add = (cls, html) => { const el = document.createElement("div"); el.className = cls; el.innerHTML = html; box.appendChild(el); while (box.children.length > 4) { const f = [...box.children].find(c => c !== hd); f && f.remove(); } return el; };
   const loop = () => {
     reset(); let t = 300;
     script.forEach(([who, text]) => {
@@ -1587,7 +1587,7 @@ gsap.from(".cmp-item", { y: 50, opacity: 0, duration: .9, stagger: .08, ease: "p
 
 
 /* channels */
-gsap.from(".ch", { y: 90, opacity: 0, rotateX: -12, transformOrigin: "50% 0%", duration: 1.1, stagger: .15, ease: "power4.out", scrollTrigger: { trigger: ".ch-grid", start: "top 82%" } });
+gsap.from(".ch", { y: 36, opacity: 0, duration: .8, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".ch-grid", start: "top 85%" } });
 gsap.from(".ch-ic", { scale: 0, rotate: -40, duration: .9, stagger: .15, ease: "back.out(2.2)", scrollTrigger: { trigger: ".ch-grid", start: "top 82%" } });
 gsap.from(".eq > *", { y: 30, opacity: 0, duration: .7, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".eq", start: "top 88%" } });
 gsap.from(".pr", { y: 40, opacity: 0, duration: .8, stagger: .08, ease: "power3.out", scrollTrigger: { trigger: ".proof", start: "top 85%" } });
