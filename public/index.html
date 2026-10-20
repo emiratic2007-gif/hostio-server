@@ -494,6 +494,33 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 .pr span{font-size:.88rem;color:#A9ABA2}
 
 
+/* links to detail pages */
+.more{display:flex;justify-content:center;margin-top:44px}
+.more a{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.94rem;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--paper);transition:box-shadow .3s,background .3s}
+.light .more a{box-shadow:inset 0 0 0 1.5px var(--lineD);color:var(--ink)}
+.more a:hover{box-shadow:inset 0 0 0 1.5px var(--g);background:rgba(126,217,87,.08)}
+.more a svg{width:18px;height:18px;color:var(--g)}
+.card .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.88rem;font-weight:600;color:var(--g)}
+.card .go::after{content:"→";transition:transform .3s var(--ease)}
+.card:hover .go::after{transform:translateX(4px)}
+a.card{display:block;color:inherit}
+.pain{display:flex;align-items:center;gap:16px;padding:22px 24px}
+.pain h3{margin:0}
+.pain svg.pi{flex:none;width:44px;height:44px;padding:9px;border-radius:13px;background:rgba(255,90,78,.1)}
+.pr{align-items:center;padding:18px 20px}
+.pr b{margin:0}
+.ch-ic svg{width:30px;height:30px;color:#fff}
+.ch.vb{--c:#7360F2}
+.ch.ig .ch-ic{background:linear-gradient(45deg,#FEDA75,#FA7E1E 25%,#D62976 50%,#962FBF 75%,#4F5BD5)}
+.ch-tags{margin-top:16px}
+.ai-list li{align-items:center}
+.step h3{margin-bottom:0}
+.v-card{min-height:0}
+@media (max-width:520px){.vert{grid-template-columns:1fr 1fr}.v-card.feat{grid-column:1/-1}.v-card{padding:18px}.v-card .emo{width:46px;height:46px;margin-bottom:14px}.v-card h3{font-size:1rem}}
+.v-card h3{margin-top:auto}
+.tl-card p{font-weight:600;color:var(--ink)}
+.tl-card.bad p{color:var(--paper)}
+
 /* ================= PHONES ================= */
 @media (max-width:600px){
   nav{inset:10px 0 auto}
@@ -649,7 +676,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
       <a href="#gubitak">Problem</a>
       <a href="#kanali">Kanali</a>
       <a href="#kalkulator">Kalkulator</a>
-      <a href="#mogucnosti">Mogućnosti</a>
+      <a href="#mogucnosti">Usluge</a>
       <a href="#kako">Kako radi</a>
       <a href="#za-koga">Za koga</a>
       <a href="#faq">Pitanja</a>
@@ -666,10 +693,11 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     <a href="#gubitak">Problem <span class="n">01</span></a>
     <a href="#kanali">Kanali <span class="n">02</span></a>
     <a href="#kalkulator">Kalkulator <span class="n">03</span></a>
-    <a href="#mogucnosti">Mogućnosti <span class="n">04</span></a>
+    <a href="#mogucnosti">Usluge <span class="n">04</span></a>
     <a href="#kako">Kako radi <span class="n">05</span></a>
     <a href="#za-koga">Za koga <span class="n">06</span></a>
     <a href="#faq">Pitanja <span class="n">07</span></a>
+    <a href="/usluge/">Sve usluge detaljno <span class="n">→</span></a>
   </div>
   <a href="#demo" class="btn lg">Zakažite besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
@@ -682,7 +710,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     <div>
       <div class="pill hero-in"><i>CUSTOM AI</i><span class="dot"></span> Napravljen po mjeri vašeg biznisa</div>
       <h1 id="h1">Dok vi spavate, mušterije pišu. <span class="hl g">Hostio odgovara.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path id="hlpath" d="M2 14 C 60 4, 140 4, 298 10"/></svg></span></h1>
-      <p class="lead hero-in">Hostio je <strong>vaš vlastiti AI</strong> koji odgovara mušterijama na <strong>WhatsAppu, Viberu i Instagramu za nekoliko sekundi</strong>, zakazuje termine u vaš kalendar, šalje podsjetnike i vodi rezervacije. 24 sata dnevno. Bez pauze, bez bolovanja, bez propuštene poruke.</p>
+      <p class="lead hero-in">Vaš AI odgovara mušterijama na <strong>WhatsAppu, Viberu i Instagramu</strong> i zakazuje termine. <strong>24/7.</strong></p>
       <div class="cta-row hero-in">
         <a href="#demo" class="btn lg magnetic">Zakažite besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#kalkulator" class="btn ghost lg magnetic">Koliko gubim?</a>
@@ -735,15 +763,15 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Priča koja se dešava svaki dan</span>
-      <h2 class="split">Ne gubite mušterije zbog cijene.<br>Gubite ih zbog <span class="loss">tišine.</span></h2>
-      <p class="sub rv">Mušterija koja vam piše spremna je platiti. Ali ona ne čeka. Piše vama, i još dvojici. Ko prvi odgovori, taj zarađuje.</p>
+      <h2 class="split">Ne gubite mušterije zbog cijene. <br>Gubite ih zbog <span class="loss">tišine.</span></h2>
+      
     </div>
 
     <div class="tl">
-      <div class="tl-card"><span class="tag">Prilika</span><time>23:47</time><p>Mušterija vam piše na Instagramu.</p><div class="bubble">„Imate li slobodno sutra popodne?”</div></div>
-      <div class="tl-card"><span class="tag">Tišina</span><time>00:30</time><p>Vi spavate. Telefon je na punjaču. Poruka čeka.</p><div class="bubble">Viđeno: nikad</div></div>
-      <div class="tl-card"><span class="tag">Prekasno</span><time>08:15</time><p>Ujutro odgovarate, ljubazno i s ponudom.</p><div class="bubble">„Pozdrav, imamo u 15h!”</div></div>
-      <div class="tl-card bad"><span class="tag">Izgubljeno</span><time>08:16</time><p>Novac je otišao. I neće se vratiti.</p><div class="bubble">„Hvala, već sam rezervisao kod drugih.”</div></div>
+      <div class="tl-card"><span class="tag">Prilika</span><time>23:47</time><p>Mušterija piše.</p><div class="bubble">„Imate li slobodno sutra popodne?”</div></div>
+      <div class="tl-card"><span class="tag">Tišina</span><time>00:30</time><p>Vi spavate.</p><div class="bubble">Viđeno: nikad</div></div>
+      <div class="tl-card"><span class="tag">Prekasno</span><time>08:15</time><p>Odgovarate ujutro.</p><div class="bubble">„Pozdrav, imamo u 15h!”</div></div>
+      <div class="tl-card bad"><span class="tag">Izgubljeno</span><time>08:16</time><p>Mušterija je otišla.</p><div class="bubble">„Hvala, već sam rezervisao kod drugih.”</div></div>
     </div>
 
     <p class="verdict" id="verdict">Ta mušterija nije otišla jer ste <span class="strike" id="strike">skupi</span>. Otišla je jer <span class="loss">niko nije odgovorio.</span></p>
@@ -751,21 +779,22 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     <div class="pains">
       <div class="pain">
         <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="m9 8 6 6M15 8l-6 6"/></svg>
-        <h3>Neodgovorene poruke</h3><p>Navečer, vikendom, dok radite s mušterijom. Svaka je potencijalna zarada koja odlazi konkurenciji.</p>
+        <h3>Neodgovorene poruke</h3>
       </div>
       <div class="pain">
         <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></svg>
-        <h3>Mušterije koje ne dođu</h3><p>Zakazan termin, prazna stolica. Bez podsjetnika ljudi zaborave, a vi plaćate prazan sat.</p>
+        <h3>Mušterije koje ne dođu</h3>
       </div>
       <div class="pain">
         <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <h3>Sati na telefonu</h3><p>„Koliko košta?”, „Radite li u subotu?”, „Gdje se nalazite?” Iste poruke, svaki dan, umjesto da radite posao.</p>
+        <h3>Sati na telefonu</h3>
       </div>
       <div class="pain">
         <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-        <h3>Haos u rasporedu</h3><p>Sveska, poruke, pozivi. Dva klijenta za isti termin i jedan nezadovoljan čovjek koji više ne dolazi.</p>
+        <h3>Haos u rasporedu</h3>
       </div>
     </div>
+    <div class="more rv"><a href="/vise/problem/">Cijela priča: gdje odlazi novac <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -776,35 +805,32 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap" style="position:relative">
     <div class="head-c">
       <span class="eyebrow rv">WhatsApp · Viber · Instagram</span>
-      <h2 class="split">Mušterije vam već pišu na tri mjesta.<br><span class="g">Hostio odgovara na sva tri.</span></h2>
-      <p class="sub rv">Ne tjerate nikoga na novu aplikaciju, formu ili poziv. Mušterija piše tamo gdje je navikla, a Hostio odgovara za nekoliko sekundi, kao da ste vi uz telefon.</p>
+      <h2 class="split">Pišu na tri mjesta. <br><span class="g">Hostio odgovara na sva tri.</span></h2>
+      
     </div>
 
     <div class="ch-grid">
       <div class="ch wa">
         <div class="ch-top">
-          <div class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.2L3 20l1.4-4.9A8.4 8.4 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.3-1.8-.9-.8.8a4 4 0 0 1-2.3-2.3l.8-.8-.9-1.8z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></div>
           <div><b>WhatsApp</b><small><span class="dot"></span>Odgovara 24/7</small></div>
         </div>
-        <p class="ch-desc">Najveći broj upita stiže ovdje. Hostio odgovara na pitanja, nudi slobodne termine i šalje podsjetnik dan prije.</p>
         <div class="mini wa" data-ch="wa"><div class="hd"><i>B</i>Salon Bella</div></div>
         <div class="ch-tags"><span>Pitanja i cijene</span><span>Zakazivanje</span><span>Podsjetnici s dugmadima</span></div>
       </div>
       <div class="ch vb">
         <div class="ch-top">
-          <div class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c5.2 0 9 3 9 8.3 0 5-3.6 8-9 8-1 0-1.9-.1-2.7-.3L5 21v-3.6C3.7 15.9 3 13.6 3 10.8 3 5.5 6.8 2.5 12 2.5z"/><path d="M9.3 8.2c.4 2.8 2.6 5 5.4 5.4l.9-1.2-1.6-1-.7.6a3.3 3.3 0 0 1-1.9-1.9l.6-.7-1-1.6z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M444 49.9C431.3 38.2 379.9.9 265.3.4c0 0-135.1-8.1-200.9 52.3C27.8 89.3 14.9 143 13.5 209.5c-1.4 66.5-3.1 191.1 117 224.9h.1l-.1 51.6s-.8 20.9 13 25.1c16.6 5.2 26.4-10.7 42.3-27.8 8.7-9.4 20.7-23.2 29.8-33.7 82.2 6.9 145.3-8.9 152.5-11.2 16.6-5.4 110.5-17.4 125.7-142 15.8-128.6-7.6-209.8-49.8-246.5zM457.9 287c-12.9 104-89 110.6-103 115.1-6 1.9-61.5 15.7-131.2 11.2 0 0-52 62.7-68.2 79-5.3 5.3-11.1 4.8-11-5.7 0-6.9.4-85.7.4-85.7-.1 0-.1 0 0 0-101.8-28.2-95.8-134.3-94.7-189.8 1.1-55.5 11.6-101 42.6-131.6 55.7-50.5 170.4-43 170.4-43 96.9.4 143.3 29.6 154.1 39.4 35.7 30.6 53.9 103.8 40.6 211.1zm-139-80.8c.4 8.6-12.5 9.2-12.9.6-1.1-22-11.4-32.7-32.6-33.9-8.6-.5-7.8-13.4.7-12.9 27.9 1.5 43.4 17.5 44.8 46.2zm20.3 11.3c1-42.4-25.5-75.6-75.8-79.3-8.5-.6-7.6-13.5.9-12.9 58 4.2 88.9 44.1 87.8 92.5-.1 8.6-13.1 8.2-12.9-.3zm47 13.4c.1 8.6-12.9 8.7-12.9.1-.6-81.5-54.9-125.9-120.8-126.4-8.5-.1-8.5-12.9 0-12.9 73.7.5 133 51.4 133.7 139.2zM374.9 329v.2c-10.8 19-31 40-51.8 33.3l-.2-.3c-21.1-5.9-70.8-31.5-102.2-56.5-16.2-12.8-31-27.9-42.4-42.4-10.3-12.9-20.7-28.2-30.8-46.6-21.3-38.5-26-55.7-26-55.7-6.7-20.8 14.2-41 33.3-51.8h.2c9.2-4.8 18-3.2 23.9 3.9 0 0 12.4 14.8 17.7 22.1 5 6.8 11.7 17.7 15.2 23.8 6.1 10.9 2.3 22-3.7 26.6l-12 9.6c-6.1 4.9-5.3 14-5.3 14s17.8 67.3 84.3 84.3c0 0 9.1.8 14-5.3l9.6-12c4.6-6 15.7-9.8 26.6-3.7 14.7 8.3 33.4 21.2 45.8 32.9 7 5.7 8.6 14.4 3.8 23.6z"></path></svg></div>
           <div><b>Viber</b><small><span class="dot"></span>Odgovara 24/7</small></div>
         </div>
-        <p class="ch-desc">Kod nas i dalje omiljen kanal, posebno starijim mušterijama. Isti AI, ista pravila, isti kalendar.</p>
         <div class="mini vb" data-ch="vb"><div class="hd"><i>B</i>Salon Bella</div></div>
         <div class="ch-tags"><span>Radno vrijeme</span><span>Zakazivanje</span><span>Otkazivanje</span></div>
       </div>
       <div class="ch ig">
         <div class="ch-top">
-          <div class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></div>
           <div><b>Instagram</b><small><span class="dot"></span>Odgovara 24/7</small></div>
         </div>
-        <p class="ch-desc">Vidjeli su vaš post ili story i pišu u DM. Hostio pretvara to zanimanje u zakazan termin, dok je mušterija još „vruća”.</p>
         <div class="mini ig" data-ch="ig"><div class="hd"><i>B</i>salon.bella</div></div>
         <div class="ch-tags"><span>Odgovori na story</span><span>DM upiti</span><span>Link za rezervaciju</span></div>
       </div>
@@ -812,7 +838,6 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
 
     <div class="flowbox rv">
       <h3>Tri kanala. Jedan mozak. Jedan kalendar.</h3>
-      <p>Bez obzira gdje mušterija piše, sve završava na istom mjestu. Zato je nemoguće da dvije osobe s različitih kanala dobiju isti termin.</p>
 
       <svg class="flow-svg h" viewBox="0 0 1000 340" aria-hidden="true">
         <defs>
@@ -878,13 +903,14 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     </div>
 
     <div class="proof">
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Mušterija ne mijenja ništa</b><span>Nema nove aplikacije, registracije ni forme. Piše na kanal koji već koristi, kao i do sada.</span></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vi ne mijenjate ništa</b><span>Ostajete na svom profilu i kanalima koje mušterije poznaju. Mi povezujemo sve umjesto vas.</span></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Nema duplih termina</b><span>Sva tri kanala gledaju isti kalendar u istom trenutku. Termin zauzet na Viberu odmah nestaje i na Instagramu.</span></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Pravila čuva sistem, ne AI</b><span>Radno vrijeme, trajanje usluga i neradne dane provjerava sistem. AI ne može ponuditi termin koji ne postoji.</span></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Odgovara na jeziku poruke</b><span>Piše li gost iz Njemačke ili turist na engleskom, dobije odgovor na svom jeziku.</span></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Sve vidite na jednom mjestu</b><span>Razgovori sa sva tri kanala su sačuvani. Uvijek znate šta je ko pitao i šta je dobio kao odgovor.</span></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Mušterija ne mijenja ništa</b></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vi ne mijenjate ništa</b></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Nema duplih termina</b></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Pravila čuva sistem, ne AI</b></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Odgovara na jeziku poruke</b></div></div>
+      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Sve vidite na jednom mjestu</b></div></div>
     </div>
+    <div class="more rv"><a href="/usluge/ai-odgovori/">Kako radi na svakom kanalu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -894,8 +920,8 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Kalkulator gubitka</span>
-      <h2 class="split">Koliko vas košta<br>svaka <span class="loss">neodgovorena</span> poruka?</h2>
-      <p class="sub rv">Pomjerite klizače prema svom biznisu. Brojke računamo samo iz onoga što vi unesete.</p>
+      <h2 class="split">Koliko vas košta <br>svaka <span class="loss">neodgovorena</span> poruka?</h2>
+      <p class="sub rv">Pomjerite klizače.</p>
     </div>
     <div class="calc-grid">
       <div class="panel rv">
@@ -919,7 +945,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
         <div>
           <div class="ticker"><span class="dot"></span><span>Svaki dan bez Hostia: <b id="perDay">0 KM</b> manje u kasi. Dok čitate ovu stranicu: <b id="tick">0,000 KM</b>.</span></div>
           <a href="#demo" class="btn lg" style="width:100%;justify-content:center;margin-top:16px">Želim to vratiti <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <p class="note">Procjena je informativna i računa se isključivo iz vrijednosti koje ste postavili. Gubitak = propušteni upiti koji odu drugome × vrijednost mušterije, plus mušterije koje ne dođu na termin.</p>
+          <p class="note">Informativna procjena iz vaših brojki.</p>
         </div>
       </div>
     </div>
@@ -932,14 +958,15 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     <div>
       <span class="eyebrow rv">Custom AI, ne običan chatbot</span>
       <h2 class="split">AI koji zna vaš biznis kao vaš najbolji radnik.</h2>
-      <p class="lead rv">Ne prodajemo generički bot koji odgovara „Molimo pričekajte”. Za svaki biznis pravimo <strong>vlastiti AI</strong>, naučen na vašim uslugama, cijenama, pravilima i načinu na koji vi razgovarate s ljudima.</p>
+      <p class="lead rv"><strong>Vlastiti AI</strong>, naučen na vašim uslugama, cijenama i pravilima.</p>
       <ul class="ai-list">
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zvuči kao čovjek, ne kao robot</b><span>Kratko, prirodno, ljubazno. Sačeka da mušterija završi pisanje pa tek onda odgovori, kao pravi čovjek.</span></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zna vaše cijene, usluge i radno vrijeme</b><span>Odgovara tačno ono što biste vi rekli. Ništa ne izmišlja.</span></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vaša pravila su zakon</b><span>Radno vrijeme, trajanje usluga, neradni dani, dupli termini: sistem ih provjerava, AI ih ne može prekršiti.</span></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Govori jezikom vaše mušterije</b><span>Domaći, engleski, njemački, arapski. Gost iz dijaspore ili turist dobije odgovor na svom jeziku.</span></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Raste s vama</b><span>Nova usluga, nova cijena, sezonsko radno vrijeme? Promijenimo i AI odmah zna.</span></div></li>
+        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zvuči kao čovjek, ne kao robot</b></div></li>
+        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zna vaše cijene, usluge i radno vrijeme</b></div></li>
+        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vaša pravila su zakon</b></div></li>
+        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Govori jezikom vaše mušterije</b></div></li>
+        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Raste s vama</b></div></li>
       </ul>
+      <div class="more rv" style="justify-content:flex-start;margin-top:30px"><a href="/usluge/custom-ai/">Više o custom AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
     <div class="brain" id="brain">
       <svg class="net" viewBox="0 0 500 500" fill="none">
@@ -965,87 +992,88 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Sve što Hostio radi</span>
-      <h2 class="split">Jedan sistem.<br>Cijela recepcija. <span class="g">Automatski.</span></h2>
-      <p class="sub rv">Od prve poruke do mušterije koja sjedi u vašoj stolici, Hostio vodi cijeli put.</p>
+      <h2 class="split">Jedan sistem. <br>Cijela recepcija. <span class="g">Automatski.</span></h2>
+      
     </div>
 
     <div class="bento">
-      <div class="card w4 tilt">
+      <a href="/usluge/ai-odgovori/" class="card w4 tilt">
         <span class="badge">24/7</span>
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg></div>
         <h3>AI odgovara na WhatsAppu, Viberu i Instagramu</h3>
-        <p>Mušterije pišu tamo gdje već jesu. Hostio odgovara za nekoliko sekundi, danju i noću, vikendom i praznikom. Duge odgovore sam podijeli da stanu u poruke kanala.</p>
+        <p>Odgovor za nekoliko sekundi. Danju i noću.</p>
         <div class="chips"><span>WhatsApp</span><span>Instagram DM</span><span>Viber</span></div>
-      </div>
-      <div class="card w2 tilt">
+      <span class="go">Više</span></a>
+      <a href="/usluge/ai-odgovori/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
         <h3>Razgovor kao s čovjekom</h3>
-        <p>Nikad ne spominje da je program, ne piše romane, ne ponavlja se. Mušterija jednostavno dobije brz i ljubazan odgovor.</p>
-      </div>
+        <p>Kratko, prirodno, ljubazno.</p>
+      <span class="go">Više</span></a>
 
-      <div class="card w2 tilt">
+      <a href="/usluge/zakazivanje/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
         <h3>Automatsko zakazivanje</h3>
-        <p>Provjeri stvarno slobodne termine i upiše rezervaciju direktno u vaš raspored. Nema duplih termina.</p>
+        <p>Upisuje u vaš raspored. Bez duplih termina.</p>
         <div class="mini-cal" aria-hidden="true">
           <span>P</span><span>U</span><span>S</span><span>Č</span><span>P</span><span>S</span><span>N</span>
           <span>9</span><span class="b">10</span><span>11</span><span class="b">12</span><span>13</span><span class="b">14</span><span class="x">15</span>
         </div>
-      </div>
-      <div class="card w2 tilt">
+      <span class="go">Više</span></a>
+      <a href="/usluge/podsjetnici/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
         <h3>Podsjetnici dan prije</h3>
-        <p>Mušterija dobije WhatsApp podsjetnik s dugmadima. Jedan klik i znate dolazi li.</p>
+        <p>Jedan klik: dolazi ili ne.</p>
         <div class="remind"><p>Podsjetnik: sutra u 17:00 imate termin u Salonu Bella. 💈</p><div><button type="button">Dolazim</button><button type="button">Otkaži</button></div></div>
-      </div>
-      <div class="card w2 tilt">
+      <span class="go">Više</span></a>
+      <a href="/usluge/zakazivanje/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>Pravila koja se ne krše</h3>
-        <p>Radno vrijeme, trajanje svake usluge, neradni dani i pauze. AI samo pita, a sistem odlučuje, pa greške u rasporedu nestaju.</p>
-      </div>
+        <p>AI pita, sistem odlučuje.</p>
+      <span class="go">Više</span></a>
 
-      <div class="card w3 tilt">
+      <a href="/usluge/web-stranica/" class="card w3 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
         <h3>Vaša vlastita web stranica za rezervacije</h3>
-        <p>Profesionalna, brendirana stranica za vaš biznis s ponudom, cijenama, slikama i dostupnošću u realnom vremenu. Posjetilac bira jezik pri ulasku i rezerviše u par klikova. Prodajni tekstovi koji posjetioca pretvaraju u mušteriju su uključeni.</p>
+        <p>Brendirana, na 4 jezika. Rezervacija u par klikova.</p>
         <div class="langs" id="langs"><span class="on">BS</span><span>EN</span><span>DE</span><span>AR</span></div>
-      </div>
-      <div class="card w3 tilt">
+      <span class="go">Više</span></a>
+      <a href="/usluge/dashboard/" class="card w3 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div>
         <h3>Vlasnički dashboard</h3>
-        <p>Sve na jednom mjestu, s telefona ili računara. Odobrite ili odbijte rezervaciju jednim klikom, dodajte termin ručno, blokirajte datume, pratite preuzimanje i vraćanje, ostavite napomenu.</p>
+        <p>Sve na jednom mjestu. Odobrite jednim klikom.</p>
         <div class="dash-mock">
           <div class="dash-row"><b>Amar H. · Golf 8</b><small>12.–15.11.</small><span class="st wait">Čeka odobrenje</span></div>
           <div class="dash-row"><b>Lejla K. · Pramenovi</b><small>Sutra 10:00</small><span class="st ok">Potvrđeno</span></div>
           <div class="dash-row"><b>Sto za 6 · Subota</b><small>20:30</small><span class="st no">Otkazano</span></div>
         </div>
-      </div>
+      <span class="go">Više</span></a>
 
-      <div class="card w2 tilt">
+      <a href="/usluge/podsjetnici/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
         <h3>Automatski emailovi</h3>
-        <p>Mušterija dobije email na svom jeziku kad je zahtjev primljen, potvrđen, odbijen ili otkazan. Vi ne pišete ništa.</p>
-      </div>
-      <div class="card w2 tilt">
+        <p>Na jeziku mušterije. Vi ne pišete ništa.</p>
+      <span class="go">Više</span></a>
+      <a href="/usluge/web-stranica/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/></svg></div>
         <h3>Online forme i dokumenti</h3>
-        <p>AI pošalje mušteriji link s već popunjenim podacima. Ona doda ostalo i učita dokumente, npr. vozačku dozvolu. Vi samo odobrite.</p>
-      </div>
-      <div class="card w2 tilt">
+        <p>Podaci i dokumenti stižu online.</p>
+      <span class="go">Više</span></a>
+      <a href="/usluge/dashboard/" class="card w2 tilt">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Sigurnost i privatnost</h3>
-        <p>Svaki vlasnik vidi isključivo svoje podatke. Cijela historija razgovora je sačuvana, a podaci se brišu na zahtjev.</p>
-      </div>
+        <p>Vidite samo svoje podatke.</p>
+      <span class="go">Više</span></a>
 
       <div class="card w6 tilt" style="display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center">
         <div class="ico" style="margin:0;width:64px;height:64px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg></div>
         <div>
           <h3>Custom AI rješenja po mjeri</h3>
-          <p>Imate proces koji vam jede vrijeme? Narudžbe, upiti za ponude, prijave, odgovori na recenzije, interne evidencije. Za svaki biznis pravimo poseban šablon, a ako vaš proces ne postoji, napravimo ga.</p>
+          <p>Proces koji vam jede vrijeme? Napravimo ga.</p>
         </div>
-        <a href="#demo" class="btn magnetic" style="white-space:nowrap">Opišite proces</a>
+        <a href="/usluge/custom-ai/" class="btn magnetic" style="white-space:nowrap">Saznajte više</a>
       </div>
     </div>
+    <div class="more rv"><a href="/usluge/">Sve usluge detaljno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -1054,16 +1082,17 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Kako počinjete</span>
-      <h2 class="split">Vi radite svoj posao.<br>Mi postavimo sve ostalo.</h2>
-      <p class="sub rv">Ne trebate znati ništa o tehnologiji. Ne instalirate ništa. Ne mijenjate broj telefona.</p>
+      <h2 class="split">Vi radite svoj posao. <br>Mi postavimo sve ostalo.</h2>
+      <p class="sub rv">Bez instalacija. Bez tehnike.</p>
     </div>
     <div class="steps" id="steps">
       <div class="steps-line"><i id="stepsLine"></i></div>
-      <div class="step"><div class="num">1</div><h3>Kratak razgovor</h3><p>Ispričate nam kako radite: usluge, cijene, radno vrijeme, česta pitanja.</p><span class="time">15 minuta</span></div>
-      <div class="step"><div class="num">2</div><h3>Pravimo vaš AI</h3><p>Učimo Hostio vašem biznisu i podešavamo pravila, ton i jezike.</p><span class="time">Mi radimo</span></div>
-      <div class="step"><div class="num">3</div><h3>Povezujemo kanale</h3><p>WhatsApp, Viber, Instagram, vaša stranica za rezervacije i dashboard. Sve testiramo prije starta.</p><span class="time">Mi radimo</span></div>
-      <div class="step"><div class="num">4</div><h3>Vi samo potvrđujete</h3><p>Rezervacije stižu same. Vi otvorite dashboard i odobrite jednim klikom.</p><span class="time">Od prvog dana</span></div>
+      <div class="step"><div class="num">1</div><h3>Kratak razgovor</h3><span class="time">15 minuta</span></div>
+      <div class="step"><div class="num">2</div><h3>Pravimo vaš AI</h3><span class="time">Mi radimo</span></div>
+      <div class="step"><div class="num">3</div><h3>Povezujemo kanale</h3><span class="time">Mi radimo</span></div>
+      <div class="step"><div class="num">4</div><h3>Vi samo potvrđujete</h3><span class="time">Od prvog dana</span></div>
     </div>
+    <div class="more rv"><a href="/vise/kako-radi/">Kako počinjete, korak po korak <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -1072,7 +1101,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Dva načina da vodite biznis</span>
-      <h2 class="split">Isti biznis. Isti dan.<br>Potpuno drugi rezultat.</h2>
+      <h2 class="split">Isti biznis. Isti dan. <br>Potpuno drugi rezultat.</h2>
     </div>
     <div class="cmp-wrap">
       <div class="switch rv"><div class="sw" id="sw"><span class="knob"></span><button class="on" data-v="no">Bez Hostia</button><button data-v="yes">Sa Hostiom</button></div></div>
@@ -1093,25 +1122,26 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Za koga je Hostio</span>
-      <h2 class="split">Ako vam mušterije pišu,<br>Hostio je za vas.</h2>
-      <p class="sub rv">Svaka djelatnost dobije svoj šablon, prilagođen načinu na koji baš ta vrsta biznisa radi.</p>
+      <h2 class="split">Ako vam mušterije pišu, <br>Hostio je za vas.</h2>
+      
     </div>
     <div class="vert">
       <a class="v-card feat" href="/r/vrelo" target="_blank" rel="noopener">
         <div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17v2M18 17v2M3 13l2-6a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 7l2 6v4H3z"/><circle cx="7.5" cy="13.5" r="1"/><circle cx="16.5" cy="13.5" r="1"/></svg></div>
-        <h3>Rent-a-car</h3><p>Višejezična stranica s flotom i dostupnošću, rezervacija po vozilu, upload vozačke, odobravanje i praćenje preuzimanja.</p>
+        <h3>Rent-a-car</h3>
         <span class="live"><span class="dot"></span>Pogledajte demo uživo →</span>
       </a>
-      <a class="v-card feat" href="/a/vidik" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3>Apartmani i smještaj</h3><p>Stranica s galerijom i kalendarom slobodnih noći, direktna rezervacija bez provizije, odgovori gostima na tri jezika.</p><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
-      <a class="v-card feat" href="/s/obrtaj" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><h3>Auto servisi</h3><p>Cijena i trajanje unaprijed, termini po radnim mjestima, praćenje popravke uživo i odobravanje radova jednim klikom.</p><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div><h3>Frizeri i barberi</h3><p>Termini po usluzi i trajanju, podsjetnici, popunjavanje otkazanih termina.</p></div>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div><h3>Restorani i kafići</h3><p>Rezervacije stolova, upiti za proslave, meni i radno vrijeme na jednu poruku.</p></div>
+      <a class="v-card feat" href="/a/vidik" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3>Apartmani i smještaj</h3><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
+      <a class="v-card feat" href="/s/obrtaj" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><h3>Auto servisi</h3><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
+      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div><h3>Frizeri i barberi</h3></div>
+      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div><h3>Restorani i kafići</h3></div>
 
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 6 4.5 6 7.5c0 2 .6 3 1 5 .5 2.5.6 9.5 2.5 9.5S11 16 12 16s1 6 2.5 6S16.5 15 17 12.5c.4-2 1-3 1-5C18 4.5 16 2 12 2z"/></svg></div><h3>Stomatolozi i klinike</h3><p>Zakazivanje pregleda, podsjetnici pacijentima, manje praznih termina.</p></div>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-5 3.6 1.9 5.8-4.9-3.6-4.9 3.6 1.9-5.8-5-3.6h6.1z"/></svg></div><h3>Kozmetika i nokti</h3><p>Više usluga u jednom terminu, tačno trajanje, cijene na upit odmah.</p></div>
+      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 6 4.5 6 7.5c0 2 .6 3 1 5 .5 2.5.6 9.5 2.5 9.5S11 16 12 16s1 6 2.5 6S16.5 15 17 12.5c.4-2 1-3 1-5C18 4.5 16 2 12 2z"/></svg></div><h3>Stomatolozi i klinike</h3></div>
+      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-5 3.6 1.9 5.8-4.9-3.6-4.9 3.6 1.9-5.8-5-3.6h6.1z"/></svg></div><h3>Kozmetika i nokti</h3></div>
       
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 9v6M21 9v6M6 5v14M18 5v14"/></svg></div><h3>Teretane i treneri</h3><p>Personalni treninzi, grupni termini, članarine i odgovori na pitanja novih članova.</p></div>
+      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 9v6M21 9v6M6 5v14M18 5v14"/></svg></div><h3>Teretane i treneri</h3></div>
     </div>
+    <div class="more rv"><a href="/vise/za-koga/">Šta dobija vaša djelatnost <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -1121,8 +1151,8 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap">
     <div class="head-c">
       <span class="eyebrow rv">Zašto je Hostio bitan</span>
-      <h2 class="split">Vrijeme i novac.<br>Hostio vam vraća <span class="g">oboje.</span></h2>
-      <p class="sub rv">Recepcioner radi 8 sati i ima slobodne dane. Vaše mušterije pišu 24 sata, 7 dana u sedmici. Ta razlika je zarada koju danas ne vidite.</p>
+      <h2 class="split">Vrijeme i novac. <br>Hostio vam vraća <span class="g">oboje.</span></h2>
+      
     </div>
     <div class="why-grid">
       <div class="stat"><b><span class="count" data-to="24">0</span>/7</b><span>radi svaki dan, svaki sat, i praznikom</span></div>
@@ -1130,26 +1160,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
       <div class="stat"><b><span class="count" data-to="4">0</span></b><span>jezika na kojima odgovara i vodi stranicu</span></div>
       <div class="stat"><b><span class="count" data-to="1">0</span> klik</b><span>da odobrite rezervaciju iz dashboarda</span></div>
     </div>
-    <div class="why-cols">
-      <div class="why-col">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Štedi vrijeme</h3>
-        <ul>
-          <li><b>Više nikad isto pitanje dvaput.</b> Cijene, lokacija, radno vrijeme: Hostio odgovara umjesto vas.</li>
-          <li><b>Nema dopisivanja oko termina.</b> Pronađe slobodno, ponudi, upiše. Vi vidite gotovu rezervaciju.</li>
-          <li><b>Nema ručnog vođenja rasporeda.</b> Sve je u jednom dashboardu, dostupno s telefona.</li>
-          <li><b>Ne pišete emailove.</b> Potvrde i obavijesti idu same, na jeziku mušterije.</li>
-        </ul>
-      </div>
-      <div class="why-col">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Štedi i donosi novac</h3>
-        <ul>
-          <li><b>Hvata mušterije koje biste izgubili:</b> noćne poruke, vikend, dok radite s drugim klijentom.</li>
-          <li><b>Manje praznih termina</b> zahvaljujući podsjetnicima i brzom popunjavanju otkazanih mjesta.</li>
-          <li><b>Ne trebate dodatnu osobu</b> samo za odgovaranje na poruke i vođenje rezervacija.</li>
-          <li><b>Profesionalan prvi utisak</b> koji gradi povjerenje i dovodi mušterije da se vraćaju.</li>
-        </ul>
-      </div>
-    </div>
+    <div class="more rv"><a href="/vise/zasto/">Kako vam vraća vrijeme i novac <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -1161,14 +1172,12 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
       <h2 class="split">Sve što vas zanima.</h2>
     </div>
     <div class="faq">
-      <div class="q"><button type="button">Hoće li mušterije znati da razgovaraju s AI-jem?<span class="plus"></span></button><div class="a"><div><p>Hostio je napravljen da zvuči prirodno, kratko i ljubazno, kao vaš najbolji radnik. Ne spominje alate i ne objašnjava sam sebe. Mušterija jednostavno dobije brz i tačan odgovor.</p></div></div></div>
-      <div class="q"><button type="button">Šta ako AI ne zna odgovor?<span class="plus"></span></button><div class="a"><div><p>Hostio odgovara samo iz informacija vašeg biznisa i ne izmišlja. Pravila poput radnog vremena i slobodnih termina provjerava sistem, a ne AI, pa ne može ponuditi termin koji ne postoji. Vi u svakom trenutku vidite cijelu historiju razgovora.</p></div></div></div>
-      <div class="q"><button type="button">Moram li mijenjati broj telefona ili instalirati nešto?<span class="plus"></span></button><div class="a"><div><p>Ne. Mi postavljamo sve: povezivanje WhatsAppa, Vibera i Instagrama, vašu stranicu za rezervacije i dashboard. Vi dobijete gotov sistem i pristup dashboardu.</p></div></div></div>
-      <div class="q"><button type="button">Mogu li ja potvrditi rezervaciju prije nego što bude konačna?<span class="plus"></span></button><div class="a"><div><p>Da. Možete izabrati da Hostio upisuje termine odmah, ili da svaki zahtjev čeka vaše odobrenje u dashboardu. Kod rent-a-cara, na primjer, vlasnik odobrava svaki zahtjev nakon što vidi podatke i vozačku dozvolu.</p></div></div></div>
-      <div class="q"><button type="button">Na kojim jezicima Hostio radi?<span class="plus"></span></button><div class="a"><div><p>Odgovara mušteriji na njenom jeziku, a stranice za rezervacije podržavaju domaći, engleski, njemački i arapski. Emailovi mušteriji stižu na jeziku koji je izabrala.</p></div></div></div>
-      <div class="q"><button type="button">Moj biznis nije na listi. Može li Hostio i za mene?<span class="plus"></span></button><div class="a"><div><p>Vjerovatno da. Hostio je custom AI: za svaku djelatnost pravimo poseban šablon. Opišite nam kako radite u formi ispod i reći ćemo vam iskreno šta možemo napraviti.</p></div></div></div>
-      <div class="q"><button type="button">Šta su moji podaci i podaci mojih mušterija?<span class="plus"></span></button><div class="a"><div><p>Vaši. Svaki vlasnik vidi isključivo podatke svog biznisa, a podaci se brišu na zahtjev. Detalje imate u <a href="/privatnost.html" style="text-decoration:underline">politici privatnosti</a>.</p></div></div></div>
+      <div class="q"><button type="button">Hoće li mušterije znati da razgovaraju s AI-jem?<span class="plus"></span></button><div class="a"><div><p>Hostio zvuči prirodno, kratko i ljubazno, kao vaš najbolji radnik.</p></div></div></div>
+      <div class="q"><button type="button">Šta ako AI ne zna odgovor?<span class="plus"></span></button><div class="a"><div><p>Ne izmišlja. Odgovara samo iz podataka vašeg biznisa, a termine provjerava sistem.</p></div></div></div>
+      <div class="q"><button type="button">Moram li mijenjati broj telefona ili instalirati nešto?<span class="plus"></span></button><div class="a"><div><p>Ne. Mi postavljamo sve, vi dobijete gotov sistem.</p></div></div></div>
+      <div class="q"><button type="button">Moj biznis nije na listi. Može li Hostio i za mene?<span class="plus"></span></button><div class="a"><div><p>Vjerovatno da. Opišite nam kako radite u formi ispod.</p></div></div></div>
     </div>
+    <div class="more rv"><a href="/vise/pitanja/">Sva pitanja i odgovori <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -1179,8 +1188,8 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
   <div class="wrap" style="position:relative">
     <div class="head-c">
       <span class="eyebrow rv">Odluka je vaša</span>
-      <h2 class="split">Sutra će vam neko opet pisati u ponoć.<br><span class="g">Hoće li dobiti odgovor?</span></h2>
-      <p class="sub rv">Svaki dan bez Hostia su upiti koji odlaze konkurentu koji je odgovorio prvi. Prvi biznisi u vašem gradu koji automatizuju rezervacije uzeće mušterije svima ostalima.</p>
+      <h2 class="split">Sutra će vam neko opet pisati u ponoć. <br><span class="g">Hoće li dobiti odgovor?</span></h2>
+      
     </div>
     <div class="form-grid">
       <div class="offer rv">
@@ -1223,7 +1232,7 @@ footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink
     <div class="foot">
       <a href="#top" class="logo">host<b>io.</b></a>
       <nav aria-label="Podnožje">
-        <a href="#mogucnosti">Mogućnosti</a><a href="#kalkulator">Kalkulator</a><a href="#za-koga">Za koga</a><a href="/privatnost.html">Privatnost</a><a href="/brisanje-podataka.html">Brisanje podataka</a>
+        <a href="/usluge/">Usluge</a><a href="#kalkulator">Kalkulator</a><a href="/vise/za-koga/">Za koga</a><a href="/vise/pitanja/">Pitanja</a><a href="/privatnost.html">Privatnost</a><a href="/brisanje-podataka.html">Brisanje podataka</a>
       </nav>
       <small>© <span id="yr"></span> Hostio · Custom AI za vaš biznis</small>
     </div>
@@ -1597,7 +1606,6 @@ $$(".count").forEach(c => {
   gsap.to(o, { v: to, duration: 1.6, ease: "power2.out", scrollTrigger: { trigger: c, start: "top 88%" }, onUpdate: () => c.textContent = Math.round(o.v) });
 });
 gsap.from(".stat", { y: 40, opacity: 0, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".why-grid", start: "top 85%" } });
-gsap.from(".why-col li", { x: -20, opacity: 0, duration: .7, stagger: .06, ease: "power3.out", scrollTrigger: { trigger: ".why-cols", start: "top 80%" } });
 
 /* faq */
 gsap.from(".q", { y: 30, opacity: 0, duration: .7, stagger: .06, ease: "power3.out", scrollTrigger: { trigger: ".faq", start: "top 85%" } });
