@@ -39,9 +39,11 @@ button,input,select{font:inherit;color:inherit}
 .links a{position:relative}
 .links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--gum);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease)}
 .links a:hover::after{transform:scaleX(1)}
-.status{display:none;align-items:center;gap:8px;font-size:.84rem;font-weight:700}
-.status i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(62,214,168,.2)}
-.status.closed i{background:var(--gum);box-shadow:0 0 0 4px rgba(255,111,125,.2)}
+.right{display:flex;align-items:center;gap:28px}
+.sos{display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 12px;border-radius:999px;background:#E5303F;color:#fff;font-weight:800;font-size:.9rem;white-space:nowrap;box-shadow:0 0 0 0 rgba(229,48,63,.5);animation:sos 2.2s infinite}
+.sos svg{width:18px;height:18px}
+.sos:hover{background:#c92332}
+@keyframes sos{70%{box-shadow:0 0 0 12px rgba(229,48,63,0)}100%{box-shadow:0 0 0 0 rgba(229,48,63,0)}}
 
 /* HERO = the tooth simulator */
 .hero{position:relative;padding:28px 0 56px;overflow:hidden}
@@ -203,7 +205,8 @@ footer{padding:70px 0 calc(40px + env(safe-area-inset-bottom));text-align:center
   .priv{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .links{display:none}.status{display:flex}
+  .links{display:none}
+  .sos{padding:9px 14px 9px 10px;font-size:.84rem}
   .nav{height:60px}
   .hero{padding:18px 0 40px}
   h1{font-size:clamp(2.9rem,15vw,4.2rem)}
@@ -235,8 +238,9 @@ footer{padding:70px 0 calc(40px + env(safe-area-inset-bottom));text-align:center
 <header class="top">
   <div class="wrap nav">
     <a href="#top" class="logo" aria-label="Lumen">lumen<i></i></a>
-    <nav class="links" aria-label="Navigacija"><a href="#top">Vaš zub</a><a href="#termin">Termin</a><a href="#cijene">Cijene</a><a href="#kontakt">Kontakt</a></nav>
-    <span class="status" id="status"><i></i><span id="statusTxt">Otvoreno</span></span>
+    <div class="right"><nav class="links" aria-label="Navigacija"><a href="#top">Vaš zub</a><a href="#termin">Termin</a><a href="#cijene">Cijene</a><a href="#kontakt">Kontakt</a></nav>
+    <a class="sos" href="tel:+38733000000" aria-label="Hitna intervencija, pozovite ordinaciju"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Hitna intervencija</a>
+    </div>
   </div>
 </header>
 
@@ -458,7 +462,6 @@ const cap = s => s[0].toUpperCase() + s.slice(1);
 /* ---------- header status + hours ---------- */
 (() => {
   const c = CLOSE[NOW.dw], open = c && NOW.m >= OPEN && NOW.m < c;
-  $("#status").classList.toggle("closed", !open); $("#statusTxt").textContent = open ? `Otvoreno do ${hm(c)}` : "Zatvoreno";
   $("#hrs").innerHTML = [["Pon–Pet", 1], ["Subota", 6], ["Nedjelja", 7]].map(([l, k]) => `<div class="${(k === 1 ? NOW.dw <= 5 : NOW.dw === k) ? "today" : ""}"><span>${l}</span><span>${CLOSE[k] ? hm(OPEN) + "–" + hm(CLOSE[k]) : "zatvoreno"}</span></div>`).join("");
 })();
 
