@@ -4,3 +4,5 @@
 # Apartment websites: /a/{slug}
 /a/*  /apartmani/  200
 /s/*  /servis/  200
+# Clinic websites: /k/{slug}
+/k/*  /klinika/  200
