@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hostio.ba/</loc><lastmod>2026-10-21</lastmod><priority>1.0</priority></url>
-  <url><loc>https://hostio.ba/usluge/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://hostio.ba/</loc><lastmod>2026-10-25</lastmod><priority>1.0</priority></url>
+  <url><loc>https://hostio.ba/usluge/</loc><lastmod>2026-10-25</lastmod><priority>0.7</priority></url>
+  <url><loc>https://hostio.ba/usluge/ai-video/</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
   <url><loc>https://hostio.ba/usluge/ai-odgovori/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
   <url><loc>https://hostio.ba/usluge/custom-ai/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
   <url><loc>https://hostio.ba/usluge/dashboard/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
