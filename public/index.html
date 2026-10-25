@@ -743,8 +743,13 @@ a.card{display:block;color:inherit}
 
 /* ===== AI video section ===== */
 .vid{position:relative;overflow:hidden}
-.vid-grid{position:relative;margin-top:64px;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-.reels{display:grid;grid-template-columns:1fr;max-width:360px;margin-inline:auto;width:100%}
+.vid-grid{position:relative;margin-top:64px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1040px;margin-inline:auto;align-items:start}
+.reels .reel:nth-child(2){margin-top:56px}
+.vid-grid>div:last-child{margin-top:72px}
+.vfeat{grid-template-columns:1fr 1fr}
+.vid-cta{justify-content:center}
+.ptag{position:absolute;left:12px;top:12px;z-index:2;padding:6px 11px;border-radius:999px;background:rgba(14,15,12,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--g);font-size:.66rem;font-weight:700;letter-spacing:.1em}
 .reel{position:relative;margin:0}
 
 .reel .frame{position:relative;aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#111;box-shadow:0 0 0 1px var(--line),0 40px 80px -30px rgba(0,0,0,.9),0 0 90px -30px var(--gglow)}
@@ -774,8 +779,8 @@ a.card{display:block;color:inherit}
 .vstep em{position:absolute;top:22px;right:22px;font-style:normal;font-size:.74rem;font-weight:700;color:#55574F;letter-spacing:.1em}
 .vstep b{display:block;font-size:1.05rem;font-weight:600}
 .vstep small{color:#A9ABA2;font-size:.86rem}
-@media (max-width:980px){.vid-grid{grid-template-columns:1fr;gap:48px}.vsteps{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.vid-grid{margin-top:40px}.reels{max-width:300px}.reel .frame{border-radius:20px}.reel figcaption b{font-size:.86rem}.reel figcaption small{font-size:.76rem}.vf{padding:14px;gap:12px}.vf .ico{width:42px;height:42px}.vsteps{margin-top:48px;gap:10px}.vstep{padding:16px}.vstep .si{width:38px;height:38px;margin-bottom:12px}.vid-cta .btn{width:100%;justify-content:center}}
+@media (max-width:980px){.vsteps{grid-template-columns:1fr 1fr}.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 8px;scrollbar-width:none;max-width:none}.reels::-webkit-scrollbar{display:none}.reels .reel{flex:0 0 min(300px,72%);scroll-snap-align:center}.reels .reel:nth-child(2){margin-top:0}.vfeat{grid-template-columns:1fr}.vid-grid>div:last-child{margin-top:44px}}
+@media (max-width:600px){.vid-grid{margin-top:40px}.reel .frame{border-radius:20px}.reel figcaption b{font-size:.86rem}.reel figcaption small{font-size:.76rem}.vf{padding:14px;gap:12px}.vf .ico{width:42px;height:42px}.vsteps{margin-top:48px;gap:10px}.vstep{padding:16px}.vstep .si{width:38px;height:38px;margin-bottom:12px}.vid-cta .btn{width:100%;justify-content:center}}
 @media (max-width:380px){.vsteps{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.wave i{animation:none;height:60%}}
 </style>
@@ -940,6 +945,20 @@ a.card{display:block;color:inherit}
     </div>
     <div class="vid-grid">
       <div class="reels">
+          <figure class="reel rv">
+            <div class="frame">
+              <video src="/assets/video/lumen-reklama.mp4" poster="/assets/video/lumen-poster.jpg" muted loop playsinline preload="none"></video><span class="ptag">PROTOTIP</span>
+              <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
+            </div>
+            <figcaption><b>Lumen · stomatolog</b><small>Izmišljena ordinacija · 3D animacija · 27 s</small></figcaption>
+          </figure>
+          <figure class="reel rv">
+            <div class="frame">
+              <video src="/assets/video/obrtaj-reklama.mp4" poster="/assets/video/obrtaj-poster.jpg" muted loop playsinline preload="none"></video><span class="ptag">PROTOTIP</span>
+              <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
+            </div>
+            <figcaption><b>Obrtaj · auto servis</b><small>Izmišljeni servis · motion grafika · 26 s</small></figcaption>
+          </figure>
         <figure class="reel rv">
           <div class="frame">
             <video src="/assets/video/hostio-reklama.mp4" poster="/assets/video/hostio-poster.jpg" muted loop playsinline preload="none"></video>
