@@ -709,7 +709,7 @@ a.card{display:block;color:inherit}
 .v-chans{position:absolute;left:16px;top:14px;display:flex;gap:6px;z-index:2}
 .v-chans b{width:26px;height:26px;border-radius:8px;display:grid;place-items:center}
 .v-chans svg{width:15px;height:15px;fill:#fff}
-.v-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.v-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
 .v-vid::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,12,0) 40%,rgba(14,15,12,.85))}
 .v-vid .play{position:absolute;left:50%;top:44%;z-index:2;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;background:var(--g);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(126,217,87,.25);transition:transform .4s var(--ease)}
 .svc:hover .v-vid .play{transform:scale(1.1)}
@@ -744,9 +744,9 @@ a.card{display:block;color:inherit}
 /* ===== AI video section ===== */
 .vid{position:relative;overflow:hidden}
 .vid-grid{position:relative;margin-top:64px;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-.reels{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.reels{display:grid;grid-template-columns:1fr;max-width:360px;margin-inline:auto;width:100%}
 .reel{position:relative;margin:0}
-.reel:nth-child(2){margin-top:70px}
+
 .reel .frame{position:relative;aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#111;box-shadow:0 0 0 1px var(--line),0 40px 80px -30px rgba(0,0,0,.9),0 0 90px -30px var(--gglow)}
 .reel video{width:100%;height:100%;object-fit:cover;display:block}
 .reel .snd{position:absolute;right:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:0;background:rgba(14,15,12,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--paper);font-size:.8rem;font-weight:600;cursor:pointer;transition:background .3s,color .3s}
@@ -774,8 +774,8 @@ a.card{display:block;color:inherit}
 .vstep em{position:absolute;top:22px;right:22px;font-style:normal;font-size:.74rem;font-weight:700;color:#55574F;letter-spacing:.1em}
 .vstep b{display:block;font-size:1.05rem;font-weight:600}
 .vstep small{color:#A9ABA2;font-size:.86rem}
-@media (max-width:980px){.vid-grid{grid-template-columns:1fr;gap:48px}.reels{max-width:560px;margin-inline:auto;width:100%}.vsteps{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.vid-grid{margin-top:40px}.reels{gap:12px}.reel:nth-child(2){margin-top:40px}.reel .frame{border-radius:20px}.reel .snd{right:8px;bottom:8px;padding:9px}.reel .snd span{display:none}.reel figcaption b{font-size:.86rem}.reel figcaption small{font-size:.76rem}.vf{padding:14px;gap:12px}.vf .ico{width:42px;height:42px}.vsteps{margin-top:48px;gap:10px}.vstep{padding:16px}.vstep .si{width:38px;height:38px;margin-bottom:12px}.vid-cta .btn{width:100%;justify-content:center}}
+@media (max-width:980px){.vid-grid{grid-template-columns:1fr;gap:48px}.vsteps{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.vid-grid{margin-top:40px}.reels{max-width:300px}.reel .frame{border-radius:20px}.reel figcaption b{font-size:.86rem}.reel figcaption small{font-size:.76rem}.vf{padding:14px;gap:12px}.vf .ico{width:42px;height:42px}.vsteps{margin-top:48px;gap:10px}.vstep{padding:16px}.vstep .si{width:38px;height:38px;margin-bottom:12px}.vid-cta .btn{width:100%;justify-content:center}}
 @media (max-width:380px){.vsteps{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.wave i{animation:none;height:60%}}
 </style>
@@ -894,7 +894,7 @@ a.card{display:block;color:inherit}
       <a href="#video" class="svc rv">
         <span class="new">NOVO</span>
         <div class="vis v-vid">
-          <img src="/assets/video/mms-poster.jpg" alt="Kadar iz AI video reklame za MMS" loading="lazy" width="720" height="1280">
+          <img src="/assets/video/hostio-poster.jpg" alt="Kadar iz Hostio AI video reklame" loading="lazy" width="720" height="1280">
           <span class="play"><svg viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span>
           <div class="wave" aria-hidden="true"><em>VOICEOVER</em><i style="animation-delay:-0.00s"></i><i style="animation-delay:-0.13s"></i><i style="animation-delay:-0.26s"></i><i style="animation-delay:-0.39s"></i><i style="animation-delay:-0.52s"></i><i style="animation-delay:-0.65s"></i><i style="animation-delay:-0.78s"></i><i style="animation-delay:-0.91s"></i><i style="animation-delay:-1.04s"></i><i style="animation-delay:-0.07s"></i><i style="animation-delay:-0.20s"></i><i style="animation-delay:-0.33s"></i><i style="animation-delay:-0.46s"></i><i style="animation-delay:-0.59s"></i><i style="animation-delay:-0.72s"></i><i style="animation-delay:-0.85s"></i><i style="animation-delay:-0.98s"></i><i style="animation-delay:-0.01s"></i><i style="animation-delay:-0.14s"></i><i style="animation-delay:-0.27s"></i><i style="animation-delay:-0.40s"></i><i style="animation-delay:-0.53s"></i></div>
         </div>
@@ -940,13 +940,6 @@ a.card{display:block;color:inherit}
     </div>
     <div class="vid-grid">
       <div class="reels">
-        <figure class="reel rv">
-          <div class="frame">
-            <video src="/assets/video/mms-reklama.mp4" poster="/assets/video/mms-poster.jpg" muted loop playsinline preload="none"></video>
-            <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
-          </div>
-          <figcaption><b>MMS · Mobilni mali servis</b><small>AI vizuali i voiceover · 40 s</small></figcaption>
-        </figure>
         <figure class="reel rv">
           <div class="frame">
             <video src="/assets/video/hostio-reklama.mp4" poster="/assets/video/hostio-poster.jpg" muted loop playsinline preload="none"></video>
