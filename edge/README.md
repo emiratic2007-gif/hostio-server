@@ -6,7 +6,7 @@ Address: https://eauwnwvieyepzrbildqt.supabase.co/functions/v1/hostio
 - `/status?kljuc=<WHATSAPP_VERIFY_TOKEN>`: health check of every part.
   - `&preusmjeri=da` points the WhatsApp number to this server.
   - `&waba=<id>&pretplati=da` subscribes the WhatsApp account.
-- `/api/*`: owner dashboard. `/api/rc/*`: rent-a-car agency websites.
+- `/api/*`: owner dashboard. `/api/rc/*`: rent-a-car agency websites. `/api/coach/*`: personal coaching websites (e.g. /mofit) and the coach dashboard (/dashboard/coach/).
 
 Secrets (Supabase → Edge Functions → Secrets): WHATSAPP_TOKEN, WHATSAPP_VERIFY_TOKEN,
 META_APP_SECRET, GROQ_API_KEY or ANTHROPIC_API_KEY. SUPABASE_URL, SUPABASE_ANON_KEY and
