@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /dashboard/
 Disallow: /api/
+Disallow: /rest/
 
 Sitemap: https://hostio.ba/sitemap.xml
