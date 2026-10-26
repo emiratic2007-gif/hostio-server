@@ -6,6 +6,8 @@
   "assets": {
     "directory": "public",
     "binding": "ASSETS",
+    // /privatnost serves privatnost.html, /usluge serves usluge/index.html (canonical URLs have no .html).
+    "html_handling": "auto-trailing-slash",
     // Only these paths run code; every other file is served directly (free and unlimited).
     "run_worker_first": ["/api/*", "/status"]
   },
