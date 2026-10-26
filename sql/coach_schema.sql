@@ -19,6 +19,8 @@ create table if not exists coach_requests (
   session_min integer not null default 60 check (session_min between 15 and 240),
   owner_note text check (char_length(owner_note) <= 1500),
   source text not null default 'web' check (source in ('web', 'rucno', 'whatsapp', 'instagram')),
+  -- the chat the request came from: 'wa:<number>' or 'ig:<instagram user id>' (for answering through Hostio)
+  chat_key text check (char_length(chat_key) <= 80),
   created_at timestamptz not null default now(),
   decided_at timestamptz
 );

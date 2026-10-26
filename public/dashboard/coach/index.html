@@ -244,7 +244,7 @@ async function api(path, opts = {}) {
   return d;
 }
 const post = (route, body) => api("/api/coach/" + route, { method: "POST", body: JSON.stringify(body) });
-function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("in"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("in"), 2600); }
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("in"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("in"), msg.length > 60 ? 6000 : 2600); }
 
 // ---------- login ----------
 $("loginForm").addEventListener("submit", async (e) => {
@@ -288,10 +288,17 @@ function messageFor(r, kind) {
   return `Zdravo ${first}! Moram otkazati naš termin za ${when}. Javi mi koji ti drugi termin odgovara.\n${name}`;
 }
 const waLink = (wa, text) => `https://wa.me/${wa}?text=${encodeURIComponent(text)}`;
+// Hostio can answer in the chat the client used (Instagram), or on WhatsApp once the coach's number is connected.
+function viaHostio(id) {
+  const r = D.zahtjevi.find((x) => x.id === id), k = D.trener.kanali || {};
+  if (!r) return false;
+  return String(r.chat_key || "").startsWith("ig:") ? !!k.instagram : !!k.whatsapp;
+}
+const SRC = { whatsapp: "s WhatsAppa", instagram: "s Instagrama", rucno: "dodano ručno" };
 function msgBox(id, rep) {
   return `<div class="msg ${rep.ok ? "" : "no"}" data-msg="${id}"><b>${rep.title}. Pošalji klijentu poruku:</b>
     <textarea class="in" id="m${id}" aria-label="Poruka klijentu">${esc(rep.text)}</textarea>
-    <div class="btn-row">${rep.wa ? `<a class="btn btn-wa btn-sm" data-wa="${id}" href="${waLink(rep.wa, rep.text)}" target="_blank" rel="noopener">Otvori WhatsApp</a>` : ""}
+    <div class="btn-row">${viaHostio(id) ? `<button class="btn btn-ok btn-sm" type="button" data-send="${id}">Pošalji preko Hostia</button>` : ""}${rep.wa ? `<a class="btn btn-wa btn-sm" data-wa="${id}" href="${waLink(rep.wa, rep.text)}" target="_blank" rel="noopener">Otvori WhatsApp</a>` : ""}
     <button class="btn btn-sm" type="button" data-copy="${id}">Kopiraj poruku</button><button class="link" type="button" data-close="${id}">Zatvori</button></div></div>`;
 }
 
@@ -313,7 +320,7 @@ function renderReqs() {
   const tmr = addDays(today(), 1);
   box.innerHTML = list.map((r) => {
     const rep = replies[r.id];
-    const head = `<div class="card-top"><h3>${esc(r.name)}</h3><span class="pill svc">${esc(SVC[r.service])}</span>${rep ? `<span class="pill ${rep.ok ? "ok" : "no"}">${rep.title}</span>` : `<span class="pill new">Novo · ${ago(r.created_at)}</span>`}${r.source !== "web" ? `<span class="pill">${esc(r.source)}</span>` : ""}</div>`;
+    const head = `<div class="card-top"><h3>${esc(r.name)}</h3><span class="pill svc">${esc(SVC[r.service])}</span>${rep ? `<span class="pill ${rep.ok ? "ok" : "no"}">${rep.title}</span>` : `<span class="pill new">Novo · ${ago(r.created_at)}</span>`}${SRC[r.source] ? `<span class="pill">${SRC[r.source]}</span>` : ""}</div>`;
     const meta = `<dl class="meta"><div><dt>Cilj</dt><dd>${esc(r.goals?.join(", ") || "–")}</dd></div><div><dt>Iskustvo</dt><dd>${esc(r.experience || "–")}</dd></div>
       <div><dt>Dani</dt><dd>${esc(r.days?.join(", ") || "–")}</dd></div><div><dt>Doba dana</dt><dd>${esc(r.times?.join(", ") || "–")}</dd></div>
       <div><dt>WhatsApp</dt><dd class="mono">${esc(r.phone)}</dd></div><div><dt>Broj zahtjeva</dt><dd class="mono">${esc(r.ref)}</dd></div></dl>`;
@@ -390,6 +397,12 @@ document.addEventListener("click", (e) => {
   else if (ds.nosure) decide(ds.nosure, "odbijeno", t);
   else if (ds.cancelsure) decide(ds.cancelsure, "otkazano", t);
   else if (ds.slot) { showDetail(ds.slot); $("detail").scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+  else if (ds.send) {
+    t.disabled = true;
+    post("poruka", { id: ds.send, tekst: $("m" + ds.send).value })
+      .then((d) => { toast("Poslano na " + d.kanal); delete replies[ds.send]; render(); if (view === "raspored") showDetail(ds.send); })
+      .catch((e) => { if (e.message !== "auth") toast(e.message); t.disabled = false; });
+  }
   else if (ds.close) { delete replies[ds.close]; render(); if (view === "raspored") showDetail(ds.close); }
   else if (ds.copy) {
     const ta = $("m" + ds.copy);
