@@ -6,3 +6,6 @@
 /s/*  /servis/  200
 # Clinic websites: /k/{slug}
 /k/*  /klinika/  200
+# DownTown pub: short link for Instagram story
+/downtown  /pub/  200
+/downtown/  /pub/  200
