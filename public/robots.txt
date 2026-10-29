@@ -3,5 +3,6 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /api/
 Disallow: /rest/
+Disallow: /pub/lista/
 
 Sitemap: https://hostio.ba/sitemap.xml

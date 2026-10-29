@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DownTown pub · Rezervacije</title>
+<meta name="theme-color" content="#140D0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#140D0A;--wood:#3B2216;--wood2:#4A2C1C;--amber:#F2A93B;--amber2:#FFC766;--foam:#FFF4DC;--cream:#E9DCC3;--mut:#B39C83;--line:rgba(255,244,220,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;color:var(--foam);background:radial-gradient(70% 40% at 50% 0%,rgba(242,169,59,.18),transparent 70%),var(--bg);min-height:100svh;-webkit-font-smoothing:antialiased}
+.wrap{width:min(760px,100% - 32px);margin:0 auto;padding:26px 0 40px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.neon{font-family:Yellowtail,cursive;font-size:2.6rem;line-height:1;color:#FFE7C2;text-shadow:0 0 6px rgba(255,199,102,.8),0 0 20px rgba(242,169,59,.6)}
+h1{font-family:Oswald,sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;color:var(--amber)}
+.tools{display:flex;gap:8px}
+.tools button{border:0;cursor:pointer;padding:10px 14px;border-radius:12px;background:rgba(255,244,220,.08);color:var(--foam);font:600 .85rem Inter,sans-serif}
+.tools button:hover{background:rgba(242,169,59,.22)}
+.tot{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+.tot div{padding:16px;border-radius:16px;background:linear-gradient(170deg,var(--wood2),var(--wood));box-shadow:inset 0 0 0 1px var(--line)}
+.tot small{display:block;font-family:Oswald;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.tot strong{display:block;font-family:Oswald;font-size:2rem;color:var(--amber2);line-height:1.1}
+.tot span{font-size:.85rem;color:var(--cream)}
+section{margin-top:22px}
+h2{font-family:Oswald,sans-serif;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--amber);padding-bottom:8px;margin-bottom:6px}
+h2 span{font-size:.85rem;color:var(--mut);letter-spacing:.1em}
+table{width:100%;border-collapse:collapse}
+td{padding:12px 6px;border-bottom:1px solid var(--line);font-size:.98rem}
+td.n{width:34px;color:var(--mut);font-variant-numeric:tabular-nums}
+td.g{text-align:right;font-family:Oswald;font-size:1.15rem;color:var(--amber2);white-space:nowrap}
+td.t{width:90px;text-align:right;color:var(--mut);font-size:.8rem;white-space:nowrap}
+.empty{padding:16px 6px;color:var(--mut)}
+.msg{padding:40px 0;text-align:center;color:var(--cream)}
+@media (max-width:480px){td.t{display:none}}
+@media print{body{background:#fff;color:#000}.tools{display:none}.tot div{background:none;box-shadow:inset 0 0 0 1px #ccc}.tot strong,td.g{color:#000}td{border-color:#ccc}h2{border-color:#000}.neon{color:#000;text-shadow:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div><div class="neon">DownTown</div><h1>Rezervacije stolova</h1></div>
+    <div class="tools"><button type="button" id="reload">Osvježi</button><button type="button" onclick="print()">Printaj</button></div>
+  </header>
+  <div id="out"><p class="msg">Učitavam…</p></div>
+</main>
+<script>
+(() => {
+"use strict";
+const SB_URL = "https://eauwnwvieyepzrbildqt.supabase.co";
+const SB_KEY = "sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
+const DAYS = [["2026-10-30", "Petak 30.10."], ["2026-10-31", "Subota 31.10."]];
+const k = new URLSearchParams(location.hash.slice(1)).get("k") || "";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tm = s => new Date(s).toLocaleString("bs-BA", { timeZone: "Europe/Sarajevo", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+async function load() {
+  const out = document.getElementById("out");
+  if (!k) { out.innerHTML = '<p class="msg">Ovaj link nije potpun. Otvorite link koji ste dobili od Hostia.</p>'; return; }
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/rpc/pub_list`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ p_token: k }) });
+    if (!r.ok) throw new Error(r.status);
+    const rows = await r.json();
+    const by = Object.fromEntries(DAYS.map(([d]) => [d, rows.filter(x => x.day === d)]));
+    const sum = d => by[d].reduce((a, x) => a + x.guests, 0);
+    out.innerHTML = `<div class="tot">${DAYS.map(([d, l]) => `<div><small>${l}</small><strong>${sum(d)}</strong><span>osoba · ${by[d].length} rezervacija</span></div>`).join("")}</div>` +
+      DAYS.map(([d, l]) => `<section><h2>${l}<span>${sum(d)} osoba</span></h2>${by[d].length ? `<table>${by[d].map((x, i) => `<tr><td class="n">${i + 1}.</td><td>${esc(x.first_name)} ${esc(x.last_name)}</td><td class="t">${tm(x.created_at)}</td><td class="g">${x.guests} os.</td></tr>`).join("")}</table>` : '<p class="empty">Još nema rezervacija.</p>'}</section>`).join("");
+  } catch (e) { out.innerHTML = '<p class="msg">Ne mogu učitati rezervacije. Provjerite internet i pokušajte ponovo.</p>'; }
+}
+document.getElementById("reload").addEventListener("click", load);
+load(); setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>
