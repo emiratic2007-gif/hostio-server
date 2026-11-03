@@ -381,6 +381,21 @@ section{padding-block:72px;scroll-margin-top:62px}
 .iv-sign div{font-size:11px;color:#6b6b74}.iv-sign span{display:block;border-bottom:1px solid #111;height:36px;margin-bottom:6px}.iv-sign b{display:block;color:#111;font-size:12.5px}
 .iv-foot{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #ececf0;margin-top:26px;padding-top:12px;font-size:10px;color:#8b8b94}
 .iv-stamp{position:absolute;right:70px;top:230px;transform:rotate(-12deg);border:4px solid #0f7a42;color:#0f7a42;font-weight:800;font-size:28px;letter-spacing:.2em;padding:6px 16px;border-radius:8px;opacity:.8}
+.rd-pkm{max-width:640px}
+.rd-pkl{display:grid;gap:10px;margin-top:12px;max-height:58vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.rd-pkc{border:1px solid var(--line);border-radius:12px;padding:12px}
+.rd-pkn{display:flex;gap:10px;align-items:center}.rd-pkn i{font-style:normal;flex:none;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700}
+.rd-pkn b{display:block;font-size:17px;line-height:1.25}.rd-pkn small{display:block;color:var(--body);font-size:14px}
+.rd-pkv{display:grid;gap:6px;margin-top:10px}
+.rd-pkv button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:12px 14px;border-radius:10px;background:var(--mist);border:1.5px solid var(--mist);min-height:58px;transition:border-color .15s}
+.rd-pkv button:hover{border-color:var(--red)}.rd-pkv b{display:block;font-size:16px}.rd-pkv small{display:block;font-size:13.5px;color:var(--body)}.rd-pkv small.gd{color:var(--red-d);font-weight:600}
+.rd-pkv button>svg{flex:none;color:var(--red)}
+.rd-pkm .btn.ghost{margin-top:12px;min-height:52px;font-size:15.5px}
+.rd-sgl{display:grid;gap:6px;margin-top:8px}
+.rd-sg{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.rd-sg:hover{border-color:var(--ink)}.rd-sg b{display:block;font-size:15px;font-weight:600;line-height:1.3}.rd-sg small{display:block;font-size:13px;color:var(--body)}.rd-sg em{font-style:normal;font-weight:700;white-space:nowrap}
+.rd-free{display:block;margin-top:8px;font-size:14.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;min-height:40px}
+.rd-auto{background:var(--green-t);color:var(--green);font-size:14px;font-weight:500;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.45}
 @media (min-width:760px){.rd-stats{grid-template-columns:repeat(4,1fr)}.rd-grid{grid-template-columns:repeat(2,1fr)}.rd-tools .btn{flex:0 0 auto}.rd-ov{align-items:center}.rd-mod{border-radius:18px}.rd-ivw{align-items:stretch}}
 @media (min-width:960px){.rd-ivtabs{display:none}.rd-ivb{grid-template-columns:460px 1fr}.rd-iv-uredi .rd-ivp,.rd-iv-pregled .rd-ivf{display:block}.rd-ivp{padding:28px}}
 @media (min-width:1100px){.rd-grid{grid-template-columns:repeat(3,1fr)}}
@@ -828,7 +843,7 @@ async function rSeed(){/* prazna demo radnja: upiši primjer podataka jednom */
  const n=Date.now();await Promise.all([...SEED.jobs.map(j=>put('job',j)),...SEED.reqs.map(r=>put('req',{...r,t:n-12*6e4})),...SEED.hist.map((h,i)=>put('hist',{...h,id:'seed'+i}))]);R.sig='';await rLoad();}
 async function rEnter(pin,who){PIN=pin;await rLoad();if(!S.jobs.length&&!S.hist.length)await rSeed();
  S.auth=true;S.user=who;R.tab=R.tab||'danas';try{sessionStorage.setItem('zj_auth',JSON.stringify({pin,who}))}catch(e){}}
-function rPoll(){if(!S.auth||R.modal||R.inv||PEND.size||S.route!=='radnja'||document.hidden)return;rLoad().then(ch=>{if(ch)renderRadnja(true)}).catch(()=>{});}
+function rPoll(){if(!S.auth||R.modal||R.inv||R.pick||PEND.size||S.route!=='radnja'||document.hidden)return;rLoad().then(ch=>{if(ch)renderRadnja(true)}).catch(()=>{});}
 setInterval(rPoll,6000);document.addEventListener('visibilitychange',rPoll);addEventListener('focus',rPoll);
 (()=>{const n=Date.now(),m=6e4;S.user='Vlasnik';S.invs=[];S.seq=1;
  const plates=['A12-K-345','E45-M-112','J09-T-778','O33-E-501','K71-A-260'];
@@ -839,7 +854,7 @@ setInterval(rPoll,6000);document.addEventListener('visibilitychange',rPoll);addE
 })();
 const SEED={jobs:JSON.parse(JSON.stringify(S.jobs)),reqs:JSON.parse(JSON.stringify(S.reqs)),hist:JSON.parse(JSON.stringify(S.hist))};S.jobs=[];S.reqs=[];S.hist=[];
 function rLogin(){return `<div class="login"><form class="wrap" id="lg"><div class="logo">${LOGO}<span>ZAMAJAC<small>AUTO SERVIS</small></span></div><h1>Prijava<br><b>za radnju</b></h1><p>Izaberite ko ste, da historija pokazuje ko je šta uradio. Podaci su zajednički za sve uređaje radnje. Demo kod je 1234, a demo podaci se brišu svaku noć.</p><div class="rd-who">${PEOPLE.map(p=>`<button type="button" class="${R.who===p?'on':''}" data-r="who" data-v="${p}"><i>${p[0]}</i>${p}</button>`).join('')}</div><label for="pin" hidden>Kod radnje</label><input id="pin" inputmode="numeric" value="1234" autocomplete="off"><button class="btn full">Uđi kao ${R.who}</button><button type="button" class="bk0" data-site="1">Nazad na sajt</button></form></div>`;}
-function rCard(j){const inv=S.invs.find(v=>v.jobId===j.id);
+function rCard(j){const inv=invFor(j.id);
  const acts=j.st===0?[['Počni rad',1,'']]:j.st===1?[['Gotovo',3,''],['Čeka dijelove',2,'ghost']]:j.st===2?[['Nastavi rad',1,'']]:[['Vrati u rad',1,'ghost']];
  return `<article class="rd-card" style="--c:${COLC[j.st]}"><div class="rd-ct"><div><div class="rd-car">${esc(j.car)}</div>${j.plate?`<div class="rd-plate">${esc(j.plate)}</div>`:''}</div><div class="rd-time">${esc(j.when)}</div></div>
  <div class="rd-issue">${esc(j.issue)}</div><div class="rd-meta">${esc(j.name)}${j.phone?' · '+esc(j.phone):''}${j.km?' · '+esc(j.km)+' km':''}</div>
@@ -873,12 +888,87 @@ function rModal(){const m=R.modal;
  <div class="rd-2"><label class="field"><span>Termin</span><input name="when" value="Danas ${two((new Date().getHours()+1)%24)}:00"></label><label class="field"><span>Kilometraža</span><input name="km" inputmode="numeric"></label></div>
  ${job?`<label class="field"><span>Radnik</span><select name="worker">${WK.map(w=>`<option>${w}</option>`).join('')}</select></label>`:''}
  <label class="field"><span>Napomena</span><textarea name="note"></textarea></label><p class="err" id="rdErr"></p><button class="btn full">${job?'Dodaj u radnju':'Dodaj zahtjev'}</button></form></div>`;}
+/* cjenovnik (KM bez PDV-a): n naziv, t rad|dio, u jedinica, q količina, p cijena, k ključne riječi, pop prikazati odmah */
+const PRICE=[
+{n:'Dijagnostika računarom',t:'rad',u:'h',q:1,p:40,k:'dijagnostika,lampica,senzor',pop:1},
+{n:'Rad mehaničara',t:'rad',u:'h',q:1,p:60,k:'',pop:1},
+{n:'Mali servis (rad)',t:'rad',u:'h',q:1,p:50,k:'mali servis,redovni,servisna',pop:1},
+{n:'Ulje motora 5W-30',t:'dio',u:'l',q:4.5,p:18,k:'mali servis,redovni,servisna,trosi ulja',pop:1},
+{n:'Filter ulja',t:'dio',u:'kom',q:1,p:15,k:'mali servis,redovni,servisna'},
+{n:'Filter zraka',t:'dio',u:'kom',q:1,p:25,k:'mali servis,redovni'},
+{n:'Filter kabine',t:'dio',u:'kom',q:1,p:25,k:'miris ventilacije,magle,dezinfekcija'},
+{n:'Filter goriva',t:'dio',u:'kom',q:1,p:40,k:'filter goriva,zrak goriva'},
+{n:'Veliki servis: zamjena razvoda (rad)',t:'rad',u:'h',q:4,p:60,k:'veliki servis,zupcasti,razvod'},
+{n:'Set razvoda s pumpom za vodu',t:'dio',u:'set',q:1,p:420,k:'veliki servis,zupcasti,razvod'},
+{n:'Pomoćni (klinasti) kaiš',t:'dio',u:'kom',q:1,p:45,k:'pomocni'},
+{n:'Zamjena kaiša (rad)',t:'rad',u:'h',q:1,p:50,k:'pomocni'},
+{n:'Svjećice (set)',t:'dio',u:'set',q:1,p:60,k:'bobine'},
+{n:'Grijaće svjećice (set)',t:'dio',u:'set',q:1,p:110,k:'grijace,grijaca'},
+{n:'Zamjena pločica, prednja osovina (rad)',t:'rad',u:'h',q:1,p:50,k:'plocice,kocnice',pop:1},
+{n:'Kočione pločice, prednje',t:'dio',u:'set',q:1,p:90,k:'plocice,kocnice',pop:1},
+{n:'Zamjena diskova i pločica (rad)',t:'rad',u:'h',q:1.5,p:50,k:'diskovi'},
+{n:'Kočioni diskovi, prednji (par)',t:'dio',u:'set',q:1,p:160,k:'diskovi'},
+{n:'Kočiona tečnost DOT4',t:'dio',u:'l',q:1,p:20,k:'kocione,kociona'},
+{n:'Zamjena amortizera, par (rad)',t:'rad',u:'h',q:2,p:50,k:'amortizeri'},
+{n:'Amortizer',t:'dio',u:'kom',q:2,p:110,k:'amortizeri'},
+{n:'Zamjena spone ili stabilizatora (rad)',t:'rad',u:'h',q:1,p:50,k:'spone,spona,vilica'},
+{n:'Spona stabilizatora',t:'dio',u:'kom',q:1,p:35,k:'spone'},
+{n:'Geometrija trapa',t:'rad',u:'kom',q:1,p:50,k:'vuce,trosenje',pop:1},
+{n:'Zamjena kvačila (rad)',t:'rad',u:'h',q:6,p:50,k:'kvacilo,kvacila,zamajac'},
+{n:'Set kvačila',t:'dio',u:'set',q:1,p:380,k:'kvacilo,kvacila'},
+{n:'Punjenje klime',t:'rad',u:'kom',q:1,p:80,k:'klima,kompresor klime',pop:1},
+{n:'Dezinfekcija klime',t:'rad',u:'kom',q:1,p:30,k:'miris ventilacije'},
+{n:'Termostat',t:'dio',u:'kom',q:1,p:55,k:'termostat'},
+{n:'Antifriz',t:'dio',u:'l',q:5,p:8,k:'rashladne,hladnjak,pregrijavanje'},
+{n:'Akumulator 74 Ah',t:'dio',u:'kom',q:1,p:190,k:'akumulator,akumulatora'},
+{n:'Zamjena akumulatora (rad)',t:'rad',u:'kom',q:1,p:15,k:'akumulator,akumulatora'},
+{n:'Test alternatora i punjenja',t:'rad',u:'kom',q:1,p:30,k:'alternator'},
+{n:'Sijalica H7',t:'dio',u:'kom',q:1,p:12,k:'svjetlo'},
+{n:'Zamjena sijalice (rad)',t:'rad',u:'kom',q:1,p:10,k:'svjetlo'},
+{n:'Čišćenje EGR ventila',t:'rad',u:'h',q:2,p:60,k:'egr'},
+{n:'Čišćenje DPF filtera',t:'rad',u:'kom',q:1,p:150,k:'dpf'},
+{n:'Balansiranje točkova (4 kom)',t:'rad',u:'kom',q:4,p:8,k:'balansiranje,vibracije volana',pop:1},
+{n:'Zamjena guma (4 kom)',t:'rad',u:'kom',q:4,p:10,k:'sezonskih,ostecena guma'},
+{n:'Krpljenje gume',t:'rad',u:'kom',q:1,p:15,k:'probusena'},
+{n:'Pranje motora',t:'rad',u:'kom',q:1,p:25,k:'pranje motora'},
+{n:'Probna vožnja i kontrola',t:'rad',u:'kom',q:1,p:0,k:'probna voznja'}];
+const P2I=p=>({d:p.n,q:p.q,u:p.u,p:p.p,t:p.t});
+const isInvoiced=id=>S.invs.some(x=>x.jobId===id||(x.jobIds||[]).includes(id));
+const invFor=id=>S.invs.find(x=>x.jobId===id||(x.jobIds||[]).includes(id));
+const wm=(a,b)=>a===b||(a.length>=4&&b.length>=4&&(a.startsWith(b.slice(0,Math.max(4,b.length-2)))||b.startsWith(a.slice(0,Math.max(4,a.length-2)))));
+function suggestItems(issue){const f=DB.find(x=>x.name===issue);const words=norm(issue).split(/\s+/).filter(Boolean);
+ const hit=PRICE.filter(p=>p.k.split(',').filter(Boolean).some(ph=>ph.trim().split(' ').every(w=>words.includes(w))));
+ const out=[];if(f?['lampice','elektrika','gorivo','izduv','motor'].includes(f.cat)&&!/servis/.test(norm(issue)):/lampic|dijagnost/.test(norm(issue)))out.push(P2I(PRICE[0]));
+ const rad=hit.filter(p=>p.t==='rad'&&p!==PRICE[0]),dio=hit.filter(p=>p.t==='dio');
+ (rad.length?rad.slice(0,2):[{n:issue+' (rad)',t:'rad',u:'h',q:1,p:60}]).forEach(p=>out.push(P2I(p)));dio.slice(0,4).forEach(p=>out.push(P2I(p)));
+ return out.filter((x,i,a)=>a.findIndex(y=>y.d===x.d)===i);}
+function customers(){const M=new Map();
+ const add=(name,phone,car,plate,km,job)=>{if(!name)return;const k=norm(name).trim()+'|'+String(phone||'').replace(/\D/g,'');let c=M.get(k);if(!c){c={key:k,name,phone:phone||'',cars:[]};M.set(k,c);}
+  let v=c.cars.find(x=>(plate&&x.plate===plate)||(!plate&&norm(x.car)===norm(car||'')));if(!v){v={car:car||'',plate:plate||'',km:km||'',jobs:[]};c.cars.push(v);}if(km)v.km=km;if(job)v.jobs.push(job);};
+ S.jobs.forEach(j=>add(j.name,j.phone,j.car,j.plate,j.km,j));S.invs.forEach(i=>add(i.cust,i.phone,i.car,i.plate,i.km,null));S.reqs.forEach(r=>add(r.name,r.phone,r.car,r.plate,r.km,null));
+ const L=[...M.values()];L.forEach(c=>{c.cars.forEach(v=>{const open=v.jobs.filter(j=>!isInvoiced(j.id));const done=open.filter(j=>j.st===3);
+  v.info=done.length?`${done.length===1?'Gotov posao':done.length+' gotova posla'}: ${done.map(j=>j.issue).join(', ')}`:open.length?`U radnji: ${open.map(j=>j.issue).join(', ')}`:'';v.go=!!done.length;v.score=done.length?2:open.length?1:0;});c.score=Math.max(0,...c.cars.map(v=>v.score));});
+ return L.sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name));}
+function autoInv(c,v){const open=v.jobs.filter(j=>!isInvoiced(j.id));const done=open.filter(j=>j.st===3);const use=done.length?done:open;
+ const inv=newInv(null);Object.assign(inv,{cust:c.name,phone:c.phone||'',car:v.car,plate:v.plate||'',km:v.km||'',jobId:use[0]?use[0].id:null,jobIds:use.map(j=>j.id)});
+ const items=[];use.forEach(j=>suggestItems(j.issue).forEach(it=>{if(!items.some(x=>x.d===it.d))items.push(it);}));
+ inv.items=items.length?items:[P2I(PRICE[1])];inv.auto=use.length?use.map(j=>j.issue).join(', '):'';
+ if(use.length)inv.note='Urađeno: '+use.map(j=>j.issue).join('; ')+'.';return inv;}
+function pkList(){const q=norm(R.pick.q||'').trim();const L=customers().filter(c=>!q||norm(c.name+' '+c.phone+' '+c.cars.map(v=>v.car+' '+v.plate).join(' ')).includes(q));
+ return L.length?L.map(c=>`<div class="rd-pkc"><div class="rd-pkn"><i>${esc((c.name[0]||'?').toUpperCase())}</i><div><b>${esc(c.name)}</b><small>${esc(c.phone||'Bez telefona')}</small></div></div><div class="rd-pkv">${c.cars.map((v,vi)=>`<button data-r="pickcar" data-ci="${esc(c.key)}" data-vi="${vi}"><span><b>${esc(v.car||'Auto')}${v.plate?' · '+esc(v.plate):''}</b><small class="${v.go?'gd':''}">${esc(v.info||'Nema otvorenih poslova')}</small></span>${CHEV}</button>`).join('')}</div></div>`).join(''):'<p class="rd-empty">Nema mušterije s tim imenom, telefonom ili autom. Napravite prazan račun ispod.</p>';}
+function rPick(){return `<div class="rd-ov"><div class="rd-mod rd-pkm" role="dialog" aria-label="Novi račun"><div class="rd-mh"><b>Novi račun: za koga?</b><button type="button" class="ic" data-r="pkclose" aria-label="Zatvori">×</button></div>
+ <p class="rd-meta">Izaberite mušteriju i auto. Račun se popuni sam iz urađenih poslova, a usluge možete dodati poslije.</p>
+ <div class="search">${IC('search')}<input id="pkq" type="search" placeholder="Ime, telefon, auto ili tablica" value="${esc(R.pick.q||'')}" autocomplete="off" aria-label="Traži mušteriju"></div>
+ <div class="rd-pkl" id="pkl">${pkList()}</div><button class="btn ghost full" data-r="pkblank">+ Nova mušterija (prazan račun)</button></div></div>`;}
+function ivSearch(q){const n=norm(q||'').trim();const ws=n.split(/\s+/).filter(w=>w.length>1);
+ const L=n?PRICE.map(p=>{const hay=norm(p.n+' '+p.k.replace(/,/g,' '));const toks=hay.split(/\s+/);const sc=ws.reduce((s,w)=>s+(hay.includes(w)?2:toks.some(k=>same(k,w))?1:0),0);return{p,sc}}).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,8).map(x=>x.p):PRICE.filter(p=>p.pop);
+ return L.map(p=>`<button class="rd-sg" data-r="itaddp" data-v="${PRICE.indexOf(p)}"><span><b>${esc(p.n)}</b><small>${p.t==='rad'?'Rad':'Dio'} · ${String(p.q).replace('.',',')} ${p.u}</small></span><em>${KM(p.p*p.q)}</em></button>`).join('')+(n?`<button class="rd-sg" data-r="itaddfree"><span><b>+ Dodaj „${esc(q.trim())}“ kao novu stavku</b><small>Cijenu upišite u stavci</small></span></button>`:'');}
 function newInv(j){const n=Date.now();return{id:n,no:'R-'+new Date().getFullYear()+'-'+String(S.seq).padStart(3,'0'),date:n,due:n+15*864e5,cust:j?j.name:'',addr:'',phone:j?j.phone||'':'',car:j?j.car:'',plate:j?j.plate||'':'',km:j?j.km||'':'',
  items:j?[{d:'Dijagnostika i pregled',q:1,u:'h',p:40,t:'rad'},{d:j.issue+' (rad)',q:1,u:'h',p:60,t:'rad'},{d:'Dijelovi',q:1,u:'kom',p:0,t:'dio'}]:[{d:'',q:1,u:'h',p:0,t:'rad'}],rab:0,vat:true,pay:'Gotovina',paid:false,note:'',jobId:j?j.id:null};}
-function ivForm(v){return `<div class="rd-ivs"><h3>Kupac</h3><label class="field"><span>Ime i prezime ili firma</span><input data-f="cust" value="${esc(v.cust)}"></label><label class="field"><span>Adresa</span><input data-f="addr" value="${esc(v.addr)}"></label><label class="field"><span>Telefon</span><input data-f="phone" value="${esc(v.phone)}"></label></div>
+function ivForm(v){return `${v.auto&&!S.invs.some(x=>x.id===v.id)?`<div class="rd-auto">Račun je popunjen iz urađenog posla: ${esc(v.auto)}. Provjerite stavke i cijene, pa sačuvajte.</div>`:''}<div class="rd-ivs"><h3>Kupac</h3><label class="field"><span>Ime i prezime ili firma</span><input data-f="cust" value="${esc(v.cust)}"></label><label class="field"><span>Adresa</span><input data-f="addr" value="${esc(v.addr)}"></label><label class="field"><span>Telefon</span><input data-f="phone" value="${esc(v.phone)}"></label></div>
 <div class="rd-ivs"><h3>Vozilo</h3><label class="field"><span>Auto</span><input data-f="car" value="${esc(v.car)}"></label><div class="rd-2"><label class="field"><span>Registracija</span><input data-f="plate" value="${esc(v.plate)}"></label><label class="field"><span>Kilometraža</span><input data-f="km" inputmode="numeric" value="${esc(v.km)}"></label></div></div>
 <div class="rd-ivs"><h3>Stavke</h3><div class="rd-ith"><span>Vrsta</span><span>Kol.</span><span>J. mj.</span><span>Cijena (KM, bez PDV)</span><span></span></div>${v.items.map((it,i)=>`<div class="rd-it"><input data-i="${i}" data-k="d" value="${esc(it.d)}" placeholder="Opis, npr. Zamjena prednjih pločica" aria-label="Opis stavke"><div class="rd-itr"><select data-i="${i}" data-k="t" aria-label="Vrsta"><option value="rad" ${it.t==='rad'?'selected':''}>Rad</option><option value="dio" ${it.t==='dio'?'selected':''}>Dio</option></select><input data-i="${i}" data-k="q" inputmode="decimal" value="${esc(it.q)}" aria-label="Količina"><select data-i="${i}" data-k="u" aria-label="Jedinica mjere">${['h','kom','l','set'].map(u=>`<option ${it.u===u?'selected':''}>${u}</option>`).join('')}</select><input data-i="${i}" data-k="p" inputmode="decimal" value="${esc(it.p)}" aria-label="Cijena bez PDV-a"><button class="ic" data-r="itdel" data-i="${i}" aria-label="Ukloni stavku">×</button></div></div>`).join('')}
-<div class="rd-quick">${['Dijagnostika|1|h|40|rad','Rad mehaničara|1|h|60|rad','Ulje motora 5W-30|4.5|l|18|dio','Filter ulja|1|kom|15|dio','Filter zraka|1|kom|25|dio','Kočione pločice, prednje|1|set|90|dio'].map(x=>`<button data-r="itadd" data-v="${x}">+ ${x.split('|')[0]}</button>`).join('')}<button data-r="itadd" data-v="">+ Prazna stavka</button></div></div>
+<div class="rd-add"><label class="field"><span>Dodaj još urađenu uslugu ili dio</span></label><div class="search">${IC('search')}<input id="ivsrch" type="search" placeholder="npr. pločice, ulje, geometrija" value="${esc(R.ivq||'')}" autocomplete="off" aria-label="Traži uslugu ili dio"></div><div class="rd-sgl" id="ivsg">${ivSearch(R.ivq||'')}</div><button class="rd-free" data-r="itadd" data-v="">+ Prazna stavka</button></div></div>
 <div class="rd-ivs"><h3>Obračun i plaćanje</h3><div class="rd-2"><label class="field"><span>Rabat (%)</span><input data-f="rab" inputmode="decimal" value="${esc(v.rab)}"></label><label class="field"><span>Način plaćanja</span><select data-f="pay">${['Gotovina','Kartica','Virman'].map(p=>`<option ${v.pay===p?'selected':''}>${p}</option>`).join('')}</select></label></div>
 <label class="rd-chk"><input type="checkbox" data-f="vat" ${v.vat?'checked':''}> Obračunaj PDV 17%</label><label class="rd-chk"><input type="checkbox" data-f="paid" ${v.paid?'checked':''}> Račun je plaćen</label>
 <label class="field"><span>Napomena na računu</span><textarea data-f="note">${esc(v.note)}</textarea></label></div>
@@ -898,8 +988,8 @@ function ivSheet(v){const t=invTotals(v);const rows=v.items.filter(it=>String(it
 function rInvEd(){const v=R.inv;return `<div class="rd-ov rd-ivw" role="dialog" aria-label="Račun ${esc(v.no)}"><div class="rd-ivbar"><button class="ic" data-r="ivclose" aria-label="Zatvori">×</button><b>Račun ${esc(v.no)}</b><button class="btn ghost" data-r="ivprint">Printaj / PDF</button><button class="btn" data-r="ivsave">Sačuvaj</button><div class="rd-ivtabs"><button class="${R.ivTab==='uredi'?'on':''}" data-r="ivtab" data-v="uredi">Uredi</button><button class="${R.ivTab==='pregled'?'on':''}" data-r="ivtab" data-v="pregled">Pregled</button></div></div>
  <div class="rd-ivb rd-iv-${R.ivTab}"><div class="rd-ivf" id="ivf">${ivForm(v)}</div><div class="rd-ivp" id="ivp">${ivSheet(v)}</div></div></div>`;}
 function fitSheet(){const p=$('ivp');if(!p||!p.offsetWidth)return;const sh=p.querySelector('.inv-sheet'),w=p.querySelector('.inv-wrap');const cs=getComputedStyle(p);const avail=p.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);const sc=Math.min(1,avail/794);sh.style.transform=`scale(${sc})`;w.style.width=794*sc+'px';w.style.height=sh.offsetHeight*sc+'px';}
-function renderRadnja(keep){const y=scrollY;const fy=$('ivf')?$('ivf').scrollTop:0;$('radnja').innerHTML=radnja()+(R.modal?rModal():'')+(R.inv?rInvEd():'');
- document.body.classList.toggle('lock',!!(R.modal||R.inv));if(R.inv){fitSheet();if(keep&&$('ivf'))$('ivf').scrollTop=fy;}
+function renderRadnja(keep){const y=scrollY;const fy=$('ivf')?$('ivf').scrollTop:0;$('radnja').innerHTML=radnja()+(R.modal?rModal():'')+(R.pick?rPick():'')+(R.inv?rInvEd():'');
+ document.body.classList.toggle('lock',!!(R.modal||R.inv||R.pick));if(R.inv){fitSheet();if(keep&&$('ivf'))$('ivf').scrollTop=fy;}
  if(R.modal){const f=document.querySelector('#rdf input,#rdf textarea');if(f)f.focus({preventScroll:true});}
  scrollTo({top:keep?y:0,behavior:'instant'});}
 function updPrev(){$('ivp').innerHTML=ivSheet(R.inv);$('ivtot').textContent=KM(invTotals(R.inv).total);fitSheet();}
@@ -920,8 +1010,13 @@ $('radnja').addEventListener('click',e=>{const b=e.target.closest('[data-r]');if
  if(a==='new'){R.modal={type:v};renderRadnja(true);return}
  if(a==='note'){R.modal={type:'note',id,car:J.car+' · '+J.issue};renderRadnja(true);return}
  if(a==='mclose'){R.modal=null;renderRadnja(true);return}
- if(a==='newinv'){R.inv=newInv(null);R.ivTab='uredi';renderRadnja(true);return}
- if(a==='invjob'){const ex=S.invs.find(x=>x.jobId===id);R.inv=ex?JSON.parse(JSON.stringify(ex)):newInv(J);R.ivTab='uredi';renderRadnja(true);return}
+ if(a==='newinv'){R.pick={q:''};renderRadnja(true);setTimeout(()=>$('pkq')&&$('pkq').focus({preventScroll:true}),60);return}
+ if(a==='pkclose'){R.pick=null;renderRadnja(true);return}
+ if(a==='pkblank'){R.pick=null;R.ivq='';R.inv=newInv(null);R.ivTab='uredi';renderRadnja(true);return}
+ if(a==='pickcar'){const c=customers().find(x=>x.key===b.dataset.ci);const vv=c&&c.cars[+b.dataset.vi];if(!vv)return;R.pick=null;R.ivq='';R.inv=autoInv(c,vv);R.ivTab=innerWidth<960?'pregled':'uredi';renderRadnja(true);return}
+ if(a==='itaddp'){const p=PRICE[+v];R.inv.items.push(P2I(p));R.ivq='';renderRadnja(true);toast('Dodano: '+p.n);return}
+ if(a==='itaddfree'){R.inv.items.push({d:(R.ivq||'').trim(),q:1,u:'kom',p:0,t:'rad'});R.ivq='';renderRadnja(true);const l=document.querySelectorAll('.rd-it');if(l.length)l[l.length-1].querySelector('[data-k=p]').focus();return}
+ if(a==='invjob'){const ex=invFor(id);R.ivq='';if(ex){R.inv=JSON.parse(JSON.stringify(ex));R.ivTab='pregled';}else{const same=S.jobs.filter(x=>x.id===id||(J.plate&&x.plate===J.plate&&x.name===J.name));R.inv=autoInv({name:J.name,phone:J.phone},{car:J.car,plate:J.plate,km:J.km,jobs:same});R.ivTab=innerWidth<960?'pregled':'uredi';}renderRadnja(true);return}
  if(a==='openinv'){R.inv=JSON.parse(JSON.stringify(S.invs.find(x=>x.id===id)));R.ivTab='pregled';renderRadnja(true);return}
  if(a==='ivclose'){R.inv=null;renderRadnja(true);return}
  if(a==='ivtab'){R.ivTab=v;renderRadnja(true);return}
@@ -930,7 +1025,7 @@ $('radnja').addEventListener('click',e=>{const b=e.target.closest('[data-r]');if
  if(a==='ivsave'){b.disabled=true;saveInv().then(()=>renderRadnja(true)).catch(()=>{b.disabled=false;});return}
  if(a==='ivprint'){saveInv(true).catch(()=>{}).finally(()=>{const t=R.ivTab;R.ivTab='pregled';renderRadnja(true);setTimeout(()=>{window.print();R.ivTab=t;renderRadnja(true);},150);});return}
 });
-$('radnja').addEventListener('input',e=>{const el=e.target;if(!R.inv)return;if(el.dataset.f){R.inv[el.dataset.f]=el.type==='checkbox'?el.checked:el.value;}else if(el.dataset.k){R.inv.items[+el.dataset.i][el.dataset.k]=el.value;}else return;updPrev();});
+$('radnja').addEventListener('input',e=>{const el=e.target;if(el.id==='pkq'){R.pick.q=el.value;$('pkl').innerHTML=pkList();return}if(el.id==='ivsrch'){R.ivq=el.value;$('ivsg').innerHTML=ivSearch(el.value);return}if(!R.inv)return;if(el.dataset.f){R.inv[el.dataset.f]=el.type==='checkbox'?el.checked:el.value;}else if(el.dataset.k){R.inv.items[+el.dataset.i][el.dataset.k]=el.value;}else return;updPrev();});
 $('radnja').addEventListener('submit',e=>{if(e.target.id!=='rdf')return;e.preventDefault();const f=Object.fromEntries(new FormData(e.target));const m=R.modal;const T=k=>String(f[k]||'').trim();
  if(m.type==='note'){const J=S.jobs.find(x=>x.id===m.id);if(!T('text')){$('rdErr').textContent='Upišite bilješku.';return}J.notes=J.notes||[];J.notes.push({who:S.user,t:Date.now(),text:T('text')});put('job',J);rLog('dodao bilješku',`${J.car}: ${T('text')}`);R.modal=null;renderRadnja(true);return}
  if(!T('name')||!T('car')||!T('issue')){$('rdErr').textContent='Popunite ime mušterije, auto i problem.';return}
@@ -964,7 +1059,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(d.pick){const i=S.picked.indexOf(d.pick);if(i>=0)S.picked.splice(i,1);else S.picked.push(d.pick);
    if(S.book&&S.step===2){const t=$('ai-book')?.value;if(t!==undefined)S.ai.text=t;renderBook(false);}else{putAi();}return}
  if(d.login){setHash('radnja');return}
- if(d.site){if(S.auth)rLog('odjavio se');try{sessionStorage.removeItem('zj_auth')}catch(e){}PIN='';R.sig='';S.auth=false;R.modal=null;R.inv=null;document.body.classList.remove('lock');setHash('');scrollTo(0,0);onScroll();return}
+ if(d.site){if(S.auth)rLog('odjavio se');try{sessionStorage.removeItem('zj_auth')}catch(e){}PIN='';R.sig='';S.auth=false;R.modal=null;R.inv=null;R.pick=null;document.body.classList.remove('lock');setHash('');scrollTo(0,0);onScroll();return}
 });
 document.addEventListener('input',e=>{if(e.target.dataset.ai){S.ai.text=e.target.value;loud();}if(e.target.id==='q'){S.q=e.target.value;$('fbox').innerHTML=fBox(fList());}});
 document.addEventListener('submit',async e=>{if(e.target.id!=='lg')return;e.preventDefault();const btn=e.target.querySelector('.btn');btn.disabled=true;btn.textContent='Prijava…';
