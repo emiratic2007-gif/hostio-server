@@ -828,7 +828,8 @@ async function rSeed(){/* prazna demo radnja: upiši primjer podataka jednom */
  const n=Date.now();await Promise.all([...SEED.jobs.map(j=>put('job',j)),...SEED.reqs.map(r=>put('req',{...r,t:n-12*6e4})),...SEED.hist.map((h,i)=>put('hist',{...h,id:'seed'+i}))]);R.sig='';await rLoad();}
 async function rEnter(pin,who){PIN=pin;await rLoad();if(!S.jobs.length&&!S.hist.length)await rSeed();
  S.auth=true;S.user=who;R.tab=R.tab||'danas';try{sessionStorage.setItem('zj_auth',JSON.stringify({pin,who}))}catch(e){}}
-setInterval(()=>{if(!S.auth||R.modal||R.inv||PEND.size||S.route!=='radnja'||document.hidden)return;rLoad().then(ch=>{if(ch)renderRadnja(true)}).catch(()=>{});},6000);
+function rPoll(){if(!S.auth||R.modal||R.inv||PEND.size||S.route!=='radnja'||document.hidden)return;rLoad().then(ch=>{if(ch)renderRadnja(true)}).catch(()=>{});}
+setInterval(rPoll,6000);document.addEventListener('visibilitychange',rPoll);addEventListener('focus',rPoll);
 (()=>{const n=Date.now(),m=6e4;S.user='Vlasnik';S.invs=[];S.seq=1;
  const plates=['A12-K-345','E45-M-112','J09-T-778','O33-E-501','K71-A-260'];
  S.jobs.forEach((j,i)=>{j.plate=plates[i%5];j.phone='06'+(1+i)+' 555 '+(310+i*7);j.km='';j.notes=[];});
