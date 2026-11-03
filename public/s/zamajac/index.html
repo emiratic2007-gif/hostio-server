@@ -774,7 +774,7 @@ function renderBook(fresh){const box=$('book');const oldTop=box.querySelector('.
  const st=S.step;let body='';
  if(st===1)body=`<h2 class="bh">Kad vam<br><b>odgovara?</b></h2><div class="lab">Dan</div><div class="days">${DAYS.map((d,i)=>`<button class="day ${S.day===i?'on':''}" data-day="${i}" aria-label="${d.k} ${d.n}.${d.m}."><small>${d.k}</small><b>${d.n}</b></button>`).join('')}</div><div class="lab">Sat</div><div class="slots">${SLOTS.map((t,i)=>`<button class="slot ${S.slot===t?'on':''}" data-slot="${t}" ${taken(S.day,i)?'disabled aria-label="'+t+' zauzeto"':''}>${t}</button>`).join('')}</div><div class="lab">Dok traje servis</div><div class="opts">${['Čekam u servisu','Ostavljam auto'].map(o=>`<button class="opt ${S.how===o?'on':''}" data-how="${o}">${o}</button>`).join('')}</div>${S.err?`<p class="err" role="alert">${esc(S.err)}</p>`:''}`;
  if(st===2)body=step2();
- if(st===3){const dd=DAYS[S.day];body=`<h2 class="bh">Još samo<br><b>vaši podaci.</b></h2><div class="sum"><div><b>Termin:</b> ${dd.k} ${dd.n}.${dd.m}. u ${S.slot}</div><div><b>Problem:</b> ${esc(issueText())}</div></div><label class="field"><span>Ime</span><input id="fName" autocomplete="given-name" value="${esc(S.name)}" placeholder="npr. Amra"></label><label class="field"><span>Broj telefona</span><input id="fPhone" inputmode="tel" autocomplete="tel" value="${esc(S.phone)}" placeholder="06x xxx xxx"></label><label class="field"><span>Auto</span><input id="fCar" value="${esc(S.car)}" placeholder="npr. Golf 7, 2016"></label><label class="field"><span>Napomena (po želji)</span><textarea id="fNote">${esc(S.note)}</textarea></label>${S.err?`<p class="err" role="alert">${esc(S.err)}</p>`:''}<p class="fw" style="margin-top:10px">Bez registracije i bez lozinke.</p>`;}
+ if(st===3){const dd=DAYS[S.day];body=`<h2 class="bh">Još samo<br><b>vaši podaci.</b></h2><div class="sum"><div><b>Termin:</b> ${dd.k} ${dd.n}.${dd.m}. u ${S.slot}</div><div><b>Problem:</b> ${esc(issueText())}</div></div><label class="field"><span>Ime</span><input id="fName" autocomplete="given-name" value="${esc(S.name)}" placeholder="npr. Amra"></label><label class="field"><span>Broj telefona</span><input id="fPhone" inputmode="tel" autocomplete="tel" value="${esc(S.phone)}" placeholder="06x xxx xxx"></label><label class="field"><span>Auto</span><input id="fCar" value="${esc(S.car)}" placeholder="npr. Golf 7, 2016"></label><label class="field"><span>Napomena (po želji)</span><textarea id="fNote">${esc(S.note)}</textarea></label>${S.err?`<p class="err" role="alert">${esc(S.err)}</p>`:''}<p class="fw" style="margin-top:10px">Bez registracije i bez lozinke. Ovo je demo sajt: upišite izmišljene podatke.</p>`;}
  box.innerHTML=`<div class="bk" style="${fresh?'':'animation:none'}"><div class="bk-h"><div class="bk-t"><button class="ic" data-back="1" aria-label="Nazad">${st>1?'‹':''}</button><b>Korak ${st} od 3</b><button class="ic" data-close="1" aria-label="Zatvori">×</button></div><div class="bars">${[1,2,3].map(i=>`<i class="${i<=st?'on':''}"></i>`).join('')}</div></div><div class="bk-b" id="bkb"><div class="bk-in" style="${fresh===false?'animation:none':''}">${body}</div></div><div class="bk-f"><button class="btn" data-next="1">${st<3?'Dalje':'Rezerviši termin'} ${CHEV}</button></div></div>`;
  if(fresh===false)box.querySelector('.bk-b').scrollTop=oldTop;}
 function issueText(){return S.picked.length?S.picked.map(id=>byId(id).name).join(', '):(S.ai.text.trim()||'Neka majstor pogleda');}
@@ -785,7 +785,7 @@ function nextStep(){saveForm();S.err='';
  const n=S.phone.replace(/\D/g,'').length;S.err=!S.name.trim()?'Upišite ime.':n<8?'Upišite ispravan broj telefona.':!S.car.trim()?'Upišite koji je auto.':'';
  if(S.err){renderBook(false);return;}
  const dd=DAYS[S.day];const r={id:Date.now(),name:S.name.trim(),phone:S.phone.trim(),car:S.car.trim(),issue:issueText(),when:`${dd.k} ${dd.n}.${dd.m}., ${S.slot}`,how:S.how,note:S.note.trim()};
- r.t=Date.now();r.src='Online rezervacija';S.reqs.unshift(r);rLog('poslala zahtjev preko sajta',`${r.car} · ${r.issue}`,'Mušterija (online)');S.done=r;S.picked=[];S.slot=null;S.name=S.phone=S.car=S.note='';S.ai={text:'',state:'idle',res:null,q:'',local:false};renderBook();}
+ rpc('shop_request',{p_shop:SHOP,p_data:{name:r.name,phone:r.phone,car:r.car,issue:r.issue,when:r.when,how:r.how,note:r.note}}).catch(()=>toast('Zahtjev nije poslan. Provjerite internet i pokušajte ponovo.'));S.done=r;S.picked=[];S.slot=null;S.name=S.phone=S.car=S.note='';S.ai={text:'',state:'idle',res:null,q:'',local:false};renderBook();}
 async function runAi(ctx){const ta=$('ai-'+ctx);const t=ta.value.trim();S.ai.text=t;
  if(t.length<3){S.ai.state='none';putAi();return;}
  S.ai.state='busy';putAi();const my=(runAi.n=(runAi.n||0)+1);const min=new Promise(r=>setTimeout(r,900));
@@ -810,16 +810,34 @@ const NF=new Intl.NumberFormat('de-DE',{minimumFractionDigits:2,maximumFractionD
 const KM=v=>NF.format(Math.round((+v||0)*100)/100)+' KM';
 const num=v=>{const x=parseFloat(String(v).replace(',','.'));return isFinite(x)?x:0};
 const R={tab:'danas',hf:'Svi',who:'Vlasnik',modal:null,inv:null,ivTab:'uredi'};
-function rSave(){try{localStorage.setItem(RK,JSON.stringify({reqs:S.reqs,jobs:S.jobs,hist:S.hist,invs:S.invs,seq:S.seq}))}catch(e){}}
-function rLog(what,detail,who){S.hist.unshift({t:Date.now(),who:who||S.user||'Vlasnik',what,detail:detail||''});if(S.hist.length>400)S.hist.length=400;rSave();}
+/* zajednička baza (Supabase): isti podaci na svim uređajima radnje */
+const SB_URL='https://eauwnwvieyepzrbildqt.supabase.co',SB_KEY='sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_',SHOP='zamajac';
+async function rpc(fn,args){const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)});
+ if(!r.ok){let m='';try{m=(await r.json()).message||''}catch(e){}throw new Error(m||('HTTP '+r.status))}const t=await r.text();return t?JSON.parse(t):null;}
+let PIN='';const PEND=new Set();
+function sync(p){PEND.add(p);p.catch(e=>toast(/POGRESAN|PREVISE/.test(e.message)?'Prijava je istekla. Prijavite se ponovo.':'Nije sačuvano. Provjerite internet.')).finally(()=>PEND.delete(p));return p;}
+const put=(k,o,id)=>sync(rpc('shop_put',{p_shop:SHOP,p_pin:PIN,p_kind:k,p_id:String(id??o.id),p_data:o}));
+const del=(k,id)=>sync(rpc('shop_del',{p_shop:SHOP,p_pin:PIN,p_kind:k,p_id:String(id)}));
+function rSave(){}
+function rLog(what,detail,who){const e={id:Date.now()+'-'+Math.random().toString(36).slice(2,6),t:Date.now(),who:who||S.user||'Vlasnik',what,detail:detail||''};S.hist.unshift(e);if(S.hist.length>400)S.hist.length=400;if(PIN)put('hist',e);}
+async function rLoad(){const rows=await rpc('shop_load',{p_shop:SHOP,p_pin:PIN})||[];const sig=JSON.stringify(rows);if(sig===R.sig)return false;R.sig=sig;
+ const by=k=>rows.filter(x=>x.k===k).map(x=>x.d);
+ S.jobs=by('job').sort((a,b)=>a.id-b.id);S.reqs=by('req').sort((a,b)=>(b.t||b.id)-(a.t||a.id));S.hist=by('hist').sort((a,b)=>b.t-a.t);S.invs=by('inv').sort((a,b)=>b.id-a.id);
+ const m=rows.find(x=>x.k==='meta'&&x.id==='seq');S.seq=(m?m.d.n:0)+1;return true;}
+async function rSeed(){/* prazna demo radnja: upiši primjer podataka jednom */
+ const n=Date.now();await Promise.all([...SEED.jobs.map(j=>put('job',j)),...SEED.reqs.map(r=>put('req',{...r,t:n-12*6e4})),...SEED.hist.map((h,i)=>put('hist',{...h,id:'seed'+i}))]);R.sig='';await rLoad();}
+async function rEnter(pin,who){PIN=pin;await rLoad();if(!S.jobs.length&&!S.hist.length)await rSeed();
+ S.auth=true;S.user=who;R.tab=R.tab||'danas';try{sessionStorage.setItem('zj_auth',JSON.stringify({pin,who}))}catch(e){}}
+setInterval(()=>{if(!S.auth||R.modal||R.inv||PEND.size||S.route!=='radnja'||document.hidden)return;rLoad().then(ch=>{if(ch)renderRadnja(true)}).catch(()=>{});},6000);
 (()=>{const n=Date.now(),m=6e4;S.user='Vlasnik';S.invs=[];S.seq=1;
  const plates=['A12-K-345','E45-M-112','J09-T-778','O33-E-501','K71-A-260'];
  S.jobs.forEach((j,i)=>{j.plate=plates[i%5];j.phone='06'+(1+i)+' 555 '+(310+i*7);j.km='';j.notes=[];});
  S.jobs[1].notes.push({who:'Tarik',t:n-72*m,text:'Treba novi EGR ventil, naručen. Stiže sutra ujutro.'});
  S.reqs.forEach(r=>{r.src='Online rezervacija';r.plate='';});
  S.hist=[{t:n-12*m,who:'Mušterija (online)',what:'poslala zahtjev preko sajta',detail:'Škoda Octavia 2017 · Istrošene pločice'},{t:n-25*m,who:'Tarik',what:'završio posao',detail:'Peugeot 308 · Klima slabo hladi'},{t:n-72*m,who:'Tarik',what:'dodao bilješku',detail:'Audi A4 2014: Treba novi EGR ventil, naručen.'},{t:n-74*m,who:'Tarik',what:'stavio auto na čekanje dijelova',detail:'Audi A4 2014 · Svijetli lampica motora'},{t:n-110*m,who:'Amar',what:'počeo rad',detail:'VW Golf 7 · Redovni mali servis'},{t:n-150*m,who:'Vlasnik',what:'potvrdio zahtjev i dodijelio ga radniku Tarik',detail:'BMW 320d · Neispravan EGR ventil'},{t:n-160*m,who:'Vlasnik',what:'prijavio se u radnju',detail:''}];
- try{const d=JSON.parse(localStorage.getItem(RK)||'null');if(d&&Array.isArray(d.jobs)){S.reqs=d.reqs||[];S.jobs=d.jobs;S.hist=d.hist||[];S.invs=d.invs||[];S.seq=d.seq||1;}}catch(e){}})();
-function rLogin(){return `<div class="login"><form class="wrap" id="lg"><div class="logo">${LOGO}<span>ZAMAJAC<small>AUTO SERVIS</small></span></div><h1>Prijava<br><b>za radnju</b></h1><p>Izaberite ko ste, da historija pokazuje ko je šta uradio. Mušterije ovo ne vide. Demo kod je 1234.</p><div class="rd-who">${PEOPLE.map(p=>`<button type="button" class="${R.who===p?'on':''}" data-r="who" data-v="${p}"><i>${p[0]}</i>${p}</button>`).join('')}</div><label for="pin" hidden>Kod radnje</label><input id="pin" inputmode="numeric" value="1234" autocomplete="off"><button class="btn full">Uđi kao ${R.who}</button><button type="button" class="bk0" data-site="1">Nazad na sajt</button></form></div>`;}
+})();
+const SEED={jobs:JSON.parse(JSON.stringify(S.jobs)),reqs:JSON.parse(JSON.stringify(S.reqs)),hist:JSON.parse(JSON.stringify(S.hist))};S.jobs=[];S.reqs=[];S.hist=[];
+function rLogin(){return `<div class="login"><form class="wrap" id="lg"><div class="logo">${LOGO}<span>ZAMAJAC<small>AUTO SERVIS</small></span></div><h1>Prijava<br><b>za radnju</b></h1><p>Izaberite ko ste, da historija pokazuje ko je šta uradio. Podaci su zajednički za sve uređaje radnje. Demo kod je 1234, a demo podaci se brišu svaku noć.</p><div class="rd-who">${PEOPLE.map(p=>`<button type="button" class="${R.who===p?'on':''}" data-r="who" data-v="${p}"><i>${p[0]}</i>${p}</button>`).join('')}</div><label for="pin" hidden>Kod radnje</label><input id="pin" inputmode="numeric" value="1234" autocomplete="off"><button class="btn full">Uđi kao ${R.who}</button><button type="button" class="bk0" data-site="1">Nazad na sajt</button></form></div>`;}
 function rCard(j){const inv=S.invs.find(v=>v.jobId===j.id);
  const acts=j.st===0?[['Počni rad',1,'']]:j.st===1?[['Gotovo',3,''],['Čeka dijelove',2,'ghost']]:j.st===2?[['Nastavi rad',1,'']]:[['Vrati u rad',1,'ghost']];
  return `<article class="rd-card" style="--c:${COLC[j.st]}"><div class="rd-ct"><div><div class="rd-car">${esc(j.car)}</div>${j.plate?`<div class="rd-plate">${esc(j.plate)}</div>`:''}</div><div class="rd-time">${esc(j.when)}</div></div>
@@ -884,18 +902,20 @@ function renderRadnja(keep){const y=scrollY;const fy=$('ivf')?$('ivf').scrollTop
  if(R.modal){const f=document.querySelector('#rdf input,#rdf textarea');if(f)f.focus({preventScroll:true});}
  scrollTo({top:keep?y:0,behavior:'instant'});}
 function updPrev(){$('ivp').innerHTML=ivSheet(R.inv);$('ivtot').textContent=KM(invTotals(R.inv).total);fitSheet();}
-function saveInv(quiet){const v=R.inv;v.by=v.by||S.user;const i=S.invs.findIndex(x=>x.id===v.id);const c=JSON.parse(JSON.stringify(v));
- if(i<0){S.invs.unshift(c);S.seq++;rLog('izdao račun '+v.no,`${v.cust||'Bez kupca'}${v.car?' · '+v.car:''} · ${KM(invTotals(v).total)}`);}else{S.invs[i]=c;rLog('izmijenio račun '+v.no,`${v.cust||'Bez kupca'} · ${KM(invTotals(v).total)}${v.paid?' · plaćeno':''}`);}
- rSave();if(!quiet)toast('Račun '+v.no+' je sačuvan');}
+async function saveInv(quiet){const v=R.inv;v.by=v.by||S.user;const i=S.invs.findIndex(x=>x.id===v.id);
+ if(i<0){const n=await rpc('shop_next_seq',{p_shop:SHOP,p_pin:PIN});v.no='R-'+new Date().getFullYear()+'-'+String(n).padStart(3,'0');S.seq=n+1;}
+ const c=JSON.parse(JSON.stringify(v));await put('inv',c);
+ if(i<0){S.invs.unshift(c);rLog('izdao račun '+v.no,`${v.cust||'Bez kupca'}${v.car?' · '+v.car:''} · ${KM(invTotals(v).total)}`);}else{S.invs[i]=c;rLog('izmijenio račun '+v.no,`${v.cust||'Bez kupca'} · ${KM(invTotals(v).total)}${v.paid?' · plaćeno':''}`);}
+ if(!quiet)toast('Račun '+v.no+' je sačuvan');}
 addEventListener('resize',()=>{if(R.inv)fitSheet();});
 $('radnja').addEventListener('click',e=>{const b=e.target.closest('[data-r]');if(!b)return;e.preventDefault();const a=b.dataset.r,v=b.dataset.v,id=+b.dataset.id;const J=S.jobs.find(x=>x.id===id);
  if(a==='who'){R.who=v;renderRadnja(true);return}
  if(a==='tab'){R.tab=v;renderRadnja();return}
  if(a==='hf'){R.hf=v;renderRadnja(true);return}
- if(a==='st'){const old=J.st;J.st=+v;const w=J.st===1?(old===0?'počeo rad':old===2?'nastavio rad (dijelovi stigli)':'vratio auto u rad'):J.st===2?'stavio auto na čekanje dijelova':J.st===3?'završio posao':'vratio auto na čekanje';rLog(w,`${J.car} · ${J.issue}`);if(J.st===3)toast('Mušterija dobija poruku da je auto gotovo');renderRadnja(true);return}
- if(a==='wk'){J.worker=J.worker===WK[0]?WK[1]:WK[0];rLog('dodijelio posao radniku '+J.worker,`${J.car} · ${J.issue}`);renderRadnja(true);return}
- if(a==='ok'){const r=S.reqs.find(x=>x.id===id);S.reqs=S.reqs.filter(x=>x.id!==id);S.jobs.push({id,name:r.name,phone:r.phone||'',car:r.car,plate:r.plate||'',km:r.km||'',issue:r.issue,when:r.when,worker:v,st:0,notes:r.note?[{who:'Mušterija',t:r.t||Date.now(),text:r.note}]:[]});rLog('potvrdio zahtjev i dodijelio ga radniku '+v,`${r.car} · ${r.issue}`);renderRadnja(true);toast('Potvrđeno. Posao ide radniku: '+v);return}
- if(a==='no'){const r=S.reqs.find(x=>x.id===id);S.reqs=S.reqs.filter(x=>x.id!==id);rLog('odbio zahtjev',`${r.car} · ${r.issue}`);renderRadnja(true);toast('Zahtjev je odbijen');return}
+ if(a==='st'){const old=J.st;J.st=+v;const w=J.st===1?(old===0?'počeo rad':old===2?'nastavio rad (dijelovi stigli)':'vratio auto u rad'):J.st===2?'stavio auto na čekanje dijelova':J.st===3?'završio posao':'vratio auto na čekanje';rLog(w,`${J.car} · ${J.issue}`);put('job',J);if(J.st===3)toast('Mušterija dobija poruku da je auto gotovo');renderRadnja(true);return}
+ if(a==='wk'){J.worker=J.worker===WK[0]?WK[1]:WK[0];put('job',J);rLog('dodijelio posao radniku '+J.worker,`${J.car} · ${J.issue}`);renderRadnja(true);return}
+ if(a==='ok'){const r=S.reqs.find(x=>x.id===id);S.reqs=S.reqs.filter(x=>x.id!==id);const nj={id,name:r.name,phone:r.phone||'',car:r.car,plate:r.plate||'',km:r.km||'',issue:r.issue,when:r.when,worker:v,st:0,notes:r.note?[{who:'Mušterija',t:r.t||Date.now(),text:r.note}]:[]};S.jobs.push(nj);del('req',id);put('job',nj);rLog('potvrdio zahtjev i dodijelio ga radniku '+v,`${r.car} · ${r.issue}`);renderRadnja(true);toast('Potvrđeno. Posao ide radniku: '+v);return}
+ if(a==='no'){const r=S.reqs.find(x=>x.id===id);S.reqs=S.reqs.filter(x=>x.id!==id);del('req',id);rLog('odbio zahtjev',`${r.car} · ${r.issue}`);renderRadnja(true);toast('Zahtjev je odbijen');return}
  if(a==='new'){R.modal={type:v};renderRadnja(true);return}
  if(a==='note'){R.modal={type:'note',id,car:J.car+' · '+J.issue};renderRadnja(true);return}
  if(a==='mclose'){R.modal=null;renderRadnja(true);return}
@@ -906,16 +926,16 @@ $('radnja').addEventListener('click',e=>{const b=e.target.closest('[data-r]');if
  if(a==='ivtab'){R.ivTab=v;renderRadnja(true);return}
  if(a==='itadd'){const p=v?v.split('|'):['','1','h','0','rad'];R.inv.items.push({d:p[0],q:num(p[1]),u:p[2],p:num(p[3]),t:p[4]});renderRadnja(true);const l=document.querySelectorAll('.rd-it');if(l.length&&!v)l[l.length-1].querySelector('input').focus();return}
  if(a==='itdel'){R.inv.items.splice(+b.dataset.i,1);renderRadnja(true);return}
- if(a==='ivsave'){saveInv();renderRadnja(true);return}
- if(a==='ivprint'){saveInv(true);const t=R.ivTab;R.ivTab='pregled';renderRadnja(true);setTimeout(()=>{window.print();R.ivTab=t;renderRadnja(true);},120);return}
+ if(a==='ivsave'){b.disabled=true;saveInv().then(()=>renderRadnja(true)).catch(()=>{b.disabled=false;});return}
+ if(a==='ivprint'){saveInv(true).catch(()=>{}).finally(()=>{const t=R.ivTab;R.ivTab='pregled';renderRadnja(true);setTimeout(()=>{window.print();R.ivTab=t;renderRadnja(true);},150);});return}
 });
 $('radnja').addEventListener('input',e=>{const el=e.target;if(!R.inv)return;if(el.dataset.f){R.inv[el.dataset.f]=el.type==='checkbox'?el.checked:el.value;}else if(el.dataset.k){R.inv.items[+el.dataset.i][el.dataset.k]=el.value;}else return;updPrev();});
 $('radnja').addEventListener('submit',e=>{if(e.target.id!=='rdf')return;e.preventDefault();const f=Object.fromEntries(new FormData(e.target));const m=R.modal;const T=k=>String(f[k]||'').trim();
- if(m.type==='note'){const J=S.jobs.find(x=>x.id===m.id);if(!T('text')){$('rdErr').textContent='Upišite bilješku.';return}J.notes=J.notes||[];J.notes.push({who:S.user,t:Date.now(),text:T('text')});rLog('dodao bilješku',`${J.car}: ${T('text')}`);R.modal=null;renderRadnja(true);return}
+ if(m.type==='note'){const J=S.jobs.find(x=>x.id===m.id);if(!T('text')){$('rdErr').textContent='Upišite bilješku.';return}J.notes=J.notes||[];J.notes.push({who:S.user,t:Date.now(),text:T('text')});put('job',J);rLog('dodao bilješku',`${J.car}: ${T('text')}`);R.modal=null;renderRadnja(true);return}
  if(!T('name')||!T('car')||!T('issue')){$('rdErr').textContent='Popunite ime mušterije, auto i problem.';return}
  const id=Date.now();const base={id,name:T('name'),phone:T('phone'),car:T('car'),plate:T('plate').toUpperCase(),km:T('km'),issue:T('issue'),when:T('when')||'Danas'};
- if(m.type==='job'){S.jobs.push({...base,worker:f.worker||WK[0],st:0,notes:T('note')?[{who:S.user,t:id,text:T('note')}]:[]});rLog('ručno unio posao i dodijelio ga radniku '+(f.worker||WK[0]),`${base.car} · ${base.issue}`);R.tab='danas';}
- else{S.reqs.unshift({...base,t:id,how:'',note:T('note'),src:'Unio '+S.user+' (telefonski poziv)'});rLog('ručno unio zahtjev (telefon)',`${base.car} · ${base.issue}`);R.tab='zahtjevi';}
+ if(m.type==='job'){const nj={...base,worker:f.worker||WK[0],st:0,notes:T('note')?[{who:S.user,t:id,text:T('note')}]:[]};S.jobs.push(nj);put('job',nj);rLog('ručno unio posao i dodijelio ga radniku '+(f.worker||WK[0]),`${base.car} · ${base.issue}`);R.tab='danas';}
+ else{const nr={...base,t:id,how:'',note:T('note'),src:'Unio '+S.user+' (telefonski poziv)'};S.reqs.unshift(nr);put('req',nr);rLog('ručno unio zahtjev (telefon)',`${base.car} · ${base.issue}`);R.tab='zahtjevi';}
  R.modal=null;renderRadnja();toast('Sačuvano');});
 let siteY=0;function route(){const rd=S.route==='radnja',pg=S.route.startsWith('usluga-')&&P[S.route.slice(7)];if(!$('site').hidden&&(rd||pg))siteY=scrollY;$('radnja').hidden=!rd;$('page').hidden=!pg;$('site').hidden=!!(rd||pg);if(rd)renderRadnja();if(pg){$('page').innerHTML=pageHtml(S.route.slice(7));scrollTo({top:0,behavior:'instant'});arm($('page'));}if(!rd&&!pg){scrollTo({top:siteY,behavior:'instant'});if(typeof onScroll==='function')requestAnimationFrame(onScroll);}}
 const parseHash=()=>{const h=location.hash.slice(1);return h==='radnja'||(h.startsWith('usluga-')&&P[h.slice(7)])?h:'';};
@@ -943,10 +963,13 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(d.pick){const i=S.picked.indexOf(d.pick);if(i>=0)S.picked.splice(i,1);else S.picked.push(d.pick);
    if(S.book&&S.step===2){const t=$('ai-book')?.value;if(t!==undefined)S.ai.text=t;renderBook(false);}else{putAi();}return}
  if(d.login){setHash('radnja');return}
- if(d.site){if(S.auth)rLog('odjavio se');S.auth=false;R.modal=null;R.inv=null;document.body.classList.remove('lock');setHash('');scrollTo(0,0);onScroll();return}
+ if(d.site){if(S.auth)rLog('odjavio se');try{sessionStorage.removeItem('zj_auth')}catch(e){}PIN='';R.sig='';S.auth=false;R.modal=null;R.inv=null;document.body.classList.remove('lock');setHash('');scrollTo(0,0);onScroll();return}
 });
 document.addEventListener('input',e=>{if(e.target.dataset.ai){S.ai.text=e.target.value;loud();}if(e.target.id==='q'){S.q=e.target.value;$('fbox').innerHTML=fBox(fList());}});
-document.addEventListener('submit',e=>{if(e.target.id==='lg'){e.preventDefault();if($('pin').value.trim()==='1234'){S.auth=true;S.user=R.who;R.tab='danas';rLog('prijavio se u radnju');renderRadnja();}else toast('Pogrešan kod');}});
+document.addEventListener('submit',async e=>{if(e.target.id!=='lg')return;e.preventDefault();const btn=e.target.querySelector('.btn');btn.disabled=true;btn.textContent='Prijava…';
+ try{R.tab='danas';await rEnter($('pin').value.trim(),R.who);rLog('prijavio se u radnju');renderRadnja();}
+ catch(x){toast(/POGRESAN/.test(x.message)?'Pogrešan kod':/PREVISE/.test(x.message)?'Previše pokušaja. Sačekajte 10 minuta.':'Nema veze sa serverom. Provjerite internet.');btn.disabled=false;btn.textContent='Uđi kao '+R.who;}});
+(()=>{try{const a=JSON.parse(sessionStorage.getItem('zj_auth')||'null');if(a&&a.pin){R.who=a.who;rEnter(a.pin,a.who).then(()=>{if(S.route==='radnja')renderRadnja();}).catch(()=>{try{sessionStorage.removeItem('zj_auth')}catch(e){}});}}catch(e){}})();
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&S.book)closeBook();});
 window.addEventListener('hashchange',()=>{const v=parseHash();if(v!==S.route){S.route=v;route();}});
 
