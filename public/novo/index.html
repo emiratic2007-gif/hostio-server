@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Hostio, studio za primijenjenu umjetnu inteligenciju</title>
-<meta name="description" content="Hostio projektuje i uvodi AI asistente, automatizacije i softver po mjeri za firme, bez obzira gdje posluju.">
+<title>Hostio, AI automatizacija i sistemi po mjeri</title>
+<meta name="description" content="Hostio projektuje, integriše i održava AI automatizacije i višekanalne agente za srednje i velike firme, povezane s vašim CRM-om, ERP-om i kanalima komunikacije.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#EDF0E8">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -13,192 +13,226 @@
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 :root{
-  --paper:#EDF0E8; --paper2:#E2E6DC; --ink:#1F1F1F; --ink2:#2B2C29; --graphite:#5E615A; --soft:#8A8D84;
-  --line:#D6D8CF; --green:#7ED957; --green-ink:#3E8A26;
+  --paper:#EDF0E8; --paper2:#E2E6DC; --card:#F8F9F5; --ink:#1F1F1F; --ink2:#2B2C29; --graphite:#565952; --soft:#83867D;
+  --line:#D3D6CB; --green:#7ED957; --green-ink:#2F7A18; --amber:#E7A93B;
   --display:Poppins,ui-sans-serif,system-ui,sans-serif;
   --text:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
   --ease:cubic-bezier(.2,.75,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,video{display:block;max-width:100%}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
 .wrap{width:min(1180px,100% - 48px);margin-inline:auto}
-.logo{font-family:Poppins,var(--display);font-weight:800;letter-spacing:-.045em;text-decoration:none;line-height:1}
+.logo{font-family:var(--display);font-weight:800;letter-spacing:-.045em;text-decoration:none;line-height:1}
 .logo span{color:var(--green)}
-
-/* ---------- background ---------- */
 .bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
-.bgfx path{fill:none;stroke:rgba(62,138,38,.13);stroke-width:1.1;vector-effect:non-scaling-stroke}
-.blob{position:fixed;z-index:-2;border-radius:50%;filter:blur(60px);pointer-events:none;opacity:.55}
-.blob.b1{width:46vw;height:46vw;left:-14vw;top:30vh;background:radial-gradient(closest-side,rgba(126,217,87,.35),transparent);animation:bl1 26s ease-in-out infinite alternate}
-.blob.b2{width:40vw;height:40vw;right:-12vw;top:-8vh;background:radial-gradient(closest-side,rgba(190,215,160,.55),transparent);animation:bl2 30s ease-in-out infinite alternate}
-@keyframes bl1{to{transform:translate(18vw,-20vh)}}@keyframes bl2{to{transform:translate(-14vw,30vh)}}
+.bgfx path{fill:none;stroke:rgba(62,138,38,.11);stroke-width:1.1;vector-effect:non-scaling-stroke}
 main,footer,header{position:relative}
-/* ---------- header ---------- */
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 header.scrolled{border-color:var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:72px}
+.bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
 .bar .logo{font-size:1.6rem}
-.bar nav{display:flex;align-items:center;gap:30px;font-size:.95rem}
+.bar nav{display:flex;align-items:center;gap:26px;font-size:.93rem}
 .bar nav a{text-decoration:none;color:var(--graphite);transition:color .2s}
 .bar nav a:hover{color:var(--ink)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:6px}
-.lang button{font-size:.82rem;font-weight:600;padding:5px 11px;border-radius:999px;color:var(--soft);letter-spacing:.02em}
+.bar .mini{background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:999px;font-weight:600}
+.bar .mini:hover{color:var(--paper);background:#000}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font-size:.8rem;font-weight:600;padding:5px 10px;border-radius:999px;color:var(--soft)}
 .lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
-@media (max-width:760px){.bar nav a{display:none}.bar{height:64px}}
+@media (max-width:1020px){.bar nav a.nl{display:none}}
+@media (max-width:560px){.bar .mini{display:none}.bar{height:64px}}
 
-/* ---------- hero ---------- */
-.hero{padding:clamp(56px,10vh,120px) 0 clamp(72px,11vh,130px);position:relative;isolation:isolate;overflow:hidden}
-.hero:before{content:"";position:absolute;z-index:-1;width:min(900px,90vw);aspect-ratio:1;right:-12%;top:-20%;background:radial-gradient(closest-side,rgba(126,217,87,.30),rgba(126,217,87,.10) 55%,rgba(126,217,87,0));filter:blur(10px);animation:glow 14s ease-in-out infinite alternate}
-.hero:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(31,31,31,.16) 1.1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:radial-gradient(70% 80% at 75% 45%,#000,transparent 75%);mask-image:radial-gradient(70% 80% at 75% 45%,#000,transparent 75%)}
-@keyframes glow{to{transform:translate(-6%,8%) scale(1.08)}}
+/* type */
+h1{font-family:var(--display);font-weight:600;font-size:clamp(2.2rem,4vw,3.7rem);line-height:1.08;letter-spacing:-.035em;max-width:17ch}
 h1 .dot{color:var(--green)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,5vw,70px);align-items:center}
-h1{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,4.3vw,4rem);line-height:1.08;letter-spacing:-.035em;max-width:16ch}
-.lead{margin-top:30px;font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--graphite);max-width:46ch}
-.links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:38px;align-items:center}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(1.85rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.033em}
+h3{font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.25;letter-spacing:-.015em}
+.lead{font-size:clamp(1.05rem,1.35vw,1.18rem);color:var(--graphite);max-width:50ch}
+section{padding:clamp(76px,11vh,128px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px 60px;align-items:end;margin-bottom:clamp(40px,6vh,68px)}
+.sec-head p{color:var(--graphite);max-width:56ch}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr}}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;padding:15px 24px;border-radius:999px;transition:transform .25s var(--ease),background .25s}
 .cta:hover{background:#000;transform:translateY(-1px)}
 .cta i{width:8px;height:8px;border-radius:50%;background:var(--green);display:block}
 .tlink{font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--line);padding-bottom:2px;transition:border-color .2s}
 .tlink:hover{border-color:var(--ink)}
+.note{font-size:.88rem;color:var(--soft);margin-top:16px}
 
-/* the live panel: the one moving thing on the page */
-.live{background:var(--ink);color:#EDEEE8;border-radius:22px;padding:26px 26px 22px;position:relative;min-height:330px;display:flex;flex-direction:column;box-shadow:0 40px 80px -40px rgba(31,31,31,.55)}
-.live-top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#9EA197}
-.live-top b{font-weight:500;color:#EDEEE8}
+/* hero */
+.hero{padding:clamp(52px,9vh,110px) 0 clamp(64px,10vh,120px);position:relative;isolation:isolate;overflow:hidden}
+.hero:before{content:"";position:absolute;z-index:-1;width:min(860px,90vw);aspect-ratio:1;right:-14%;top:-24%;background:radial-gradient(closest-side,rgba(126,217,87,.24),rgba(126,217,87,.08) 55%,rgba(126,217,87,0))}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:center}
+.hero .lead{margin-top:28px}
+.links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:36px;align-items:center}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px;list-style:none}
+.facts li{font-size:.86rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink2);background:rgba(255,255,255,.45)}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr}}
+
+/* processing trace */
+.trace{background:var(--ink);color:#E9EAE4;border-radius:22px;padding:22px;box-shadow:0 40px 80px -40px rgba(31,31,31,.55);font-size:.92rem}
+.tr-top{display:flex;justify-content:space-between;align-items:center;color:#9EA197;font-size:.82rem}
+.tr-top b{color:#E9EAE4;font-weight:600}
 .pulse{display:inline-flex;align-items:center;gap:8px}
-.pulse i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(126,217,87,.6);animation:pl 2.2s infinite}
+.pulse i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pl 2.2s infinite}
 @keyframes pl{0%{box-shadow:0 0 0 0 rgba(126,217,87,.55)}70%{box-shadow:0 0 0 9px rgba(126,217,87,0)}100%{box-shadow:0 0 0 0 rgba(126,217,87,0)}}
-.msgs{margin-top:22px;display:flex;flex-direction:column;gap:12px;flex:1}
-.m{max-width:88%;padding:12px 16px;border-radius:16px;font-size:.98rem;line-height:1.45;opacity:0;transform:translateY(6px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.m.show{opacity:1;transform:none}
-.m.in{background:#2F302C;border-bottom-left-radius:5px}
-.m.out{align-self:flex-end;background:#EDEEE8;color:var(--ink);border-bottom-right-radius:5px}
-.m.out small{display:block;font-size:.75rem;color:var(--soft);margin-bottom:3px}
-.typing{align-self:flex-end;display:flex;gap:5px;padding:14px 16px;background:#3A3B36;border-radius:16px;opacity:0;transition:opacity .3s}
-.typing.show{opacity:1}
-.typing span{width:6px;height:6px;border-radius:50%;background:#9EA197;animation:ty 1s infinite}
-.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
-@keyframes ty{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-3px);opacity:1}}
-.done{margin-top:16px;padding-top:14px;border-top:1px solid #34352F;display:flex;align-items:center;gap:10px;font-size:.88rem;color:#C9CBC2;opacity:0;transition:opacity .45s}
-.done.show{opacity:1}
-.done svg{flex:none}
-.live-cap{margin-top:14px;font-size:.85rem;color:var(--soft)}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;align-items:start}.live{min-height:300px}}
+.tr-in{margin-top:16px;background:#2E2F2B;border-radius:14px 14px 14px 4px;padding:12px 14px;line-height:1.45}
+.tr-in small,.tr-out small{display:flex;gap:8px;font-size:.74rem;color:#9EA197;margin-bottom:4px}
+.tr-steps{list-style:none;margin:16px 0;display:flex;flex-direction:column;gap:2px}
+.tr-steps li{display:grid;grid-template-columns:22px 108px 1fr;gap:10px;align-items:start;padding:7px 4px;border-radius:8px;opacity:.38;transition:opacity .35s,background .35s}
+.tr-steps li.on{opacity:1}
+.tr-steps li.cur{background:#2A2B27}
+.tr-steps .ic{width:18px;height:18px;border-radius:50%;border:1.5px solid #5A5C55;display:grid;place-items:center;margin-top:2px}
+.tr-steps li.ok .ic{background:var(--green);border-color:var(--green)}
+.tr-steps li.esc .ic{background:var(--amber);border-color:var(--amber)}
+.tr-steps .ic svg{width:11px;height:11px;display:none}
+.tr-steps li.ok .ic .i-ok,.tr-steps li.esc .ic .i-esc{display:block}
+.tr-steps b{font-weight:600;color:#fff}
+.tr-steps span{color:#C8CAC1}
+.tr-steps li.esc span{color:#F1C77A}
+.tr-out{background:#E9EAE4;color:var(--ink);border-radius:14px 14px 4px 14px;padding:12px 14px;line-height:1.45;margin-left:12%;opacity:0;transform:translateY(6px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.tr-out small{color:var(--soft)}
+.tr-out.show{opacity:1;transform:none}
+.tr-end{margin-top:14px;padding-top:12px;border-top:1px solid #383934;display:flex;justify-content:space-between;gap:10px;font-size:.82rem;color:#9EA197;min-height:2.2em}
+.tr-end b{color:#E9EAE4;font-weight:600}
+@media (max-width:520px){.tr-steps li{grid-template-columns:20px 1fr;gap:2px 10px}.tr-steps .ic{grid-row:1/3}.tr-steps li>b{grid-column:2}.tr-steps li>span:last-child{grid-column:2;font-size:.88rem}.tr-out{margin-left:6%}}
 
-/* ---------- sections ---------- */
-section{padding:clamp(80px,12vh,140px) 0}
-.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:30px 60px;align-items:end;margin-bottom:clamp(44px,7vh,80px)}
-h2{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,3.2vw,2.9rem);line-height:1.1;letter-spacing:-.035em}
-.sec-head p{color:var(--graphite);max-width:52ch}
-@media (max-width:760px){.sec-head{grid-template-columns:1fr}}
+/* problems */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.cols3 article{padding:6px 32px 6px 0}
+.cols3 article+article{padding-left:32px;border-left:1px solid var(--line)}
+.cols3 h3{margin-bottom:12px}
+.cols3 p{color:var(--graphite)}
+.cols3 .m{margin-top:16px;font-size:.9rem;color:var(--ink2);padding-top:12px;border-top:2px solid var(--green);display:inline-block}
+@media (max-width:860px){.cols3{grid-template-columns:1fr}.cols3 article,.cols3 article+article{padding:26px 0;border-left:0;border-top:1px solid var(--line)}.cols3 article:first-child{border-top:0;padding-top:0}}
 
-/* work */
-#radovi{}
-.work{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(28px,5vh,56px) 0}
-.work + .work{border-top:1px solid var(--line)}
-.work:nth-child(even) .stage{order:2}
-.stage{border-radius:24px;aspect-ratio:1/1;position:relative;overflow:hidden;background-image:radial-gradient(60% 50% at 80% 85%,rgba(126,217,87,.28),transparent 70%)!important;display:flex;align-items:center;justify-content:center;gap:4%}
-.phone{width:min(40%,250px);aspect-ratio:9/18.6;border-radius:30px;background:#111;padding:7px;box-shadow:0 30px 60px -28px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06);flex:none;position:relative}
-.phone>*{width:100%;height:100%;border-radius:24px;object-fit:cover;object-position:top;overflow:hidden}
-.phone.tilt{transform:rotate(-4deg) translateY(4%)}
-.phone.tilt2{transform:rotate(3deg) translateY(-3%)}
-.meta{font-size:.9rem;color:var(--soft)}
-.work h3{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,2.5vw,2.2rem);letter-spacing:-.025em;line-height:1.1;margin:8px 0 14px}
-.work p{color:var(--graphite);max-width:44ch}
-.work ul{list-style:none;margin:22px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
-.work li{font-size:.86rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink2)}
-@media (max-width:860px){.work{grid-template-columns:1fr}.work:nth-child(even) .stage{order:0}.stage{aspect-ratio:1/1.12}.phone{width:50%}.ai-card{width:60%;right:4%;bottom:5%;font-size:.78rem}.stage .vid{width:43%}}
+/* solutions */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.sol{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 30px 26px}
+.sol .k{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ink);margin-bottom:22px}
+.sol .k svg{width:20px;height:20px;fill:none;stroke:var(--green);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sol p{color:var(--graphite);margin-top:10px}
+.ticks{list-style:none;margin-top:18px;display:grid;gap:8px;font-size:.95rem}
+.ticks li{position:relative;padding-left:24px}
+.ticks li:before{content:"";position:absolute;left:2px;top:.55em;width:11px;height:6px;border-left:2px solid var(--green-ink);border-bottom:2px solid var(--green-ink);transform:rotate(-45deg)}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
 
-/* reservation concept, drawn in HTML */
-.res{background:#FBF7F2;color:#2A1D1B;font-family:var(--text);display:flex;flex-direction:column;padding:26px 16px 16px;font-size:12px}
-.res .rn{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em;color:#5B1E25}
-.res .rs{color:#8C7A72;margin-top:2px}
-.res .rimg{margin:12px 0 10px;height:24%;flex:none;border-radius:14px;background:
-  radial-gradient(120% 90% at 30% 20%,#E9C9A8 0,#B9744F 40%,#5B1E25 100%);position:relative;overflow:hidden}
-.res .rimg:after{content:"";position:absolute;inset:auto 10% 12% 10%;height:36%;border-radius:50% 50% 8px 8px;background:radial-gradient(60% 80% at 50% 20%,rgba(255,240,220,.55),rgba(255,240,220,0))}
-.res h4{font-size:15px;font-weight:600;color:#2A1D1B}
-.res .lab{margin-top:10px;color:#8C7A72;font-size:11px}
-.res .row{display:flex;gap:6px;margin-top:6px}
-.res .chip{flex:1;text-align:center;padding:7px 0;border-radius:10px;border:1px solid #E6DAD0;background:#fff;line-height:1.25}
-.res .chip b{display:block;font-size:14px}
-.res .chip.on{background:#5B1E25;border-color:#5B1E25;color:#FBF7F2}
-.res .btnr{margin-top:auto;background:#5B1E25;color:#FBF7F2;text-align:center;padding:11px;border-radius:12px;font-weight:600;font-size:13px}
-.ai-card{position:absolute;right:7%;bottom:10%;width:min(48%,250px);background:#fff;border-radius:16px;padding:12px 14px;font-size:.82rem;line-height:1.4;box-shadow:0 24px 50px -24px rgba(0,0,0,.35)}
-.ai-card small{display:flex;align-items:center;gap:6px;color:var(--soft);font-size:.72rem;margin-bottom:4px}
-.ai-card small i{width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* pipeline */
+.pipe{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;position:relative;counter-reset:p}
+.pipe li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;position:relative}
+.pipe li:before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--green);font-family:var(--display);font-weight:600;font-size:.9rem;margin-bottom:16px}
+.pipe li:not(:last-child):after{content:"";position:absolute;top:36px;right:-13px;width:14px;height:2px;background:var(--ink)}
+.pipe h3{font-size:1.08rem;margin-bottom:8px}
+.pipe p{font-size:.93rem;color:var(--graphite)}
+@media (max-width:980px){.pipe{grid-template-columns:1fr 1fr}.pipe li:after{display:none}}
+@media (max-width:560px){.pipe{grid-template-columns:1fr}}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.two>div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
 
-/* video phones */
-.vid{position:relative;cursor:pointer}
+/* architectures */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tabs button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);font-weight:600;font-size:.93rem;color:var(--graphite);background:rgba(255,255,255,.4)}
+.tabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.arch{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px)}
+.arch[hidden]{display:none}
+.arch .lab{font-size:.86rem;color:var(--soft);margin-bottom:6px}
+.arch h3{font-size:clamp(1.4rem,2.2vw,1.8rem);letter-spacing:-.025em;margin-bottom:12px}
+.arch p{color:var(--graphite)}
+.flowlist{list-style:none;margin-top:24px;counter-reset:f;display:grid;gap:0}
+.flowlist li{counter-increment:f;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:10px 0;position:relative}
+.flowlist li:before{content:counter(f);width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:.8rem;font-weight:700;background:var(--card);position:relative;z-index:1}
+.flowlist li:not(:last-child):after{content:"";position:absolute;left:12.5px;top:34px;bottom:-10px;width:1.5px;background:var(--line)}
+.facts2{display:grid;gap:22px;align-content:start}
+.facts2 h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.facts2 p,.facts2 li{font-size:.95rem}
+@media (max-width:860px){.arch{grid-template-columns:1fr}}
 
-/* services */
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-.svc article{padding:30px 34px 10px 0}
-.svc article + article{padding-left:34px;border-left:1px solid var(--line)}
-.svc h3{font-family:var(--display);font-weight:600;font-size:1.45rem;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
-.svc p{color:var(--graphite)}
-.svc .ex{margin-top:18px;font-size:.92rem;color:var(--ink2)}
-@media (max-width:860px){.svc{grid-template-columns:1fr}.svc article,.svc article + article{padding:28px 0;border-left:0;border-top:1px solid var(--line)}.svc article:first-child{border-top:0}}
+/* integrations */
+.integ{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.integ div{padding:22px 24px 22px 0;border-bottom:1px solid var(--line)}
+.integ h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.integ p{color:var(--graphite);font-size:.95rem}
+@media (max-width:860px){.integ{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.integ{grid-template-columns:1fr}}
 
 /* approach */
-#pristup{background:var(--ink);color:#EDEEE8;position:relative;overflow:hidden;isolation:isolate}
-#pristup:before{content:"";position:absolute;z-index:-1;width:700px;height:700px;left:-220px;bottom:-380px;background:radial-gradient(closest-side,rgba(126,217,87,.22),transparent)}
-#pristup .sec-head p{color:#A9ABA2}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
+#pristup{background:var(--ink);color:#E9EAE4;position:relative;overflow:hidden;isolation:isolate}
+#pristup:before{content:"";position:absolute;z-index:-1;width:700px;height:700px;left:-220px;bottom:-400px;background:radial-gradient(closest-side,rgba(126,217,87,.2),transparent)}
+#pristup .sec-head p,#pristup .note{color:#A3A69C}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;position:relative}
+.track{position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease)}
+.steps.in .track{transform:scaleX(1)}
 .step{border-top:1px solid #3A3B36;padding-top:22px}
-.step .n{font-family:var(--display);font-size:3.2rem;font-weight:500;line-height:1;color:#4A4C45;letter-spacing:-.03em}
-.step h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:18px 0 8px;letter-spacing:-.015em}
-.step p{color:#A9ABA2;font-size:.98rem}
-.reach{margin-top:clamp(56px,9vh,96px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:baseline;border-top:1px solid #3A3B36;padding-top:28px}
-.reach p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.8rem);letter-spacing:-.02em;line-height:1.25;max-width:30ch}
-.reach span{color:#A9ABA2;max-width:40ch}
-@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step .n{font-family:var(--display);font-size:2.8rem;font-weight:500;line-height:1;color:#4A4C45;transition:color .6s}
+.steps.in .n{color:#E9EAE4}
+.step h3{margin:16px 0 4px;color:#fff}
+.step .d{font-size:.85rem;color:var(--green);font-weight:600}
+.step p{color:#A3A69C;font-size:.96rem;margin-top:10px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.steps{grid-template-columns:1fr}}
+
+/* markets */
+.mk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mk>div{border-radius:22px;padding:clamp(26px,3.5vw,40px);border:1px solid var(--line);background:var(--card)}
+.mk>div:last-child{background:var(--ink);color:#E9EAE4;border-color:var(--ink)}
+.mk>div:last-child p{color:#B3B6AC}
+.mk h3{font-size:1.45rem;margin-bottom:12px}
+.mk p{color:var(--graphite)}
+.mk .how{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:.95rem}
+.mk>div:last-child .how{border-color:#3A3B36}
+@media (max-width:820px){.mk{grid-template-columns:1fr}}
+
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font-family:var(--display);font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-weight:400;font-size:1.5rem;line-height:1;transition:transform .3s}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq details p{color:var(--graphite);padding:0 0 24px;max-width:72ch}
 
 /* contact */
-#kontakt .wrap{background:var(--green);border-radius:34px;padding:clamp(36px,6vw,80px);position:relative;overflow:hidden;isolation:isolate}
-#kontakt .wrap:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(31,31,31,.14) 1.1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000);mask-image:linear-gradient(120deg,transparent 30%,#000)}
-#kontakt .lead,#kontakt .side{color:#25411A}
-#kontakt .side a{border-color:rgba(31,31,31,.3)}
-#kontakt .f label{color:#25411A}
-#kontakt .f input,#kontakt .f textarea{border-color:transparent}
-#kontakt .cta i{background:var(--green)}
-.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:start}
-.contact h2{font-size:clamp(2.2rem,4.4vw,3.8rem);max-width:14ch}
-.contact .lead{margin-top:22px}
-.side{margin-top:34px;display:grid;gap:6px;color:var(--graphite);font-size:.95rem}
-.side a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--line)}
-form{display:grid;gap:14px}
-.f label{display:block;font-size:.88rem;color:var(--graphite);margin-bottom:6px}
-.f input,.f textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;outline:none;transition:border-color .2s,box-shadow .2s}
-.f textarea{min-height:130px;resize:vertical}
-.f input:focus,.f textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(31,31,31,.08)}
+#kontakt .box{background:var(--green);border-radius:32px;padding:clamp(32px,5.5vw,72px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,5vw,80px);align-items:start}
+#kontakt h2{font-size:clamp(2rem,3.8vw,3.2rem)}
+#kontakt .lead{color:#25411A;margin-top:18px}
+#kontakt .ticks{margin-top:26px;color:#1F3313}
+#kontakt .ticks li:before{border-color:#1F1F1F}
+#kontakt .ticks h4{font-size:.95rem}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:grid;gap:6px}
+.f.full{grid-column:1/-1}
+.f label{font-size:.86rem;color:#25411A;font-weight:600}
+.f input,.f textarea,.f select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid transparent;border-radius:13px;padding:13px 15px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+.f select{background-image:linear-gradient(45deg,transparent 50%,#1F1F1F 50%),linear-gradient(135deg,#1F1F1F 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 15px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+.f textarea{min-height:120px;resize:vertical}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(31,31,31,.1)}
 .hp{position:absolute;left:-9999px}
-form .cta{justify-self:start;margin-top:6px}
-.fmsg{font-size:.92rem;min-height:1.4em}
-.fmsg.ok{color:#1F3D12;font-weight:600}.fmsg.err{color:#B4382C}
-@media (max-width:860px){.contact{grid-template-columns:1fr}}
+form .cta{justify-self:start}
+.fmsg{grid-column:1/-1;font-size:.92rem;min-height:1.4em}
+.fmsg.ok{color:#1F3D12;font-weight:600}.fmsg.err{color:#8E2A20;font-weight:600}
+@media (max-width:900px){#kontakt .box{grid-template-columns:1fr}}
+@media (max-width:520px){form{grid-template-columns:1fr}}
 
-
-/* ---------- dashboard mock ---------- */
-#sistemi{padding-top:clamp(40px,7vh,80px)}
+/* dashboard mock */
 .dash-fit{position:relative;width:100%}
 .dash{width:1180px;height:760px;transform-origin:0 0;display:grid;grid-template-columns:220px 1fr;background:#F7F8F4;border-radius:22px;overflow:hidden;font-family:var(--text);color:var(--ink);box-shadow:0 60px 120px -50px rgba(31,40,25,.45),0 0 0 1px rgba(31,31,31,.06);font-size:14px;line-height:1.35}
 .ds-side{background:#1F1F1F;color:#D9DBD3;padding:22px 16px;display:flex;flex-direction:column;gap:22px}
 .ds-brand{display:flex;gap:11px;align-items:center}
-.ds-brand i{width:36px;height:36px;border-radius:10px;background:#F1DCE3;color:#7A2843;display:grid;place-items:center;font-style:normal;font-family:var(--display);font-weight:700}
+.ds-brand i{width:36px;height:36px;border-radius:10px;background:#2E2F2B;color:var(--green);display:grid;place-items:center;font-style:normal;font-family:var(--display);font-weight:700}
 .ds-brand b{display:block;color:#fff;font-family:var(--display);font-weight:600}.ds-brand small{color:#8F928A;font-size:12px}
 .ds-side nav{display:flex;flex-direction:column;gap:3px}
 .ds-side nav span{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:10px;color:#A9ABA2}
 .ds-side nav span.on{background:#2E2F2B;color:#fff}
 .ds-side nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
-.ds-side nav em{font-style:normal;flex:1}.ds-side nav b{background:var(--green);color:#1F1F1F;font-size:11px;border-radius:999px;padding:1px 7px}
+.ds-side nav em{font-style:normal;flex:1}.ds-side nav b{background:var(--amber);color:#1F1F1F;font-size:11px;border-radius:999px;padding:1px 7px}
 .ds-ai{margin-top:auto;background:#2A2B27;border-radius:14px;padding:13px;display:flex;gap:11px;align-items:center}
 .ds-ai b{color:#fff;font-weight:600;display:block;font-size:13px}.ds-ai small{color:#8F928A;font-size:12px}
 .ds-main{padding:22px 24px;display:grid;grid-template-rows:auto auto 1fr 1fr;gap:16px;min-width:0}
@@ -211,12 +245,12 @@ form .cta{justify-self:start;margin-top:6px}
 .kpi{background:#fff;border:1px solid #E6E8E0;border-radius:15px;padding:15px 16px;position:relative}
 .kpi small{color:var(--soft);font-size:12.5px}.kpi b{display:block;font-family:var(--display);font-size:28px;font-weight:600;letter-spacing:-.03em;margin-top:6px}
 .kpi em{position:absolute;right:14px;top:14px;font-style:normal;font-size:11.5px;font-weight:600;color:#2F7A18;background:#E5F5DC;border-radius:999px;padding:2px 8px}
+.kpi em.w{color:#8A5A00;background:#FFF1D6}
 .kbar{height:6px;border-radius:3px;background:#EEF0E8;margin-top:8px;overflow:hidden}.kbar i{display:block;height:100%;width:0;background:var(--green);border-radius:3px;transition:width 1.6s var(--ease) .3s}
 .dash.go .kbar i{width:var(--w)}
 .card{background:#fff;border:1px solid #E6E8E0;border-radius:15px;padding:15px 16px;min-width:0;overflow:hidden}
 .card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.card-h b{font-weight:600;font-size:14px}.card-h small{color:var(--soft);font-size:12px}
-.ds-mid{display:grid;grid-template-columns:1fr 300px;gap:14px;min-height:0}
-.ds-bot{display:grid;grid-template-columns:1fr 300px;gap:14px;min-height:0}
+.ds-mid,.ds-bot{display:grid;grid-template-columns:1fr 300px;gap:14px;min-height:0}
 .chart{width:100%;height:185px;display:block;overflow:visible}
 .chart .gl{stroke:#EEF0E8;stroke-width:1}
 .chart .area{fill:url(#ag);opacity:0;transition:opacity 1.2s ease 1.2s}
@@ -225,14 +259,14 @@ form .cta{justify-self:start;margin-top:6px}
 .chart .lastdot{fill:#7ED957;stroke:#fff;stroke-width:3;opacity:0;transition:opacity .4s 1.8s}
 .dash.go .chart .ln{stroke-dashoffset:0}.dash.go .chart .area,.dash.go .chart .lastdot{opacity:1}
 .lg{display:flex;gap:16px;margin-top:6px;font-size:12px;color:var(--graphite)}.lg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
-.hb{display:grid;grid-template-columns:80px 1fr 40px;align-items:center;gap:10px;margin:14px 0;font-size:13px}
+.hb{display:grid;grid-template-columns:70px 1fr 40px;align-items:center;gap:10px;margin:11px 0;font-size:13px}
 .hb div{height:10px;background:#EEF0E8;border-radius:5px;overflow:hidden}.hb i{display:block;height:100%;width:0;border-radius:5px;transition:width 1.4s var(--ease) .5s}
 .dash.go .hb i{width:var(--w)}.hb em{font-style:normal;color:var(--graphite);text-align:right}
-.ds-note{margin-top:18px;background:#FFF6E3;color:#7A5200;border-radius:11px;padding:10px 12px;font-size:12.5px}
+.ds-note{margin-top:12px;background:#FFF6E3;color:#7A5200;border-radius:11px;padding:10px 12px;font-size:12.5px}
 .tb{width:100%;border-collapse:collapse;font-size:13px}
 .tb td{padding:9px 6px;border-top:1px solid #EEF0E8;white-space:nowrap}.tb tr:first-child td{border-top:0}
-.tb td:first-child{font-weight:600;font-variant-numeric:tabular-nums}.tb td:nth-child(3){color:var(--graphite)}
-.chn{font-size:11.5px;border-radius:6px;padding:3px 8px;font-weight:600}.chn.wa{background:#E5F5DC;color:#2F7A18}.chn.ig{background:#F7E4EC;color:#9A2C5C}.chn.wb{background:#E4EAF6;color:#2D5BB0}
+.tb td:first-child{font-weight:600;font-variant-numeric:tabular-nums}.tb td:nth-child(4){color:var(--graphite)}
+.chn{font-size:11.5px;border-radius:6px;padding:3px 8px;font-weight:600}.chn.wa{background:#E5F5DC;color:#2F7A18}.chn.ig{background:#F7E4EC;color:#9A2C5C}.chn.wb{background:#E4EAF6;color:#2D5BB0}.chn.em{background:#EFECE3;color:#6B5E3A}
 .st{font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 9px}.st.ok{background:#1F1F1F;color:#fff}.st.wait{background:#FFF1D6;color:#8A5A00}.st.new{background:#E5F5DC;color:#2F7A18}
 .feed ul{list-style:none;display:flex;flex-direction:column;gap:9px}
 .feed li{display:flex;gap:10px;font-size:12.5px;line-height:1.35;animation:fin .6s var(--ease)}
@@ -245,100 +279,37 @@ form .cta{justify-self:start;margin-top:6px}
 .dash.compact .ds-kpis{grid-template-columns:1fr 1fr}
 .dash.compact .ds-mid,.dash.compact .ds-bot{grid-template-columns:1fr}
 .dash.compact .ds-mid .card:last-child{display:none}
-.dash.compact .kpi b{font-size:30px}
-.dash-note{margin-top:18px;font-size:.88rem;color:var(--soft)}
-/* ---------- motion ---------- */
+.dash.compact .tb td:nth-child(3){display:none}
+
+/* motion */
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
 .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
 .ready .w>span{transform:none}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
-.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
-.hero .lead,.hero .links{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease) .55s,transform .9s var(--ease) .55s}
-.hero .links{transition-delay:.7s}
-.ready .hero .lead,.ready .hero .links{opacity:1;transform:none}
+.hero .lead,.hero .links,.hero .facts{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s}
+.ready .hero .lead,.ready .hero .links,.ready .hero .facts{opacity:1;transform:none}
 
-/* hero flow graphic */
-.flow{position:relative;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:center}
-.ins{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
-.chip-ch{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px 8px 10px;font-size:.86rem;font-weight:600;white-space:nowrap;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
-.chip-ch i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none}
-.chip-ch svg{width:13px;height:13px}
-.chip-ch.on{border-color:var(--ink);box-shadow:0 10px 24px -14px rgba(0,0,0,.5);transform:translateX(4px)}
-.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
-.wires path{fill:none;stroke:#C9CCC2;stroke-width:1.5;stroke-dasharray:3 5}
-.wires path.on{stroke:var(--ink);stroke-dasharray:none}
-.pdot{fill:var(--green);filter:drop-shadow(0 0 6px rgba(126,217,87,.9))}
-.flow .live{z-index:2}
-.outs{grid-column:2;display:flex;gap:10px;margin-top:30px;position:relative;z-index:2;flex-wrap:wrap}
-.dest{flex:1;min-width:0;white-space:nowrap;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-size:.8rem;font-weight:600;color:var(--graphite);transition:all .4s var(--ease)}
-.dest svg{width:16px;height:16px;flex:none;color:var(--soft);transition:color .4s}
-.dest.on{border-color:var(--green);color:var(--ink);box-shadow:0 0 0 4px rgba(126,217,87,.18)}
-.dest.on svg{color:var(--green-ink)}
-.live-cap{grid-column:2}
-@media (max-width:1100px){.flow{grid-template-columns:1fr;gap:0}.ins{flex-direction:row;flex-wrap:wrap;margin-bottom:18px}.wires{display:none}.outs,.live-cap{grid-column:1}.chip-ch.on{transform:translateY(-2px)}}
-
-/* capability numbers */
-.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:clamp(60px,9vh,100px) 0 0}
-.cap{padding:26px 0 0;border-top:3px solid var(--green)}
-.cap .big{font-family:var(--display);font-weight:600;font-size:clamp(3rem,6vw,5.4rem);letter-spacing:-.04em;line-height:.95;display:flex;align-items:baseline;gap:10px}
-.cap .big small{font-size:.32em;letter-spacing:-.01em;color:var(--graphite);font-weight:500}
-.cap p{margin-top:12px;color:var(--graphite);max-width:30ch}
-@media (max-width:760px){.caps{grid-template-columns:1fr}}
-
-/* service illustrations */
-.ill{height:150px;border-radius:18px;background:#fff;border:1px solid var(--line);margin-bottom:24px;position:relative;overflow:hidden}
-.ill-chat .b{position:absolute;height:26px;border-radius:13px;opacity:0;animation:bub 6s infinite}
-.ill-chat .b1{left:16px;top:18px;width:58%;background:var(--paper2)}
-.ill-chat .b2{right:16px;top:56px;width:52%;background:var(--ink);animation-delay:1.2s}
-.ill-chat .b3{left:16px;top:94px;width:40%;background:var(--paper2);animation-delay:2.4s}
-.ill-chat .b4{right:16px;top:94px;width:30%;background:var(--green);animation-delay:3.4s;opacity:0}
-@keyframes bub{0%{opacity:0;transform:translateY(8px)}8%,80%{opacity:1;transform:none}92%,100%{opacity:0}}
-.ill-auto .row{position:absolute;left:16px;right:16px;height:16px;border-radius:5px;background:var(--paper2);overflow:hidden}
-.ill-auto .row i{display:block;height:100%;width:0;background:var(--ink);border-radius:5px;animation:fill 5s infinite var(--ease)}
-.ill-auto .row:nth-child(1){top:22px}.ill-auto .row:nth-child(2){top:50px}.ill-auto .row:nth-child(3){top:78px}.ill-auto .row:nth-child(4){top:106px}
-.ill-auto .row:nth-child(2) i{animation-delay:.4s;background:#5E615A}.ill-auto .row:nth-child(3) i{animation-delay:.8s}.ill-auto .row:nth-child(4) i{animation-delay:1.2s;background:var(--green)}
-@keyframes fill{0%{width:0}35%,80%{width:var(--w,70%)}100%{width:0}}
-.ill-vid{display:flex;align-items:center;justify-content:center;gap:5px;padding:0 20px}
-.ill-vid i{display:block;width:6px;border-radius:3px;background:var(--ink);animation:wave 1.4s ease-in-out infinite}
-.ill-vid i:nth-child(3n){background:var(--green)}
-@keyframes wave{0%,100%{height:14px}50%{height:var(--h,60px)}}
-
-/* approach line */
-.steps{position:relative}
-.track{position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease)}
-.steps.in .track{transform:scaleX(1)}
-.step .n{transition:color .6s}
-.steps.in .step .n{color:#EDEEE8}
-.steps.in .step:nth-child(3) .n{transition-delay:.5s}.steps.in .step:nth-child(4) .n{transition-delay:1s}.steps.in .step:nth-child(5) .n{transition-delay:1.5s}
-
-/* video phones autoplay */
-.vid video{width:100%;height:100%;object-fit:cover;border-radius:24px}
-.vid .snd{position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;z-index:2}
-.ai-card{transition:opacity .8s var(--ease) .3s,transform .8s var(--ease) .3s}
-.work:not(.in) .ai-card{opacity:0;transform:translateY(20px) scale(.96)}
-.phone{will-change:transform}
-
-footer{padding:34px 0 0;overflow:hidden}
-.giant{font-family:Poppins,var(--display);font-weight:800;letter-spacing:-.06em;line-height:.8;font-size:clamp(5rem,24vw,22rem);color:var(--paper2);margin-top:30px;text-align:center;user-select:none}
-.giant span{color:rgba(126,217,87,.55)}
+footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40px,6vh,80px)}
 .foot{display:flex;flex-wrap:wrap;gap:16px 30px;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--soft)}
 .foot .logo{font-size:1.3rem;color:var(--ink)}
-.foot nav{display:flex;gap:22px}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px}
 .foot nav a{text-decoration:none}
 .foot nav a:hover{color:var(--ink)}
 </style>
 </head>
 <body>
-<svg class="bgfx" viewBox="0 0 1440 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 49.0 L0 44.5 L40 42.5 L80 42.2 L120 42.4 L160 41.6 L200 38.7 L240 33.1 L280 25.3 L320 16.6 L360 8.8 L400 3.9 L440 3.2 L480 7.3 L520 15.6 L560 26.8 L600 38.7 L640 49.3 L680 57.0 L720 61.0 L760 61.6 L800 59.7 L840 57.0 L880 54.9 L920 54.6 L960 56.2 L1000 59.1 L1040 61.9 L1080 63.0 L1120 61.0 L1160 55.3 L1200 46.0 L1240 34.3 L1280 22.3 L1320 12.1 L1360 5.4 L1400 3.4 L1440 5.9 L1480 12.1"/><path d="M-40 131.9 L0 128.3 L40 127.3 L80 128.1 L120 129.1 L160 129.0 L200 126.5 L240 121.1 L280 113.4 L320 104.8 L360 97.1 L400 92.2 L440 91.4 L480 95.2 L520 102.9 L560 113.2 L600 124.0 L640 133.3 L680 139.7 L720 142.6 L760 142.4 L800 140.3 L840 137.9 L880 136.7 L920 137.6 L960 140.7 L1000 145.1 L1040 149.3 L1080 151.7 L1120 150.7 L1160 145.8 L1200 137.1 L1240 126.1 L1280 114.5 L1320 104.5 L1360 97.7 L1400 95.2 L1440 96.9 L1480 101.7"/><path d="M-40 167.6 L0 159.0 L40 159.2 L80 168.9 L120 187.0 L160 210.6 L200 235.5 L240 257.0 L280 270.7 L320 273.9 L360 265.6 L400 247.2 L440 222.2 L480 195.4 L520 171.7 L560 155.8 L600 150.5 L640 156.4 L680 172.1 L720 194.4 L760 218.8 L800 240.8 L840 256.7 L880 264.1 L920 262.3 L960 252.6 L1000 237.1 L1040 218.9 L1080 201.0 L1120 186.2 L1160 176.0 L1200 171.4 L1240 172.5 L1280 178.5 L1320 188.5 L1360 201.2 L1400 215.2 L1440 229.1 L1480 241.3"/><path d="M-40 326.1 L0 319.7 L40 311.5 L80 303.3 L120 296.6 L160 291.9 L200 289.1 L240 287.6 L280 286.4 L320 284.8 L360 282.7 L400 280.6 L440 279.3 L480 280.3 L520 284.3 L560 291.7 L600 301.9 L640 313.3 L680 323.8 L720 331.2 L760 333.5 L800 329.9 L840 320.6 L880 307.1 L920 291.9 L960 277.8 L1000 267.4 L1040 262.5 L1080 263.7 L1120 270.2 L1160 280.4 L1200 292.0 L1240 302.7 L1280 310.9 L1320 315.7 L1360 317.2 L1400 316.2 L1440 313.9 L1480 311.5"/><path d="M-40 415.7 L0 412.8 L40 407.1 L80 400.4 L120 394.4 L160 390.4 L200 388.7 L240 389.0 L280 389.9 L320 390.0 L360 387.8 L400 382.8 L440 375.2 L480 366.1 L520 357.4 L560 350.9 L600 348.3 L640 350.4 L680 356.9 L720 366.7 L760 377.8 L800 388.2 L840 396.0 L880 400.5 L920 401.6 L960 400.2 L1000 397.8 L1040 396.0 L1080 395.9 L1120 397.9 L1160 401.5 L1200 405.4 L1240 408.0 L1280 407.6 L1320 403.4 L1360 395.4 L1400 384.6 L1440 372.7 L1480 362.0"/><path d="M-40 416.7 L0 414.0 L40 421.6 L80 438.6 L120 462.2 L160 488.2 L200 511.5 L240 527.5 L280 532.9 L320 526.3 L360 509.0 L400 484.3 L440 456.9 L480 432.2 L520 415.0 L560 408.4 L600 413.3 L640 428.6 L680 450.8 L720 475.6 L760 498.3 L800 514.8 L840 522.6 L880 520.9 L920 510.8 L960 494.6 L1000 475.6 L1040 457.0 L1080 441.8 L1120 431.8 L1160 428.1 L1200 430.4 L1240 438.0 L1280 449.6 L1320 463.5 L1360 478.1 L1400 491.7 L1440 502.7 L1480 509.5"/><path d="M-40 600.0 L0 591.4 L40 582.3 L80 573.9 L120 567.0 L160 561.2 L200 555.6 L240 549.3 L280 541.4 L320 531.8 L360 521.4 L400 511.6 L440 504.4 L480 501.6 L520 504.6 L560 513.5 L600 527.6 L640 545.0 L680 563.1 L720 579.4 L760 592.0 L800 599.5 L840 602.0 L880 600.2 L920 595.8 L960 590.4 L1000 585.0 L1040 580.5 L1080 576.3 L1120 571.8 L1160 565.7 L1200 557.3 L1240 546.3 L1280 533.3 L1320 519.9 L1360 508.3 L1400 500.5 L1440 498.2 L1480 502.4"/><path d="M-40 594.5 L0 598.2 L40 610.0 L80 628.2 L120 649.5 L160 670.0 L200 685.9 L240 693.9 L280 692.6 L320 682.3 L360 665.0 L400 644.1 L440 623.6 L480 607.1 L520 597.5 L560 596.0 L600 602.1 L640 614.2 L680 629.6 L720 645.4 L760 659.0 L800 668.8 L840 673.8 L880 674.3 L920 671.0 L960 664.9 L1000 656.9 L1040 648.1 L1080 638.9 L1120 629.8 L1160 621.4 L1200 614.5 L1240 610.1 L1280 609.3 L1320 613.0 L1360 621.5 L1400 634.3 L1440 649.8 L1480 665.7"/><path d="M-40 715.7 L0 709.1 L40 700.8 L80 691.2 L120 681.8 L160 674.2 L200 670.5 L240 671.9 L280 679.1 L320 691.5 L360 707.4 L400 724.7 L440 740.9 L480 754.1 L520 763.1 L560 767.9 L600 769.1 L640 768.2 L680 766.6 L720 765.5 L760 765.1 L800 765.1 L840 764.3 L880 761.2 L920 754.7 L960 744.2 L1000 730.0 L1040 713.7 L1080 697.2 L1120 682.9 L1160 673.0 L1200 668.6 L1240 670.1 L1280 676.6 L1320 686.4 L1360 697.5 L1400 708.1 L1440 717.0 L1480 723.9"/><path d="M-40 855.7 L0 861.4 L40 860.2 L80 853.2 L120 842.2 L160 829.6 L200 817.2 L240 806.5 L280 798.2 L320 792.1 L360 787.9 L400 785.0 L440 783.3 L480 782.9 L520 784.5 L560 789.1 L600 797.2 L640 808.8 L680 823.0 L720 838.2 L760 851.9 L800 861.6 L840 865.1 L880 861.1 L920 849.9 L960 832.9 L1000 812.9 L1040 793.0 L1080 776.6 L1120 766.3 L1160 763.2 L1200 767.5 L1240 777.6 L1280 791.4 L1320 806.4 L1360 820.2 L1400 831.3 L1440 838.9 L1480 843.2"/><path d="M-40 867.2 L0 877.1 L40 890.2 L80 904.7 L120 918.2 L160 928.8 L200 935.1 L240 936.9 L280 934.9 L320 930.5 L360 925.5 L400 921.3 L440 918.7 L480 917.7 L520 917.4 L560 916.3 L600 913.2 L640 907.0 L680 897.7 L720 886.0 L760 873.7 L800 862.9 L840 855.5 L880 853.0 L920 855.8 L960 863.2 L1000 873.6 L1040 885.2 L1080 895.8 L1120 904.0 L1160 909.3 L1200 911.9 L1240 913.1 L1280 914.2 L1320 916.5 L1360 920.6 L1400 926.3 L1440 932.5 L1480 937.5"/><path d="M-40 1034.1 L0 1025.7 L40 1013.8 L80 1000.6 L120 987.7 L160 976.2 L200 966.5 L240 958.7 L280 952.7 L320 948.7 L360 947.0 L400 948.5 L440 953.8 L480 963.5 L520 977.3 L560 994.1 L600 1011.9 L640 1027.9 L680 1039.4 L720 1043.8 L760 1039.9 L800 1027.6 L840 1008.7 L880 986.1 L920 963.3 L960 944.2 L1000 931.7 L1040 927.5 L1080 931.9 L1120 943.5 L1160 960.0 L1200 978.3 L1240 995.7 L1280 1009.9 L1320 1019.8 L1360 1024.9 L1400 1025.9 L1440 1023.5 L1480 1018.7"/><path d="M-40 1016.2 L0 1025.8 L40 1042.9 L80 1065.1 L120 1088.9 L160 1110.4 L200 1126.0 L240 1133.3 L280 1131.2 L320 1120.5 L360 1103.4 L400 1083.0 L440 1062.6 L480 1045.3 L520 1033.0 L560 1026.9 L600 1026.5 L640 1031.0 L680 1038.9 L720 1048.8 L760 1059.7 L800 1070.9 L840 1082.1 L880 1092.9 L920 1102.8 L960 1111.0 L1000 1116.2 L1040 1117.1 L1080 1112.5 L1120 1102.0 L1160 1086.1 L1200 1066.6 L1240 1046.1 L1280 1027.8 L1320 1015.2 L1360 1010.6 L1400 1015.2 L1440 1028.6 L1480 1048.8"/><path d="M-40 1183.3 L0 1172.4 L40 1161.8 L80 1151.9 L120 1142.7 L160 1134.0 L200 1126.2 L240 1119.7 L280 1115.8 L320 1115.6 L360 1120.2 L400 1130.3 L440 1145.4 L480 1164.0 L520 1183.5 L560 1200.9 L600 1213.1 L640 1217.9 L680 1214.0 L720 1202.0 L760 1183.6 L800 1161.9 L840 1140.4 L880 1122.4 L920 1110.5 L960 1105.7 L1000 1108.0 L1040 1116.1 L1080 1127.9 L1120 1141.4 L1160 1154.6 L1200 1166.3 L1240 1175.9 L1280 1183.6 L1320 1189.4 L1360 1193.6 L1400 1196.0 L1440 1195.9 L1480 1192.7"/><path d="M-40 1281.4 L0 1288.3 L40 1288.9 L80 1283.9 L120 1274.8 L160 1263.8 L200 1252.9 L240 1243.3 L280 1235.6 L320 1229.9 L360 1225.3 L400 1221.3 L440 1217.5 L480 1214.0 L520 1211.7 L560 1211.8 L600 1215.4 L640 1223.3 L680 1235.4 L720 1250.5 L760 1266.6 L800 1281.0 L840 1291.2 L880 1295.2 L920 1291.9 L960 1281.8 L1000 1266.5 L1040 1248.7 L1080 1231.2 L1120 1216.8 L1160 1207.3 L1200 1203.4 L1240 1204.8 L1280 1210.1 L1320 1217.8 L1360 1226.1 L1400 1233.9 L1440 1240.8 L1480 1246.9"/><path d="M-40 1326.1 L0 1344.0 L40 1358.8 L80 1367.6 L120 1368.8 L160 1362.5 L200 1350.1 L240 1334.7 L280 1319.3 L320 1307.1 L360 1300.0 L400 1299.0 L440 1303.5 L480 1312.1 L520 1322.6 L560 1333.0 L600 1341.4 L640 1347.0 L680 1349.4 L720 1349.1 L760 1346.8 L800 1343.1 L840 1338.7 L880 1333.7 L920 1328.3 L960 1322.6 L1000 1316.9 L1040 1311.9 L1080 1308.6 L1120 1308.0 L1160 1311.0 L1200 1317.8 L1240 1327.8 L1280 1339.7 L1320 1351.3 L1360 1359.9 L1400 1363.6 L1440 1360.9 L1480 1351.8"/><path d="M-40 1437.3 L0 1430.9 L40 1423.2 L80 1416.1 L120 1410.8 L160 1407.9 L200 1407.1 L240 1407.6 L280 1408.3 L320 1408.4 L360 1407.6 L400 1406.3 L440 1405.4 L480 1405.9 L520 1408.8 L560 1414.3 L600 1421.9 L640 1430.2 L680 1437.4 L720 1441.5 L760 1441.1 L800 1435.7 L840 1425.9 L880 1413.5 L920 1400.8 L960 1390.6 L1000 1385.0 L1040 1385.2 L1080 1391.2 L1120 1401.7 L1160 1414.4 L1200 1426.6 L1240 1436.0 L1280 1441.0 L1320 1441.0 L1360 1436.6 L1400 1429.5 L1440 1421.4 L1480 1414.1"/><path d="M-40 1531.0 L0 1522.1 L40 1513.1 L80 1505.0 L120 1498.4 L160 1492.9 L200 1487.9 L240 1483.0 L280 1478.0 L320 1473.3 L360 1470.1 L400 1469.7 L440 1473.3 L480 1481.5 L520 1493.9 L560 1509.3 L600 1525.2 L640 1539.1 L680 1548.2 L720 1550.8 L760 1546.2 L800 1534.9 L840 1519.0 L880 1501.3 L920 1484.6 L960 1471.7 L1000 1464.0 L1040 1462.2 L1080 1465.6 L1120 1472.6 L1160 1481.5 L1200 1490.5 L1240 1498.6 L1280 1505.3 L1320 1510.8 L1360 1515.8 L1400 1520.8 L1440 1525.8 L1480 1530.5"/></svg><div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div>
+<svg class="bgfx" viewBox="0 0 1440 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 49.0 L0 44.5 L40 42.5 L80 42.2 L120 42.4 L160 41.6 L200 38.7 L240 33.1 L280 25.3 L320 16.6 L360 8.8 L400 3.9 L440 3.2 L480 7.3 L520 15.6 L560 26.8 L600 38.7 L640 49.3 L680 57.0 L720 61.0 L760 61.6 L800 59.7 L840 57.0 L880 54.9 L920 54.6 L960 56.2 L1000 59.1 L1040 61.9 L1080 63.0 L1120 61.0 L1160 55.3 L1200 46.0 L1240 34.3 L1280 22.3 L1320 12.1 L1360 5.4 L1400 3.4 L1440 5.9 L1480 12.1"/><path d="M-40 131.9 L0 128.3 L40 127.3 L80 128.1 L120 129.1 L160 129.0 L200 126.5 L240 121.1 L280 113.4 L320 104.8 L360 97.1 L400 92.2 L440 91.4 L480 95.2 L520 102.9 L560 113.2 L600 124.0 L640 133.3 L680 139.7 L720 142.6 L760 142.4 L800 140.3 L840 137.9 L880 136.7 L920 137.6 L960 140.7 L1000 145.1 L1040 149.3 L1080 151.7 L1120 150.7 L1160 145.8 L1200 137.1 L1240 126.1 L1280 114.5 L1320 104.5 L1360 97.7 L1400 95.2 L1440 96.9 L1480 101.7"/><path d="M-40 167.6 L0 159.0 L40 159.2 L80 168.9 L120 187.0 L160 210.6 L200 235.5 L240 257.0 L280 270.7 L320 273.9 L360 265.6 L400 247.2 L440 222.2 L480 195.4 L520 171.7 L560 155.8 L600 150.5 L640 156.4 L680 172.1 L720 194.4 L760 218.8 L800 240.8 L840 256.7 L880 264.1 L920 262.3 L960 252.6 L1000 237.1 L1040 218.9 L1080 201.0 L1120 186.2 L1160 176.0 L1200 171.4 L1240 172.5 L1280 178.5 L1320 188.5 L1360 201.2 L1400 215.2 L1440 229.1 L1480 241.3"/><path d="M-40 326.1 L0 319.7 L40 311.5 L80 303.3 L120 296.6 L160 291.9 L200 289.1 L240 287.6 L280 286.4 L320 284.8 L360 282.7 L400 280.6 L440 279.3 L480 280.3 L520 284.3 L560 291.7 L600 301.9 L640 313.3 L680 323.8 L720 331.2 L760 333.5 L800 329.9 L840 320.6 L880 307.1 L920 291.9 L960 277.8 L1000 267.4 L1040 262.5 L1080 263.7 L1120 270.2 L1160 280.4 L1200 292.0 L1240 302.7 L1280 310.9 L1320 315.7 L1360 317.2 L1400 316.2 L1440 313.9 L1480 311.5"/><path d="M-40 415.7 L0 412.8 L40 407.1 L80 400.4 L120 394.4 L160 390.4 L200 388.7 L240 389.0 L280 389.9 L320 390.0 L360 387.8 L400 382.8 L440 375.2 L480 366.1 L520 357.4 L560 350.9 L600 348.3 L640 350.4 L680 356.9 L720 366.7 L760 377.8 L800 388.2 L840 396.0 L880 400.5 L920 401.6 L960 400.2 L1000 397.8 L1040 396.0 L1080 395.9 L1120 397.9 L1160 401.5 L1200 405.4 L1240 408.0 L1280 407.6 L1320 403.4 L1360 395.4 L1400 384.6 L1440 372.7 L1480 362.0"/><path d="M-40 416.7 L0 414.0 L40 421.6 L80 438.6 L120 462.2 L160 488.2 L200 511.5 L240 527.5 L280 532.9 L320 526.3 L360 509.0 L400 484.3 L440 456.9 L480 432.2 L520 415.0 L560 408.4 L600 413.3 L640 428.6 L680 450.8 L720 475.6 L760 498.3 L800 514.8 L840 522.6 L880 520.9 L920 510.8 L960 494.6 L1000 475.6 L1040 457.0 L1080 441.8 L1120 431.8 L1160 428.1 L1200 430.4 L1240 438.0 L1280 449.6 L1320 463.5 L1360 478.1 L1400 491.7 L1440 502.7 L1480 509.5"/><path d="M-40 600.0 L0 591.4 L40 582.3 L80 573.9 L120 567.0 L160 561.2 L200 555.6 L240 549.3 L280 541.4 L320 531.8 L360 521.4 L400 511.6 L440 504.4 L480 501.6 L520 504.6 L560 513.5 L600 527.6 L640 545.0 L680 563.1 L720 579.4 L760 592.0 L800 599.5 L840 602.0 L880 600.2 L920 595.8 L960 590.4 L1000 585.0 L1040 580.5 L1080 576.3 L1120 571.8 L1160 565.7 L1200 557.3 L1240 546.3 L1280 533.3 L1320 519.9 L1360 508.3 L1400 500.5 L1440 498.2 L1480 502.4"/><path d="M-40 594.5 L0 598.2 L40 610.0 L80 628.2 L120 649.5 L160 670.0 L200 685.9 L240 693.9 L280 692.6 L320 682.3 L360 665.0 L400 644.1 L440 623.6 L480 607.1 L520 597.5 L560 596.0 L600 602.1 L640 614.2 L680 629.6 L720 645.4 L760 659.0 L800 668.8 L840 673.8 L880 674.3 L920 671.0 L960 664.9 L1000 656.9 L1040 648.1 L1080 638.9 L1120 629.8 L1160 621.4 L1200 614.5 L1240 610.1 L1280 609.3 L1320 613.0 L1360 621.5 L1400 634.3 L1440 649.8 L1480 665.7"/><path d="M-40 715.7 L0 709.1 L40 700.8 L80 691.2 L120 681.8 L160 674.2 L200 670.5 L240 671.9 L280 679.1 L320 691.5 L360 707.4 L400 724.7 L440 740.9 L480 754.1 L520 763.1 L560 767.9 L600 769.1 L640 768.2 L680 766.6 L720 765.5 L760 765.1 L800 765.1 L840 764.3 L880 761.2 L920 754.7 L960 744.2 L1000 730.0 L1040 713.7 L1080 697.2 L1120 682.9 L1160 673.0 L1200 668.6 L1240 670.1 L1280 676.6 L1320 686.4 L1360 697.5 L1400 708.1 L1440 717.0 L1480 723.9"/><path d="M-40 855.7 L0 861.4 L40 860.2 L80 853.2 L120 842.2 L160 829.6 L200 817.2 L240 806.5 L280 798.2 L320 792.1 L360 787.9 L400 785.0 L440 783.3 L480 782.9 L520 784.5 L560 789.1 L600 797.2 L640 808.8 L680 823.0 L720 838.2 L760 851.9 L800 861.6 L840 865.1 L880 861.1 L920 849.9 L960 832.9 L1000 812.9 L1040 793.0 L1080 776.6 L1120 766.3 L1160 763.2 L1200 767.5 L1240 777.6 L1280 791.4 L1320 806.4 L1360 820.2 L1400 831.3 L1440 838.9 L1480 843.2"/><path d="M-40 867.2 L0 877.1 L40 890.2 L80 904.7 L120 918.2 L160 928.8 L200 935.1 L240 936.9 L280 934.9 L320 930.5 L360 925.5 L400 921.3 L440 918.7 L480 917.7 L520 917.4 L560 916.3 L600 913.2 L640 907.0 L680 897.7 L720 886.0 L760 873.7 L800 862.9 L840 855.5 L880 853.0 L920 855.8 L960 863.2 L1000 873.6 L1040 885.2 L1080 895.8 L1120 904.0 L1160 909.3 L1200 911.9 L1240 913.1 L1280 914.2 L1320 916.5 L1360 920.6 L1400 926.3 L1440 932.5 L1480 937.5"/><path d="M-40 1034.1 L0 1025.7 L40 1013.8 L80 1000.6 L120 987.7 L160 976.2 L200 966.5 L240 958.7 L280 952.7 L320 948.7 L360 947.0 L400 948.5 L440 953.8 L480 963.5 L520 977.3 L560 994.1 L600 1011.9 L640 1027.9 L680 1039.4 L720 1043.8 L760 1039.9 L800 1027.6 L840 1008.7 L880 986.1 L920 963.3 L960 944.2 L1000 931.7 L1040 927.5 L1080 931.9 L1120 943.5 L1160 960.0 L1200 978.3 L1240 995.7 L1280 1009.9 L1320 1019.8 L1360 1024.9 L1400 1025.9 L1440 1023.5 L1480 1018.7"/><path d="M-40 1016.2 L0 1025.8 L40 1042.9 L80 1065.1 L120 1088.9 L160 1110.4 L200 1126.0 L240 1133.3 L280 1131.2 L320 1120.5 L360 1103.4 L400 1083.0 L440 1062.6 L480 1045.3 L520 1033.0 L560 1026.9 L600 1026.5 L640 1031.0 L680 1038.9 L720 1048.8 L760 1059.7 L800 1070.9 L840 1082.1 L880 1092.9 L920 1102.8 L960 1111.0 L1000 1116.2 L1040 1117.1 L1080 1112.5 L1120 1102.0 L1160 1086.1 L1200 1066.6 L1240 1046.1 L1280 1027.8 L1320 1015.2 L1360 1010.6 L1400 1015.2 L1440 1028.6 L1480 1048.8"/><path d="M-40 1183.3 L0 1172.4 L40 1161.8 L80 1151.9 L120 1142.7 L160 1134.0 L200 1126.2 L240 1119.7 L280 1115.8 L320 1115.6 L360 1120.2 L400 1130.3 L440 1145.4 L480 1164.0 L520 1183.5 L560 1200.9 L600 1213.1 L640 1217.9 L680 1214.0 L720 1202.0 L760 1183.6 L800 1161.9 L840 1140.4 L880 1122.4 L920 1110.5 L960 1105.7 L1000 1108.0 L1040 1116.1 L1080 1127.9 L1120 1141.4 L1160 1154.6 L1200 1166.3 L1240 1175.9 L1280 1183.6 L1320 1189.4 L1360 1193.6 L1400 1196.0 L1440 1195.9 L1480 1192.7"/><path d="M-40 1281.4 L0 1288.3 L40 1288.9 L80 1283.9 L120 1274.8 L160 1263.8 L200 1252.9 L240 1243.3 L280 1235.6 L320 1229.9 L360 1225.3 L400 1221.3 L440 1217.5 L480 1214.0 L520 1211.7 L560 1211.8 L600 1215.4 L640 1223.3 L680 1235.4 L720 1250.5 L760 1266.6 L800 1281.0 L840 1291.2 L880 1295.2 L920 1291.9 L960 1281.8 L1000 1266.5 L1040 1248.7 L1080 1231.2 L1120 1216.8 L1160 1207.3 L1200 1203.4 L1240 1204.8 L1280 1210.1 L1320 1217.8 L1360 1226.1 L1400 1233.9 L1440 1240.8 L1480 1246.9"/><path d="M-40 1326.1 L0 1344.0 L40 1358.8 L80 1367.6 L120 1368.8 L160 1362.5 L200 1350.1 L240 1334.7 L280 1319.3 L320 1307.1 L360 1300.0 L400 1299.0 L440 1303.5 L480 1312.1 L520 1322.6 L560 1333.0 L600 1341.4 L640 1347.0 L680 1349.4 L720 1349.1 L760 1346.8 L800 1343.1 L840 1338.7 L880 1333.7 L920 1328.3 L960 1322.6 L1000 1316.9 L1040 1311.9 L1080 1308.6 L1120 1308.0 L1160 1311.0 L1200 1317.8 L1240 1327.8 L1280 1339.7 L1320 1351.3 L1360 1359.9 L1400 1363.6 L1440 1360.9 L1480 1351.8"/><path d="M-40 1437.3 L0 1430.9 L40 1423.2 L80 1416.1 L120 1410.8 L160 1407.9 L200 1407.1 L240 1407.6 L280 1408.3 L320 1408.4 L360 1407.6 L400 1406.3 L440 1405.4 L480 1405.9 L520 1408.8 L560 1414.3 L600 1421.9 L640 1430.2 L680 1437.4 L720 1441.5 L760 1441.1 L800 1435.7 L840 1425.9 L880 1413.5 L920 1400.8 L960 1390.6 L1000 1385.0 L1040 1385.2 L1080 1391.2 L1120 1401.7 L1160 1414.4 L1200 1426.6 L1240 1436.0 L1280 1441.0 L1320 1441.0 L1360 1436.6 L1400 1429.5 L1440 1421.4 L1480 1414.1"/><path d="M-40 1531.0 L0 1522.1 L40 1513.1 L80 1505.0 L120 1498.4 L160 1492.9 L200 1487.9 L240 1483.0 L280 1478.0 L320 1473.3 L360 1470.1 L400 1469.7 L440 1473.3 L480 1481.5 L520 1493.9 L560 1509.3 L600 1525.2 L640 1539.1 L680 1548.2 L720 1550.8 L760 1546.2 L800 1534.9 L840 1519.0 L880 1501.3 L920 1484.6 L960 1471.7 L1000 1464.0 L1040 1462.2 L1080 1465.6 L1120 1472.6 L1160 1481.5 L1200 1490.5 L1240 1498.6 L1280 1505.3 L1320 1510.8 L1360 1515.8 L1400 1520.8 L1440 1525.8 L1480 1530.5"/></svg>
 <header id="hd">
   <div class="wrap bar">
     <a class="logo" href="/" aria-label="Hostio">host<span>io.</span></a>
     <nav aria-label="Glavna navigacija">
-      <a href="#radovi" data-i="nav_work">Radovi</a>
-      <a href="#usluge" data-i="nav_svc">Usluge</a>
-      <a href="#pristup" data-i="nav_how">Pristup</a>
-      <a href="#kontakt" data-i="nav_contact">Kontakt</a>
+      <a class="nl" href="#rjesenja" data-i="nav1">Rješenja</a>
+      <a class="nl" href="#sigurnost" data-i="nav2">Sigurnost</a>
+      <a class="nl" href="#arhitekture" data-i="nav3">Arhitekture</a>
+      <a class="nl" href="#pristup" data-i="nav4">Pristup</a>
+      <a class="nl" href="#pitanja" data-i="nav5">Pitanja</a>
+      <a class="mini" href="#kontakt" data-i="nav_cta">Zatražite audit</a>
       <div class="lang" role="group" aria-label="Jezik / Language">
         <button type="button" data-lang="bs" aria-pressed="true">BS</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -351,145 +322,94 @@ footer{padding:34px 0 0;overflow:hidden}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-grid">
     <div>
-      <h1 id="h1" data-i="h1">Umjetna inteligencija, ugrađena u način na koji vaš biznis već radi.</h1>
-      <p class="lead" data-i="lead">Hostio je studio za primijenjenu umjetnu inteligenciju. Projektujemo i uvodimo AI asistente, automatizacije i softver po mjeri za firme kojima je vrijeme preskupo za rutinu, ma gdje poslovale.</p>
+      <h1 id="h1" data-i="h1">AI sistemi koji rade unutar vaših procesa, pod vašom kontrolom.</h1>
+      <p class="lead" data-i="lead">Hostio projektuje, integriše i održava AI automatizacije za srednje i velike firme. Povezujemo ih s vašim CRM-om, ERP-om i kanalima komunikacije, uz provjere koje sprječavaju izmišljene odgovore i ljudsko odobrenje tamo gdje je potrebno.</p>
       <div class="links">
-        <a class="cta" href="#kontakt"><i></i><span data-i="cta">Započnimo razgovor</span></a>
-        <a class="tlink" href="#radovi" data-i="see_work">Pogledajte radove</a>
+        <a class="cta" href="#kontakt"><i></i><span data-i="cta">Zatražite operativni audit</span></a>
+        <a class="tlink" href="#sigurnost" data-i="cta2">Kako sistem donosi odluke</a>
       </div>
+      <ul class="facts" data-i="facts"><li>Integracija s postojećim sistemima</li><li>Ljudsko odobrenje osjetljivih akcija</li><li>Odgovori na jeziku kupca</li></ul>
     </div>
-    <div class="flow" id="flow">
-      <div class="ins" aria-hidden="true">
-        <div class="chip-ch" data-ch="wa"><i style="background:#E3F6DA"><svg viewBox="0 0 24 24" fill="#3E8A26"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg></i>WhatsApp</div>
-        <div class="chip-ch" data-ch="ig"><i style="background:#F6E3EC"><svg viewBox="0 0 24 24" fill="none" stroke="#B0306A" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></i>Instagram</div>
-        <div class="chip-ch" data-ch="web"><i style="background:#E3EAF6"><svg viewBox="0 0 24 24" fill="none" stroke="#2D5BB0" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3.2 3 13.8 0 17M12 3.5c-3 3.2-3 13.8 0 17"/></svg></i><span data-i="ch_web">Web chat</span></div>
-        <div class="chip-ch" data-ch="mail"><i style="background:#EFECE3"><svg viewBox="0 0 24 24" fill="none" stroke="#6B5E3A" stroke-width="2.2"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></i>E-mail</div>
+    <div>
+      <div class="trace" aria-live="off">
+        <div class="tr-top"><b data-i="tr_title">Obrada jednog upita</b><span class="pulse"><i></i><span id="trIdx">1/3</span></span></div>
+        <div class="tr-in" id="trIn"><small id="trInMeta"></small><span id="trInText"></span></div>
+        <ol class="tr-steps" id="trSteps"></ol>
+        <div class="tr-out" id="trOut"><small id="trOutMeta"></small><span id="trOutText"></span></div>
+        <div class="tr-end"><span data-i="tr_res">Ishod</span><b id="trEnd">&nbsp;</b></div>
       </div>
-      <svg class="wires" id="wires" aria-hidden="true"></svg>
-      <div class="live" aria-live="off">
-        <div class="live-top"><b id="lvWho">Stomatološka klinika</b><span class="pulse"><i></i><span id="lvTime">23:40</span></span></div>
-        <div class="msgs" id="lvMsgs"></div>
-        <div class="done" id="lvDone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7ED957"/><path d="M7.5 12.4l3 3 6-6.4" stroke="#1F1F1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="lvDoneT"></span></div>
-      </div>
-      <div class="outs" aria-hidden="true">
-        <div class="dest" data-out="cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-i="o_cal">Kalendar</span></div>
-        <div class="dest" data-out="res"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16l-7-4-7 4z"/></svg><span data-i="o_res">Rezervacije</span></div>
-        <div class="dest" data-out="acc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i="o_acc">Knjigovodstvo</span></div>
-      </div>
-      <p class="live-cap" data-i="live_cap">Primjeri iz rada naših AI asistenata, u stvarnom vremenu i na jeziku kupca.</p>
+      <p class="note" data-i="tr_note">Ilustrativni primjeri s izmišljenim podacima.</p>
     </div>
   </div>
 </section>
 
-<div class="wrap caps" id="caps">
-  <div class="cap rv"><div class="big"><span>24/7</span></div><p data-i="cap1">Asistent odgovara i dok vi spavate, vikendom i praznicima.</p></div>
-  <div class="cap rv d1"><div class="big"><span class="cnt" data-to="4">0</span><small data-i="cap2s">kanala</small></div><p data-i="cap2">Web, WhatsApp, Instagram i Viber, povezani u jedan sistem.</p></div>
-  <div class="cap rv d2"><div class="big"><span class="cnt" data-to="1">0</span><small data-i="cap3s">mjesto</small></div><p data-i="cap3">Poruke, termini i računi na jednom ekranu, za cijeli tim.</p></div>
-</div>
-
-<section id="radovi" aria-labelledby="h-work">
+<section id="problem" aria-labelledby="h-prob" style="padding-top:clamp(20px,4vh,40px)">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 id="h-work" data-i="work_h">Odabrani radovi</h2>
-      <p data-i="work_p">Svaki projekat počinje stvarnim procesom: porukama koje stižu u ponoć, terminima, računima. Ovo su neki od sistema koje smo izgradili i koje možete isprobati.</p>
+      <h2 id="h-prob" data-i="pr_h">Gdje firme gube vrijeme i prihod</h2>
+      <p data-i="pr_p">AI ima smisla tamo gdje se isti posao ponavlja stotinama puta mjesečno i gdje kašnjenje ima cijenu. Prije svakog prijedloga mjerimo polazno stanje, da bi rezultat bio uporediv.</p>
     </div>
-
-    <div class="works">
-      <article class="work">
-        <div class="stage" style="background-color:#E3E5DE">
-          <div class="phone tilt"><img src="/assets/work/zamajac.webp" alt="Zamajac, web stranica auto servisa na mobitelu" loading="lazy" width="640" height="1386"></div>
-          <div class="ai-card" style="right:6%;bottom:12%"><small><i></i><span data-i="z_card_h">AI dijagnoza</span></small><span data-i="z_card">„Kad zakočim, nešto pišti.“ Najčešće istrošene pločice. Pregled sutra u 9:00?</span></div>
-        </div>
-        <div>
-          <span class="meta" data-i="z_meta">Auto servis, demo projekat</span>
-          <h3>Zamajac</h3>
-          <p data-i="z_p">Mušterija opiše kvar svojim riječima, AI predloži šta bi moglo biti i ponudi termin. Radionica sve vidi na zajedničkoj tabli, a račun se pravi jednim klikom.</p>
-          <ul><li data-i="z_1">Web i online termini</li><li data-i="z_2">AI dijagnoza kvara</li><li data-i="z_3">Dashboard i računi</li></ul>
-          <a class="tlink" href="/s/zamajac" target="_blank" rel="noopener" data-i="open_demo">Otvorite demo</a>
-        </div>
-      </article>
-
-      <article class="work">
-        <div class="stage" style="background-color:#ECE3DC">
-          <div class="phone tilt2"><div class="res" aria-label="Koncept rezervacije za restoran">
-            <div class="rn">Ruža</div><div class="rs" data-i="r_sub">Restoran, Stari grad</div>
-            <div class="rimg" aria-hidden="true"></div>
-            <h4 data-i="r_h">Rezervacija stola</h4>
-            <div class="lab" data-i="r_day">Dan</div>
-            <div class="row"><div class="chip"><span data-i="r_d1">Pet</span><b>21</b></div><div class="chip on"><span data-i="r_d2">Sub</span><b>22</b></div><div class="chip"><span data-i="r_d3">Ned</span><b>23</b></div></div>
-            <div class="lab" data-i="r_time">Vrijeme</div>
-            <div class="row"><div class="chip">19:00</div><div class="chip on">20:00</div><div class="chip">21:30</div></div>
-            <div class="lab" data-i="r_guests">Broj gostiju</div>
-            <div class="row"><div class="chip">2</div><div class="chip on">4</div><div class="chip">6+</div></div>
-            <div class="btnr" data-i="r_btn">Potvrdi rezervaciju</div>
-          </div></div>
-          <div class="ai-card"><small><i></i>WhatsApp, 22:51</small><span data-i="r_card">Gost: „Ima li mjesta za četvero u subotu?“ AI: „Ima, u 20:00 uz prozor. Da potvrdim?“</span></div>
-        </div>
-        <div>
-          <span class="meta" data-i="r_meta">Restoran, koncept</span>
-          <h3 data-i="r_title">Rezervacije bez telefona</h3>
-          <p data-i="r_p">Gost rezerviše za manje od minute, sa sajta ili iz poruke na Instagramu i WhatsAppu. Osoblje dobije uredan spisak po danima, bez prepisivanja i dvostrukih termina.</p>
-          <ul><li data-i="r_1">Rezervacija u dva koraka</li><li data-i="r_2">AI odgovori na poruke</li><li data-i="r_3">Spisak za osoblje</li></ul>
-        </div>
-      </article>
-
-      <article class="work">
-        <div class="stage" style="background-color:#E0E5EA">
-          <div class="phone tilt"><img src="/assets/work/vidik.webp" alt="Vidik, stranica za apartman na mobitelu" loading="lazy" width="640" height="1386"></div>
-          <div class="ai-card"><small><i></i>Booking, 08:14</small><span data-i="v_card">„Is the apartment free 12–15 May?“ Slobodno je. Cijena i link za potvrdu su poslani gostu.</span></div>
-        </div>
-        <div>
-          <span class="meta" data-i="v_meta">Apartmani, demo projekat</span>
-          <h3>Vidik</h3>
-          <p data-i="v_p">Stranica za smještaj na tri jezika, s direktnim upitima bez provizije. Asistent odgovara gostima iz cijelog svijeta i provjerava slobodne datume.</p>
-          <ul><li data-i="v_1">Bosanski, engleski, njemački</li><li data-i="v_2">Direktne rezervacije</li><li data-i="v_3">AI odgovori 24/7</li></ul>
-          <a class="tlink" href="/a/vidik" target="_blank" rel="noopener" data-i="open_demo">Otvorite demo</a>
-        </div>
-      </article>
-
-      <article class="work">
-        <div class="stage" style="background-color:#E6E3EC">
-          <div class="phone vid tilt" data-src="/assets/video/lumen-reklama.mp4"><img src="/assets/video/lumen-poster.jpg" alt="Lumen, AI reklama za stomatološku kliniku" loading="lazy"></div>
-          <div class="phone vid tilt2" data-src="/assets/video/obrtaj-reklama.mp4"><img src="/assets/video/obrtaj-poster.jpg" alt="Obrtaj, AI reklama za auto servis" loading="lazy"></div>
-        </div>
-        <div>
-          <span class="meta" data-i="a_meta">Video i glas, koncepti</span>
-          <h3 data-i="a_title">AI reklame</h3>
-          <p data-i="a_p">Kratki filmovi za društvene mreže, bez kamere i bez snimanja. Animacija, muzika i profesionalni glas na jeziku vašeg tržišta.</p>
-          <ul><li data-i="a_1">Scenarij i animacija</li><li data-i="a_2">Voiceover na više jezika</li><li data-i="a_3">Formati za Reels i TikTok</li></ul>
-        </div>
-      </article>
+    <div class="cols3 rv">
+      <article><h3 data-i="pr1_h">Sporo prvo javljanje</h3><p data-i="pr1_p">Upiti stižu na WhatsApp, e-mail, web i društvene mreže, a odgovor čeka da se neko oslobodi. Što je odgovor sporiji, manja je šansa da upit postane posao.</p><span class="m" data-i="pr1_m">Mjerimo vrijeme do prvog odgovora i udio odgovorenih upita.</span></article>
+      <article><h3 data-i="pr2_h">Ručno prepisivanje</h3><p data-i="pr2_p">Isti podaci se kucaju iz poruke u CRM, iz e-maila u ERP, iz tabele u ponudu. To troši sate i stvara greške koje se kasnije skupo ispravljaju.</p><span class="m" data-i="pr2_m">Mjerimo sate rada mjesečno i broj ispravki.</span></article>
+      <article><h3 data-i="pr3_h">Upiti van radnog vremena i na drugim jezicima</h3><p data-i="pr3_p">Kupci iz drugih vremenskih zona i govornih područja pišu kada vaš tim ne radi ili ne govori njihov jezik. Ti upiti se najčešće izgube bez traga.</p><span class="m" data-i="pr3_m">Mjerimo takve upite i njihov ishod.</span></article>
     </div>
   </div>
 </section>
 
-
-<section id="sistemi" aria-labelledby="h-sys">
+<section id="rjesenja" aria-labelledby="h-sol">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 id="h-sys" data-i="sys_h">Sistemi koji rade u pozadini</h2>
-      <p data-i="sys_p">Iza svakog asistenta stoji pregled za vas i vaš tim: ko je pisao, šta je zakazano, šta treba ljudsku pažnju. Ovako izgleda jedan od dashboarda koje pravimo.</p>
+      <h2 id="h-sol" data-i="so_h">Šta gradimo</h2>
+      <p data-i="so_p">Četiri vrste sistema, uvijek prilagođene vašem procesu i povezane s alatima koje već koristite. Ne prodajemo gotove pakete.</p>
     </div>
-    <div class="dash-fit rv" id="dashFit"><div class="dash" id="dash" aria-label="Primjer dashboarda" role="img">
+    <div class="grid2">
+      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+        <h3 data-i="so1_h">Višekanalni agenti za prijem upita</h3>
+        <p data-i="so1_p">Odgovaraju na upite na WhatsAppu, Instagramu, webu i e-mailu, na jeziku kupca. Kvalifikuju upit, prikupljaju potrebne podatke i predaju ga pravoj osobi ili sistemu.</p>
+        <ul class="ticks" data-i="so1_l"><li>Odgovori zasnovani na vašim podacima, ne na nagađanju</li><li>Kvalifikacija i označavanje prema vašim kriterijima</li><li>Predaja osoblju s kompletnim kontekstom razgovora</li></ul></article>
+      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h8"/><path d="M17 4l3 3-3 3M15 14l3 3-3 3"/></svg></span>
+        <h3 data-i="so2_h">Automatizacija operativnih tokova</h3>
+        <p data-i="so2_p">Narudžbe, zahtjevi, dokumenti i ponude prolaze kroz definisan tok bez ručnog prepisivanja. AI izvlači podatke, sistem ih provjerava, a čovjek odobrava ono što treba odobriti.</p>
+        <ul class="ticks" data-i="so2_l"><li>Izvlačenje podataka iz e-mailova, PDF-ova i obrazaca</li><li>Usmjeravanje zahtjeva prema vrsti, prioritetu i lokaciji</li><li>Nacrti ponuda i odgovora spremni za odobrenje</li></ul></article>
+      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg></span>
+        <h3 data-i="so3_h">Integracije s postojećim sistemima</h3>
+        <p data-i="so3_p">Ne tražimo da mijenjate CRM, ERP ili web shop. Povezujemo se na njih preko API-ja i webhooka, tako da podaci ostaju tamo gdje ih vaš tim već koristi.</p>
+        <ul class="ticks" data-i="so3_l"><li>Dvosmjerna sinhronizacija s CRM-om i ERP-om</li><li>Ponovni pokušaji i evidencija svake razmjene podataka</li><li>Bez promjene načina rada vašeg osoblja</li></ul></article>
+      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h3M8 16h6"/></svg></span>
+        <h3 data-i="so4_h">Kontrolni sloj i izvještavanje</h3>
+        <p data-i="so4_p">Opcionalni pregled za menadžment i tim: šta je sistem uradio, šta čeka odobrenje i kakvi su rezultati. Nudimo ga samo kada postojeći alati to ne pokrivaju.</p>
+        <ul class="ticks" data-i="so4_l"><li>Red za odobrenje osjetljivih odgovora i akcija</li><li>Pravila i ovlaštenja po ulogama</li><li>Izvještaji o vremenu odgovora i ishodima</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="kontrola" aria-labelledby="h-ctl" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-ctl" data-i="ct_h">Vi zadržavate kontrolu</h2>
+      <p data-i="ct_p">Svaka akcija sistema je vidljiva i provjerljiva. Osjetljive odluke, poput popusta, djelimičnih isporuka ili medicinskih pitanja, čekaju odobrenje ovlaštene osobe.</p>
+    </div>
+    <div class="dash-fit rv" id="dashFit"><div class="dash" id="dash" role="img" aria-label="Ilustracija kontrolnog sloja">
       <aside class="ds-side">
-        <div class="ds-brand"><i>L</i><div><b>Lumen</b><small data-i="d_clinic">Stomatološka klinika</small></div></div>
+        <div class="ds-brand"><i>P</i><div><b data-i="d_co">Primjer d.o.o.</b><small data-i="d_dep">Prodaja i podrška</small></div></div>
         <nav>
           <span class="on"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 4v4h6V4z"/></svg><em data-i="d_n1">Pregled</em></span>
-          <span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><em data-i="d_n2">Poruke</em><b>3</b></span>
-          <span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><em data-i="d_n3">Kalendar</em></span>
-          <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><em data-i="d_n4">Pacijenti</em></span>
-          <span><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><em data-i="d_n5">Računi</em></span>
-          <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><em data-i="d_n6">Postavke</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><em data-i="d_n2">Upiti</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/></svg><em data-i="d_n3">Odobrenja</em><b>3</b></span>
+          <span><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><em data-i="d_n4">Pravila</em></span>
+          <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg><em data-i="d_n5">Integracije</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M5 6h14M5 10h14M5 14h10M5 18h7"/></svg><em data-i="d_n6">Logovi</em></span>
         </nav>
-        <div class="ds-ai"><span class="pulse"><i></i></span><div><b data-i="d_ai">AI asistent radi</b><small data-i="d_ai2">Odgovara na 3 kanala</small></div></div>
+        <div class="ds-ai"><span class="pulse"><i></i></span><div><b data-i="d_ai">Sistem radi</b><small data-i="d_ai2">4 kanala, 2 integracije</small></div></div>
       </aside>
       <div class="ds-main">
-        <div class="ds-top"><div><h5 data-i="d_hi">Dobro jutro, Amra</h5><small data-i="d_date">Četvrtak, 19. novembar</small></div><div class="ds-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><span data-i="d_search">Pretraži pacijente, termine…</span></div><div class="ds-av">A</div></div>
+        <div class="ds-top"><div><h5 data-i="d_hi">Operativni pregled</h5><small data-i="d_date">Četvrtak, 19. novembar</small></div><div class="ds-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><span data-i="d_search">Pretraži upite, kupce…</span></div><div class="ds-av">A</div></div>
         <div class="ds-kpis">
-          <div class="kpi"><small data-i="k1">Upiti danas</small><b><span class="dc" data-to="48">0</span></b><em class="up">+12%</em></div>
-          <div class="kpi"><small data-i="k2">Zakazano</small><b><span class="dc" data-to="31">0</span></b><em class="up">+8%</em></div>
-          <div class="kpi"><small data-i="k3">Riješeno automatski</small><b><span class="dc" data-to="94">0</span>%</b><div class="kbar"><i style="--w:94%"></i></div></div>
-          <div class="kpi"><small data-i="k4">Prihod ove sedmice</small><b><span class="dc" data-to="6420" data-fmt="km">0</span></b><em class="up">+5%</em></div>
+          <div class="kpi"><small data-i="k1">Upiti danas</small><b><span class="dc" data-to="186">0</span></b><em>+9%</em></div>
+          <div class="kpi"><small data-i="k2">Medijan prvog odgovora</small><b><span class="dc" data-to="11">0</span> s</b></div>
+          <div class="kpi"><small data-i="k3">Riješeno bez osoblja</small><b><span class="dc" data-to="72">0</span>%</b><div class="kbar"><i style="--w:72%"></i></div></div>
+          <div class="kpi"><small data-i="k4">Čeka odobrenje</small><b><span class="dc" data-to="3">0</span></b><em class="w" data-i="k4e">otvoreno</em></div>
         </div>
         <div class="ds-mid">
           <div class="card"><div class="card-h"><b data-i="c1">Upiti po kanalima</b><small data-i="c1s">Zadnjih 14 dana</small></div><svg viewBox="0 0 600 174" class="chart" preserveAspectRatio="none">
@@ -498,284 +418,389 @@ footer{padding:34px 0 0;overflow:hidden}
 <path d="M0,170 L0.0,102.0 L46.2,89.6 L92.3,95.8 L138.5,74.2 L184.6,80.4 L230.8,61.8 L276.9,77.3 L323.1,52.5 L369.2,58.7 L415.4,43.3 L461.5,49.5 L507.7,27.8 L553.8,34.0 L600.0,21.6 L600,170 Z" class="area"/>
 <polyline points="0.0,145.3 46.2,142.2 92.3,145.3 138.5,136.0 184.6,139.1 230.8,132.9 276.9,136.0 323.1,129.8 369.2,132.9 415.4,126.7 461.5,123.6 507.7,126.7 553.8,120.5 600.0,117.5" class="ln l3" pathLength="1"/><polyline points="0.0,126.7 46.2,123.6 92.3,114.4 138.5,120.5 184.6,111.3 230.8,105.1 276.9,108.2 323.1,102.0 369.2,95.8 415.4,98.9 461.5,89.6 507.7,92.7 553.8,83.5 600.0,86.5" class="ln l2" pathLength="1"/><polyline points="0.0,102.0 46.2,89.6 92.3,95.8 138.5,74.2 184.6,80.4 230.8,61.8 276.9,77.3 323.1,52.5 369.2,58.7 415.4,43.3 461.5,49.5 507.7,27.8 553.8,34.0 600.0,21.6" class="ln l1" pathLength="1"/>
 <circle cx="600" cy="21.6" r="5" class="lastdot"/></svg>
-            <div class="lg"><span><i style="background:#7ED957"></i>WhatsApp</span><span><i style="background:#1F1F1F"></i>Instagram</span><span><i style="background:#A9B3A0"></i>Web</span></div></div>
-          <div class="card"><div class="card-h"><b data-i="c2">Kanali danas</b></div>
-            <div class="hb"><span>WhatsApp</span><div><i style="--w:52%;background:#7ED957"></i></div><em>52%</em></div>
-            <div class="hb"><span>Instagram</span><div><i style="--w:31%;background:#1F1F1F"></i></div><em>31%</em></div>
-            <div class="hb"><span>Web</span><div><i style="--w:17%;background:#A9B3A0"></i></div><em>17%</em></div>
-            <div class="ds-note"><b data-i="c2b">2 upita</b> <span data-i="c2n">čekaju odgovor osoblja</span></div>
+            <div class="lg"><span><i style="background:#7ED957"></i>WhatsApp</span><span><i style="background:#1F1F1F"></i>E-mail</span><span><i style="background:#A9B3A0"></i>Web</span></div></div>
+          <div class="card"><div class="card-h"><b data-i="c2">Jezici upita</b><small data-i="c2s">Danas</small></div>
+            <div class="hb"><span data-i="lg_bs">Bosanski</span><div><i style="--w:46%;background:#7ED957"></i></div><em>46%</em></div>
+            <div class="hb"><span data-i="lg_en">Engleski</span><div><i style="--w:27%;background:#1F1F1F"></i></div><em>27%</em></div>
+            <div class="hb"><span data-i="lg_de">Njemački</span><div><i style="--w:18%;background:#5E615A"></i></div><em>18%</em></div>
+            <div class="hb"><span data-i="lg_ar">Arapski</span><div><i style="--w:9%;background:#A9B3A0"></i></div><em>9%</em></div>
+            <div class="ds-note" data-i="c2n"><b>3 odgovora</b> čekaju vaše odobrenje</div>
           </div>
         </div>
         <div class="ds-bot">
-          <div class="card"><div class="card-h"><b data-i="c3">Današnji termini</b><small data-i="c3s">8 od 11 potvrđeno</small></div>
+          <div class="card"><div class="card-h"><b data-i="c3">Red za odobrenje</b><small data-i="c3s">Prosječno čekanje 6 min</small></div>
             <table class="tb"><tbody>
-              <tr><td>09:00</td><td>Lejla H.</td><td data-i="t1">Kontrolni pregled</td><td><span class="chn wa">WhatsApp</span></td><td><span class="st ok" data-i="s_ok">Potvrđeno</span></td></tr>
-              <tr><td>09:45</td><td>Mirza K.</td><td data-i="t2">Plomba</td><td><span class="chn ig">Instagram</span></td><td><span class="st ok" data-i="s_ok">Potvrđeno</span></td></tr>
-              <tr><td>10:30</td><td>Sara B.</td><td data-i="t3">Čišćenje kamenca</td><td><span class="chn wb">Web</span></td><td><span class="st wait" data-i="s_wait">Čeka potvrdu</span></td></tr>
-              <tr><td>11:15</td><td>Adnan Š.</td><td data-i="t4">Konsultacije</td><td><span class="chn wa">WhatsApp</span></td><td><span class="st new" data-i="s_new">Novo</span></td></tr>
+              <tr><td>14:02</td><td><span class="chn em">E-mail</span></td><td data-i="q1">Narudžba 40 paleta, art. 1187</td><td data-i="q1r">Djelimična isporuka</td><td><span class="st wait" data-i="s_wait">Čeka</span></td></tr>
+              <tr><td>13:48</td><td><span class="chn wa">WhatsApp</span></td><td data-i="q2">Popust 5% za dva stana</td><td data-i="q2r">Iznad ovlaštenja</td><td><span class="st wait" data-i="s_wait">Čeka</span></td></tr>
+              <tr><td>13:31</td><td><span class="chn wb">Web</span></td><td data-i="q3">Reklamacija isporuke</td><td data-i="q3r">Pritužba</td><td><span class="st new" data-i="s_new">Dodijeljeno</span></td></tr>
+              <tr><td>13:10</td><td><span class="chn ig">Instagram</span></td><td data-i="q4">Cijena najma, 3 mjeseca</td><td data-i="q4r">Pouzdanost 0,71</td><td><span class="st ok" data-i="s_ok">Odobreno</span></td></tr>
             </tbody></table></div>
-          <div class="card feed"><div class="card-h"><b data-i="c4">Uživo</b><span class="pulse"><i></i></span></div><ul id="feed"></ul></div>
+          <div class="card feed"><div class="card-h"><b data-i="c4">Log događaja</b><span class="pulse"><i></i></span></div><ul id="feed"></ul></div>
         </div>
       </div>
     </div></div>
-    <p class="dash-note" data-i="d_note">Primjer dashboarda s izmišljenim podacima. Svaki sistem pravimo prema procesu klijenta.</p>
+    <p class="note" data-i="d_note">Ilustracija kontrolnog sloja s izmišljenim podacima. Izgled i funkcije se prilagođavaju svakom klijentu.</p>
   </div>
 </section>
 
-<section id="usluge" aria-labelledby="h-svc">
+<section id="sigurnost" aria-labelledby="h-sec">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 id="h-svc" data-i="svc_h">Čime se bavimo</h2>
-      <p data-i="svc_p">Ne prodajemo gotove pakete. Gledamo gdje vaš tim gubi vrijeme i gradimo ono što taj problem stvarno rješava.</p>
+      <h2 id="h-sec" data-i="se_h">Kako sistem donosi odluke</h2>
+      <p data-i="se_p">Jezički model razumije poruku. Odluke o cijenama, dostupnosti i obavezama donose vaši podaci i vaša pravila. Svaki upit prolazi kroz iste korake.</p>
     </div>
-    <div class="svc">
-      <article class="rv">
-        <div class="ill ill-chat" aria-hidden="true"><span class="b b1"></span><span class="b b2"></span><span class="b b3"></span><span class="b b4"></span></div>
-        <h3 data-i="s1_h">AI asistenti</h3>
-        <p data-i="s1_p">Odgovaraju na upite, zakazuju termine i prosljeđuju čovjeku ono što traži čovjeka. Na webu, WhatsAppu, Instagramu i Viberu, danju i noću.</p>
-        <p class="ex" data-i="s1_ex">Za klinike, salone, servise, smještaj i ugostiteljstvo.</p>
-      </article>
-      <article class="rv d1">
-        <div class="ill ill-auto" aria-hidden="true"><div class="row"><i style="--w:72%"></i></div><div class="row"><i style="--w:54%"></i></div><div class="row"><i style="--w:86%"></i></div><div class="row"><i style="--w:40%"></i></div></div>
-        <h3 data-i="s2_h">Automatizacija i softver</h3>
-        <p data-i="s2_p">Interni alati, dashboardi, računi i povezivanje s postojećim sistemima. Manje ručnog prepisivanja, manje grešaka, bolji pregled.</p>
-        <p class="ex" data-i="s2_ex">Za timove koji danas sve vode u tabelama i porukama.</p>
-      </article>
-      <article class="rv d2">
-        <div class="ill ill-vid" aria-hidden="true"><i style="--h:40px;animation-delay:0s"></i><i style="--h:70px;animation-delay:0.1s"></i><i style="--h:52px;animation-delay:0.2s"></i><i style="--h:96px;animation-delay:0.3s"></i><i style="--h:64px;animation-delay:0.4s"></i><i style="--h:110px;animation-delay:0.5s"></i><i style="--h:80px;animation-delay:0.6s"></i><i style="--h:48px;animation-delay:0.7s"></i><i style="--h:90px;animation-delay:0.8s"></i><i style="--h:60px;animation-delay:0.9s"></i><i style="--h:100px;animation-delay:1.0s"></i><i style="--h:44px;animation-delay:1.1s"></i><i style="--h:72px;animation-delay:1.2s"></i><i style="--h:56px;animation-delay:1.3s"></i><i style="--h:88px;animation-delay:0.15s"></i><i style="--h:38px;animation-delay:0.35s"></i><i style="--h:66px;animation-delay:0.55s"></i><i style="--h:50px;animation-delay:0.75s"></i></div>
-        <h3 data-i="s3_h">Video i glas</h3>
-        <p data-i="s3_p">Reklame, prezentacije i objašnjenja proizvoda bez snimanja, s glasom koji zvuči prirodno na više jezika.</p>
-        <p class="ex" data-i="s3_ex">Za brendove kojima treba redovan sadržaj bez produkcijske ekipe.</p>
-      </article>
+    <ol class="pipe rv">
+      <li><h3 data-i="p1_h">Prijem</h3><p data-i="p1_p">Poruka stiže s bilo kojeg kanala i dobija jedinstven zapis: kanal, jezik, vrijeme i pošiljalac.</p></li>
+      <li><h3 data-i="p2_h">Razumijevanje</h3><p data-i="p2_p">Model određuje namjeru i izvlači podatke u strogo definisanu strukturu. Izlaz koji ne odgovara šemi se odbacuje.</p></li>
+      <li><h3 data-i="p3_h">Provjera</h3><p data-i="p3_p">Cijene, zalihe, termini i statusi čitaju se iz vašeg sistema u trenutku upita. Model ih ne izmišlja.</p></li>
+      <li><h3 data-i="p4_h">Pravila</h3><p data-i="p4_p">Poslovna pravila i prag pouzdanosti određuju šta ide automatski, a šta čovjeku: popusti, izuzeci, pritužbe i osjetljive teme.</p></li>
+      <li><h3 data-i="p5_h">Akcija i zapis</h3><p data-i="p5_p">Odgovor se šalje ili čeka odobrenje, podaci se upisuju u CRM ili ERP, a svaki korak ostaje zabilježen.</p></li>
+    </ol>
+    <div class="two">
+      <div class="rv"><h3 data-i="rel_h">Pouzdanost rada</h3>
+        <ul class="ticks" data-i="rel_l"><li>Ponovni pokušaji s pauzom kada vanjski API ili webhook ne odgovori</li><li>Poštovanje ograničenja broja zahtjeva kod kanala i pružalaca modela</li><li>Rezervni scenarij: ako model ili integracija nisu dostupni, upit ide osoblju i ne gubi se</li><li>Nadzor rada i upozorenja na greške</li><li>Testni set scenarija koji se pokreće prije svake izmjene sistema</li></ul></div>
+      <div class="rv"><h3 data-i="dat_h">Podaci i pristup</h3>
+        <ul class="ticks" data-i="dat_l"><li>Obrađuju se samo podaci potrebni za konkretan tok</li><li>Podaci u EU regiji ili na vašoj infrastrukturi, prema dogovoru</li><li>Pristup po ulogama i evidencija ko je šta odobrio</li><li>Modeli se koriste preko poslovnih API-ja kod kojih se, prema uslovima pružalaca, podaci ne koriste za treniranje</li><li>Ugovor o povjerljivosti prije pristupa vašim podacima</li><li>Brisanje podataka na zahtjev i po isteku dogovorenog roka</li></ul></div>
     </div>
+  </div>
+</section>
+
+<section id="arhitekture" aria-labelledby="h-arch" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-arch" data-i="ar_h">Referentne arhitekture</h2>
+      <p data-i="ar_p">Tri tipična sistema koje projektujemo, prikazana kao referentna rješenja, a ne kao opisi projekata za konkretne klijente. Demo verzije prikazujemo uživo na uvodnom sastanku.</p>
+    </div>
+    <div class="tabs rv" role="tablist" aria-label="Arhitekture">
+      <button role="tab" id="tb-a" aria-controls="ar-a" aria-selected="true" data-i="ta">Nekretnine i smještaj</button>
+      <button role="tab" id="tb-b" aria-controls="ar-b" aria-selected="false" tabindex="-1" data-i="tb">Privatne klinike</button>
+      <button role="tab" id="tb-c" aria-controls="ar-c" aria-selected="false" tabindex="-1" data-i="tc">Veleprodaja i distribucija</button>
+    </div>
+    <div class="arch rv" role="tabpanel" id="ar-a" aria-labelledby="tb-a">
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="a_h">Višejezični prodajni upiti</h3>
+        <p data-i="a_p">Kupci i gosti iz dijaspore i inostranstva pišu na engleskom, njemačkom, arapskom ili bosanskom, često van radnog vremena. Prodajni tim propušta upite ili odgovara satima kasnije.</p>
+        <ol class="flowlist" data-i="a_f"><li>Upit stiže s WhatsAppa, Instagrama, weba ili portala za nekretnine</li><li>Agent prepoznaje jezik, objekat i namjeru: kupovina, najam ili razgledanje</li><li>Dostupnost i cijena čitaju se iz baze objekata</li><li>Kvalifikacija: budžet, rok i način plaćanja</li><li>Lead se upisuje u CRM, a prodavač dobija sažetak i predloženi termin razgledanja</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="a_g"><li>Cijena i dostupnost isključivo iz baze</li><li>Popusti i rezervacije uvijek idu prodavaču</li><li>Odgovor na jeziku kupca, sažetak na jeziku tima</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="a_i">CRM (npr. HubSpot ili Pipedrive), baza objekata, kalendar prodajnog tima.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="a_k">Vrijeme do prvog odgovora, udio kvalifikovanih upita, broj zakazanih razgledanja.</p></div>
+      </div>
+    </div>
+    <div class="arch" role="tabpanel" id="ar-b" aria-labelledby="tb-b" hidden>
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="b_h">Prijem pacijenata i zakazivanje</h3>
+        <p data-i="b_p">Recepcija je opterećena pozivima i porukama, a dio upita stiže noću i vikendom. Medicinski sadržaj traži poseban oprez i jasnu granicu između administracije i struke.</p>
+        <ol class="flowlist" data-i="b_f"><li>Upit stiže s bilo kojeg kanala klinike</li><li>Agent razdvaja administrativna pitanja (termini, cijene usluga, priprema) od medicinskih</li><li>Slobodni termini čitaju se iz kalendara ili sistema klinike</li><li>Termin se predlaže i potvrđuje prema pravilima klinike</li><li>Podsjetnici i izmjene termina šalju se automatski</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="b_g"><li>Agent ne daje medicinske savjete ni dijagnoze</li><li>Simptomi i hitni slučajevi odmah idu osoblju</li><li>Pristup podacima pacijenata ograničen po ulogama</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="b_i">Sistem za zakazivanje ili informacioni sistem klinike preko API-ja, kalendar, podsjetnici putem WhatsAppa ili SMS-a.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="b_k">Opterećenje recepcije, udio termina zakazanih van radnog vremena, broj propuštenih termina.</p></div>
+      </div>
+    </div>
+    <div class="arch" role="tabpanel" id="ar-c" aria-labelledby="tb-c" hidden>
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="c_h">B2B narudžbe i upiti</h3>
+        <p data-i="c_p">Narudžbe stižu e-mailom, porukama i telefonom, u različitim formatima. Komercijalisti ručno provjeravaju zalihe i prepisuju stavke u ERP.</p>
+        <ol class="flowlist" data-i="c_f"><li>Narudžba stiže e-mailom ili porukom, u tekstu, PDF-u ili tabeli</li><li>Stavke se izvlače u strukturu i povezuju sa šiframa artikala</li><li>Zalihe, cijene po kupcu i rokovi čitaju se iz ERP-a</li><li>Pravila određuju šta ide automatski, a šta komercijalisti</li><li>Nacrt narudžbe ili ponude kreira se u ERP-u i čeka potvrdu</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="c_g"><li>Cijene po kupcu isključivo iz ERP-a</li><li>Djelimične isporuke i izuzeci uvijek na odobrenje</li><li>Svaka stavka ima trag do originalnog dokumenta</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="c_i">ERP preko API-ja ili dogovorenog izvoza podataka, poslovni e-mail, CRM.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="c_k">Vrijeme obrade narudžbe, sati ručnog unosa, broj grešaka u stavkama.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="integracije" aria-labelledby="h-int" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-int" data-i="in_h">Radimo s alatima koje već imate</h2>
+      <p data-i="in_p">Povezivanje ide preko zvaničnih API-ja i webhooka. Za sisteme bez API-ja dogovaramo siguran način razmjene podataka.</p>
+    </div>
+    <div class="integ rv">
+      <div><h4 data-i="i1">Kanali</h4><p data-i="i1p">WhatsApp Business Platform, Instagram, Facebook Messenger, web chat, e-mail (Microsoft 365, Google Workspace)</p></div>
+      <div><h4>CRM</h4><p>HubSpot, Pipedrive, Salesforce, Zoho CRM</p></div>
+      <div><h4 data-i="i3">Online prodaja</h4><p>Shopify, WooCommerce, Magento</p></div>
+      <div><h4 data-i="i4">ERP i interni sistemi</h4><p data-i="i4p">REST ili SOAP API, webhookovi, dogovoreni izvoz podataka ili direktan pristup bazi uz vašu dozvolu</p></div>
+      <div><h4 data-i="i5">Kalendari</h4><p>Google Calendar, Microsoft Outlook</p></div>
+      <div><h4 data-i="i6">Tehnologija</h4><p data-i="i6p">Node.js, Python, PostgreSQL, n8n i Make za brze tokove, modeli kompanija Anthropic i OpenAI</p></div>
+    </div>
+    <p class="note" data-i="in_note">Nazivi proizvoda pripadaju njihovim vlasnicima i ne označavaju partnerstvo.</p>
   </div>
 </section>
 
 <section id="pristup" aria-labelledby="h-how">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 id="h-how" data-i="how_h">Kako radimo</h2>
-      <p data-i="how_p">Kratko, jasno i bez iznenađenja. Prvu radnu verziju obično vidite za nekoliko sedmica.</p>
+      <h2 id="h-how" data-i="ho_h">Od audita do rada u produkciji</h2>
+      <p data-i="ho_p">Svaka faza ima jasan rezultat i odluku na kraju. Na sljedeću fazu prelazimo tek uz vašu saglasnost.</p>
     </div>
     <div class="steps" id="steps"><div class="track"></div>
-      <div class="step"><div class="n">1</div><h3 data-i="st1_h">Razgovor</h3><p data-i="st1_p">Upoznajemo vaš proces i mjesta na kojima se gubi vrijeme.</p></div>
-      <div class="step"><div class="n">2</div><h3 data-i="st2_h">Prijedlog</h3><p data-i="st2_p">Jasan opseg, rok i cijena prije nego što počnemo.</p></div>
-      <div class="step"><div class="n">3</div><h3 data-i="st3_h">Izrada</h3><p data-i="st3_p">Gradimo u kratkim krugovima i testiramo na vašim stvarnim primjerima.</p></div>
-      <div class="step"><div class="n">4</div><h3 data-i="st4_h">Podrška</h3><p data-i="st4_p">Pratimo kako sistem radi i unapređujemo ga zajedno s vama.</p></div>
+      <div class="step"><div class="n">1</div><h3 data-i="s1_h">Audit i ROI mapa</h3><span class="d" data-i="s1_d">1 do 2 sedmice</span><p data-i="s1_p">Razgovori s timom, mapa procesa, polazne metrike, procjena uštede i prijedlog arhitekture. Rezultat je pisani izvještaj i fiksna ponuda.</p></div>
+      <div class="step"><div class="n">2</div><h3 data-i="s2_h">Arhitektura i testno okruženje</h3><span class="d" data-i="s2_d">2 do 4 sedmice</span><p data-i="s2_p">Sistem se gradi i testira na stvarnim, anonimiziranim primjerima iz vašeg poslovanja, uz dogovorene kriterije prihvatanja.</p></div>
+      <div class="step"><div class="n">3</div><h3 data-i="s3_h">Kontrolisano uvođenje</h3><span class="d" data-i="s3_d">2 do 4 sedmice</span><p data-i="s3_p">Prvo jedan kanal ili tim, s uključenim ljudskim odobrenjem. Automatizacija se širi tek kada rezultati to opravdaju.</p></div>
+      <div class="step"><div class="n">4</div><h3 data-i="s4_h">Održavanje i nadzor</h3><span class="d" data-i="s4_d">mjesečno</span><p data-i="s4_p">Praćenje rada, ispravke, prilagodbe pravila i mjesečni izvještaj o rezultatima, prema ugovorenom obimu podrške.</p></div>
     </div>
-    <div class="reach rv">
-      <p data-i="reach">Radimo na daljinu, s firmama u regiji i šire.</p>
-      <span data-i="reach_s">Rješenja govore jezikom vaših kupaca, a mi s vama na bosanskom ili engleskom.</span>
+    <p class="note" data-i="ho_note">Trajanje je okvirno i zavisi od opsega i dostupnosti vaših sistema.</p>
+  </div>
+</section>
+
+<section id="trzista" aria-labelledby="h-mk">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-mk" data-i="mk_h">Lokalno i međunarodno</h2>
+      <p data-i="mk_p">Sistemi se grade i održavaju na daljinu, pa lokacija firme nije ograničenje. Način rada prilagođavamo tržištu.</p>
+    </div>
+    <div class="mk">
+      <div class="rv"><h3 data-i="m1_h">Bosna i Hercegovina i Adria regija</h3><p data-i="m1_p">Privatne poliklinike i estetski centri, veleprodaja i distribucija, logistika, investitori i agencije za nekretnine, osiguranje, lanci s više poslovnica i veće online prodavnice.</p><p class="how" data-i="m1_w">Komunikacija na bosanskom, hrvatskom i srpskom. Sastanci uživo u BiH ili online. Ponude u KM ili EUR.</p></div>
+      <div class="rv"><h3 data-i="m2_h">EU, DACH, Ujedinjeno Kraljevstvo i SAD</h3><p data-i="m2_p">B2B uslužne firme, privatne klinike, softverske kompanije s velikim brojem upita podrške, agencije za nekretnine i online brendovi.</p><p class="how" data-i="m2_w">Komunikacija na engleskom. Rad na daljinu iz srednjoevropske vremenske zone (CET). Ponude u EUR.</p></div>
     </div>
   </div>
 </section>
 
-<section id="kontakt" aria-labelledby="h-contact">
-  <div class="wrap contact">
+<section id="pitanja" aria-labelledby="h-faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 id="h-faq" data-i="fq_h">Česta pitanja</h2><p data-i="fq_p">Odgovori na pitanja koja se najčešće postave prije prvog sastanka.</p></div>
+    <div class="faq rv">
+      <details><summary data-i="q1q">Moramo li mijenjati softver koji koristimo?</summary><p data-i="q1a">Ne. Sistem se povezuje na vaš postojeći CRM, ERP, web shop i kanale komunikacije. Vlastiti kontrolni sloj nudimo samo kada postojeći alati ne pokrivaju potrebu.</p></details>
+      <details><summary data-i="q2q">Šta ako AI pogriješi?</summary><p data-i="q2a">Model ne odlučuje o cijenama, dostupnosti ni obavezama, nego ih čita iz vaših podataka. Kada je pouzdanost niska ili je tema osjetljiva, upit ide osoblju. Prije puštanja u rad sistem prolazi testni set scenarija koji dogovaramo s vama.</p></details>
+      <details><summary data-i="q3q">Gdje se čuvaju naši podaci?</summary><p data-i="q3a">Prema dogovoru: u EU regiji kod provjerenih pružalaca usluga ili na vašoj infrastrukturi. Čuva se samo ono što je potrebno za rad sistema, onoliko dugo koliko je dogovoreno.</p></details>
+      <details><summary data-i="q4q">Koriste li se naši podaci za treniranje modela?</summary><p data-i="q4a">Ne. Modeli se koriste preko poslovnih API-ja kod kojih se, prema uslovima pružalaca, podaci korisnika ne koriste za treniranje.</p></details>
+      <details><summary data-i="q5q">Koliko traje uvođenje?</summary><p data-i="q5a">Okvirno pet do deset sedmica od audita do kontrolisanog rada u produkciji, zavisno od broja kanala, integracija i dostupnosti vaših sistema.</p></details>
+      <details><summary data-i="q6q">Kako se formira cijena?</summary><p data-i="q6a">Audit je zaseban korak s fiksnom cijenom. Izgradnju nudimo po fiksnoj cijeni na osnovu audita, a održavanje kao mjesečni ugovor s jasno definisanim obimom. Troškovi API-ja i infrastrukture prikazuju se zasebno.</p></details>
+      <details><summary data-i="q7q">Ko je vlasnik sistema i podataka?</summary><p data-i="q7a">Vaši podaci su uvijek vaši. Vlasništvo nad kodom, pristupima i dokumentacijom definiše se ugovorom prije početka rada.</p></details>
+      <details><summary data-i="q8q">Na kojim jezicima sistem radi?</summary><p data-i="q8a">Sistem odgovara na jeziku kupca, uključujući bosanski, hrvatski, srpski, engleski, njemački i arapski. Sažeci za vaš tim mogu biti na jeziku koji tim koristi.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" aria-labelledby="h-contact" style="padding-top:0">
+  <div class="wrap"><div class="box">
     <div>
-      <h2 id="h-contact" data-i="c_h">Imate proces koji oduzima previše vremena?</h2>
-      <p class="lead" data-i="c_p">Opišite ga u par rečenica. Javit ćemo se u roku od jednog radnog dana s prijedlogom kako bi se mogao riješiti.</p>
-      <div class="side">
-        <span>Instagram: <a href="https://www.instagram.com/hostio.ba/" target="_blank" rel="noopener">@hostio.ba</a></span>
-      </div>
+      <h2 id="h-contact" data-i="k_h">Zatražite operativni audit</h2>
+      <p class="lead" data-i="k_p">Opišite proces koji želite unaprijediti. Prvi korak je kratak uvodni razgovor bez obaveze, na kojem procjenjujemo da li audit ima smisla.</p>
+      <ul class="ticks" data-i="k_l"><li>Mapa procesa i polazne metrike</li><li>Procjena uštede vremena i troškova</li><li>Prijedlog arhitekture i integracija</li><li>Fiksna ponuda za izgradnju</li></ul>
     </div>
     <form id="cf" novalidate>
-      <div class="f"><label for="c-name" data-i="f_name">Ime i firma</label><input id="c-name" name="name" required minlength="2" maxlength="160" autocomplete="name"></div>
-      <div class="f"><label for="c-contact" data-i="f_contact">E-mail ili telefon</label><input id="c-contact" name="contact" required minlength="5" maxlength="160" autocomplete="email"></div>
-      <div class="f"><label for="c-msg" data-i="f_msg">Šta biste željeli riješiti?</label><textarea id="c-msg" name="message" maxlength="2000"></textarea></div>
+      <div class="f"><label for="c-name" data-i="f_name">Ime i prezime</label><input id="c-name" name="name" required maxlength="120" autocomplete="name"></div>
+      <div class="f"><label for="c-co" data-i="f_co">Firma</label><input id="c-co" name="company" required maxlength="120" autocomplete="organization"></div>
+      <div class="f"><label for="c-role" data-i="f_role">Uloga</label><input id="c-role" name="role" maxlength="80" autocomplete="organization-title"></div>
+      <div class="f"><label for="c-mail" data-i="f_mail">Poslovni e-mail</label><input id="c-mail" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+      <div class="f"><label for="c-country" data-i="f_country">Država</label><input id="c-country" name="country" maxlength="60" autocomplete="country-name"></div>
+      <div class="f"><label for="c-size" data-i="f_size">Broj zaposlenih</label><select id="c-size" name="size"><option value="">—</option><option>1–20</option><option>21–50</option><option>51–250</option><option>250+</option></select></div>
+      <div class="f full"><label for="c-msg" data-i="f_msg">Koji proces želite unaprijediti?</label><textarea id="c-msg" name="message" maxlength="2000"></textarea></div>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="cta" type="submit" id="cfBtn"><i></i><span data-i="f_send">Pošaljite upit</span></button>
       <p class="fmsg" id="cfMsg" role="status" aria-live="polite"></p>
     </form>
-  </div>
+  </div></div>
 </section>
 </main>
 
 <footer>
   <div class="wrap foot">
     <a class="logo" href="/">host<span>io.</span></a>
-    <nav aria-label="Podnožje"><a href="/privatnost" data-i="privacy">Privatnost</a><a href="https://www.instagram.com/hostio.ba/" target="_blank" rel="noopener">Instagram</a></nav>
+    <nav aria-label="Podnožje"><a href="#rjesenja" data-i="nav1">Rješenja</a><a href="#sigurnost" data-i="nav2">Sigurnost</a><a href="#pristup" data-i="nav4">Pristup</a><a href="/privatnost" data-i="privacy">Privatnost</a></nav>
     <span>© <span id="yr"></span> Hostio</span>
   </div>
-  <div class="giant" aria-hidden="true">host<span>io.</span></div>
 </footer>
 
 <script>
+const L=a=>a.map(x=>`<li>${x}</li>`).join('');
 const T={
  en:{
-  nav_work:"Work",nav_svc:"Services",nav_how:"Approach",nav_contact:"Contact",
-  h1:"Artificial intelligence, built into the way your business already works.",
-  lead:"Hostio is an applied AI studio. We design and deploy AI assistants, automations and custom software for companies whose time is too valuable for routine work, wherever they operate.",
-  cta:"Start a conversation",see_work:"See our work",
-  live_cap:"Examples of our AI assistants at work, in real time and in the customer's language.",
-  work_h:"Selected work",work_p:"Every project starts with a real process: messages arriving at midnight, bookings, invoices. These are some of the systems we have built, and you can try them yourself.",
-  z_card_h:"AI diagnosis",z_card:"“When I brake, something squeals.” Most likely worn pads. Inspection tomorrow at 9:00?",
-  z_meta:"Car service, demo project",z_p:"Customers describe the problem in their own words, the AI suggests what it might be and offers a slot. The workshop sees everything on a shared board, and invoices take one click.",
-  z_1:"Website and online booking",z_2:"AI fault diagnosis",z_3:"Dashboard and invoicing",open_demo:"Open the demo",
-  r_sub:"Restaurant, Old Town",r_h:"Book a table",r_day:"Day",r_d1:"Fri",r_d2:"Sat",r_d3:"Sun",r_time:"Time",r_guests:"Guests",r_btn:"Confirm booking",
-  r_card:"Guest: “Any room for four on Saturday?” AI: “Yes, at 8 pm by the window. Shall I confirm?”",
-  r_meta:"Restaurant, concept",r_title:"Bookings without the phone",r_p:"Guests book in under a minute, from the website or straight from Instagram and WhatsApp. Staff get a clean list by day, with no copying and no double bookings.",
-  r_1:"Two-step booking",r_2:"AI replies to messages",r_3:"Daily list for staff",
-  v_card:"“Is the apartment free 12–15 May?” It is. The price and a confirmation link were sent to the guest.",
-  v_meta:"Holiday rental, demo project",v_p:"A three-language booking site with direct enquiries and no commission. The assistant answers guests from anywhere and checks availability.",
-  v_1:"Bosnian, English, German",v_2:"Direct bookings",v_3:"AI replies 24/7",
-  a_meta:"Video and voice, concepts",a_title:"AI ads",a_p:"Short films for social media, with no camera and no shoot. Animation, music and a professional voice in your market's language.",
-  a_1:"Script and animation",a_2:"Multilingual voiceover",a_3:"Formats for Reels and TikTok",
-  svc_h:"What we do",svc_p:"We don't sell ready-made packages. We look at where your team loses time and build what actually solves that problem.",
-  s1_h:"AI assistants",s1_p:"They answer enquiries, book appointments and hand over to a person whatever needs a person. On the web, WhatsApp, Instagram and Viber, day and night.",s1_ex:"For clinics, salons, workshops, rentals and hospitality.",
-  s2_h:"Automation and software",s2_p:"Internal tools, dashboards, invoicing and connections to the systems you already use. Less manual copying, fewer mistakes, a clearer overview.",s2_ex:"For teams that run everything on spreadsheets and messages today.",
-  s3_h:"Video and voice",s3_p:"Ads, presentations and product explainers without a shoot, with a voice that sounds natural in several languages.",s3_ex:"For brands that need regular content without a production crew.",
-  how_h:"How we work",how_p:"Short, clear and without surprises. You usually see the first working version within a few weeks.",
-  st1_h:"Conversation",st1_p:"We learn your process and where the time goes.",st2_h:"Proposal",st2_p:"A clear scope, timeline and price before we start.",
-  st3_h:"Build",st3_p:"We build in short cycles and test on your real cases.",st4_h:"Support",st4_p:"We watch how the system performs and improve it with you.",
-  reach:"We work remotely, with companies in the region and beyond.",reach_s:"Our solutions speak your customers' language, and we speak with you in English or Bosnian.",
-  c_h:"Is there a process that takes too much of your time?",c_p:"Describe it in a few sentences. We'll get back to you within one working day with a proposal for how it could be solved.",
-  sys_h:"Systems that run in the background",sys_p:"Behind every assistant there is an overview for you and your team: who wrote, what is booked and what needs a human. This is what one of the dashboards we build looks like.",
-  d_clinic:"Dental clinic",d_n1:"Overview",d_n2:"Messages",d_n3:"Calendar",d_n4:"Patients",d_n5:"Invoices",d_n6:"Settings",d_ai:"AI assistant is on",d_ai2:"Replying on 3 channels",d_hi:"Good morning, Amra",d_date:"Thursday, 19 November",d_search:"Search patients, appointments…",
-  k1:"Enquiries today",k2:"Booked",k3:"Resolved automatically",k4:"Revenue this week",c1:"Enquiries by channel",c1s:"Last 14 days",c2:"Channels today",c2b:"2 enquiries",c2n:"are waiting for staff",c3:"Today's appointments",c3s:"8 of 11 confirmed",
-  t1:"Check-up",t2:"Filling",t3:"Scale and polish",t4:"Consultation",s_ok:"Confirmed",s_wait:"Awaiting",s_new:"New",c4:"Live",d_note:"Sample dashboard with made-up data. Every system is built around the client's own process.",
-  ch_web:"Web chat",o_cal:"Calendar",o_res:"Bookings",o_acc:"Bookkeeping",cap1:"The assistant replies while you sleep, on weekends and holidays.",cap2s:"channels",cap2:"Web, WhatsApp, Instagram and Viber, connected into one system.",cap3s:"place",cap3:"Messages, bookings and invoices on one screen, for the whole team.",
-  f_name:"Name and company",f_contact:"Email or phone",f_msg:"What would you like to solve?",f_send:"Send enquiry",privacy:"Privacy"
+  nav1:"Solutions",nav2:"Security",nav3:"Architectures",nav4:"Approach",nav5:"FAQ",nav_cta:"Request an audit",
+  h1:"AI systems that work inside your operations, under your control.",
+  lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies. We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.",
+  cta:"Request an operational audit",cta2:"How the system makes decisions",
+  facts:L(["Works with your existing systems","Human approval for sensitive actions","Replies in the customer's language"]),
+  tr_title:"Processing one enquiry",tr_res:"Outcome",tr_note:"Illustrative examples with made-up data.",
+  pr_h:"Where companies lose time and revenue",pr_p:"AI makes sense where the same work repeats hundreds of times a month and where delay has a cost. Before every proposal we measure the baseline, so the result can be compared.",
+  pr1_h:"Slow first response",pr1_p:"Enquiries arrive on WhatsApp, email, the website and social media, and the reply waits until someone is free. The slower the reply, the lower the chance the enquiry becomes business.",pr1_m:"We measure time to first response and the share of enquiries answered.",
+  pr2_h:"Manual re-entry",pr2_p:"The same data is typed from a message into the CRM, from an email into the ERP, from a spreadsheet into a quote. It costs hours and creates errors that are expensive to fix later.",pr2_m:"We measure hours of work per month and the number of corrections.",
+  pr3_h:"After-hours and foreign-language enquiries",pr3_p:"Customers in other time zones and languages write when your team is offline or does not speak their language. Those enquiries are usually lost without a trace.",pr3_m:"We measure these enquiries and what happens to them.",
+  so_h:"What we build",so_p:"Four kinds of systems, always shaped around your process and connected to the tools you already use. We do not sell off-the-shelf packages.",
+  so1_h:"Multichannel intake agents",so1_p:"They answer enquiries on WhatsApp, Instagram, the web and email, in the customer's language. They qualify the enquiry, collect the details needed and hand it to the right person or system.",
+  so1_l:L(["Answers grounded in your data, not guesswork","Qualification and tagging by your criteria","Handover to staff with the full conversation context"]),
+  so2_h:"Operational workflow automation",so2_p:"Orders, requests, documents and quotes move through a defined flow without manual re-entry. AI extracts the data, the system validates it, and a person approves what needs approval.",
+  so2_l:L(["Data extraction from emails, PDFs and forms","Routing by request type, priority and location","Draft quotes and replies ready for approval"]),
+  so3_h:"Integration with existing systems",so3_p:"We do not ask you to replace your CRM, ERP or web shop. We connect to them through APIs and webhooks, so data stays where your team already works with it.",
+  so3_l:L(["Two-way sync with CRM and ERP","Retries and a record of every data exchange","No change to how your staff work"]),
+  so4_h:"Control layer and reporting",so4_p:"An optional view for management and the team: what the system did, what is waiting for approval and what the results are. We only offer it when your existing tools do not cover this.",
+  so4_l:L(["Approval queue for sensitive replies and actions","Rules and permissions by role","Reports on response times and outcomes"]),
+  ct_h:"You stay in control",ct_p:"Every action the system takes is visible and traceable. Sensitive decisions, such as discounts, partial deliveries or medical questions, wait for approval from an authorised person.",
+  d_co:"Example Ltd.",d_dep:"Sales and support",d_n1:"Overview",d_n2:"Enquiries",d_n3:"Approvals",d_n4:"Rules",d_n5:"Integrations",d_n6:"Logs",d_ai:"System running",d_ai2:"4 channels, 2 integrations",d_hi:"Operations overview",d_date:"Thursday, 19 November",d_search:"Search enquiries, customers…",
+  k1:"Enquiries today",k2:"Median first response",k3:"Resolved without staff",k4:"Awaiting approval",k4e:"open",
+  c1:"Enquiries by channel",c1s:"Last 14 days",c2:"Enquiry languages",c2s:"Today",lg_bs:"Bosnian",lg_en:"English",lg_de:"German",lg_ar:"Arabic",c2n:"<b>3 replies</b> are waiting for your approval",
+  c3:"Approval queue",c3s:"Average wait 6 min",q1:"Order of 40 pallets, item 1187",q1r:"Partial delivery",q2:"5% discount on two flats",q2r:"Above AI authority",q3:"Delivery complaint",q3r:"Complaint",q4:"Rental price, 3 months",q4r:"Confidence 0.71",s_wait:"Waiting",s_new:"Assigned",s_ok:"Approved",c4:"Event log",
+  d_note:"Illustration of the control layer with made-up data. Layout and features are tailored to each client.",
+  se_h:"How the system makes decisions",se_p:"The language model understands the message. Decisions about prices, availability and commitments come from your data and your rules. Every enquiry goes through the same steps.",
+  p1_h:"Intake",p1_p:"The message arrives from any channel and gets a unique record: channel, language, time and sender.",
+  p2_h:"Understanding",p2_p:"The model identifies the intent and extracts the data into a strictly defined structure. Output that does not match the schema is rejected.",
+  p3_h:"Verification",p3_p:"Prices, stock, slots and statuses are read from your system at the moment of the enquiry. The model does not invent them.",
+  p4_h:"Rules",p4_p:"Business rules and a confidence threshold decide what goes through automatically and what goes to a person: discounts, exceptions, complaints and sensitive topics.",
+  p5_h:"Action and record",p5_p:"The reply is sent or waits for approval, data is written to the CRM or ERP, and every step is logged.",
+  rel_h:"Reliability",rel_l:L(["Retries with back-off when an external API or webhook does not respond","Respecting rate limits of channels and model providers","Fallback: if the model or an integration is unavailable, the enquiry goes to staff and is not lost","Monitoring and error alerts","A test set of scenarios run before every change to the system"]),
+  dat_h:"Data and access",dat_l:L(["Only the data needed for a given workflow is processed","Data in an EU region or on your own infrastructure, as agreed","Role-based access and a record of who approved what","Models are used through business APIs where, under the providers' terms, data is not used for training","A non-disclosure agreement before we access your data","Data deletion on request and when the agreed period ends"]),
+  ar_h:"Reference architectures",ar_p:"Three typical systems we design, presented as reference solutions rather than as descriptions of client projects. We show the demo versions live at the introductory meeting.",
+  ta:"Real estate and hospitality",tb:"Private clinics",tc:"Wholesale and distribution",a_lab:"Reference architecture",
+  a_h:"Multilingual sales enquiries",a_p:"Buyers and guests from abroad and from the diaspora write in English, German, Arabic or Bosnian, often outside working hours. The sales team misses enquiries or replies hours later.",
+  a_f:L(["The enquiry arrives from WhatsApp, Instagram, the website or a property portal","The agent identifies the language, the property and the intent: purchase, rental or viewing","Availability and price are read from the property database","Qualification: budget, timeline and payment method","The lead is written to the CRM, and the salesperson gets a summary and a proposed viewing slot"]),
+  h_guard:"Safeguards",h_int:"Integrations",h_kpi:"What is measured",
+  a_g:L(["Price and availability only from the database","Discounts and reservations always go to a salesperson","Reply in the customer's language, summary in the team's"]),
+  a_i:"CRM (e.g. HubSpot or Pipedrive), property database, the sales team's calendar.",a_k:"Time to first response, share of qualified enquiries, number of viewings booked.",
+  b_h:"Patient intake and scheduling",b_p:"Reception is overloaded with calls and messages, and part of the enquiries arrive at night and at weekends. Medical content needs particular care and a clear line between administration and clinical judgement.",
+  b_f:L(["The enquiry arrives from any of the clinic's channels","The agent separates administrative questions (appointments, service prices, preparation) from medical ones","Free slots are read from the clinic's calendar or system","An appointment is proposed and confirmed according to the clinic's rules","Reminders and changes are sent automatically"]),
+  b_g:L(["The agent gives no medical advice or diagnoses","Symptoms and emergencies go straight to staff","Access to patient data is restricted by role"]),
+  b_i:"The clinic's scheduling or information system via API, calendar, reminders via WhatsApp or SMS.",b_k:"Reception workload, share of appointments booked outside working hours, number of missed appointments.",
+  c_h:"B2B orders and enquiries",c_p:"Orders arrive by email, message and phone, in different formats. Sales staff check stock by hand and re-type line items into the ERP.",
+  c_f:L(["The order arrives by email or message, as text, PDF or spreadsheet","Line items are extracted into a structure and matched to item codes","Stock, customer-specific prices and lead times are read from the ERP","Rules decide what goes through automatically and what goes to a salesperson","A draft order or quote is created in the ERP and waits for confirmation"]),
+  c_g:L(["Customer prices only from the ERP","Partial deliveries and exceptions always need approval","Every line item can be traced back to the original document"]),
+  c_i:"ERP via API or an agreed data export, business email, CRM.",c_k:"Order processing time, hours of manual entry, number of line-item errors.",
+  in_h:"We work with the tools you already have",in_p:"Connections use official APIs and webhooks. For systems without an API we agree a secure way to exchange data.",
+  i1:"Channels",i1p:"WhatsApp Business Platform, Instagram, Facebook Messenger, web chat, email (Microsoft 365, Google Workspace)",i3:"E-commerce",i4:"ERP and internal systems",i4p:"REST or SOAP APIs, webhooks, an agreed data export or direct database access with your permission",i5:"Calendars",i6:"Technology",i6p:"Node.js, Python, PostgreSQL, n8n and Make for quick workflows, models from Anthropic and OpenAI",
+  in_note:"Product names belong to their owners and do not imply a partnership.",
+  ho_h:"From audit to production",ho_p:"Every phase has a clear result and a decision at the end. We only move to the next phase with your agreement.",
+  s1_h:"Audit and ROI map",s1_d:"1 to 2 weeks",s1_p:"Interviews with your team, a process map, baseline metrics, an estimate of savings and a proposed architecture. The result is a written report and a fixed-price proposal.",
+  s2_h:"Architecture and sandbox",s2_d:"2 to 4 weeks",s2_p:"The system is built and tested on real, anonymised examples from your business, against agreed acceptance criteria.",
+  s3_h:"Controlled rollout",s3_d:"2 to 4 weeks",s3_p:"One channel or team first, with human approval switched on. Automation expands only when the results justify it.",
+  s4_h:"Maintenance and monitoring",s4_d:"monthly",s4_p:"Monitoring, fixes, rule adjustments and a monthly results report, within the agreed scope of support.",
+  ho_note:"Durations are indicative and depend on scope and on access to your systems.",
+  mk_h:"Local and international",mk_p:"Systems are built and maintained remotely, so your location is not a constraint. We adapt how we work to each market.",
+  m1_h:"Bosnia and Herzegovina and the Adriatic region",m1_p:"Private polyclinics and aesthetic centres, wholesale and distribution, logistics, real estate developers and agencies, insurance, multi-location chains and larger online stores.",m1_w:"Communication in Bosnian, Croatian and Serbian. Meetings in person in Bosnia and Herzegovina or online. Proposals in BAM or EUR.",
+  m2_h:"EU, DACH, United Kingdom and United States",m2_p:"B2B service firms, private clinics, software companies with heavy support queues, real estate agencies and online brands.",m2_w:"Communication in English. Remote work from the Central European time zone (CET). Proposals in EUR.",
+  fq_h:"Frequently asked questions",fq_p:"Answers to the questions most often asked before a first meeting.",
+  q1q:"Do we have to change the software we use?",q1a:"No. The system connects to your existing CRM, ERP, web shop and communication channels. We only offer our own control layer when your existing tools do not cover the need.",
+  q2q:"What if the AI makes a mistake?",q2a:"The model does not decide on prices, availability or commitments; it reads them from your data. When confidence is low or the topic is sensitive, the enquiry goes to staff. Before going live the system passes a test set of scenarios agreed with you.",
+  q3q:"Where is our data stored?",q3a:"As agreed: in an EU region with vetted service providers or on your own infrastructure. Only what the system needs is kept, and only for as long as agreed.",
+  q4q:"Is our data used to train models?",q4a:"No. Models are used through business APIs where, under the providers' terms, customer data is not used for training.",
+  q5q:"How long does implementation take?",q5a:"Roughly five to ten weeks from audit to controlled production use, depending on the number of channels, integrations and access to your systems.",
+  q6q:"How is pricing set?",q6a:"The audit is a separate step at a fixed price. The build is offered at a fixed price based on the audit, and maintenance as a monthly agreement with a clearly defined scope. API and infrastructure costs are shown separately.",
+  q7q:"Who owns the system and the data?",q7a:"Your data is always yours. Ownership of code, access and documentation is set out in the contract before work begins.",
+  q8q:"Which languages does the system work in?",q8a:"The system replies in the customer's language, including Bosnian, Croatian, Serbian, English, German and Arabic. Summaries for your team can be in the language your team uses.",
+  k_h:"Request an operational audit",k_p:"Describe the process you want to improve. The first step is a short introductory call with no obligation, where we assess whether an audit makes sense.",
+  k_l:L(["Process map and baseline metrics","Estimate of time and cost savings","Proposed architecture and integrations","Fixed-price proposal for the build"]),
+  f_name:"Full name",f_co:"Company",f_role:"Role",f_mail:"Business email",f_country:"Country",f_size:"Number of employees",f_msg:"Which process do you want to improve?",f_send:"Send enquiry",privacy:"Privacy"
  },
  bs:{}
 };
-// remember the Bosnian originals from the page itself
-document.querySelectorAll('[data-i]').forEach(el=>{T.bs[el.dataset.i]=el.innerHTML;});
-const SCENES={
+document.querySelectorAll('[data-i]').forEach(el=>{if(!(el.dataset.i in T.bs))T.bs[el.dataset.i]=el.innerHTML;});
+
+/* processing trace scenes */
+const SC={
  bs:[
-  {who:"Stomatološka klinika",time:"23:40",ch:"wa",out:"cal",msgs:[["in","Imate li slobodan termin sutra ujutro?"],["out","Imamo u 10:30. Da vas upišem na kontrolni pregled?","AI asistent"],["in","Može, hvala."]],done:"Termin upisan u kalendar ordinacije"},
-  {who:"Rent-a-car",time:"07:12",ch:"web",out:"res",msgs:[["in","Is the Golf available Friday to Monday?"],["out","Yes, four days for 140 €. Shall I reserve it for you?","AI asistent"],["in","Yes please."]],done:"Rezervacija poslana vlasniku na potvrdu"},
-  {who:"Auto servis",time:"18:05",ch:"ig",out:"cal",msgs:[["in","Kad zakočim, nešto pišti."],["out","Najčešće su to istrošene pločice. Imamo termin za pregled sutra u 9:00.","AI asistent"],["in","Super, dolazim."]],done:"Upit pretvoren u termin"},
-  {who:"Računovodstvo",time:"09:00",ch:"mail",out:"acc",msgs:[["in","34 nova računa stigla su u inbox."],["out","Podaci su izvučeni i uneseni u tabelu. Dva računa traže provjeru.","AI automatizacija"]],done:"Spremno za pregled"}
+  {ch:"WhatsApp",lang:"njemački",time:"21:14",msg:"Guten Abend, ist die Wohnung B-14 noch verfügbar? Was kostet sie?",
+   steps:[["ok","Prijem","WhatsApp, njemački, 21:14"],["ok","Razumijevanje","Upit o dostupnosti i cijeni, stan B-14"],["ok","Provjera","Baza objekata: B-14 slobodan, 182.000 €"],["ok","Pravila","Pouzdanost 0,96, iznad praga 0,85"],["ok","Akcija","Odgovor poslan, lead upisan u CRM"]],
+   outMeta:"Poslano automatski",out:"Guten Abend! Die Wohnung B-14 ist verfügbar, der Preis beträgt 182.000 €. Möchten Sie einen Besichtigungstermin vereinbaren?",end:"Riješeno automatski"},
+  {ch:"Web chat",lang:"bosanski",time:"02:37",msg:"Nakon vađenja zuba imam jak bol i otok. Šta da radim?",
+   steps:[["ok","Prijem","Web chat, bosanski, 02:37"],["ok","Razumijevanje","Namjera: medicinski simptom"],["ok","Provjera","Postojeći pacijent pronađen u sistemu klinike"],["esc","Pravila","Medicinska tema: automatski savjet nije dozvoljen"],["esc","Akcija","Proslijeđeno dežurnom osoblju"]],
+   outMeta:"Poslano automatski, standardna poruka",out:"Vaša poruka je proslijeđena dežurnom osoblju klinike. Ako je stanje hitno, pozovite hitnu pomoć.",end:"Eskalirano osoblju"},
+  {ch:"E-mail",lang:"engleski",time:"09:02",msg:"Please send 40 pallets of item 1187 by Friday. Customer no. K-2207.",
+   steps:[["ok","Prijem","E-mail, engleski, 09:02"],["ok","Razumijevanje","Narudžba: art. 1187, 40 paleta, rok petak"],["ok","Provjera","ERP: na zalihi 26 paleta, kupac K-2207"],["esc","Pravila","Djelimična isporuka zahtijeva odobrenje"],["esc","Akcija","Nacrt narudžbe u ERP-u, čeka komercijalistu"]],
+   outMeta:"Nacrt, čeka odobrenje",out:"We can deliver 26 pallets by Friday and the remaining 14 within 9 days. Shall we proceed?",end:"Čeka odobrenje"}
  ],
  en:[
-  {who:"Dental clinic",time:"23:40",ch:"wa",out:"cal",msgs:[["in","Do you have anything tomorrow morning?"],["out","We have 10:30. Shall I book you in for a check-up?","AI assistant"],["in","Yes, thank you."]],done:"Booked into the clinic calendar"},
-  {who:"Car rental",time:"07:12",ch:"web",out:"res",msgs:[["in","Imate li Golf od petka do ponedjeljka?"],["out","Imamo, četiri dana za 140 €. Da ga rezervišem?","AI assistant"],["in","Može."]],done:"Booking sent to the owner for approval"},
-  {who:"Car service",time:"18:05",ch:"ig",out:"cal",msgs:[["in","When I brake, something squeals."],["out","That is most often worn brake pads. We can inspect it tomorrow at 9:00.","AI assistant"],["in","Great, see you then."]],done:"Enquiry turned into an appointment"},
-  {who:"Accounting",time:"09:00",ch:"mail",out:"acc",msgs:[["in","34 new invoices arrived in the inbox."],["out","The data has been extracted and entered into the sheet. Two invoices need a check.","AI automation"]],done:"Ready for review"}
+  {ch:"WhatsApp",lang:"German",time:"21:14",msg:"Guten Abend, ist die Wohnung B-14 noch verfügbar? Was kostet sie?",
+   steps:[["ok","Intake","WhatsApp, German, 21:14"],["ok","Understanding","Availability and price enquiry, flat B-14"],["ok","Verification","Property database: B-14 available, €182,000"],["ok","Rules","Confidence 0.96, above the 0.85 threshold"],["ok","Action","Reply sent, lead written to the CRM"]],
+   outMeta:"Sent automatically",out:"Guten Abend! Die Wohnung B-14 ist verfügbar, der Preis beträgt 182.000 €. Möchten Sie einen Besichtigungstermin vereinbaren?",end:"Resolved automatically"},
+  {ch:"Web chat",lang:"Bosnian",time:"02:37",msg:"Nakon vađenja zuba imam jak bol i otok. Šta da radim?",
+   steps:[["ok","Intake","Web chat, Bosnian, 02:37"],["ok","Understanding","Intent: medical symptom"],["ok","Verification","Existing patient found in the clinic's system"],["esc","Rules","Medical topic: automated advice not allowed"],["esc","Action","Passed to on-call staff"]],
+   outMeta:"Sent automatically, standard message",out:"Vaša poruka je proslijeđena dežurnom osoblju klinike. Ako je stanje hitno, pozovite hitnu pomoć.",end:"Escalated to staff"},
+  {ch:"E-mail",lang:"English",time:"09:02",msg:"Please send 40 pallets of item 1187 by Friday. Customer no. K-2207.",
+   steps:[["ok","Intake","Email, English, 09:02"],["ok","Understanding","Order: item 1187, 40 pallets, due Friday"],["ok","Verification","ERP: 26 pallets in stock, customer K-2207"],["esc","Rules","Partial delivery requires approval"],["esc","Action","Draft order in the ERP, waiting for sales"]],
+   outMeta:"Draft, awaiting approval",out:"We can deliver 26 pallets by Friday and the remaining 14 within 9 days. Shall we proceed?",end:"Awaiting approval"}
  ]};
-let LANG="bs";
+const ICO='<svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg class="i-esc" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="3.2" stroke-linecap="round"><path d="M12 6v7M12 18v.5"/></svg>';
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let LANG="bs",timers=[],si=0;
+const later=(f,ms)=>timers.push(setTimeout(f,ms));
+function renderScene(sc,instant){
+ $('trInMeta').innerHTML=`<span>${sc.ch}</span><span>${sc.lang}</span><span>${sc.time}</span>`;$('trInText').textContent=sc.msg;
+ $('trSteps').innerHTML=sc.steps.map(([s,a,b])=>`<li data-s="${s}"><span class="ic">${ICO}</span><b>${a}</b><span>${b}</span></li>`).join('');
+ $('trOutMeta').textContent=sc.outMeta;$('trOutText').textContent=sc.out;$('trOut').classList.remove('show');$('trEnd').innerHTML='&nbsp;';
+ if(instant){[...$('trSteps').children].forEach(li=>li.classList.add('on',li.dataset.s));$('trOut').classList.add('show');$('trEnd').textContent=sc.end;}
+}
+function play(){
+ const list=SC[LANG],sc=list[si%list.length];$('trIdx').textContent=(si%list.length+1)+'/'+list.length;si++;
+ renderScene(sc,false);const lis=[...$('trSteps').children];let t=700;
+ lis.forEach((li,i)=>{later(()=>{lis.forEach(x=>x.classList.remove('cur'));li.classList.add('on','cur');},t);t+=650;later(()=>li.classList.add(li.dataset.s),t-200);});
+ later(()=>{lis.forEach(x=>x.classList.remove('cur'));$('trOut').classList.add('show');},t+200);
+ later(()=>{$('trEnd').textContent=sc.end;},t+700);
+ later(play,t+5200);
+}
+function restart(){timers.forEach(clearTimeout);timers=[];si=Math.max(0,si-1);
+ if(reduce){renderScene(SC[LANG][0],true);$('trIdx').textContent='1/'+SC[LANG].length;return;}play();}
+
 function setLang(l){
  LANG=l;document.documentElement.lang=l;
  document.querySelectorAll('[data-i]').forEach(el=>{const v=T[l][el.dataset.i];if(v!=null)el.innerHTML=v;});
  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
- document.title=l==='en'?"Hostio, an applied AI studio":"Hostio, studio za primijenjenu umjetnu inteligenciju";
+ document.title=l==='en'?"Hostio, AI automation and custom systems":"Hostio, AI automatizacija i sistemi po mjeri";
  try{localStorage.setItem('hostio_lang',l)}catch(e){}
- if(window.splitH1)splitH1();if(typeof feedFill==='function')feedFill();
- restart();
+ splitH1();feedFill();restart();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
-/* live panel */
-const $m=document.getElementById('lvMsgs'),$who=document.getElementById('lvWho'),$time=document.getElementById('lvTime'),$done=document.getElementById('lvDone'),$doneT=document.getElementById('lvDoneT');
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-let timers=[],si=0;
-const later=(f,ms)=>timers.push(setTimeout(f,ms));
-function play(){
- const sc=SCENES[LANG][si%SCENES[LANG].length];si++;
- $m.innerHTML='';$done.classList.remove('show');$who.textContent=sc.who;$time.textContent=sc.time;$doneT.textContent=sc.done;
- flow.querySelectorAll('.chip-ch,.dest').forEach(x=>x.classList.remove('on'));const chEl=flow.querySelector(`[data-ch="${sc.ch}"]`);if(chEl)chEl.classList.add('on');layoutWires();pulse(sc.ch,800);
- let t=300;
- sc.msgs.forEach(([k,txt,lab])=>{
-  if(k==='out'){const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<span></span><span></span><span></span>';later(()=>{$m.appendChild(ty);requestAnimationFrame(()=>ty.classList.add('show'))},t);t+=1300;later(()=>ty.remove(),t);}
-  const d=document.createElement('div');d.className='m '+k;d.innerHTML=(lab?'<small>'+lab+'</small>':'')+txt;
-  later(()=>{$m.appendChild(d);requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.add('show')))},t);t+=k==='in'?1500:2000;
- });
- later(()=>{$done.classList.add('show');pulse(sc.out,700);later(()=>{const o=flow.querySelector(`[data-out="${sc.out}"]`);if(o)o.classList.add('on')},650);},t);t+=3400;
- later(play,t);
-}
-function restart(){timers.forEach(clearTimeout);timers=[];si=Math.max(0,si-1);
- if(reduce){const sc=SCENES[LANG][0];$who.textContent=sc.who;$time.textContent=sc.time;$m.innerHTML=sc.msgs.map(([k,txt,lab])=>`<div class="m ${k} show">${lab?'<small>'+lab+'</small>':''}${txt}</div>`).join('');$doneT.textContent=sc.done;$done.classList.add('show');return;}
- play();}
+/* headline words rise once on load */
+const h1=$('h1');
+function splitH1(){h1.innerHTML=h1.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.045*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');}
+splitH1();requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('ready')));
 
-/* headline: words rise once on load */
-(()=>{const h=document.getElementById('h1');window.splitH1=()=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.05*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');};splitH1();
- requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('ready')));})();
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);}),{threshold:.15});
+document.querySelectorAll('.rv,#steps').forEach(el=>io.observe(el));
 
-/* reveal on scroll + counters + work motion */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');
-  if(el.id==='caps')el.querySelectorAll('.cnt').forEach(c=>{const to=+c.dataset.to;let t0=null;const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/900);c.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
-  io.unobserve(el);}),{threshold:.18});
-document.querySelectorAll('.rv,.work,#caps,#steps').forEach(el=>io.observe(el));
+/* tabs */
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function selTab(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=$(x.getAttribute('aria-controls'));p.hidden=!on;if(on)p.classList.add('in');});}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>selTab(t));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];selTab(n);n.focus();}});});
 
-/* videos: play muted while visible, tap for sound */
-const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target.querySelector('video');if(!v)return;if(e.isIntersecting)v.play().catch(()=>{});else v.pause();}),{threshold:.35});
-document.querySelectorAll('.vid').forEach(v=>{
- const img=v.querySelector('img');const vid=document.createElement('video');vid.src=v.dataset.src;vid.poster=img.getAttribute('src');vid.muted=true;vid.loop=true;vid.playsInline=true;vid.setAttribute('playsinline','');vid.preload='none';vid.setAttribute('aria-label',img.alt);
- img.replaceWith(vid);
- const b=document.createElement('button');b.type='button';b.className='snd';b.setAttribute('aria-label','Zvuk');b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>';v.appendChild(b);
- v.addEventListener('click',()=>{vid.muted=!vid.muted;if(!vid.muted){document.querySelectorAll('.vid video').forEach(o=>{if(o!==vid)o.muted=true});vid.play().catch(()=>{});}
-  b.innerHTML=vid.muted?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>';});
- vio.observe(v);
-});
-
-/* phones drift slightly with scroll */
-const phones=[...document.querySelectorAll('.work .phone')];let ticking=false;
-function drift(){ticking=false;const vh=innerHeight;phones.forEach((p,i)=>{const r=p.parentElement.getBoundingClientRect();const k=((r.top+r.height/2)-vh/2)/vh;const base=p.classList.contains('tilt')?'rotate(-4deg)':p.classList.contains('tilt2')?'rotate(3deg)':'';p.style.transform=`${base} translateY(${(k*(i%2?-38:38)).toFixed(1)}px)`;});}
-if(!reduce){addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});drift();}
-
-
-/* dashboard: scale to fit, animate when visible, live feed */
-const dash=document.getElementById('dash'),dfit=document.getElementById('dashFit');
-window.fitDash=function(){const cw=dfit.clientWidth;dash.classList.toggle('compact',cw<700);const W=cw<700?640:1180;const k=Math.min(1,cw/W);dash.style.transform=`scale(${k})`;dfit.style.height=(dash.offsetHeight*k)+'px';}
-addEventListener('resize',fitDash);fitDash();
-const FEED={bs:[["AI je zakazao kontrolni pregled za Lejlu H.","WhatsApp"],["Novi upit: cijena izbjeljivanja zuba","Instagram"],["Podsjetnik poslan za 8 sutrašnjih termina","Automatski"],["Račun R-2026-0412 poslan e-mailom","Automatski"],["Mirza K. pomjerio termin na 9:45","WhatsApp"],["Upit proslijeđen doktorici: bol nakon vađenja","Web"]],
- en:[["AI booked a check-up for Lejla H.","WhatsApp"],["New enquiry: teeth whitening price","Instagram"],["Reminders sent for 8 appointments tomorrow","Automatic"],["Invoice R-2026-0412 sent by email","Automatic"],["Mirza K. moved his appointment to 9:45","WhatsApp"],["Enquiry passed to the dentist: pain after extraction","Web"]]};
-const AGO={bs:["upravo sada","prije 2 min","prije 5 min","prije 9 min"],en:["just now","2 min ago","5 min ago","9 min ago"]};
-let fi=0,ftimer=null;const feed=document.getElementById('feed');
-function feedTimes(){[...feed.children].forEach((li,i)=>{li.querySelector('small').textContent=li.dataset.ch+', '+AGO[LANG][i];});}
-function feedAdd(){const L=FEED[LANG];const [a,b]=L[fi%L.length];fi++;feed.insertAdjacentHTML('afterbegin',`<li data-ch="${b}"><i></i><div>${a}<small></small></div></li>`);while(feed.children.length>4)feed.lastElementChild.remove();feedTimes();if(window.fitDash)fitDash();}
+/* dashboard: scale to fit, animate when visible, event log */
+const dash=$('dash'),dfit=$('dashFit');
+function fitDash(){const cw=dfit.clientWidth;dash.classList.toggle('compact',cw<700);const W=cw<700?640:1180;const k=Math.min(1,cw/W);dash.style.transform=`scale(${k})`;dfit.style.height=(dash.offsetHeight*k)+'px';}
+addEventListener('resize',fitDash);
+const FEED={bs:[["Cijena za B-14 pročitana iz baze objekata","Provjera"],["CRM webhook: ponovni pokušaj 1/3 uspješan","Integracija"],["Odgovor odobrila A. Hodžić","Odobrenje"],["Upit o simptomu proslijeđen osoblju","Eskalacija"],["Nacrt narudžbe kreiran u ERP-u","Akcija"],["Lead upisan u CRM: K. Weber, DE","Akcija"]],
+ en:[["Price for B-14 read from the property database","Verification"],["CRM webhook: retry 1/3 succeeded","Integration"],["Reply approved by A. Hodžić","Approval"],["Symptom enquiry passed to staff","Escalation"],["Draft order created in the ERP","Action"],["Lead written to the CRM: K. Weber, DE","Action"]]};
+const AGO={bs:["upravo sada","prije 1 min","prije 3 min","prije 6 min"],en:["just now","1 min ago","3 min ago","6 min ago"]};
+let fi=0,ftimer=null;const feed=$('feed');
+function feedTimes(){[...feed.children].forEach((li,i)=>{li.querySelector('small').textContent=li.dataset.k+', '+AGO[LANG][i];});}
+function feedAdd(){const F=FEED[LANG];const [a,b]=F[fi%F.length];fi++;feed.insertAdjacentHTML('afterbegin',`<li data-k="${b}"><i></i><div>${a}<small></small></div></li>`);while(feed.children.length>4)feed.lastElementChild.remove();feedTimes();fitDash();}
 function feedFill(){feed.innerHTML='';fi=0;for(let i=0;i<4;i++)feedAdd();}
-function feedTick(){feedAdd();}
 feedFill();
 const dio=new IntersectionObserver(es=>es.forEach(e=>{
- if(e.isIntersecting){if(!dash.classList.contains('go')){dash.classList.add('go');dash.querySelectorAll('.dc').forEach(c=>{const to=+c.dataset.to;let t0=null;const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/1400);const v=Math.round(to*(1-Math.pow(1-k,3)));c.textContent=c.dataset.fmt==='km'?v.toLocaleString('de-DE')+' KM':v;if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});}
-  if(!ftimer&&!reduce)ftimer=setInterval(feedTick,3200);}
+ if(e.isIntersecting){if(!dash.classList.contains('go')){dash.classList.add('go');dash.querySelectorAll('.dc').forEach(c=>{const to=+c.dataset.to;let t0=null;const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/1400);c.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});}
+  if(!ftimer&&!reduce)ftimer=setInterval(feedAdd,3400);}
  else{clearInterval(ftimer);ftimer=null;}}),{threshold:.3});
 dio.observe(dash);
 
-/* hero wires: from the active channel into the panel, then out to the result */
-const flow=document.getElementById('flow'),wires=document.getElementById('wires');let WP={};
-function layoutWires(){if(getComputedStyle(wires).display==='none')return;const fr=flow.getBoundingClientRect(),lv=flow.querySelector('.live').getBoundingClientRect();
- let h='';WP={};
- flow.querySelectorAll('.chip-ch').forEach((c,i)=>{const r=c.getBoundingClientRect();const x0=r.right-fr.left,y0=r.top+r.height/2-fr.top,x1=lv.left-fr.left,y1=lv.top-fr.top+60+i*26;const mx=(x0+x1)/2;
-  const d=`M${x0} ${y0} C${mx} ${y0},${mx} ${y1},${x1} ${y1}`;h+=`<path id="wp-${c.dataset.ch}" d="${d}"/>`;});
- flow.querySelectorAll('.dest').forEach(o=>{const r=o.getBoundingClientRect();const x0=lv.left-fr.left+lv.width/2,y0=lv.bottom-fr.top,x1=r.left-fr.left+r.width/2,y1=r.top-fr.top;
-  h+=`<path id="wp-${o.dataset.out}" d="M${x0} ${y0} C${x0} ${y0+18},${x1} ${y1-18},${x1} ${y1}"/>`;});
- wires.innerHTML=h+'<circle class="pdot" r="5" id="pdot" style="opacity:0"/>';}
-function pulse(id,ms=900){const p=document.getElementById('wp-'+id),dot=document.getElementById('pdot');if(!p||!dot||reduce)return;p.classList.add('on');const L=p.getTotalLength();let t0=null;dot.style.opacity=1;
- const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/ms);const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;const q=p.getPointAtLength(L*e);dot.setAttribute('cx',q.x);dot.setAttribute('cy',q.y);if(k<1)requestAnimationFrame(f);else{dot.style.opacity=0;setTimeout(()=>p.classList.remove('on'),600);}};requestAnimationFrame(f);}
-addEventListener('resize',()=>layoutWires());
-window.addEventListener('load',()=>{layoutWires();});
-
-
-
 /* header line on scroll */
-const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
-document.getElementById('yr').textContent=new Date().getFullYear();
+const hd=$('hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
+$('yr').textContent=new Date().getFullYear();
 
 /* contact form -> Supabase leads (insert only) */
 const SB_URL="https://eauwnwvieyepzrbildqt.supabase.co",SB_KEY="sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
-const cf=document.getElementById('cf'),cfMsg=document.getElementById('cfMsg'),cfBtn=document.getElementById('cfBtn');
-const M={bs:{need:"Upišite ime i e-mail ili telefon.",sending:"Šaljem…",ok:"Hvala. Upit je primljen, javljamo se u roku od jednog radnog dana.",err:"Slanje nije uspjelo. Provjerite internet i pokušajte ponovo."},
- en:{need:"Please enter your name and an email or phone number.",sending:"Sending…",ok:"Thank you. We have your enquiry and will reply within one working day.",err:"Sending failed. Check your connection and try again."}};
+const cf=$('cf'),cfMsg=$('cfMsg'),cfBtn=$('cfBtn');
+const M={bs:{need:"Upišite ime, firmu i ispravan poslovni e-mail.",sending:"Šaljem…",ok:"Hvala. Upit je primljen, a odgovor stiže na e-mail koji ste upisali.",err:"Slanje nije uspjelo. Provjerite internet vezu i pokušajte ponovo."},
+ en:{need:"Please enter your name, company and a valid business email.",sending:"Sending…",ok:"Thank you. Your enquiry has been received, and the reply will go to the email you entered.",err:"Sending failed. Check your connection and try again."}};
 cf.addEventListener('submit',async e=>{
  e.preventDefault();const d=Object.fromEntries(new FormData(cf));if(d.website)return;
- const name=(d.name||'').trim(),contact=(d.contact||'').trim();
- if(name.length<2||contact.length<5){cfMsg.className='fmsg err';cfMsg.textContent=M[LANG].need;return;}
+ const name=(d.name||'').trim(),co=(d.company||'').trim(),mail=(d.email||'').trim();
+ if(name.length<2||co.length<2||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){cfMsg.className='fmsg err';cfMsg.textContent=M[LANG].need;return;}
+ const msg=[`Firma: ${co}`,d.role&&`Uloga: ${d.role.trim()}`,d.country&&`Država: ${d.country.trim()}`,d.size&&`Zaposlenih: ${d.size}`].filter(Boolean).join('\n')+'\n\n'+(d.message||'').trim();
  cfBtn.disabled=true;cfMsg.className='fmsg';cfMsg.textContent=M[LANG].sending;
  try{const r=await fetch(SB_URL+'/rest/v1/leads',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},
-   body:JSON.stringify({name,contact,message:(d.message||'').trim()||null,source:'hostio-studio-'+LANG})});
+   body:JSON.stringify({name:`${name} (${co})`,contact:mail,message:msg,source:'hostio-audit-'+LANG})});
   if(!r.ok)throw new Error(r.status);cf.reset();cfMsg.className='fmsg ok';cfMsg.textContent=M[LANG].ok;}
  catch(err){cfMsg.className='fmsg err';cfMsg.textContent=M[LANG].err;}
  finally{cfBtn.disabled=false;}
 });
 
-/* initial language: saved choice, ?lang=, or the browser's language */
+/* initial language: ?lang=, saved choice, or the browser's language */
 let init='bs';
 try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('hostio_lang');
  init=q==='en'||q==='bs'?q:(s||(/^(bs|hr|sr|sh|cnr)/i.test(navigator.language||'')?'bs':'en'));}catch(e){}
+fitDash();
 if(init==='en')setLang('en');else restart();
+
 </script>
 </body>
 </html>
