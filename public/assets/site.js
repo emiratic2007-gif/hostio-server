@@ -224,7 +224,7 @@ $('yr').textContent=new Date().getFullYear();
    const fade=narrow?.4+.6*Math.min(1,Math.max(0,(y-H*.15)/(H*.45))):Math.min(1,Math.max(0,(x-W*.30)/(W*.30)));if(fade<=0.02)continue;
    dots.push([x,y,Math.hypot(x-ox,y-oy),fade]);}}
  function spawn(){const side=Math.random();const row=Math.round((oy+(Math.random()-.5)*H*.8)/GAP)*GAP+GAP/2-GAP/2;
-  packets.push({x:side<.5?W*.42:W,y:Math.max(GAP/2,Math.min(H-GAP/2,row)),dir:side<.5?1:-1,life:0});}
+  packets.push({x:side<.5?W*.53:W,y:Math.max(GAP/2,Math.min(H-GAP/2,row)),dir:side<.5?1:-1,life:0});}
  function frame(now){const t=(now-t0)/1000;ctx.clearRect(0,0,W,H);
   for(const [x,y,d,f] of dots){const w=Math.sin(d/38-t*2.2);const k=Math.max(0,w)**6;const env=Math.max(0,1-d/1100);
    const a=(.08+.62*k*env)*f;const r=1.05+1.1*k*env;ctx.fillStyle=k*env>.08?`rgba(98,192,64,${a.toFixed(3)})`:`rgba(31,31,31,${(.09*f).toFixed(3)})`;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();}
