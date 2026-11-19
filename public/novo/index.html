@@ -47,9 +47,13 @@ header.scrolled{border-color:var(--line)}
 @media (max-width:760px){.bar nav a{display:none}.bar{height:64px}}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(56px,10vh,120px) 0 clamp(72px,11vh,130px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:end}
-h1{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:clamp(2.6rem,5.6vw,5.1rem);line-height:1.02;letter-spacing:-.035em;max-width:15ch}
+.hero{padding:clamp(56px,10vh,120px) 0 clamp(72px,11vh,130px);position:relative;isolation:isolate;overflow:hidden}
+.hero:before{content:"";position:absolute;z-index:-1;width:min(900px,90vw);aspect-ratio:1;right:-12%;top:-20%;background:radial-gradient(closest-side,rgba(126,217,87,.30),rgba(126,217,87,.10) 55%,rgba(126,217,87,0));filter:blur(10px);animation:glow 14s ease-in-out infinite alternate}
+.hero:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(31,31,31,.13) 1.1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:radial-gradient(70% 80% at 75% 45%,#000,transparent 75%);mask-image:radial-gradient(70% 80% at 75% 45%,#000,transparent 75%)}
+@keyframes glow{to{transform:translate(-6%,8%) scale(1.08)}}
+h1 .dot{color:var(--green)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,5vw,70px);align-items:center}
+h1{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:clamp(2.5rem,4.9vw,4.5rem);line-height:1.03;letter-spacing:-.035em;max-width:15ch}
 .lead{margin-top:30px;font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--graphite);max-width:46ch}
 .links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:38px;align-items:center}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;padding:15px 24px;border-radius:999px;transition:transform .25s var(--ease),background .25s}
@@ -90,11 +94,11 @@ h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size
 @media (max-width:760px){.sec-head{grid-template-columns:1fr}}
 
 /* work */
-#radovi{border-top:1px solid var(--line)}
+#radovi{}
 .work{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(28px,5vh,56px) 0}
 .work + .work{border-top:1px solid var(--line)}
 .work:nth-child(even) .stage{order:2}
-.stage{border-radius:24px;aspect-ratio:1/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:4%}
+.stage{border-radius:24px;aspect-ratio:1/1;position:relative;overflow:hidden;background-image:radial-gradient(60% 50% at 80% 85%,rgba(126,217,87,.28),transparent 70%)!important;display:flex;align-items:center;justify-content:center;gap:4%}
 .phone{width:min(40%,250px);aspect-ratio:9/18.6;border-radius:30px;background:#111;padding:7px;box-shadow:0 30px 60px -28px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06);flex:none;position:relative}
 .phone>*{width:100%;height:100%;border-radius:24px;object-fit:cover;object-position:top;overflow:hidden}
 .phone.tilt{transform:rotate(-4deg) translateY(4%)}
@@ -104,7 +108,7 @@ h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size
 .work p{color:var(--graphite);max-width:44ch}
 .work ul{list-style:none;margin:22px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
 .work li{font-size:.86rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink2)}
-@media (max-width:860px){.work{grid-template-columns:1fr}.work:nth-child(even) .stage{order:0}.stage{aspect-ratio:1/1.12}.phone{width:50%}.ai-card{width:60%;right:4%;bottom:5%;font-size:.78rem}}
+@media (max-width:860px){.work{grid-template-columns:1fr}.work:nth-child(even) .stage{order:0}.stage{aspect-ratio:1/1.12}.phone{width:50%}.ai-card{width:60%;right:4%;bottom:5%;font-size:.78rem}.stage .vid{width:43%}}
 
 /* reservation concept, drawn in HTML */
 .res{background:#FBF7F2;color:#2A1D1B;font-family:var(--text);display:flex;flex-direction:column;padding:26px 16px 16px;font-size:12px}
@@ -126,11 +130,9 @@ h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size
 
 /* video phones */
 .vid{position:relative;cursor:pointer}
-.vid button{position:absolute;inset:auto 0 18px 0;margin:auto;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
-.vid.playing button{opacity:0;pointer-events:none}
 
 /* services */
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
 .svc article{padding:30px 34px 10px 0}
 .svc article + article{padding-left:34px;border-left:1px solid var(--line)}
 .svc h3{font-family:var(--display);font-weight:600;font-size:1.45rem;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
@@ -139,7 +141,8 @@ h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size
 @media (max-width:860px){.svc{grid-template-columns:1fr}.svc article,.svc article + article{padding:28px 0;border-left:0;border-top:1px solid var(--line)}.svc article:first-child{border-top:0}}
 
 /* approach */
-#pristup{background:var(--ink);color:#EDEEE8}
+#pristup{background:var(--ink);color:#EDEEE8;position:relative;overflow:hidden;isolation:isolate}
+#pristup:before{content:"";position:absolute;z-index:-1;width:700px;height:700px;left:-220px;bottom:-380px;background:radial-gradient(closest-side,rgba(126,217,87,.22),transparent)}
 #pristup .sec-head p{color:#A9ABA2}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
 .step{border-top:1px solid #3A3B36;padding-top:22px}
@@ -153,6 +156,13 @@ h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size
 @media (max-width:520px){.steps{grid-template-columns:1fr}}
 
 /* contact */
+#kontakt .wrap{background:var(--green);border-radius:34px;padding:clamp(36px,6vw,80px);position:relative;overflow:hidden;isolation:isolate}
+#kontakt .wrap:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(31,31,31,.14) 1.1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000);mask-image:linear-gradient(120deg,transparent 30%,#000)}
+#kontakt .lead,#kontakt .side{color:#25411A}
+#kontakt .side a{border-color:rgba(31,31,31,.3)}
+#kontakt .f label{color:#25411A}
+#kontakt .f input,#kontakt .f textarea{border-color:transparent}
+#kontakt .cta i{background:var(--green)}
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:start}
 .contact h2{font-size:clamp(2.2rem,4.4vw,3.8rem);max-width:14ch}
 .contact .lead{margin-top:22px}
@@ -166,10 +176,92 @@ form{display:grid;gap:14px}
 .hp{position:absolute;left:-9999px}
 form .cta{justify-self:start;margin-top:6px}
 .fmsg{font-size:.92rem;min-height:1.4em}
-.fmsg.ok{color:var(--green-ink)}.fmsg.err{color:#B4382C}
+.fmsg.ok{color:#1F3D12;font-weight:600}.fmsg.err{color:#B4382C}
 @media (max-width:860px){.contact{grid-template-columns:1fr}}
 
-footer{border-top:1px solid var(--line);padding:34px 0 40px}
+/* ---------- motion ---------- */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.ready .w>span{transform:none}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+.hero .lead,.hero .links{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease) .55s,transform .9s var(--ease) .55s}
+.hero .links{transition-delay:.7s}
+.ready .hero .lead,.ready .hero .links{opacity:1;transform:none}
+
+/* hero flow graphic */
+.flow{position:relative;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:center}
+.ins{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+.chip-ch{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px 8px 10px;font-size:.86rem;font-weight:600;white-space:nowrap;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.chip-ch i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none}
+.chip-ch svg{width:13px;height:13px}
+.chip-ch.on{border-color:var(--ink);box-shadow:0 10px 24px -14px rgba(0,0,0,.5);transform:translateX(4px)}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+.wires path{fill:none;stroke:#C9CCC2;stroke-width:1.5;stroke-dasharray:3 5}
+.wires path.on{stroke:var(--ink);stroke-dasharray:none}
+.pdot{fill:var(--green);filter:drop-shadow(0 0 6px rgba(126,217,87,.9))}
+.flow .live{z-index:2}
+.outs{grid-column:2;display:flex;gap:10px;margin-top:30px;position:relative;z-index:2;flex-wrap:wrap}
+.dest{flex:1;min-width:0;white-space:nowrap;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-size:.8rem;font-weight:600;color:var(--graphite);transition:all .4s var(--ease)}
+.dest svg{width:16px;height:16px;flex:none;color:var(--soft);transition:color .4s}
+.dest.on{border-color:var(--green);color:var(--ink);box-shadow:0 0 0 4px rgba(126,217,87,.18)}
+.dest.on svg{color:var(--green-ink)}
+.live-cap{grid-column:2}
+@media (max-width:1100px){.flow{grid-template-columns:1fr;gap:0}.ins{flex-direction:row;flex-wrap:wrap;margin-bottom:18px}.wires{display:none}.outs,.live-cap{grid-column:1}.chip-ch.on{transform:translateY(-2px)}}
+
+/* marquee */
+.marq{background:var(--green);overflow:hidden;padding:24px 0;transform:rotate(-1.2deg);margin:10px -2%;box-shadow:0 20px 40px -30px rgba(62,138,38,.6);white-space:nowrap;user-select:none}
+.marq-in{display:inline-flex;gap:56px;animation:mq 46s linear infinite;padding-left:56px}
+.marq span{font-family:var(--display);font-weight:600;font-size:clamp(2.2rem,5vw,4.2rem);letter-spacing:-.03em;line-height:1}
+.marq span:nth-child(even){color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+.marq b{align-self:center;width:12px;height:12px;border-radius:50%;background:var(--ink);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* capability numbers */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:clamp(60px,9vh,100px) 0 0}
+.cap{padding:26px 0 0;border-top:3px solid var(--green)}
+.cap .big{font-family:var(--display);font-weight:600;font-size:clamp(3rem,6vw,5.4rem);letter-spacing:-.04em;line-height:.95;display:flex;align-items:baseline;gap:10px}
+.cap .big small{font-size:.32em;letter-spacing:-.01em;color:var(--graphite);font-weight:500}
+.cap p{margin-top:12px;color:var(--graphite);max-width:30ch}
+@media (max-width:760px){.caps{grid-template-columns:1fr}}
+
+/* service illustrations */
+.ill{height:150px;border-radius:18px;background:#fff;border:1px solid var(--line);margin-bottom:24px;position:relative;overflow:hidden}
+.ill-chat .b{position:absolute;height:26px;border-radius:13px;opacity:0;animation:bub 6s infinite}
+.ill-chat .b1{left:16px;top:18px;width:58%;background:var(--paper2)}
+.ill-chat .b2{right:16px;top:56px;width:52%;background:var(--ink);animation-delay:1.2s}
+.ill-chat .b3{left:16px;top:94px;width:40%;background:var(--paper2);animation-delay:2.4s}
+.ill-chat .b4{right:16px;top:94px;width:30%;background:var(--green);animation-delay:3.4s;opacity:0}
+@keyframes bub{0%{opacity:0;transform:translateY(8px)}8%,80%{opacity:1;transform:none}92%,100%{opacity:0}}
+.ill-auto .row{position:absolute;left:16px;right:16px;height:16px;border-radius:5px;background:var(--paper2);overflow:hidden}
+.ill-auto .row i{display:block;height:100%;width:0;background:var(--ink);border-radius:5px;animation:fill 5s infinite var(--ease)}
+.ill-auto .row:nth-child(1){top:22px}.ill-auto .row:nth-child(2){top:50px}.ill-auto .row:nth-child(3){top:78px}.ill-auto .row:nth-child(4){top:106px}
+.ill-auto .row:nth-child(2) i{animation-delay:.4s;background:#5E615A}.ill-auto .row:nth-child(3) i{animation-delay:.8s}.ill-auto .row:nth-child(4) i{animation-delay:1.2s;background:var(--green)}
+@keyframes fill{0%{width:0}35%,80%{width:var(--w,70%)}100%{width:0}}
+.ill-vid{display:flex;align-items:center;justify-content:center;gap:5px;padding:0 20px}
+.ill-vid i{display:block;width:6px;border-radius:3px;background:var(--ink);animation:wave 1.4s ease-in-out infinite}
+.ill-vid i:nth-child(3n){background:var(--green)}
+@keyframes wave{0%,100%{height:14px}50%{height:var(--h,60px)}}
+
+/* approach line */
+.steps{position:relative}
+.track{position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease)}
+.steps.in .track{transform:scaleX(1)}
+.step .n{transition:color .6s}
+.steps.in .step .n{color:#EDEEE8}
+.steps.in .step:nth-child(3) .n{transition-delay:.5s}.steps.in .step:nth-child(4) .n{transition-delay:1s}.steps.in .step:nth-child(5) .n{transition-delay:1.5s}
+
+/* video phones autoplay */
+.vid video{width:100%;height:100%;object-fit:cover;border-radius:24px}
+.vid .snd{position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;z-index:2}
+.ai-card{transition:opacity .8s var(--ease) .3s,transform .8s var(--ease) .3s}
+.work:not(.in) .ai-card{opacity:0;transform:translateY(20px) scale(.96)}
+.phone{will-change:transform}
+
+footer{padding:34px 0 0;overflow:hidden}
+.giant{font-family:Poppins,var(--display);font-weight:800;letter-spacing:-.06em;line-height:.8;font-size:clamp(5rem,24vw,22rem);color:var(--paper2);margin-top:30px;text-align:center;user-select:none}
+.giant span{color:rgba(126,217,87,.55)}
 .foot{display:flex;flex-wrap:wrap;gap:16px 30px;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--soft)}
 .foot .logo{font-size:1.3rem;color:var(--ink)}
 .foot nav{display:flex;gap:22px}
@@ -205,27 +297,46 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
         <a class="tlink" href="#radovi" data-i="see_work">Pogledajte radove</a>
       </div>
     </div>
-    <div>
+    <div class="flow" id="flow">
+      <div class="ins" aria-hidden="true">
+        <div class="chip-ch" data-ch="wa"><i style="background:#E3F6DA"><svg viewBox="0 0 24 24" fill="#3E8A26"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg></i>WhatsApp</div>
+        <div class="chip-ch" data-ch="ig"><i style="background:#F6E3EC"><svg viewBox="0 0 24 24" fill="none" stroke="#B0306A" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></i>Instagram</div>
+        <div class="chip-ch" data-ch="web"><i style="background:#E3EAF6"><svg viewBox="0 0 24 24" fill="none" stroke="#2D5BB0" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3.2 3 13.8 0 17M12 3.5c-3 3.2-3 13.8 0 17"/></svg></i><span data-i="ch_web">Web chat</span></div>
+        <div class="chip-ch" data-ch="mail"><i style="background:#EFECE3"><svg viewBox="0 0 24 24" fill="none" stroke="#6B5E3A" stroke-width="2.2"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></i>E-mail</div>
+      </div>
+      <svg class="wires" id="wires" aria-hidden="true"></svg>
       <div class="live" aria-live="off">
         <div class="live-top"><b id="lvWho">Stomatološka klinika</b><span class="pulse"><i></i><span id="lvTime">23:40</span></span></div>
         <div class="msgs" id="lvMsgs"></div>
         <div class="done" id="lvDone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7ED957"/><path d="M7.5 12.4l3 3 6-6.4" stroke="#1F1F1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="lvDoneT"></span></div>
+      </div>
+      <div class="outs" aria-hidden="true">
+        <div class="dest" data-out="cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-i="o_cal">Kalendar</span></div>
+        <div class="dest" data-out="res"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16l-7-4-7 4z"/></svg><span data-i="o_res">Rezervacije</span></div>
+        <div class="dest" data-out="acc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i="o_acc">Knjigovodstvo</span></div>
       </div>
       <p class="live-cap" data-i="live_cap">Primjeri iz rada naših AI asistenata, u stvarnom vremenu i na jeziku kupca.</p>
     </div>
   </div>
 </section>
 
+<div class="marq" aria-hidden="true"><div class="marq-in" id="marq"></div></div>
+<div class="wrap caps" id="caps">
+  <div class="cap rv"><div class="big"><span>24/7</span></div><p data-i="cap1">Asistent odgovara i dok vi spavate, vikendom i praznicima.</p></div>
+  <div class="cap rv d1"><div class="big"><span class="cnt" data-to="4">0</span><small data-i="cap2s">kanala</small></div><p data-i="cap2">Web, WhatsApp, Instagram i Viber, povezani u jedan sistem.</p></div>
+  <div class="cap rv d2"><div class="big"><span class="cnt" data-to="1">0</span><small data-i="cap3s">mjesto</small></div><p data-i="cap3">Poruke, termini i računi na jednom ekranu, za cijeli tim.</p></div>
+</div>
+
 <section id="radovi" aria-labelledby="h-work">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <h2 id="h-work" data-i="work_h">Odabrani radovi</h2>
       <p data-i="work_p">Svaki projekat počinje stvarnim procesom: porukama koje stižu u ponoć, terminima, računima. Ovo su neki od sistema koje smo izgradili i koje možete isprobati.</p>
     </div>
 
     <div class="works">
       <article class="work">
-        <div class="stage" style="background:#E3E5DE">
+        <div class="stage" style="background-color:#E3E5DE">
           <div class="phone tilt"><img src="/assets/work/zamajac.webp" alt="Zamajac, web stranica auto servisa na mobitelu" loading="lazy" width="640" height="1386"></div>
           <div class="ai-card" style="right:6%;bottom:12%"><small><i></i><span data-i="z_card_h">AI dijagnoza</span></small><span data-i="z_card">„Kad zakočim, nešto pišti.“ Najčešće istrošene pločice. Pregled sutra u 9:00?</span></div>
         </div>
@@ -239,7 +350,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
       </article>
 
       <article class="work">
-        <div class="stage" style="background:#ECE3DC">
+        <div class="stage" style="background-color:#ECE3DC">
           <div class="phone tilt2"><div class="res" aria-label="Koncept rezervacije za restoran">
             <div class="rn">Ruža</div><div class="rs" data-i="r_sub">Restoran, Stari grad</div>
             <div class="rimg" aria-hidden="true"></div>
@@ -263,7 +374,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
       </article>
 
       <article class="work">
-        <div class="stage" style="background:#E0E5EA">
+        <div class="stage" style="background-color:#E0E5EA">
           <div class="phone tilt"><img src="/assets/work/vidik.webp" alt="Vidik, stranica za apartman na mobitelu" loading="lazy" width="640" height="1386"></div>
           <div class="ai-card"><small><i></i>Booking, 08:14</small><span data-i="v_card">„Is the apartment free 12–15 May?“ Slobodno je. Cijena i link za potvrdu su poslani gostu.</span></div>
         </div>
@@ -277,9 +388,9 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
       </article>
 
       <article class="work">
-        <div class="stage" style="background:#E6E3EC">
-          <div class="phone vid tilt" data-src="/assets/video/lumen-reklama.mp4"><img src="/assets/video/lumen-poster.jpg" alt="Lumen, AI reklama za stomatološku kliniku" loading="lazy"><button type="button" aria-label="Pusti video"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></button></div>
-          <div class="phone vid tilt2" data-src="/assets/video/obrtaj-reklama.mp4"><img src="/assets/video/obrtaj-poster.jpg" alt="Obrtaj, AI reklama za auto servis" loading="lazy"><button type="button" aria-label="Pusti video"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></button></div>
+        <div class="stage" style="background-color:#E6E3EC">
+          <div class="phone vid tilt" data-src="/assets/video/lumen-reklama.mp4"><img src="/assets/video/lumen-poster.jpg" alt="Lumen, AI reklama za stomatološku kliniku" loading="lazy"></div>
+          <div class="phone vid tilt2" data-src="/assets/video/obrtaj-reklama.mp4"><img src="/assets/video/obrtaj-poster.jpg" alt="Obrtaj, AI reklama za auto servis" loading="lazy"></div>
         </div>
         <div>
           <span class="meta" data-i="a_meta">Video i glas, koncepti</span>
@@ -294,22 +405,25 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
 
 <section id="usluge" aria-labelledby="h-svc">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <h2 id="h-svc" data-i="svc_h">Čime se bavimo</h2>
       <p data-i="svc_p">Ne prodajemo gotove pakete. Gledamo gdje vaš tim gubi vrijeme i gradimo ono što taj problem stvarno rješava.</p>
     </div>
     <div class="svc">
-      <article>
+      <article class="rv">
+        <div class="ill ill-chat" aria-hidden="true"><span class="b b1"></span><span class="b b2"></span><span class="b b3"></span><span class="b b4"></span></div>
         <h3 data-i="s1_h">AI asistenti</h3>
         <p data-i="s1_p">Odgovaraju na upite, zakazuju termine i prosljeđuju čovjeku ono što traži čovjeka. Na webu, WhatsAppu, Instagramu i Viberu, danju i noću.</p>
         <p class="ex" data-i="s1_ex">Za klinike, salone, servise, smještaj i ugostiteljstvo.</p>
       </article>
-      <article>
+      <article class="rv d1">
+        <div class="ill ill-auto" aria-hidden="true"><div class="row"><i style="--w:72%"></i></div><div class="row"><i style="--w:54%"></i></div><div class="row"><i style="--w:86%"></i></div><div class="row"><i style="--w:40%"></i></div></div>
         <h3 data-i="s2_h">Automatizacija i softver</h3>
         <p data-i="s2_p">Interni alati, dashboardi, računi i povezivanje s postojećim sistemima. Manje ručnog prepisivanja, manje grešaka, bolji pregled.</p>
         <p class="ex" data-i="s2_ex">Za timove koji danas sve vode u tabelama i porukama.</p>
       </article>
-      <article>
+      <article class="rv d2">
+        <div class="ill ill-vid" aria-hidden="true"><i style="--h:40px;animation-delay:0s"></i><i style="--h:70px;animation-delay:0.1s"></i><i style="--h:52px;animation-delay:0.2s"></i><i style="--h:96px;animation-delay:0.3s"></i><i style="--h:64px;animation-delay:0.4s"></i><i style="--h:110px;animation-delay:0.5s"></i><i style="--h:80px;animation-delay:0.6s"></i><i style="--h:48px;animation-delay:0.7s"></i><i style="--h:90px;animation-delay:0.8s"></i><i style="--h:60px;animation-delay:0.9s"></i><i style="--h:100px;animation-delay:1.0s"></i><i style="--h:44px;animation-delay:1.1s"></i><i style="--h:72px;animation-delay:1.2s"></i><i style="--h:56px;animation-delay:1.3s"></i><i style="--h:88px;animation-delay:0.15s"></i><i style="--h:38px;animation-delay:0.35s"></i><i style="--h:66px;animation-delay:0.55s"></i><i style="--h:50px;animation-delay:0.75s"></i></div>
         <h3 data-i="s3_h">Video i glas</h3>
         <p data-i="s3_p">Reklame, prezentacije i objašnjenja proizvoda bez snimanja, s glasom koji zvuči prirodno na više jezika.</p>
         <p class="ex" data-i="s3_ex">Za brendove kojima treba redovan sadržaj bez produkcijske ekipe.</p>
@@ -320,17 +434,17 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
 
 <section id="pristup" aria-labelledby="h-how">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <h2 id="h-how" data-i="how_h">Kako radimo</h2>
       <p data-i="how_p">Kratko, jasno i bez iznenađenja. Prvu radnu verziju obično vidite za nekoliko sedmica.</p>
     </div>
-    <div class="steps">
+    <div class="steps" id="steps"><div class="track"></div>
       <div class="step"><div class="n">1</div><h3 data-i="st1_h">Razgovor</h3><p data-i="st1_p">Upoznajemo vaš proces i mjesta na kojima se gubi vrijeme.</p></div>
       <div class="step"><div class="n">2</div><h3 data-i="st2_h">Prijedlog</h3><p data-i="st2_p">Jasan opseg, rok i cijena prije nego što počnemo.</p></div>
       <div class="step"><div class="n">3</div><h3 data-i="st3_h">Izrada</h3><p data-i="st3_p">Gradimo u kratkim krugovima i testiramo na vašim stvarnim primjerima.</p></div>
       <div class="step"><div class="n">4</div><h3 data-i="st4_h">Podrška</h3><p data-i="st4_p">Pratimo kako sistem radi i unapređujemo ga zajedno s vama.</p></div>
     </div>
-    <div class="reach">
+    <div class="reach rv">
       <p data-i="reach">Radimo na daljinu, s firmama u regiji i šire.</p>
       <span data-i="reach_s">Rješenja govore jezikom vaših kupaca, a mi s vama na bosanskom ili engleskom.</span>
     </div>
@@ -364,6 +478,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 40px}
     <nav aria-label="Podnožje"><a href="/privatnost" data-i="privacy">Privatnost</a><a href="https://www.instagram.com/hostio.ba/" target="_blank" rel="noopener">Instagram</a></nav>
     <span>© <span id="yr"></span> Hostio</span>
   </div>
+  <div class="giant" aria-hidden="true">host<span>io.</span></div>
 </footer>
 
 <script>
@@ -396,6 +511,7 @@ const T={
   st3_h:"Build",st3_p:"We build in short cycles and test on your real cases.",st4_h:"Support",st4_p:"We watch how the system performs and improve it with you.",
   reach:"We work remotely, with companies in the region and beyond.",reach_s:"Our solutions speak your customers' language, and we speak with you in English or Bosnian.",
   c_h:"Is there a process that takes too much of your time?",c_p:"Describe it in a few sentences. We'll get back to you within one working day with a proposal for how it could be solved.",
+  ch_web:"Web chat",o_cal:"Calendar",o_res:"Bookings",o_acc:"Bookkeeping",cap1:"The assistant replies while you sleep, on weekends and holidays.",cap2s:"channels",cap2:"Web, WhatsApp, Instagram and Viber, connected into one system.",cap3s:"place",cap3:"Messages, bookings and invoices on one screen, for the whole team.",
   f_name:"Name and company",f_contact:"Email or phone",f_msg:"What would you like to solve?",f_send:"Send enquiry",privacy:"Privacy"
  },
  bs:{}
@@ -404,16 +520,16 @@ const T={
 document.querySelectorAll('[data-i]').forEach(el=>{T.bs[el.dataset.i]=el.innerHTML;});
 const SCENES={
  bs:[
-  {who:"Stomatološka klinika",time:"23:40",msgs:[["in","Imate li slobodan termin sutra ujutro?"],["out","Imamo u 10:30. Da vas upišem na kontrolni pregled?","AI asistent"],["in","Može, hvala."]],done:"Termin upisan u kalendar ordinacije"},
-  {who:"Rent-a-car",time:"07:12",msgs:[["in","Is the Golf available Friday to Monday?"],["out","Yes, four days for 140 €. Shall I reserve it for you?","AI asistent"],["in","Yes please."]],done:"Rezervacija poslana vlasniku na potvrdu"},
-  {who:"Auto servis",time:"18:05",msgs:[["in","Kad zakočim, nešto pišti."],["out","Najčešće su to istrošene pločice. Imamo termin za pregled sutra u 9:00.","AI asistent"],["in","Super, dolazim."]],done:"Upit pretvoren u termin"},
-  {who:"Računovodstvo",time:"09:00",msgs:[["in","34 nova računa stigla su u inbox."],["out","Podaci su izvučeni i uneseni u tabelu. Dva računa traže provjeru.","AI automatizacija"]],done:"Spremno za pregled"}
+  {who:"Stomatološka klinika",time:"23:40",ch:"wa",out:"cal",msgs:[["in","Imate li slobodan termin sutra ujutro?"],["out","Imamo u 10:30. Da vas upišem na kontrolni pregled?","AI asistent"],["in","Može, hvala."]],done:"Termin upisan u kalendar ordinacije"},
+  {who:"Rent-a-car",time:"07:12",ch:"web",out:"res",msgs:[["in","Is the Golf available Friday to Monday?"],["out","Yes, four days for 140 €. Shall I reserve it for you?","AI asistent"],["in","Yes please."]],done:"Rezervacija poslana vlasniku na potvrdu"},
+  {who:"Auto servis",time:"18:05",ch:"ig",out:"cal",msgs:[["in","Kad zakočim, nešto pišti."],["out","Najčešće su to istrošene pločice. Imamo termin za pregled sutra u 9:00.","AI asistent"],["in","Super, dolazim."]],done:"Upit pretvoren u termin"},
+  {who:"Računovodstvo",time:"09:00",ch:"mail",out:"acc",msgs:[["in","34 nova računa stigla su u inbox."],["out","Podaci su izvučeni i uneseni u tabelu. Dva računa traže provjeru.","AI automatizacija"]],done:"Spremno za pregled"}
  ],
  en:[
-  {who:"Dental clinic",time:"23:40",msgs:[["in","Do you have anything tomorrow morning?"],["out","We have 10:30. Shall I book you in for a check-up?","AI assistant"],["in","Yes, thank you."]],done:"Booked into the clinic calendar"},
-  {who:"Car rental",time:"07:12",msgs:[["in","Imate li Golf od petka do ponedjeljka?"],["out","Imamo, četiri dana za 140 €. Da ga rezervišem?","AI assistant"],["in","Može."]],done:"Booking sent to the owner for approval"},
-  {who:"Car service",time:"18:05",msgs:[["in","When I brake, something squeals."],["out","That is most often worn brake pads. We can inspect it tomorrow at 9:00.","AI assistant"],["in","Great, see you then."]],done:"Enquiry turned into an appointment"},
-  {who:"Accounting",time:"09:00",msgs:[["in","34 new invoices arrived in the inbox."],["out","The data has been extracted and entered into the sheet. Two invoices need a check.","AI automation"]],done:"Ready for review"}
+  {who:"Dental clinic",time:"23:40",ch:"wa",out:"cal",msgs:[["in","Do you have anything tomorrow morning?"],["out","We have 10:30. Shall I book you in for a check-up?","AI assistant"],["in","Yes, thank you."]],done:"Booked into the clinic calendar"},
+  {who:"Car rental",time:"07:12",ch:"web",out:"res",msgs:[["in","Imate li Golf od petka do ponedjeljka?"],["out","Imamo, četiri dana za 140 €. Da ga rezervišem?","AI assistant"],["in","Može."]],done:"Booking sent to the owner for approval"},
+  {who:"Car service",time:"18:05",ch:"ig",out:"cal",msgs:[["in","When I brake, something squeals."],["out","That is most often worn brake pads. We can inspect it tomorrow at 9:00.","AI assistant"],["in","Great, see you then."]],done:"Enquiry turned into an appointment"},
+  {who:"Accounting",time:"09:00",ch:"mail",out:"acc",msgs:[["in","34 new invoices arrived in the inbox."],["out","The data has been extracted and entered into the sheet. Two invoices need a check.","AI automation"]],done:"Ready for review"}
  ]};
 let LANG="bs";
 function setLang(l){
@@ -422,6 +538,7 @@ function setLang(l){
  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
  document.title=l==='en'?"Hostio, an applied AI studio":"Hostio, studio za primijenjenu umjetnu inteligenciju";
  try{localStorage.setItem('hostio_lang',l)}catch(e){}
+ if(window.splitH1)splitH1();if(typeof marq==='function')marq();
  restart();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
@@ -434,25 +551,65 @@ const later=(f,ms)=>timers.push(setTimeout(f,ms));
 function play(){
  const sc=SCENES[LANG][si%SCENES[LANG].length];si++;
  $m.innerHTML='';$done.classList.remove('show');$who.textContent=sc.who;$time.textContent=sc.time;$doneT.textContent=sc.done;
+ flow.querySelectorAll('.chip-ch,.dest').forEach(x=>x.classList.remove('on'));const chEl=flow.querySelector(`[data-ch="${sc.ch}"]`);if(chEl)chEl.classList.add('on');layoutWires();pulse(sc.ch,800);
  let t=300;
  sc.msgs.forEach(([k,txt,lab])=>{
   if(k==='out'){const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<span></span><span></span><span></span>';later(()=>{$m.appendChild(ty);requestAnimationFrame(()=>ty.classList.add('show'))},t);t+=1300;later(()=>ty.remove(),t);}
   const d=document.createElement('div');d.className='m '+k;d.innerHTML=(lab?'<small>'+lab+'</small>':'')+txt;
   later(()=>{$m.appendChild(d);requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.add('show')))},t);t+=k==='in'?1500:2000;
  });
- later(()=>$done.classList.add('show'),t);t+=3200;
+ later(()=>{$done.classList.add('show');pulse(sc.out,700);later(()=>{const o=flow.querySelector(`[data-out="${sc.out}"]`);if(o)o.classList.add('on')},650);},t);t+=3400;
  later(play,t);
 }
 function restart(){timers.forEach(clearTimeout);timers=[];si=Math.max(0,si-1);
  if(reduce){const sc=SCENES[LANG][0];$who.textContent=sc.who;$time.textContent=sc.time;$m.innerHTML=sc.msgs.map(([k,txt,lab])=>`<div class="m ${k} show">${lab?'<small>'+lab+'</small>':''}${txt}</div>`).join('');$doneT.textContent=sc.done;$done.classList.add('show');return;}
  play();}
 
-/* videos */
-document.querySelectorAll('.vid').forEach(v=>v.addEventListener('click',()=>{
- if(v.classList.contains('playing'))return;
- const vid=document.createElement('video');vid.src=v.dataset.src;vid.playsInline=true;vid.controls=true;vid.autoplay=true;vid.setAttribute('playsinline','');
- v.querySelector('img').replaceWith(vid);v.classList.add('playing');vid.play().catch(()=>{});
-}));
+/* headline: words rise once on load */
+(()=>{const h=document.getElementById('h1');window.splitH1=()=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.05*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');};splitH1();
+ requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('ready')));})();
+
+/* marquee */
+const IND={bs:["Klinike","Saloni","Auto servisi","Restorani","Apartmani","Rent-a-car","Računovodstva","Trgovine","Agencije"],en:["Clinics","Salons","Car services","Restaurants","Holiday rentals","Car rentals","Accounting firms","Retail","Agencies"]};
+function marq(){const m=document.getElementById('marq');const one=IND[LANG].map(x=>`<span>${x}</span><b></b>`).join('');m.innerHTML=one+one;}
+
+/* reveal on scroll + counters + work motion */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');
+  if(el.id==='caps')el.querySelectorAll('.cnt').forEach(c=>{const to=+c.dataset.to;let t0=null;const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/900);c.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
+  io.unobserve(el);}),{threshold:.18});
+document.querySelectorAll('.rv,.work,#caps,#steps').forEach(el=>io.observe(el));
+
+/* videos: play muted while visible, tap for sound */
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target.querySelector('video');if(!v)return;if(e.isIntersecting)v.play().catch(()=>{});else v.pause();}),{threshold:.35});
+document.querySelectorAll('.vid').forEach(v=>{
+ const img=v.querySelector('img');const vid=document.createElement('video');vid.src=v.dataset.src;vid.poster=img.getAttribute('src');vid.muted=true;vid.loop=true;vid.playsInline=true;vid.setAttribute('playsinline','');vid.preload='none';vid.setAttribute('aria-label',img.alt);
+ img.replaceWith(vid);
+ const b=document.createElement('button');b.type='button';b.className='snd';b.setAttribute('aria-label','Zvuk');b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>';v.appendChild(b);
+ v.addEventListener('click',()=>{vid.muted=!vid.muted;if(!vid.muted){document.querySelectorAll('.vid video').forEach(o=>{if(o!==vid)o.muted=true});vid.play().catch(()=>{});}
+  b.innerHTML=vid.muted?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>';});
+ vio.observe(v);
+});
+
+/* phones drift slightly with scroll */
+const phones=[...document.querySelectorAll('.work .phone')];let ticking=false;
+function drift(){ticking=false;const vh=innerHeight;phones.forEach((p,i)=>{const r=p.parentElement.getBoundingClientRect();const k=((r.top+r.height/2)-vh/2)/vh;const base=p.classList.contains('tilt')?'rotate(-4deg)':p.classList.contains('tilt2')?'rotate(3deg)':'';p.style.transform=`${base} translateY(${(k*(i%2?-38:38)).toFixed(1)}px)`;});}
+if(!reduce){addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});drift();}
+
+/* hero wires: from the active channel into the panel, then out to the result */
+const flow=document.getElementById('flow'),wires=document.getElementById('wires');let WP={};
+function layoutWires(){if(getComputedStyle(wires).display==='none')return;const fr=flow.getBoundingClientRect(),lv=flow.querySelector('.live').getBoundingClientRect();
+ let h='';WP={};
+ flow.querySelectorAll('.chip-ch').forEach((c,i)=>{const r=c.getBoundingClientRect();const x0=r.right-fr.left,y0=r.top+r.height/2-fr.top,x1=lv.left-fr.left,y1=lv.top-fr.top+60+i*26;const mx=(x0+x1)/2;
+  const d=`M${x0} ${y0} C${mx} ${y0},${mx} ${y1},${x1} ${y1}`;h+=`<path id="wp-${c.dataset.ch}" d="${d}"/>`;});
+ flow.querySelectorAll('.dest').forEach(o=>{const r=o.getBoundingClientRect();const x0=lv.left-fr.left+lv.width/2,y0=lv.bottom-fr.top,x1=r.left-fr.left+r.width/2,y1=r.top-fr.top;
+  h+=`<path id="wp-${o.dataset.out}" d="M${x0} ${y0} C${x0} ${y0+18},${x1} ${y1-18},${x1} ${y1}"/>`;});
+ wires.innerHTML=h+'<circle class="pdot" r="5" id="pdot" style="opacity:0"/>';}
+function pulse(id,ms=900){const p=document.getElementById('wp-'+id),dot=document.getElementById('pdot');if(!p||!dot||reduce)return;p.classList.add('on');const L=p.getTotalLength();let t0=null;dot.style.opacity=1;
+ const f=t=>{t0=t0||t;const k=Math.min(1,(t-t0)/ms);const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;const q=p.getPointAtLength(L*e);dot.setAttribute('cx',q.x);dot.setAttribute('cy',q.y);if(k<1)requestAnimationFrame(f);else{dot.style.opacity=0;setTimeout(()=>p.classList.remove('on'),600);}};requestAnimationFrame(f);}
+addEventListener('resize',()=>layoutWires());
+window.addEventListener('load',()=>{layoutWires();});
+
+
 
 /* header line on scroll */
 const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
@@ -479,7 +636,7 @@ cf.addEventListener('submit',async e=>{
 let init='bs';
 try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('hostio_lang');
  init=q==='en'||q==='bs'?q:(s||(/^(bs|hr|sr|sh|cnr)/i.test(navigator.language||'')?'bs':'en'));}catch(e){}
-if(init==='en')setLang('en');else restart();
+if(init==='en')setLang('en');else{marq();restart();}
 </script>
 </body>
 </html>
