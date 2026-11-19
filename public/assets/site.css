@@ -83,7 +83,7 @@ section{padding:clamp(76px,11vh,128px) 0}
 
 /* hero badge + marker */
 @property --b{syntax:'<angle>';inherits:false;initial-value:0deg}
-.badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);font-size:.86rem;font-weight:600;color:var(--ink2);text-decoration:none;position:relative;box-shadow:0 10px 30px -18px rgba(20,60,35,.5);opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease) .1s,transform .8s var(--ease) .1s}
+.badge{white-space:nowrap;max-width:100%;display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);font-size:.86rem;font-weight:600;color:var(--ink2);text-decoration:none;position:relative;box-shadow:0 10px 30px -18px rgba(20,60,35,.5);opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease) .1s,transform .8s var(--ease) .1s}
 .ready .badge{opacity:1;transform:none}
 .badge:before{content:"";position:absolute;inset:0;border-radius:999px;padding:1.5px;background:conic-gradient(from var(--b),rgba(126,217,87,.25),#7ED957,#3CC8A0,rgba(126,217,87,.25) 40%,rgba(126,217,87,.25));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 5s linear infinite}
 @keyframes bspin{to{--b:360deg}}

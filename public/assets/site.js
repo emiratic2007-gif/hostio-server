@@ -3,7 +3,7 @@ const T={
  en:{
   nav1:"Solutions",nav2:"Security",nav3:"Architectures",nav4:"Approach",nav5:"FAQ",nav_cta:"Request an audit",
   h1:"AI systems that work inside your operations, under your control.",
-  badge:"AI automation for mid-sized and large companies",
+  badge:"Serving the region, EU, UK and US",
   lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies.<span class=\"l2\"> We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.</span>",
   cta:"Request an operational audit",cta2:"How the system makes decisions",
   facts:L(["Works with your existing systems","Human approval for sensitive actions","Replies in the customer's language"]),
