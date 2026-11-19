@@ -227,7 +227,7 @@ $('yr').textContent=new Date().getFullYear();
   packets.push({x:side<.5?W*.42:W,y:Math.max(GAP/2,Math.min(H-GAP/2,row)),dir:side<.5?1:-1,life:0});}
  function frame(now){const t=(now-t0)/1000;ctx.clearRect(0,0,W,H);
   for(const [x,y,d,f] of dots){const w=Math.sin(d/38-t*2.2);const k=Math.max(0,w)**6;const env=Math.max(0,1-d/1100);
-   const a=(.08+.62*k*env)*f;const r=1.05+1.1*k*env;ctx.fillStyle=k*env>.08?`rgba(62,150,40,${a.toFixed(3)})`:`rgba(31,31,31,${(.09*f).toFixed(3)})`;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();}
+   const a=(.08+.62*k*env)*f;const r=1.05+1.1*k*env;ctx.fillStyle=k*env>.08?`rgba(98,192,64,${a.toFixed(3)})`:`rgba(31,31,31,${(.09*f).toFixed(3)})`;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();}
   if(W>=940){if(Math.random()<.025&&packets.length<5)spawn();
    for(let i=packets.length-1;i>=0;i--){const p=packets[i];p.x+=p.dir*2.2;p.life++;const dx=ox-p.x;
     if((p.dir>0&&dx<200)||(p.dir<0&&dx>-200)||p.life>600){packets.splice(i,1);continue;}

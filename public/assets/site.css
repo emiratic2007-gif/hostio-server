@@ -76,6 +76,18 @@ section{padding:clamp(76px,11vh,128px) 0}
 #hbg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .hglow{position:absolute;z-index:-2;pointer-events:none;width:min(760px,80vw);aspect-ratio:1;right:-8%;top:50%;transform:translateY(-50%);background:radial-gradient(closest-side,rgba(126,217,87,.22),rgba(126,217,87,0));filter:blur(20px)}
 @media (max-width:940px){.hglow{right:auto;left:50%;top:auto;bottom:-10%;transform:translateX(-50%)}}
+/* brand plate behind the panel */
+.stack{position:relative;margin-top:12px}
+.stack .trace{margin-top:0;z-index:1}
+.plate{position:absolute;inset:56px -30px -30px 56px;border-radius:28px;background:linear-gradient(140deg,#8BE063 0%,#7ED957 45%,#6CCB52 100%);overflow:hidden;opacity:0;transform:translate(-10px,-10px);transition:opacity 1s var(--ease) .5s,transform 1.2s var(--ease) .5s}
+.ready .plate{opacity:1;transform:none}
+.plate:before{content:"";position:absolute;inset:-40px;background-image:radial-gradient(rgba(31,31,31,.17) 1.2px,transparent 1.5px);background-size:18px 18px;animation:pan 30s linear infinite;-webkit-mask-image:linear-gradient(120deg,transparent 20%,#000 75%);mask-image:linear-gradient(120deg,transparent 20%,#000 75%)}
+@keyframes pan{to{transform:translate(18px,36px)}}
+@media (max-width:620px){.plate{inset:40px -12px -18px 28px;border-radius:24px}}
+.hero .tlink{border-bottom-color:rgba(126,217,87,.85)}
+.trw>.note{margin-top:44px}
+.hero .facts li{display:inline-flex;align-items:center;gap:8px}
+.hero .facts li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
 /* processing trace */
 @property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
 .trw{position:relative}
@@ -86,7 +98,7 @@ section{padding:clamp(76px,11vh,128px) 0}
 .fch i{width:20px;height:20px;border-radius:50%;flex:none}
 .fch.on{border-color:var(--green);box-shadow:0 0 0 4px rgba(126,217,87,.25),0 14px 30px -16px rgba(0,0,0,.35)}
 .fch.c1{left:-22px;top:-19px}.fch.c2{left:28%;top:-19px;animation-delay:-2s}.fch.c3{right:-18px;top:-19px;animation-delay:-4s}.fch.c4{right:-26px;top:calc(100% - 64px);animation-delay:-1s}
-.trace{margin-top:12px}
+
 @keyframes fl{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
 @media (max-width:1180px){.fch{display:none}}
 .tr-top{display:flex;justify-content:space-between;align-items:center;color:#9EA197;font-size:.82rem}
