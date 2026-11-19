@@ -221,7 +221,7 @@ $('yr').textContent=new Date().getFullYear();
  function size(){dpr=Math.min(2,devicePixelRatio||1);W=hero.clientWidth;H=hero.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
   const tr=document.querySelector('.trace');const hr=hero.getBoundingClientRect();if(tr){const r=tr.getBoundingClientRect();ox=r.left-hr.left+r.width/2;oy=r.top-hr.top+r.height/2;}else{ox=W*.75;oy=H*.5;}
   dots=[];const narrow=W<940;for(let y=GAP/2;y<H;y+=GAP)for(let x=GAP/2;x<W;x+=GAP){
-   const fade=narrow?Math.min(1,Math.max(0,(y-H*.35)/(H*.4))):Math.min(1,Math.max(0,(x-W*.30)/(W*.30)));if(fade<=0.02)continue;
+   const fade=narrow?.4+.6*Math.min(1,Math.max(0,(y-H*.15)/(H*.45))):Math.min(1,Math.max(0,(x-W*.30)/(W*.30)));if(fade<=0.02)continue;
    dots.push([x,y,Math.hypot(x-ox,y-oy),fade]);}}
  function spawn(){const side=Math.random();const row=Math.round((oy+(Math.random()-.5)*H*.8)/GAP)*GAP+GAP/2-GAP/2;
   packets.push({x:side<.5?W*.42:W,y:Math.max(GAP/2,Math.min(H-GAP/2,row)),dir:side<.5?1:-1,life:0});}
