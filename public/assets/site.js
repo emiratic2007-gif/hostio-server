@@ -3,8 +3,7 @@ const T={
  en:{
   nav1:"Solutions",nav2:"Security",nav3:"Architectures",nav4:"Approach",nav5:"FAQ",nav_cta:"Request an audit",
   h1:"AI systems that work inside your operations, under your control.",
-  badge:"Serving the region, EU, UK and US",
-  lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies.<span class=\"l2\"> We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.</span>",
+  lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies. We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.",
   cta:"Request an operational audit",cta2:"How the system makes decisions",
   facts:L(["Works with your existing systems","Human approval for sensitive actions","Replies in the customer's language"]),
   tr_title:"Processing one enquiry",tr_res:"Outcome",tr_note:"Illustrative examples with made-up data.",
@@ -160,8 +159,7 @@ function restart(){if(!HAS_TRACE)return;timers.forEach(clearTimeout);timers=[];s
 
 /* ---------- headings ---------- */
 const h1=$('h1');
-function splitH1(){if(!h1)return;const ws=h1.textContent.trim().split(/\s+/),n=ws.length,hl=h1.closest('.hero')&&!h1.closest('.page-hero');
- h1.innerHTML=ws.map((w,i)=>{const mark=hl&&i>=n-3;const d=.045*i;const bd=mark?(1.0+(i-(n-3))*.22):0;return `<span class="w${mark?' hl':''}"><span style="transition-delay:${d}s${mark?`,${bd}s`:''}">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`;}).join(' ');}
+function splitH1(){if(!h1)return;h1.innerHTML=h1.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.045*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');}
 function splitH2(){document.querySelectorAll('.sec-head h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.06*i}s">${w}</span></span>`).join(' ');});}
 
 /* ---------- language ---------- */
@@ -216,6 +214,30 @@ const pli=[...document.querySelectorAll('.pipe li')];
 if(pli.length){if(!reduce){const t0=performance.now();(function pl(){const k=((performance.now()-t0)/5000)%1;const i=Math.min(4,Math.floor(k*5));pli.forEach((li,j)=>li.classList.toggle('act',j===i));requestAnimationFrame(pl);})();}else pli.forEach(li=>li.classList.add('act'));}
 
 $('yr').textContent=new Date().getFullYear();
+
+/* ---------- hero background: dot field with signals radiating from the panel ---------- */
+(function(){const cv=$('hbg');if(!cv)return;const ctx=cv.getContext('2d');const hero=cv.parentElement;let W,H,dpr,ox,oy,dots=[],run=false,t0=performance.now();const GAP=24;
+ const packets=[];
+ function size(){dpr=Math.min(2,devicePixelRatio||1);W=hero.clientWidth;H=hero.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  const tr=document.querySelector('.trace');const hr=hero.getBoundingClientRect();if(tr){const r=tr.getBoundingClientRect();ox=r.left-hr.left+r.width/2;oy=r.top-hr.top+r.height/2;}else{ox=W*.75;oy=H*.5;}
+  dots=[];const narrow=W<940;for(let y=GAP/2;y<H;y+=GAP)for(let x=GAP/2;x<W;x+=GAP){
+   const fade=narrow?Math.min(1,Math.max(0,(y-H*.35)/(H*.4))):Math.min(1,Math.max(0,(x-W*.30)/(W*.30)));if(fade<=0.02)continue;
+   dots.push([x,y,Math.hypot(x-ox,y-oy),fade]);}}
+ function spawn(){const side=Math.random();const row=Math.round((oy+(Math.random()-.5)*H*.8)/GAP)*GAP+GAP/2-GAP/2;
+  packets.push({x:side<.5?W*.42:W,y:Math.max(GAP/2,Math.min(H-GAP/2,row)),dir:side<.5?1:-1,life:0});}
+ function frame(now){const t=(now-t0)/1000;ctx.clearRect(0,0,W,H);
+  for(const [x,y,d,f] of dots){const w=Math.sin(d/38-t*2.2);const k=Math.max(0,w)**6;const env=Math.max(0,1-d/1100);
+   const a=(.08+.62*k*env)*f;const r=1.05+1.1*k*env;ctx.fillStyle=k*env>.08?`rgba(62,150,40,${a.toFixed(3)})`:`rgba(31,31,31,${(.09*f).toFixed(3)})`;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();}
+  if(W>=940){if(Math.random()<.025&&packets.length<5)spawn();
+   for(let i=packets.length-1;i>=0;i--){const p=packets[i];p.x+=p.dir*2.2;p.life++;const dx=ox-p.x;
+    if((p.dir>0&&dx<200)||(p.dir<0&&dx>-200)||p.life>600){packets.splice(i,1);continue;}
+    const g=ctx.createLinearGradient(p.x-p.dir*60,p.y,p.x,p.y);g.addColorStop(0,'rgba(126,217,87,0)');g.addColorStop(1,'rgba(62,150,40,.55)');ctx.strokeStyle=g;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(p.x-p.dir*60,p.y);ctx.lineTo(p.x,p.y);ctx.stroke();
+    ctx.fillStyle='#5DBB3F';ctx.beginPath();ctx.arc(p.x,p.y,2.4,0,6.283);ctx.fill();}}
+  if(run)requestAnimationFrame(frame);}
+ size();addEventListener('resize',()=>{size();if(!run)frame(performance.now());});
+ if(reduce){frame(performance.now());return;}
+ new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!run){run=true;requestAnimationFrame(frame);}else if(!e.isIntersecting)run=false;})).observe(hero);
+})();
 /* dotted globe with routes from Sarajevo */
 (function(){const cv=$('globe');if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,R=W*0.42,C=W/2;
  const N=1100,pts=[];for(let i=0;i<N;i++){const y=1-2*(i+.5)/N,r=Math.sqrt(1-y*y),t=i*2.399963;pts.push([Math.cos(t)*r,y,Math.sin(t)*r]);}
