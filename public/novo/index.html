@@ -15,6 +15,7 @@
 :root{
   --paper:#EDF0E8; --paper2:#E2E6DC; --card:#F8F9F5; --ink:#1F1F1F; --ink2:#2B2C29; --graphite:#565952; --soft:#83867D;
   --line:#D3D6CB; --green:#7ED957; --green-ink:#2F7A18; --amber:#E7A93B;
+  --forest:#0E2419; --mint:#3CC8A0; --lime:#C6F26B; --sky:#5B8DEF;
   --display:Poppins,ui-sans-serif,system-ui,sans-serif;
   --text:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
   --ease:cubic-bezier(.2,.75,.2,1);
@@ -33,6 +34,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .bgfx path{fill:none;stroke:rgba(62,138,38,.11);stroke-width:1.1;vector-effect:non-scaling-stroke}
 main,footer,header{position:relative}
 
+/* progress */
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;z-index:30;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--green),var(--mint),var(--lime))}
 /* header */
 header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 header.scrolled{border-color:var(--line)}
@@ -68,7 +71,13 @@ section{padding:clamp(76px,11vh,128px) 0}
 
 /* hero */
 .hero{padding:clamp(52px,9vh,110px) 0 clamp(64px,10vh,120px);position:relative;isolation:isolate;overflow:hidden}
-.hero:before{content:"";position:absolute;z-index:-1;width:min(860px,90vw);aspect-ratio:1;right:-14%;top:-24%;background:radial-gradient(closest-side,rgba(126,217,87,.24),rgba(126,217,87,.08) 55%,rgba(126,217,87,0))}
+.aur{position:absolute;z-index:-1;inset:-20% -10% -10% 35%;pointer-events:none;filter:blur(70px);opacity:.8}
+.aur span{position:absolute;border-radius:50%}
+.aur .a1{width:46%;aspect-ratio:1;left:20%;top:8%;background:rgba(126,217,87,.55);animation:au1 18s ease-in-out infinite alternate}
+.aur .a2{width:38%;aspect-ratio:1;left:50%;top:35%;background:rgba(60,200,160,.42);animation:au2 22s ease-in-out infinite alternate}
+.aur .a3{width:30%;aspect-ratio:1;left:8%;top:52%;background:rgba(198,242,107,.6);animation:au3 16s ease-in-out infinite alternate}
+@keyframes au1{to{transform:translate(18%,22%) scale(1.15)}}@keyframes au2{to{transform:translate(-30%,-18%) scale(.9)}}@keyframes au3{to{transform:translate(40%,-25%) scale(1.2)}}
+.hgrid{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(31,31,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(31,31,31,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(60% 70% at 72% 45%,#000,transparent 75%);mask-image:radial-gradient(60% 70% at 72% 45%,#000,transparent 75%)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:center}
 .hero .lead{margin-top:28px}
 .links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:36px;align-items:center}
@@ -77,7 +86,18 @@ section{padding:clamp(76px,11vh,128px) 0}
 @media (max-width:940px){.hero-grid{grid-template-columns:1fr}}
 
 /* processing trace */
-.trace{background:var(--ink);color:#E9EAE4;border-radius:22px;padding:22px;box-shadow:0 40px 80px -40px rgba(31,31,31,.55);font-size:.92rem}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.trw{position:relative}
+.trace{position:relative;background:linear-gradient(165deg,#14301F 0%,#1B1D1A 55%,#1F1F1F 100%);color:#E9EAE4;border-radius:22px;padding:22px;box-shadow:0 50px 90px -40px rgba(20,60,35,.6);font-size:.92rem}
+.trace:before{content:"";position:absolute;inset:0;border-radius:22px;padding:1.5px;background:conic-gradient(from var(--a),transparent 0 62%,rgba(126,217,87,.9) 76%,rgba(60,200,160,.9) 86%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 7s linear infinite;pointer-events:none}
+@keyframes spin{to{--a:360deg}}
+.fch{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px 7px 8px;font-size:.8rem;font-weight:600;box-shadow:0 14px 30px -16px rgba(0,0,0,.35);animation:fl 6s ease-in-out infinite alternate;transition:box-shadow .4s,border-color .4s}
+.fch i{width:20px;height:20px;border-radius:50%;flex:none}
+.fch.on{border-color:var(--green);box-shadow:0 0 0 4px rgba(126,217,87,.25),0 14px 30px -16px rgba(0,0,0,.35)}
+.fch.c1{left:-22px;top:-19px}.fch.c2{left:28%;top:-19px;animation-delay:-2s}.fch.c3{right:-18px;top:-19px;animation-delay:-4s}.fch.c4{right:-26px;top:calc(100% - 64px);animation-delay:-1s}
+.trace{margin-top:12px}
+@keyframes fl{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
+@media (max-width:1180px){.fch{display:none}}
 .tr-top{display:flex;justify-content:space-between;align-items:center;color:#9EA197;font-size:.82rem}
 .tr-top b{color:#E9EAE4;font-weight:600}
 .pulse{display:inline-flex;align-items:center;gap:8px}
@@ -109,15 +129,46 @@ section{padding:clamp(76px,11vh,128px) 0}
 .cols3 article{padding:6px 32px 6px 0}
 .cols3 article+article{padding-left:32px;border-left:1px solid var(--line)}
 .cols3 h3{margin-bottom:12px}
+.viz{height:128px;border-radius:18px;margin-bottom:24px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.viz.v1{background:linear-gradient(135deg,#F3FBEF,#E1F4DA)}
+.viz.v2{background:linear-gradient(135deg,#EEF8F5,#D9F0E8)}
+.viz.v3{background:linear-gradient(135deg,#17251D,#0E2419)}
+.viz svg{position:absolute;inset:0;width:100%;height:100%}
+.v1 .ring{fill:none;stroke:var(--green);stroke-width:6;stroke-linecap:round;stroke-dasharray:214;stroke-dashoffset:214;animation:ring 4s var(--ease) infinite;transform:rotate(-90deg);transform-origin:80px 64px}
+@keyframes ring{0%{stroke-dashoffset:214}70%,100%{stroke-dashoffset:0}}
+.v1 .hand{transform-origin:80px 64px;animation:hand 4s linear infinite}
+@keyframes hand{to{transform:rotate(360deg)}}
+.v1 .bub{animation:bub 4s infinite}.v1 .bub2{animation:bub2 4s infinite}
+@keyframes bub{0%,15%{opacity:0;transform:translateY(6px)}25%,100%{opacity:1;transform:none}}
+@keyframes bub2{0%,72%{opacity:0;transform:translateY(6px)}80%,100%{opacity:1;transform:none}}
+.v2 .pk{animation:pk 3.2s var(--ease) infinite}
+.v2 .pk:nth-of-type(2){animation-delay:.6s}.v2 .pk:nth-of-type(3){animation-delay:1.2s}
+@keyframes pk{0%{transform:translate(0,0);opacity:0}10%{opacity:1}60%{transform:translate(150px,0);opacity:1}70%,100%{transform:translate(150px,0);opacity:0}}
+.v2 .cell{animation:cell 3.2s infinite}
+.v2 .cell:nth-of-type(2){animation-delay:.6s}.v2 .cell:nth-of-type(3){animation-delay:1.2s}
+@keyframes cell{0%,55%{fill:#FFFFFF}65%,90%{fill:#3CC8A0}100%{fill:#FFFFFF}}
+.v3 .words{position:absolute;left:24px;right:24px;bottom:22px;height:40px}
+.v3 .words span{position:absolute;left:0;bottom:0;background:#fff;color:var(--ink);border-radius:14px 14px 14px 4px;padding:8px 14px;font-weight:600;font-size:.95rem;opacity:0;animation:wd 10s infinite}
+.v3 .words span:nth-child(2){animation-delay:2s}.v3 .words span:nth-child(3){animation-delay:4s}.v3 .words span:nth-child(4){animation-delay:6s}.v3 .words span:nth-child(5){animation-delay:8s}
+@keyframes wd{0%{opacity:0;transform:translateY(8px)}4%,18%{opacity:1;transform:none}22%,100%{opacity:0;transform:translateY(-8px)}}
+.v3 .clock svg{position:static;width:14px;height:14px}
+.v3 .clock{position:absolute;right:20px;top:16px;color:#9FD7B0;font-size:.85rem;font-weight:600;display:flex;gap:8px;align-items:center}
+.v3 .star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.5;animation:tw 3s ease-in-out infinite alternate}
+@keyframes tw{to{opacity:.1}}
 .cols3 p{color:var(--graphite)}
 .cols3 .m{margin-top:16px;font-size:.9rem;color:var(--ink2);padding-top:12px;border-top:2px solid var(--green);display:inline-block}
 @media (max-width:860px){.cols3{grid-template-columns:1fr}.cols3 article,.cols3 article+article{padding:26px 0;border-left:0;border-top:1px solid var(--line)}.cols3 article:first-child{border-top:0;padding-top:0}}
 
 /* solutions */
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.sol{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 30px 26px}
-.sol .k{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ink);margin-bottom:22px}
-.sol .k svg{width:20px;height:20px;fill:none;stroke:var(--green);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sol{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 30px 26px;position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s}
+.sol:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx,50%) var(--my,-30%),rgba(126,217,87,.22),transparent 45%);opacity:0;transition:opacity .35s}
+.sol:hover{transform:translateY(-3px);box-shadow:0 30px 60px -36px rgba(20,60,35,.45)}
+.sol:hover:before{opacity:1}
+.sol:after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease) .2s}
+.sol.in:after{transform:scaleX(1)}
+.sol .k{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--g);margin-bottom:22px;box-shadow:0 12px 24px -12px rgba(20,60,35,.5)}
+.sol .k svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sol p{color:var(--graphite);margin-top:10px}
 .ticks{list-style:none;margin-top:18px;display:grid;gap:8px;font-size:.95rem}
 .ticks li{position:relative;padding-left:24px}
@@ -125,22 +176,37 @@ section{padding:clamp(76px,11vh,128px) 0}
 @media (max-width:820px){.grid2{grid-template-columns:1fr}}
 
 /* pipeline */
+#sigurnost{background:var(--forest);color:#E7EFE9;position:relative;overflow:hidden;isolation:isolate}
+#sigurnost:before,#sigurnost:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(80px);pointer-events:none}
+#sigurnost:before{width:620px;height:620px;right:-160px;top:-220px;background:rgba(60,200,160,.28);animation:au2 20s ease-in-out infinite alternate}
+#sigurnost:after{width:560px;height:560px;left:-200px;bottom:-260px;background:rgba(126,217,87,.22);animation:au1 24s ease-in-out infinite alternate}
+#sigurnost .sec-head p{color:#A9BDB0}
 .pipe{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;position:relative;counter-reset:p}
-.pipe li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;position:relative}
-.pipe li:before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--green);font-family:var(--display);font-weight:600;font-size:.9rem;margin-bottom:16px}
-.pipe li:not(:last-child):after{content:"";position:absolute;top:36px;right:-13px;width:14px;height:2px;background:var(--ink)}
+.rail{position:absolute;left:4%;right:4%;top:36px;height:2px;background:rgba(255,255,255,.1);z-index:0}
+.rail i{position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 14px 4px rgba(126,217,87,.7);animation:rail 5s linear infinite}
+.rail b{position:absolute;inset:0;background:linear-gradient(90deg,var(--green),var(--mint));transform-origin:0;animation:railf 5s linear infinite}
+@keyframes rail{from{left:0}to{left:100%}}@keyframes railf{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:980px){.rail{display:none}}
+.pipe li{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:22px 20px;position:relative;z-index:1;backdrop-filter:blur(6px);transition:border-color .4s,background .4s,transform .4s var(--ease)}
+.pipe li.act{border-color:rgba(126,217,87,.7);background:rgba(126,217,87,.1);transform:translateY(-4px)}
+.pipe li:before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#1D3A2A;color:var(--green);transition:background .4s,color .4s;font-family:var(--display);font-weight:600;font-size:.9rem;margin-bottom:16px}
+.pipe li.act:before{background:var(--green);color:var(--ink)}
+.pipe h3{color:#fff}
 .pipe h3{font-size:1.08rem;margin-bottom:8px}
-.pipe p{font-size:.93rem;color:var(--graphite)}
+.pipe p{font-size:.93rem;color:#A9BDB0}
 @media (max-width:980px){.pipe{grid-template-columns:1fr 1fr}.pipe li:after{display:none}}
 @media (max-width:560px){.pipe{grid-template-columns:1fr}}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
-.two>div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
+.two>div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:30px}
+#sigurnost .two h3{color:#fff}#sigurnost .ticks{color:#C9D6CD}#sigurnost .ticks li:before{border-color:var(--mint)}
 @media (max-width:820px){.two{grid-template-columns:1fr}}
 
 /* architectures */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .tabs button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);font-weight:600;font-size:.93rem;color:var(--graphite);background:rgba(255,255,255,.4)}
-.tabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tabs button{transition:background .3s,color .3s,border-color .3s}
+.tabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:var(--paper);box-shadow:0 10px 24px -14px rgba(0,0,0,.5)}
+.arch{animation:none}.arch.sw{animation:sw .6s var(--ease)}@keyframes sw{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .arch{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px)}
 .arch[hidden]{display:none}
 .arch .lab{font-size:.86rem;color:var(--soft);margin-bottom:6px}
@@ -149,6 +215,10 @@ section{padding:clamp(76px,11vh,128px) 0}
 .flowlist{list-style:none;margin-top:24px;counter-reset:f;display:grid;gap:0}
 .flowlist li{counter-increment:f;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:10px 0;position:relative}
 .flowlist li:before{content:counter(f);width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:.8rem;font-weight:700;background:var(--card);position:relative;z-index:1}
+.flowlist li:before{transition:background .4s,color .4s,border-color .4s,box-shadow .4s}
+.flowlist li.act:before{background:var(--green);border-color:var(--green);box-shadow:0 0 0 5px rgba(126,217,87,.25)}
+.flowlist li.done:before{background:var(--ink);color:#fff}
+.flowlist li{transition:color .4s}.flowlist li.act{font-weight:600}
 .flowlist li:not(:last-child):after{content:"";position:absolute;left:12.5px;top:34px;bottom:-10px;width:1.5px;background:var(--line)}
 .facts2{display:grid;gap:22px;align-content:start}
 .facts2 h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
@@ -156,6 +226,8 @@ section{padding:clamp(76px,11vh,128px) 0}
 @media (max-width:860px){.arch{grid-template-columns:1fr}}
 
 /* integrations */
+.hubw{margin-bottom:40px}.hub{width:100%;height:auto;display:block;font-family:var(--text)}
+@media (max-width:640px){.hubw{display:none}}
 .integ{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
 .integ div{padding:22px 24px 22px 0;border-bottom:1px solid var(--line)}
 .integ h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
@@ -165,7 +237,9 @@ section{padding:clamp(76px,11vh,128px) 0}
 
 /* approach */
 #pristup{background:var(--ink);color:#E9EAE4;position:relative;overflow:hidden;isolation:isolate}
-#pristup:before{content:"";position:absolute;z-index:-1;width:700px;height:700px;left:-220px;bottom:-400px;background:radial-gradient(closest-side,rgba(126,217,87,.2),transparent)}
+#pristup:before,#pristup:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none}
+#pristup:before{width:600px;height:600px;left:-200px;bottom:-320px;background:rgba(126,217,87,.22);animation:au1 22s ease-in-out infinite alternate}
+#pristup:after{width:480px;height:480px;right:-160px;top:-240px;background:rgba(60,200,160,.18);animation:au2 26s ease-in-out infinite alternate}
 #pristup .sec-head p,#pristup .note{color:#A3A69C}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;position:relative}
 .track{position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease)}
@@ -182,7 +256,10 @@ section{padding:clamp(76px,11vh,128px) 0}
 /* markets */
 .mk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .mk>div{border-radius:22px;padding:clamp(26px,3.5vw,40px);border:1px solid var(--line);background:var(--card)}
-.mk>div:last-child{background:var(--ink);color:#E9EAE4;border-color:var(--ink)}
+.mk>div:last-child{background:linear-gradient(160deg,#14301F,#1F1F1F 70%);color:#E9EAE4;border-color:#1F1F1F;position:relative;overflow:hidden;min-height:340px}
+.mk>div:last-child>*:not(canvas){position:relative;z-index:1;max-width:52%}
+#globe{position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:330px;height:330px;z-index:0}
+@media (max-width:1100px){.mk>div:last-child>*:not(canvas){max-width:none}#globe{position:relative;right:auto;top:auto;transform:none;display:block;margin:-10px auto 10px;width:260px;height:260px}.mk>div:last-child{display:flex;flex-direction:column}}
 .mk>div:last-child p{color:#B3B6AC}
 .mk h3{font-size:1.45rem;margin-bottom:12px}
 .mk p{color:var(--graphite)}
@@ -200,8 +277,10 @@ section{padding:clamp(76px,11vh,128px) 0}
 .faq details p{color:var(--graphite);padding:0 0 24px;max-width:72ch}
 
 /* contact */
-#kontakt .box{background:var(--green);border-radius:32px;padding:clamp(32px,5.5vw,72px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,5vw,80px);align-items:start}
+#kontakt .box{background:linear-gradient(120deg,#7ED957,#B4EC6A 35%,#5FD39A 70%,#7ED957);background-size:260% 260%;animation:shift 16s ease-in-out infinite alternate;position:relative;overflow:hidden;isolation:isolate;border-radius:32px;padding:clamp(32px,5.5vw,72px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,5vw,80px);align-items:start}
 #kontakt h2{font-size:clamp(2rem,3.8vw,3.2rem)}
+@keyframes shift{from{background-position:0% 50%}to{background-position:100% 50%}}
+#kontakt .box:after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(31,31,31,.13) 1.1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:linear-gradient(120deg,transparent 35%,#000);mask-image:linear-gradient(120deg,transparent 35%,#000)}
 #kontakt .lead{color:#25411A;margin-top:18px}
 #kontakt .ticks{margin-top:26px;color:#1F3313}
 #kontakt .ticks li:before{border-color:#1F1F1F}
@@ -222,7 +301,9 @@ form .cta{justify-self:start}
 @media (max-width:520px){form{grid-template-columns:1fr}}
 
 /* dashboard mock */
-.dash-fit{position:relative;width:100%}
+.dash-fit{position:relative;width:100%;perspective:1800px}
+.dash-fit:before{content:"";position:absolute;inset:8% 6% -4%;background:radial-gradient(50% 50% at 30% 50%,rgba(126,217,87,.45),transparent 70%),radial-gradient(45% 50% at 75% 55%,rgba(60,200,160,.35),transparent 70%);filter:blur(50px);z-index:-1}
+.tilt{transform-origin:50% 0;transform:rotateX(var(--rx,0deg));will-change:transform}
 .dash{width:1180px;height:760px;transform-origin:0 0;display:grid;grid-template-columns:220px 1fr;background:#F7F8F4;border-radius:22px;overflow:hidden;font-family:var(--text);color:var(--ink);box-shadow:0 60px 120px -50px rgba(31,40,25,.45),0 0 0 1px rgba(31,31,31,.06);font-size:14px;line-height:1.35}
 .ds-side{background:#1F1F1F;color:#D9DBD3;padding:22px 16px;display:flex;flex-direction:column;gap:22px}
 .ds-brand{display:flex;gap:11px;align-items:center}
@@ -287,6 +368,8 @@ form .cta{justify-self:start}
 .ready .w>span{transform:none}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
+.sec-head h2 .w>span{transform:translateY(105%);transition:transform .9s var(--ease)}
+.sec-head.in h2 .w>span{transform:none}
 .hero .lead,.hero .links,.hero .facts{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s}
 .ready .hero .lead,.ready .hero .links,.ready .hero .facts{opacity:1;transform:none}
 
@@ -300,6 +383,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
 </head>
 <body>
 <svg class="bgfx" viewBox="0 0 1440 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 49.0 L0 44.5 L40 42.5 L80 42.2 L120 42.4 L160 41.6 L200 38.7 L240 33.1 L280 25.3 L320 16.6 L360 8.8 L400 3.9 L440 3.2 L480 7.3 L520 15.6 L560 26.8 L600 38.7 L640 49.3 L680 57.0 L720 61.0 L760 61.6 L800 59.7 L840 57.0 L880 54.9 L920 54.6 L960 56.2 L1000 59.1 L1040 61.9 L1080 63.0 L1120 61.0 L1160 55.3 L1200 46.0 L1240 34.3 L1280 22.3 L1320 12.1 L1360 5.4 L1400 3.4 L1440 5.9 L1480 12.1"/><path d="M-40 131.9 L0 128.3 L40 127.3 L80 128.1 L120 129.1 L160 129.0 L200 126.5 L240 121.1 L280 113.4 L320 104.8 L360 97.1 L400 92.2 L440 91.4 L480 95.2 L520 102.9 L560 113.2 L600 124.0 L640 133.3 L680 139.7 L720 142.6 L760 142.4 L800 140.3 L840 137.9 L880 136.7 L920 137.6 L960 140.7 L1000 145.1 L1040 149.3 L1080 151.7 L1120 150.7 L1160 145.8 L1200 137.1 L1240 126.1 L1280 114.5 L1320 104.5 L1360 97.7 L1400 95.2 L1440 96.9 L1480 101.7"/><path d="M-40 167.6 L0 159.0 L40 159.2 L80 168.9 L120 187.0 L160 210.6 L200 235.5 L240 257.0 L280 270.7 L320 273.9 L360 265.6 L400 247.2 L440 222.2 L480 195.4 L520 171.7 L560 155.8 L600 150.5 L640 156.4 L680 172.1 L720 194.4 L760 218.8 L800 240.8 L840 256.7 L880 264.1 L920 262.3 L960 252.6 L1000 237.1 L1040 218.9 L1080 201.0 L1120 186.2 L1160 176.0 L1200 171.4 L1240 172.5 L1280 178.5 L1320 188.5 L1360 201.2 L1400 215.2 L1440 229.1 L1480 241.3"/><path d="M-40 326.1 L0 319.7 L40 311.5 L80 303.3 L120 296.6 L160 291.9 L200 289.1 L240 287.6 L280 286.4 L320 284.8 L360 282.7 L400 280.6 L440 279.3 L480 280.3 L520 284.3 L560 291.7 L600 301.9 L640 313.3 L680 323.8 L720 331.2 L760 333.5 L800 329.9 L840 320.6 L880 307.1 L920 291.9 L960 277.8 L1000 267.4 L1040 262.5 L1080 263.7 L1120 270.2 L1160 280.4 L1200 292.0 L1240 302.7 L1280 310.9 L1320 315.7 L1360 317.2 L1400 316.2 L1440 313.9 L1480 311.5"/><path d="M-40 415.7 L0 412.8 L40 407.1 L80 400.4 L120 394.4 L160 390.4 L200 388.7 L240 389.0 L280 389.9 L320 390.0 L360 387.8 L400 382.8 L440 375.2 L480 366.1 L520 357.4 L560 350.9 L600 348.3 L640 350.4 L680 356.9 L720 366.7 L760 377.8 L800 388.2 L840 396.0 L880 400.5 L920 401.6 L960 400.2 L1000 397.8 L1040 396.0 L1080 395.9 L1120 397.9 L1160 401.5 L1200 405.4 L1240 408.0 L1280 407.6 L1320 403.4 L1360 395.4 L1400 384.6 L1440 372.7 L1480 362.0"/><path d="M-40 416.7 L0 414.0 L40 421.6 L80 438.6 L120 462.2 L160 488.2 L200 511.5 L240 527.5 L280 532.9 L320 526.3 L360 509.0 L400 484.3 L440 456.9 L480 432.2 L520 415.0 L560 408.4 L600 413.3 L640 428.6 L680 450.8 L720 475.6 L760 498.3 L800 514.8 L840 522.6 L880 520.9 L920 510.8 L960 494.6 L1000 475.6 L1040 457.0 L1080 441.8 L1120 431.8 L1160 428.1 L1200 430.4 L1240 438.0 L1280 449.6 L1320 463.5 L1360 478.1 L1400 491.7 L1440 502.7 L1480 509.5"/><path d="M-40 600.0 L0 591.4 L40 582.3 L80 573.9 L120 567.0 L160 561.2 L200 555.6 L240 549.3 L280 541.4 L320 531.8 L360 521.4 L400 511.6 L440 504.4 L480 501.6 L520 504.6 L560 513.5 L600 527.6 L640 545.0 L680 563.1 L720 579.4 L760 592.0 L800 599.5 L840 602.0 L880 600.2 L920 595.8 L960 590.4 L1000 585.0 L1040 580.5 L1080 576.3 L1120 571.8 L1160 565.7 L1200 557.3 L1240 546.3 L1280 533.3 L1320 519.9 L1360 508.3 L1400 500.5 L1440 498.2 L1480 502.4"/><path d="M-40 594.5 L0 598.2 L40 610.0 L80 628.2 L120 649.5 L160 670.0 L200 685.9 L240 693.9 L280 692.6 L320 682.3 L360 665.0 L400 644.1 L440 623.6 L480 607.1 L520 597.5 L560 596.0 L600 602.1 L640 614.2 L680 629.6 L720 645.4 L760 659.0 L800 668.8 L840 673.8 L880 674.3 L920 671.0 L960 664.9 L1000 656.9 L1040 648.1 L1080 638.9 L1120 629.8 L1160 621.4 L1200 614.5 L1240 610.1 L1280 609.3 L1320 613.0 L1360 621.5 L1400 634.3 L1440 649.8 L1480 665.7"/><path d="M-40 715.7 L0 709.1 L40 700.8 L80 691.2 L120 681.8 L160 674.2 L200 670.5 L240 671.9 L280 679.1 L320 691.5 L360 707.4 L400 724.7 L440 740.9 L480 754.1 L520 763.1 L560 767.9 L600 769.1 L640 768.2 L680 766.6 L720 765.5 L760 765.1 L800 765.1 L840 764.3 L880 761.2 L920 754.7 L960 744.2 L1000 730.0 L1040 713.7 L1080 697.2 L1120 682.9 L1160 673.0 L1200 668.6 L1240 670.1 L1280 676.6 L1320 686.4 L1360 697.5 L1400 708.1 L1440 717.0 L1480 723.9"/><path d="M-40 855.7 L0 861.4 L40 860.2 L80 853.2 L120 842.2 L160 829.6 L200 817.2 L240 806.5 L280 798.2 L320 792.1 L360 787.9 L400 785.0 L440 783.3 L480 782.9 L520 784.5 L560 789.1 L600 797.2 L640 808.8 L680 823.0 L720 838.2 L760 851.9 L800 861.6 L840 865.1 L880 861.1 L920 849.9 L960 832.9 L1000 812.9 L1040 793.0 L1080 776.6 L1120 766.3 L1160 763.2 L1200 767.5 L1240 777.6 L1280 791.4 L1320 806.4 L1360 820.2 L1400 831.3 L1440 838.9 L1480 843.2"/><path d="M-40 867.2 L0 877.1 L40 890.2 L80 904.7 L120 918.2 L160 928.8 L200 935.1 L240 936.9 L280 934.9 L320 930.5 L360 925.5 L400 921.3 L440 918.7 L480 917.7 L520 917.4 L560 916.3 L600 913.2 L640 907.0 L680 897.7 L720 886.0 L760 873.7 L800 862.9 L840 855.5 L880 853.0 L920 855.8 L960 863.2 L1000 873.6 L1040 885.2 L1080 895.8 L1120 904.0 L1160 909.3 L1200 911.9 L1240 913.1 L1280 914.2 L1320 916.5 L1360 920.6 L1400 926.3 L1440 932.5 L1480 937.5"/><path d="M-40 1034.1 L0 1025.7 L40 1013.8 L80 1000.6 L120 987.7 L160 976.2 L200 966.5 L240 958.7 L280 952.7 L320 948.7 L360 947.0 L400 948.5 L440 953.8 L480 963.5 L520 977.3 L560 994.1 L600 1011.9 L640 1027.9 L680 1039.4 L720 1043.8 L760 1039.9 L800 1027.6 L840 1008.7 L880 986.1 L920 963.3 L960 944.2 L1000 931.7 L1040 927.5 L1080 931.9 L1120 943.5 L1160 960.0 L1200 978.3 L1240 995.7 L1280 1009.9 L1320 1019.8 L1360 1024.9 L1400 1025.9 L1440 1023.5 L1480 1018.7"/><path d="M-40 1016.2 L0 1025.8 L40 1042.9 L80 1065.1 L120 1088.9 L160 1110.4 L200 1126.0 L240 1133.3 L280 1131.2 L320 1120.5 L360 1103.4 L400 1083.0 L440 1062.6 L480 1045.3 L520 1033.0 L560 1026.9 L600 1026.5 L640 1031.0 L680 1038.9 L720 1048.8 L760 1059.7 L800 1070.9 L840 1082.1 L880 1092.9 L920 1102.8 L960 1111.0 L1000 1116.2 L1040 1117.1 L1080 1112.5 L1120 1102.0 L1160 1086.1 L1200 1066.6 L1240 1046.1 L1280 1027.8 L1320 1015.2 L1360 1010.6 L1400 1015.2 L1440 1028.6 L1480 1048.8"/><path d="M-40 1183.3 L0 1172.4 L40 1161.8 L80 1151.9 L120 1142.7 L160 1134.0 L200 1126.2 L240 1119.7 L280 1115.8 L320 1115.6 L360 1120.2 L400 1130.3 L440 1145.4 L480 1164.0 L520 1183.5 L560 1200.9 L600 1213.1 L640 1217.9 L680 1214.0 L720 1202.0 L760 1183.6 L800 1161.9 L840 1140.4 L880 1122.4 L920 1110.5 L960 1105.7 L1000 1108.0 L1040 1116.1 L1080 1127.9 L1120 1141.4 L1160 1154.6 L1200 1166.3 L1240 1175.9 L1280 1183.6 L1320 1189.4 L1360 1193.6 L1400 1196.0 L1440 1195.9 L1480 1192.7"/><path d="M-40 1281.4 L0 1288.3 L40 1288.9 L80 1283.9 L120 1274.8 L160 1263.8 L200 1252.9 L240 1243.3 L280 1235.6 L320 1229.9 L360 1225.3 L400 1221.3 L440 1217.5 L480 1214.0 L520 1211.7 L560 1211.8 L600 1215.4 L640 1223.3 L680 1235.4 L720 1250.5 L760 1266.6 L800 1281.0 L840 1291.2 L880 1295.2 L920 1291.9 L960 1281.8 L1000 1266.5 L1040 1248.7 L1080 1231.2 L1120 1216.8 L1160 1207.3 L1200 1203.4 L1240 1204.8 L1280 1210.1 L1320 1217.8 L1360 1226.1 L1400 1233.9 L1440 1240.8 L1480 1246.9"/><path d="M-40 1326.1 L0 1344.0 L40 1358.8 L80 1367.6 L120 1368.8 L160 1362.5 L200 1350.1 L240 1334.7 L280 1319.3 L320 1307.1 L360 1300.0 L400 1299.0 L440 1303.5 L480 1312.1 L520 1322.6 L560 1333.0 L600 1341.4 L640 1347.0 L680 1349.4 L720 1349.1 L760 1346.8 L800 1343.1 L840 1338.7 L880 1333.7 L920 1328.3 L960 1322.6 L1000 1316.9 L1040 1311.9 L1080 1308.6 L1120 1308.0 L1160 1311.0 L1200 1317.8 L1240 1327.8 L1280 1339.7 L1320 1351.3 L1360 1359.9 L1400 1363.6 L1440 1360.9 L1480 1351.8"/><path d="M-40 1437.3 L0 1430.9 L40 1423.2 L80 1416.1 L120 1410.8 L160 1407.9 L200 1407.1 L240 1407.6 L280 1408.3 L320 1408.4 L360 1407.6 L400 1406.3 L440 1405.4 L480 1405.9 L520 1408.8 L560 1414.3 L600 1421.9 L640 1430.2 L680 1437.4 L720 1441.5 L760 1441.1 L800 1435.7 L840 1425.9 L880 1413.5 L920 1400.8 L960 1390.6 L1000 1385.0 L1040 1385.2 L1080 1391.2 L1120 1401.7 L1160 1414.4 L1200 1426.6 L1240 1436.0 L1280 1441.0 L1320 1441.0 L1360 1436.6 L1400 1429.5 L1440 1421.4 L1480 1414.1"/><path d="M-40 1531.0 L0 1522.1 L40 1513.1 L80 1505.0 L120 1498.4 L160 1492.9 L200 1487.9 L240 1483.0 L280 1478.0 L320 1473.3 L360 1470.1 L400 1469.7 L440 1473.3 L480 1481.5 L520 1493.9 L560 1509.3 L600 1525.2 L640 1539.1 L680 1548.2 L720 1550.8 L760 1546.2 L800 1534.9 L840 1519.0 L880 1501.3 L920 1484.6 L960 1471.7 L1000 1464.0 L1040 1462.2 L1080 1465.6 L1120 1472.6 L1160 1481.5 L1200 1490.5 L1240 1498.6 L1280 1505.3 L1320 1510.8 L1360 1515.8 L1400 1520.8 L1440 1525.8 L1480 1530.5"/></svg>
+<div class="prog" id="prog" aria-hidden="true"></div>
 <header id="hd">
   <div class="wrap bar">
     <a class="logo" href="/" aria-label="Hostio">host<span>io.</span></a>
@@ -319,7 +403,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
 </header>
 
 <main>
-<section class="hero" aria-labelledby="h1">
+<section class="hero" aria-labelledby="h1"><div class="aur" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div><div class="hgrid" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
       <h1 id="h1" data-i="h1">AI sistemi koji rade unutar vaših procesa, pod vašom kontrolom.</h1>
@@ -330,7 +414,11 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       </div>
       <ul class="facts" data-i="facts"><li>Integracija s postojećim sistemima</li><li>Ljudsko odobrenje osjetljivih akcija</li><li>Odgovori na jeziku kupca</li></ul>
     </div>
-    <div>
+    <div class="trw">
+      <div class="fch c1" data-ch="WhatsApp" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#9BEA7A,#2F9E3A)"></i>WhatsApp</div>
+      <div class="fch c2" data-ch="E-mail" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#F3E3B5,#B08A2E)"></i>E-mail</div>
+      <div class="fch c3" data-ch="Instagram" aria-hidden="true"><i style="background:radial-gradient(circle at 30% 30%,#FFC36B,#E1306C 55%,#7B2FBF)"></i>Instagram</div>
+      <div class="fch c4" data-ch="Web chat" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#9CC0FF,#2D5BB0)"></i>Web chat</div>
       <div class="trace" aria-live="off">
         <div class="tr-top"><b data-i="tr_title">Obrada jednog upita</b><span class="pulse"><i></i><span id="trIdx">1/3</span></span></div>
         <div class="tr-in" id="trIn"><small id="trInMeta"></small><span id="trInText"></span></div>
@@ -350,9 +438,9 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       <p data-i="pr_p">AI ima smisla tamo gdje se isti posao ponavlja stotinama puta mjesečno i gdje kašnjenje ima cijenu. Prije svakog prijedloga mjerimo polazno stanje, da bi rezultat bio uporediv.</p>
     </div>
     <div class="cols3 rv">
-      <article><h3 data-i="pr1_h">Sporo prvo javljanje</h3><p data-i="pr1_p">Upiti stižu na WhatsApp, e-mail, web i društvene mreže, a odgovor čeka da se neko oslobodi. Što je odgovor sporiji, manja je šansa da upit postane posao.</p><span class="m" data-i="pr1_m">Mjerimo vrijeme do prvog odgovora i udio odgovorenih upita.</span></article>
-      <article><h3 data-i="pr2_h">Ručno prepisivanje</h3><p data-i="pr2_p">Isti podaci se kucaju iz poruke u CRM, iz e-maila u ERP, iz tabele u ponudu. To troši sate i stvara greške koje se kasnije skupo ispravljaju.</p><span class="m" data-i="pr2_m">Mjerimo sate rada mjesečno i broj ispravki.</span></article>
-      <article><h3 data-i="pr3_h">Upiti van radnog vremena i na drugim jezicima</h3><p data-i="pr3_p">Kupci iz drugih vremenskih zona i govornih područja pišu kada vaš tim ne radi ili ne govori njihov jezik. Ti upiti se najčešće izgube bez traga.</p><span class="m" data-i="pr3_m">Mjerimo takve upite i njihov ishod.</span></article>
+      <article><div class="viz v1" aria-hidden="true"><svg viewBox="0 0 320 128" preserveAspectRatio="xMidYMid meet"><circle cx="80" cy="64" r="34" fill="#fff" stroke="#D6E9CE" stroke-width="6"/><circle class="ring" cx="80" cy="64" r="34"/><line class="hand" x1="80" y1="64" x2="80" y2="40" stroke="#1F1F1F" stroke-width="3" stroke-linecap="round"/><circle cx="80" cy="64" r="4" fill="#1F1F1F"/><g class="bub"><rect x="140" y="30" width="140" height="28" rx="14" fill="#fff"/><circle cx="160" cy="44" r="3" fill="#A9B3A0"/><circle cx="172" cy="44" r="3" fill="#A9B3A0"/><circle cx="184" cy="44" r="3" fill="#A9B3A0"/></g><g class="bub2"><rect x="170" y="70" width="110" height="28" rx="14" fill="#1F1F1F"/><path d="M252 84l5 5 9-10" stroke="#7ED957" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="184" y="81" width="54" height="6" rx="3" fill="#5E615A"/></g></svg></div><h3 data-i="pr1_h">Sporo prvo javljanje</h3><p data-i="pr1_p">Upiti stižu na WhatsApp, e-mail, web i društvene mreže, a odgovor čeka da se neko oslobodi. Što je odgovor sporiji, manja je šansa da upit postane posao.</p><span class="m" data-i="pr1_m">Mjerimo vrijeme do prvog odgovora i udio odgovorenih upita.</span></article>
+      <article><div class="viz v2" aria-hidden="true"><svg viewBox="0 0 320 128" preserveAspectRatio="xMidYMid meet"><rect x="30" y="22" width="70" height="86" rx="10" fill="#fff" stroke="#CFE6DD"/><rect x="42" y="38" width="46" height="6" rx="3" fill="#C9D3CC"/><rect x="42" y="56" width="38" height="6" rx="3" fill="#C9D3CC"/><rect x="42" y="74" width="42" height="6" rx="3" fill="#C9D3CC"/><rect class="pk" x="58" y="36" width="22" height="10" rx="5" fill="#3CC8A0"/><rect class="pk" x="58" y="54" width="22" height="10" rx="5" fill="#7ED957"/><rect class="pk" x="58" y="72" width="22" height="10" rx="5" fill="#5B8DEF"/><rect x="196" y="22" width="96" height="86" rx="10" fill="#fff" stroke="#CFE6DD"/><rect class="cell" x="208" y="34" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/><rect class="cell" x="208" y="54" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/><rect class="cell" x="208" y="74" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/></svg></div><h3 data-i="pr2_h">Ručno prepisivanje</h3><p data-i="pr2_p">Isti podaci se kucaju iz poruke u CRM, iz e-maila u ERP, iz tabele u ponudu. To troši sate i stvara greške koje se kasnije skupo ispravljaju.</p><span class="m" data-i="pr2_m">Mjerimo sate rada mjesečno i broj ispravki.</span></article>
+      <article><div class="viz v3" aria-hidden="true"><i class="star" style="left:12%;top:20%"></i><i class="star" style="left:30%;top:12%;animation-delay:-1s"></i><i class="star" style="left:48%;top:28%;animation-delay:-2s"></i><i class="star" style="left:64%;top:16%;animation-delay:-.5s"></i><span class="clock"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9FD7B0"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>02:37</span><div class="words"><span>Guten Abend</span><span>Hello</span><span dir="rtl">مرحبا</span><span>Zdravo</span><span>Bonjour</span></div></div><h3 data-i="pr3_h">Upiti van radnog vremena i na drugim jezicima</h3><p data-i="pr3_p">Kupci iz drugih vremenskih zona i govornih područja pišu kada vaš tim ne radi ili ne govori njihov jezik. Ti upiti se najčešće izgube bez traga.</p><span class="m" data-i="pr3_m">Mjerimo takve upite i njihov ishod.</span></article>
     </div>
   </div>
 </section>
@@ -364,19 +452,19 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       <p data-i="so_p">Četiri vrste sistema, uvijek prilagođene vašem procesu i povezane s alatima koje već koristite. Ne prodajemo gotove pakete.</p>
     </div>
     <div class="grid2">
-      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#7ED957,#2F9E5A)"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
         <h3 data-i="so1_h">Višekanalni agenti za prijem upita</h3>
         <p data-i="so1_p">Odgovaraju na upite na WhatsAppu, Instagramu, webu i e-mailu, na jeziku kupca. Kvalifikuju upit, prikupljaju potrebne podatke i predaju ga pravoj osobi ili sistemu.</p>
         <ul class="ticks" data-i="so1_l"><li>Odgovori zasnovani na vašim podacima, ne na nagađanju</li><li>Kvalifikacija i označavanje prema vašim kriterijima</li><li>Predaja osoblju s kompletnim kontekstom razgovora</li></ul></article>
-      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h8"/><path d="M17 4l3 3-3 3M15 14l3 3-3 3"/></svg></span>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#3CC8A0,#1F7F86)"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h8"/><path d="M17 4l3 3-3 3M15 14l3 3-3 3"/></svg></span>
         <h3 data-i="so2_h">Automatizacija operativnih tokova</h3>
         <p data-i="so2_p">Narudžbe, zahtjevi, dokumenti i ponude prolaze kroz definisan tok bez ručnog prepisivanja. AI izvlači podatke, sistem ih provjerava, a čovjek odobrava ono što treba odobriti.</p>
         <ul class="ticks" data-i="so2_l"><li>Izvlačenje podataka iz e-mailova, PDF-ova i obrazaca</li><li>Usmjeravanje zahtjeva prema vrsti, prioritetu i lokaciji</li><li>Nacrti ponuda i odgovora spremni za odobrenje</li></ul></article>
-      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg></span>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#5B8DEF,#3CC8A0)"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg></span>
         <h3 data-i="so3_h">Integracije s postojećim sistemima</h3>
         <p data-i="so3_p">Ne tražimo da mijenjate CRM, ERP ili web shop. Povezujemo se na njih preko API-ja i webhooka, tako da podaci ostaju tamo gdje ih vaš tim već koristi.</p>
         <ul class="ticks" data-i="so3_l"><li>Dvosmjerna sinhronizacija s CRM-om i ERP-om</li><li>Ponovni pokušaji i evidencija svake razmjene podataka</li><li>Bez promjene načina rada vašeg osoblja</li></ul></article>
-      <article class="sol rv"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h3M8 16h6"/></svg></span>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#B9E35A,#3E8A26)"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h3M8 16h6"/></svg></span>
         <h3 data-i="so4_h">Kontrolni sloj i izvještavanje</h3>
         <p data-i="so4_p">Opcionalni pregled za menadžment i tim: šta je sistem uradio, šta čeka odobrenje i kakvi su rezultati. Nudimo ga samo kada postojeći alati to ne pokrivaju.</p>
         <ul class="ticks" data-i="so4_l"><li>Red za odobrenje osjetljivih odgovora i akcija</li><li>Pravila i ovlaštenja po ulogama</li><li>Izvještaji o vremenu odgovora i ishodima</li></ul></article>
@@ -390,7 +478,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       <h2 id="h-ctl" data-i="ct_h">Vi zadržavate kontrolu</h2>
       <p data-i="ct_p">Svaka akcija sistema je vidljiva i provjerljiva. Osjetljive odluke, poput popusta, djelimičnih isporuka ili medicinskih pitanja, čekaju odobrenje ovlaštene osobe.</p>
     </div>
-    <div class="dash-fit rv" id="dashFit"><div class="dash" id="dash" role="img" aria-label="Ilustracija kontrolnog sloja">
+    <div class="dash-fit rv" id="dashFit"><div class="tilt" id="tilt"><div class="dash" id="dash" role="img" aria-label="Ilustracija kontrolnog sloja">
       <aside class="ds-side">
         <div class="ds-brand"><i>P</i><div><b data-i="d_co">Primjer d.o.o.</b><small data-i="d_dep">Prodaja i podrška</small></div></div>
         <nav>
@@ -438,7 +526,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
           <div class="card feed"><div class="card-h"><b data-i="c4">Log događaja</b><span class="pulse"><i></i></span></div><ul id="feed"></ul></div>
         </div>
       </div>
-    </div></div>
+    </div></div></div>
     <p class="note" data-i="d_note">Ilustracija kontrolnog sloja s izmišljenim podacima. Izgled i funkcije se prilagođavaju svakom klijentu.</p>
   </div>
 </section>
@@ -449,7 +537,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       <h2 id="h-sec" data-i="se_h">Kako sistem donosi odluke</h2>
       <p data-i="se_p">Jezički model razumije poruku. Odluke o cijenama, dostupnosti i obavezama donose vaši podaci i vaša pravila. Svaki upit prolazi kroz iste korake.</p>
     </div>
-    <ol class="pipe rv">
+    <ol class="pipe rv" id="pipe"><span class="rail" aria-hidden="true"><b></b><i></i></span>
       <li><h3 data-i="p1_h">Prijem</h3><p data-i="p1_p">Poruka stiže s bilo kojeg kanala i dobija jedinstven zapis: kanal, jezik, vrijeme i pošiljalac.</p></li>
       <li><h3 data-i="p2_h">Razumijevanje</h3><p data-i="p2_p">Model određuje namjeru i izvlači podatke u strogo definisanu strukturu. Izlaz koji ne odgovara šemi se odbacuje.</p></li>
       <li><h3 data-i="p3_h">Provjera</h3><p data-i="p3_p">Cijene, zalihe, termini i statusi čitaju se iz vašeg sistema u trenutku upita. Model ih ne izmišlja.</p></li>
@@ -465,7 +553,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
   </div>
 </section>
 
-<section id="arhitekture" aria-labelledby="h-arch" style="padding-top:0">
+<section id="arhitekture" aria-labelledby="h-arch">
   <div class="wrap">
     <div class="sec-head rv">
       <h2 id="h-arch" data-i="ar_h">Referentne arhitekture</h2>
@@ -515,6 +603,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
       <h2 id="h-int" data-i="in_h">Radimo s alatima koje već imate</h2>
       <p data-i="in_p">Povezivanje ide preko zvaničnih API-ja i webhooka. Za sisteme bez API-ja dogovaramo siguran način razmjene podataka.</p>
     </div>
+    <div class="hubw rv"><svg class="hub" viewBox="0 0 1000 420" aria-hidden="true"><defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#1F1F1F"/><stop offset="1" stop-color="#14301F"/></linearGradient></defs><path id="hl0" d="M195 60 C320 60,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr0" d="M580 210 C700 210,680 60,805 60" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl1" d="M195 160 C320 160,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr1" d="M580 210 C700 210,680 160,805 160" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl2" d="M195 260 C320 260,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr2" d="M580 210 C700 210,680 260,805 260" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl3" d="M195 360 C320 360,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr3" d="M580 210 C700 210,680 360,805 360" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="0.00s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl0"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="0.37s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr0"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="0.74s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl1"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="1.11s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr1"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="1.48s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl2"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="1.85s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr2"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="2.22s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl3"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="2.59s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr3"/></animateMotion></circle><g><rect x="35" y="36" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="60" r="7" fill="#7ED957"/><text x="70" y="65" font-size="16" font-weight="600" fill="#1F1F1F">WhatsApp</text></g><g><rect x="35" y="136" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="160" r="7" fill="#E1306C"/><text x="70" y="165" font-size="16" font-weight="600" fill="#1F1F1F">Instagram</text></g><g><rect x="35" y="236" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="260" r="7" fill="#5B8DEF"/><text x="70" y="265" font-size="16" font-weight="600" fill="#1F1F1F">Web chat</text></g><g><rect x="35" y="336" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="360" r="7" fill="#C9A23E"/><text x="70" y="365" font-size="16" font-weight="600" fill="#1F1F1F">E-mail</text></g><g><rect x="805" y="36" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="53" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="65" font-size="16" font-weight="600" fill="#1F1F1F">CRM</text></g><g><rect x="805" y="136" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="153" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="165" font-size="16" font-weight="600" fill="#1F1F1F">ERP</text></g><g><rect x="805" y="236" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="253" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="265" font-size="16" font-weight="600" fill="#1F1F1F" data-i="hub_ec">Online prodaja</text></g><g><rect x="805" y="336" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="353" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="365" font-size="16" font-weight="600" fill="#1F1F1F" data-i="hub_cal">Kalendar</text></g><g class="hubc"><circle cx="500" cy="210" r="110" fill="none" stroke="rgba(126,217,87,.35)" stroke-width="1.5"><animate attributeName="r" values="80;130" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="3s" repeatCount="indefinite"/></circle><rect x="420" y="165" width="160" height="90" rx="22" fill="url(#hg)"/><text x="500" y="207" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="30" letter-spacing="-1.4" fill="#fff">host<tspan fill="#7ED957">io.</tspan></text><text x="500" y="234" text-anchor="middle" font-size="12.5" fill="#A9BDB0" data-i="hub_c">provjere i pravila</text></g></svg></div>
     <div class="integ rv">
       <div><h4 data-i="i1">Kanali</h4><p data-i="i1p">WhatsApp Business Platform, Instagram, Facebook Messenger, web chat, e-mail (Microsoft 365, Google Workspace)</p></div>
       <div><h4>CRM</h4><p>HubSpot, Pipedrive, Salesforce, Zoho CRM</p></div>
@@ -551,7 +640,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);margin-top:clamp(40p
     </div>
     <div class="mk">
       <div class="rv"><h3 data-i="m1_h">Bosna i Hercegovina i Adria regija</h3><p data-i="m1_p">Privatne poliklinike i estetski centri, veleprodaja i distribucija, logistika, investitori i agencije za nekretnine, osiguranje, lanci s više poslovnica i veće online prodavnice.</p><p class="how" data-i="m1_w">Komunikacija na bosanskom, hrvatskom i srpskom. Sastanci uživo u BiH ili online. Ponude u KM ili EUR.</p></div>
-      <div class="rv"><h3 data-i="m2_h">EU, DACH, Ujedinjeno Kraljevstvo i SAD</h3><p data-i="m2_p">B2B uslužne firme, privatne klinike, softverske kompanije s velikim brojem upita podrške, agencije za nekretnine i online brendovi.</p><p class="how" data-i="m2_w">Komunikacija na engleskom. Rad na daljinu iz srednjoevropske vremenske zone (CET). Ponude u EUR.</p></div>
+      <div class="rv"><canvas id="globe" width="680" height="680" aria-hidden="true"></canvas><h3 data-i="m2_h">EU, DACH, Ujedinjeno Kraljevstvo i SAD</h3><p data-i="m2_p">B2B uslužne firme, privatne klinike, softverske kompanije s velikim brojem upita podrške, agencije za nekretnine i online brendovi.</p><p class="how" data-i="m2_w">Komunikacija na engleskom. Rad na daljinu iz srednjoevropske vremenske zone (CET). Ponude u EUR.</p></div>
     </div>
   </div>
 </section>
@@ -678,7 +767,7 @@ const T={
   q8q:"Which languages does the system work in?",q8a:"The system replies in the customer's language, including Bosnian, Croatian, Serbian, English, German and Arabic. Summaries for your team can be in the language your team uses.",
   k_h:"Request an operational audit",k_p:"Describe the process you want to improve. The first step is a short introductory call with no obligation, where we assess whether an audit makes sense.",
   k_l:L(["Process map and baseline metrics","Estimate of time and cost savings","Proposed architecture and integrations","Fixed-price proposal for the build"]),
-  f_name:"Full name",f_co:"Company",f_role:"Role",f_mail:"Business email",f_country:"Country",f_size:"Number of employees",f_msg:"Which process do you want to improve?",f_send:"Send enquiry",privacy:"Privacy"
+  hub_ec:"E-commerce",hub_cal:"Calendar",hub_c:"checks and rules",f_name:"Full name",f_co:"Company",f_role:"Role",f_mail:"Business email",f_country:"Country",f_size:"Number of employees",f_msg:"Which process do you want to improve?",f_send:"Send enquiry",privacy:"Privacy"
  },
  bs:{}
 };
@@ -721,6 +810,7 @@ function renderScene(sc,instant){
 }
 function play(){
  const list=SC[LANG],sc=list[si%list.length];$('trIdx').textContent=(si%list.length+1)+'/'+list.length;si++;
+ document.querySelectorAll('.fch').forEach(c=>c.classList.toggle('on',c.dataset.ch===sc.ch));
  renderScene(sc,false);const lis=[...$('trSteps').children];let t=700;
  lis.forEach((li,i)=>{later(()=>{lis.forEach(x=>x.classList.remove('cur'));li.classList.add('on','cur');},t);t+=650;later(()=>li.classList.add(li.dataset.s),t-200);});
  later(()=>{lis.forEach(x=>x.classList.remove('cur'));$('trOut').classList.add('show');},t+200);
@@ -736,14 +826,15 @@ function setLang(l){
  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
  document.title=l==='en'?"Hostio, AI automation and custom systems":"Hostio, AI automatizacija i sistemi po mjeri";
  try{localStorage.setItem('hostio_lang',l)}catch(e){}
- splitH1();feedFill();restart();
+ splitH1();splitH2();feedFill();restart();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
 /* headline words rise once on load */
 const h1=$('h1');
 function splitH1(){h1.innerHTML=h1.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.045*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');}
-splitH1();requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('ready')));
+function splitH2(){document.querySelectorAll('.sec-head h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.06*i}s">${w}</span></span>`).join(' ');});}
+splitH1();splitH2();requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('ready')));
 
 /* reveal on scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);}),{threshold:.15});
@@ -751,7 +842,7 @@ document.querySelectorAll('.rv,#steps').forEach(el=>io.observe(el));
 
 /* tabs */
 const tabs=[...document.querySelectorAll('[role=tab]')];
-function selTab(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=$(x.getAttribute('aria-controls'));p.hidden=!on;if(on)p.classList.add('in');});}
+function selTab(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=$(x.getAttribute('aria-controls'));p.hidden=!on;if(on){p.classList.add('in');p.classList.remove('sw');void p.offsetWidth;p.classList.add('sw');}});fstep=0;}
 tabs.forEach((t,i)=>{t.addEventListener('click',()=>selTab(t));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];selTab(n);n.focus();}});});
 
 /* dashboard: scale to fit, animate when visible, event log */
@@ -771,6 +862,49 @@ const dio=new IntersectionObserver(es=>es.forEach(e=>{
   if(!ftimer&&!reduce)ftimer=setInterval(feedAdd,3400);}
  else{clearInterval(ftimer);ftimer=null;}}),{threshold:.3});
 dio.observe(dash);
+
+
+/* scroll progress + dashboard tilt */
+const prog=$('prog'),tilt=$('tilt');let sTick=false;
+function onScroll(){sTick=false;const h=document.documentElement;prog.style.transform=`scaleX(${Math.min(1,scrollY/(h.scrollHeight-innerHeight))})`;
+ if(!reduce){const r=dfit.getBoundingClientRect();const k=Math.max(0,Math.min(1,(r.top-innerHeight*.15)/(innerHeight*.75)));tilt.style.setProperty('--rx',(k*16).toFixed(2)+'deg');}}
+addEventListener('scroll',()=>{if(!sTick){sTick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+
+/* spotlight on solution cards */
+document.querySelectorAll('.sol').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+
+/* pipeline: steps light up with the moving packet (5 s loop) */
+const pli=[...document.querySelectorAll('#pipe li')];
+if(!reduce){const t0=performance.now();const rail=document.querySelector('.rail');
+ (function pl(){const k=((performance.now()-t0)/5000)%1;const i=Math.min(4,Math.floor(k*5));pli.forEach((li,j)=>li.classList.toggle('act',j===i));requestAnimationFrame(pl);})();}
+else pli.forEach(li=>li.classList.add('act'));
+
+/* architecture flow: steps advance one by one */
+let fstep=0;
+setInterval(()=>{if(reduce)return;const p=document.querySelector('.arch:not([hidden])');if(!p)return;const lis=[...p.querySelectorAll('.flowlist li')];
+ lis.forEach((li,j)=>{li.classList.toggle('done',j<fstep);li.classList.toggle('act',j===fstep);});fstep=(fstep+1)%(lis.length+2);},1300);
+
+/* dotted globe with routes from Sarajevo */
+(function(){const cv=$('globe');if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,R=W*0.42,C=W/2;
+ const N=1100,pts=[];for(let i=0;i<N;i++){const y=1-2*(i+.5)/N,r=Math.sqrt(1-y*y),t=i*2.399963;pts.push([Math.cos(t)*r,y,Math.sin(t)*r]);}
+ const ll=(la,lo)=>{la*=Math.PI/180;lo*=Math.PI/180;return[Math.cos(la)*Math.sin(lo),Math.sin(la),Math.cos(la)*Math.cos(lo)];};
+ const SA=ll(43.86,18.41),CITIES=[ll(52.52,13.40),ll(51.5,-0.12),ll(40.71,-74.0),ll(25.2,55.27),ll(48.2,16.37),ll(45.81,15.98)];
+ const slerp=(a,b,t)=>{const d=Math.acos(Math.max(-1,Math.min(1,a[0]*b[0]+a[1]*b[1]+a[2]*b[2])));if(d<1e-6)return a;const s1=Math.sin((1-t)*d)/Math.sin(d),s2=Math.sin(t*d)/Math.sin(d);return[a[0]*s1+b[0]*s2,a[1]*s1+b[1]*s2,a[2]*s1+b[2]*s2];};
+ let run=false,t0=performance.now();
+ function proj(p,rot,tilt){const c=Math.cos(rot),s=Math.sin(rot);let x=p[0]*c-p[2]*s,z=p[0]*s+p[2]*c,y=p[1];const ct=Math.cos(tilt),st=Math.sin(tilt);const y2=y*ct-z*st,z2=y*st+z*ct;return[C+x*R,C-y2*R,z2];}
+ function frame(now){const t=(now-t0)/1000;const rot=0.12+0.38*Math.sin(t*0.16);const tl=0.68;ctx.clearRect(0,0,W,W);
+  const g=ctx.createRadialGradient(C-R*.3,C-R*.3,R*.1,C,C,R*1.05);g.addColorStop(0,'rgba(126,217,87,.10)');g.addColorStop(1,'rgba(126,217,87,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(C,C,R*1.05,0,7);ctx.fill();
+  for(const p of pts){const q=proj(p,rot,tl);if(q[2]<0)continue;ctx.fillStyle=`rgba(200,232,210,${(.12+q[2]*.45).toFixed(3)})`;ctx.fillRect(q[0]-1.6,q[1]-1.6,3.2,3.2);}
+  CITIES.forEach((b,ci)=>{const ph=((t*0.35+ci*0.17)%1);ctx.lineWidth=2.4;let prev=null;
+   for(let k=0;k<=40;k++){const u=k/40;const v=slerp(SA,b,u);const lift=1+0.22*Math.sin(Math.PI*u)*Math.min(1,Math.acos(SA[0]*b[0]+SA[1]*b[1]+SA[2]*b[2])*1.2);const q=proj([v[0]*lift,v[1]*lift,v[2]*lift],rot,tl);
+    if(prev&&q[2]>-0.05&&prev[2]>-0.05){ctx.strokeStyle=`rgba(${ci%2?'60,200,160':'126,217,87'},${(.25+.6*Math.max(0,q[2])).toFixed(2)})`;ctx.beginPath();ctx.moveTo(prev[0],prev[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();}
+    if(Math.abs(u-ph)<0.013&&q[2]>0){ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(q[0],q[1],4.5,0,7);ctx.fill();}prev=q;}
+   const e=proj(b,rot,tl);if(e[2]>0){ctx.fillStyle='#7ED957';ctx.beginPath();ctx.arc(e[0],e[1],5,0,7);ctx.fill();}});
+  const s0=proj(SA,rot,tl);if(s0[2]>0){const pr=(t%2)/2;ctx.strokeStyle=`rgba(126,217,87,${1-pr})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(s0[0],s0[1],6+pr*22,0,7);ctx.stroke();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(s0[0],s0[1],7,0,7);ctx.fill();}
+  if(run)requestAnimationFrame(frame);}
+ if(reduce){frame(performance.now());return;}
+ new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!run){run=true;requestAnimationFrame(frame);}else if(!e.isIntersecting)run=false;})).observe(cv);
+})();
 
 /* header line on scroll */
 const hd=$('hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
