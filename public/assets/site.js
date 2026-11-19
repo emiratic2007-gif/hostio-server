@@ -3,7 +3,8 @@ const T={
  en:{
   nav1:"Solutions",nav2:"Security",nav3:"Architectures",nav4:"Approach",nav5:"FAQ",nav_cta:"Request an audit",
   h1:"AI systems that work inside your operations, under your control.",
-  lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies. We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.",
+  badge:"AI automation for mid-sized and large companies",
+  lead:"Hostio designs, integrates and maintains AI automation for mid-sized and large companies.<span class=\"l2\"> We connect it to your CRM, ERP and communication channels, with checks that prevent made-up answers and human approval wherever it is needed.</span>",
   cta:"Request an operational audit",cta2:"How the system makes decisions",
   facts:L(["Works with your existing systems","Human approval for sensitive actions","Replies in the customer's language"]),
   tr_title:"Processing one enquiry",tr_res:"Outcome",tr_note:"Illustrative examples with made-up data.",
@@ -159,7 +160,8 @@ function restart(){if(!HAS_TRACE)return;timers.forEach(clearTimeout);timers=[];s
 
 /* ---------- headings ---------- */
 const h1=$('h1');
-function splitH1(){if(!h1)return;h1.innerHTML=h1.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.045*i}s">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`).join(' ');}
+function splitH1(){if(!h1)return;const ws=h1.textContent.trim().split(/\s+/),n=ws.length,hl=h1.closest('.hero')&&!h1.closest('.page-hero');
+ h1.innerHTML=ws.map((w,i)=>{const mark=hl&&i>=n-3;const d=.045*i;const bd=mark?(1.0+(i-(n-3))*.22):0;return `<span class="w${mark?' hl':''}"><span style="transition-delay:${d}s${mark?`,${bd}s`:''}">${w.replace(/\.$/,'<span class="dot">.</span>')}</span></span>`;}).join(' ');}
 function splitH2(){document.querySelectorAll('.sec-head h2').forEach(h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w"><span style="transition-delay:${.06*i}s">${w}</span></span>`).join(' ');});}
 
 /* ---------- language ---------- */
