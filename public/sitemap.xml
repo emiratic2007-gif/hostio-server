@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hostio.ba/</loc><lastmod>2026-10-25</lastmod><priority>1.0</priority></url>
-  <url><loc>https://hostio.ba/usluge/</loc><lastmod>2026-10-25</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/ai-video/</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
-  <url><loc>https://hostio.ba/usluge/ai-odgovori/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/custom-ai/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/dashboard/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/podsjetnici/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/web-stranica/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/usluge/zakazivanje/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/vise/kako-radi/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/vise/pitanja/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/vise/problem/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/vise/za-koga/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/vise/zasto/</loc><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/privatnost</loc><lastmod>2026-10-26</lastmod><priority>0.7</priority></url>
-  <url><loc>https://hostio.ba/brisanje-podataka</loc><lastmod>2026-10-26</lastmod><priority>0.3</priority></url>
+  <url><loc>https://hostio.ba/</loc><lastmod>2026-11-19</lastmod><priority>1.0</priority></url>
+  <url><loc>https://hostio.ba/rjesenja/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hostio.ba/sigurnost/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hostio.ba/arhitekture/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hostio.ba/pristup/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hostio.ba/privatnost</loc><lastmod>2026-10-26</lastmod><priority>0.3</priority></url>
+  <url><loc>https://hostio.ba/brisanje-podataka</loc><lastmod>2026-10-26</lastmod><priority>0.2</priority></url>
 </urlset>

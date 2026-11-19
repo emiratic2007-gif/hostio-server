@@ -2,1896 +2,264 @@
 <html lang="bs">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hostio · AI rješenja za biznise u BiH: AI asistent, AI video reklame, web</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hostio, AI automatizacija i sistemi po mjeri</title>
+<meta name="description" content="Hostio projektuje, integriše i održava AI automatizacije i višekanalne agente za srednje i velike firme, povezane s vašim CRM-om, ERP-om i kanalima komunikacije.">
 <link rel="canonical" href="https://hostio.ba/">
-<meta property="og:url" content="https://hostio.ba/">
+<meta name="theme-color" content="#EDF0E8">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="Hostio">
-<meta property="og:locale" content="bs_BA">
+<meta property="og:url" content="https://hostio.ba/">
+<meta property="og:title" content="Hostio, AI automatizacija i sistemi po mjeri">
+<meta property="og:description" content="Hostio projektuje, integriše i održava AI automatizacije i višekanalne agente za srednje i velike firme, povezane s vašim CRM-om, ERP-om i kanalima komunikacije.">
 <meta property="og:image" content="https://hostio.ba/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:locale" content="bs_BA">
+<meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://hostio.ba/#org", "name": "Hostio", "url": "https://hostio.ba/", "logo": "https://hostio.ba/icon-512.png", "sameAs": ["https://www.instagram.com/hostio.ba/"], "areaServed": {"@type": "Country", "name": "Bosna i Hercegovina"}, "description": "AI rješenja za biznise u BiH: AI asistenti, AI video reklame i web stranice po mjeri."}, {"@type": "WebSite", "@id": "https://hostio.ba/#web", "url": "https://hostio.ba/", "name": "Hostio", "inLanguage": "bs", "publisher": {"@id": "https://hostio.ba/#org"}}, {"@type": "Service", "name": "Hostio: AI za zakazivanje i rezervacije", "serviceType": "AI asistent za WhatsApp, Viber i Instagram", "provider": {"@id": "https://hostio.ba/#org"}, "areaServed": {"@type": "Country", "name": "Bosna i Hercegovina"}, "description": "Hostio odgovara mušterijama na WhatsAppu, Viberu i Instagramu 24/7, zakazuje termine i vodi rezervacije za vaš biznis u BiH. Besplatan demo."}, {"@type": "Service", "name": "Hostio: AI video reklame", "serviceType": "AI video reklame bez snimanja, s profesionalnim voiceoverom", "provider": {"@id": "https://hostio.ba/#org"}, "areaServed": {"@type": "Country", "name": "Bosna i Hercegovina"}, "url": "https://hostio.ba/usluge/ai-video/", "description": "Skripta, profesionalni voiceover, AI vizuali i motion grafika. Gotove reklame za Reels, TikTok, Story i YouTube."}]}</script>
-<meta name="description" content="Hostio pravi AI rješenja za biznise u BiH: AI asistent koji 24/7 odgovara i zakazuje na WhatsAppu, Viberu i Instagramu, AI video reklame s profesionalnim voiceoverom i web stranice po mjeri. Besplatan demo.">
-<meta name="theme-color" content="#0E0F0C">
-<meta property="og:title" content="Hostio · AI rješenja za biznise u BiH">
-<meta property="og:description" content="AI asistent koji odgovara i zakazuje 24/7, AI video reklame bez snimanja i web stranice po mjeri. Sve za vaš biznis, na jednom mjestu.">
-<meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<script>document.documentElement.classList.add("mp")</script>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --g:#7ED957; --g2:#5BC236; --g3:#B8F29C; --gglow:rgba(126,217,87,.35);
-  --ink:#0E0F0C; --ink2:#1E1E1E; --ink3:#2A2B27; --paper:#FFFEFA; --paper2:#F4F2EA;
-  --mute:#8C8E86; --line:rgba(255,255,255,.09); --lineD:rgba(14,15,12,.10);
-  --loss:#FF5A4E; --lossglow:rgba(255,90,78,.28);
-  --r:22px; --ease:cubic-bezier(.2,.8,.2,1);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;overflow-x:hidden}
-@supports (overflow:clip){html,body{overflow-x:clip}}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{font-family:Poppins,system-ui,sans-serif;background:var(--ink);color:var(--paper);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img,svg{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit;color:inherit}
-::selection{background:var(--g);color:var(--ink)}
-.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
-.g{color:var(--g)}
-.loss{color:var(--loss)}
-html.mp .hero .wrap{opacity:0;animation:mpReveal 0s 3s forwards}
-@keyframes mpReveal{to{opacity:1}}
-section{position:relative;overflow-x:clip}
-.hero,section{contain:paint}
-.marquee{position:relative}
-
-/* grain */
-body::after{content:"";position:fixed;inset:-50%;z-index:9998;pointer-events:none;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 1.2s steps(6) infinite}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
-
-/* progress + cursor */
-#progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--g);transform-origin:0 50%;transform:scaleX(0);z-index:10001;box-shadow:0 0 12px var(--g)}
-#cursor{position:fixed;left:0;top:0;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;
-  background:radial-gradient(circle,rgba(126,217,87,.13),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s}
-@media (hover:hover){#cursor{opacity:1}}
-
-/* buttons */
-.btn{--bg:var(--g);position:relative;display:inline-flex;align-items:center;gap:.6em;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;
-  background:var(--bg);color:var(--ink);font-weight:600;font-size:1rem;letter-spacing:-.01em;overflow:hidden;isolation:isolate;
-  transition:box-shadow .4s var(--ease),transform .2s;box-shadow:0 0 0 0 var(--gglow),0 10px 30px -10px var(--gglow)}
-.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s var(--ease)}
-.btn:hover::before{transform:translateX(120%)}
-.btn:hover{box-shadow:0 0 0 6px rgba(126,217,87,.18),0 18px 40px -12px var(--gglow)}
-.btn:active{transform:scale(.97)}
-.btn svg{width:18px;height:18px;transition:transform .3s var(--ease)}
-.btn:hover svg{transform:translateX(4px)}
-.btn.ghost{--bg:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line)}
-.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--g)}
-.btn.dark{--bg:var(--ink);color:var(--paper)}
-.btn.lg{padding:20px 36px;font-size:1.08rem}
-
-/* nav */
-nav{position:fixed;inset:16px 0 auto;z-index:1000;pointer-events:none}
-.nav-in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 24px;border-radius:999px;
-  background:rgba(14,15,12,.55);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:inset 0 0 0 1px var(--line);transition:transform .5s var(--ease)}
-nav.hide .nav-in{transform:translateY(-140%)}
-.logo{font-weight:800;font-size:1.6rem;letter-spacing:-.05em;line-height:1}
-.logo b{color:var(--g);font-weight:800}
-.nav-links{display:flex;gap:4px}
-.nav-links a{padding:10px 16px;border-radius:999px;font-size:.92rem;color:#C9CBC2;transition:background .3s,color .3s}
-.nav-links a:hover{background:rgba(255,255,255,.06);color:var(--paper)}
-.nav-in .btn{padding:12px 22px;font-size:.92rem}
-@media (max-width:900px){.nav-links{display:none}}
-.nav-right{display:flex;align-items:center;gap:8px}
-.cta-short{display:none}
-@media (max-width:420px){.cta-full{display:none}.cta-short{display:inline}}
-.burger{display:none;position:relative;width:46px;height:46px;flex:none;border:0;border-radius:50%;background:rgba(255,255,255,.08);cursor:pointer}
-.burger span{position:absolute;left:14px;right:14px;height:2px;border-radius:2px;background:var(--paper);transition:transform .4s var(--ease),top .4s var(--ease)}
-.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:26px}
-body.menu-open .burger span:nth-child(1){top:22px;transform:rotate(45deg)}
-body.menu-open .burger span:nth-child(2){top:22px;transform:rotate(-45deg)}
-@media (max-width:900px){.burger{display:block}}
-.mmenu{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:96px 24px calc(28px + env(safe-area-inset-bottom));
-  background:rgba(14,15,12,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility 0s linear .4s;overflow-y:auto;overscroll-behavior:contain}
-body.menu-open .mmenu{opacity:1;visibility:visible;transition:opacity .4s var(--ease),visibility 0s}
-body.menu-open .mcta{transform:translateY(160%)}
-.mmenu .ml{display:flex;flex-direction:column}
-.mmenu .ml a{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:8px 0;border-bottom:1px solid var(--line);font-size:clamp(1.5rem,7.5vw,2.3rem);font-weight:700;letter-spacing:-.03em;opacity:0;transform:translateY(18px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.mmenu .ml a .n{font-size:.8rem;font-weight:600;letter-spacing:0;color:var(--g)}
-body.menu-open .mmenu .ml a{opacity:1;transform:none}
-body.menu-open .mmenu .ml a:nth-child(2){transition-delay:.04s}body.menu-open .mmenu .ml a:nth-child(3){transition-delay:.08s}body.menu-open .mmenu .ml a:nth-child(4){transition-delay:.12s}body.menu-open .mmenu .ml a:nth-child(5){transition-delay:.16s}body.menu-open .mmenu .ml a:nth-child(6){transition-delay:.2s}body.menu-open .mmenu .ml a:nth-child(7){transition-delay:.24s}
-.mmenu .btn{justify-content:center;padding:18px 20px;font-size:1rem}
-@media (min-width:901px){.mmenu{display:none}}
-
-/* HERO */
-.hero{min-height:100svh;padding:140px 0 80px;display:flex;align-items:center;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;pointer-events:none}
-.b1{width:620px;height:620px;background:radial-gradient(circle,var(--g),transparent 65%);top:-200px;right:-160px;animation:float1 16s ease-in-out infinite}
-.b2{width:520px;height:520px;background:radial-gradient(circle,#2F7D16,transparent 65%);bottom:-220px;left:-180px;animation:float2 20s ease-in-out infinite}
-.b3{width:300px;height:300px;background:radial-gradient(circle,#D7FFC4,transparent 65%);top:40%;left:45%;opacity:.15;animation:float1 12s ease-in-out infinite reverse}
-@keyframes float1{50%{transform:translate(-60px,80px) scale(1.12)}}
-@keyframes float2{50%{transform:translate(90px,-60px) scale(1.08)}}
-.gridbg{position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%)}
-.hero-grid{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
-@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:64px}}
-.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(126,217,87,.08);box-shadow:inset 0 0 0 1px rgba(126,217,87,.3);font-size:.86rem;font-weight:500;color:var(--g3)}
-.pill i{white-space:nowrap;font-style:normal;background:var(--g);color:var(--ink);font-weight:700;font-size:.72rem;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 0 0 var(--g);animation:ping 1.8s infinite}
-@keyframes ping{70%{box-shadow:0 0 0 10px rgba(126,217,87,0)}100%{box-shadow:0 0 0 0 rgba(126,217,87,0)}}
-h1{font-size:clamp(2.6rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.045em;font-weight:800;margin:26px 0 24px}
-h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
-h1 .w>span{display:inline-block}
-.hl{position:relative;white-space:nowrap}
-.hl svg{position:absolute;left:-2%;bottom:-.14em;width:104%;height:.4em;overflow:visible}
-.hl path{fill:none;stroke:var(--g);stroke-width:6;stroke-linecap:round}
-.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:#C4C6BD;max-width:560px;font-weight:300}
-.lead strong{color:var(--paper);font-weight:600}
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
-.trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:40px;color:#9FA198;font-size:.88rem}
-.trust span{display:flex;align-items:center;gap:8px}
-.trust svg{width:18px;height:18px;color:var(--g)}
-
-/* phone */
-.stage{position:relative;display:flex;justify-content:center;perspective:1400px}
-.phone{position:relative;width:min(340px,86vw);aspect-ratio:9/18.6;border-radius:48px;padding:12px;background:linear-gradient(145deg,#3a3b36,#111);
-  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 50px 100px -30px rgba(0,0,0,.9),0 0 120px -20px var(--gglow);transform-style:preserve-3d}
-.screen{position:relative;height:100%;border-radius:38px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column}
-.notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000;z-index:3}
-.chat-head{display:flex;align-items:center;gap:10px;padding:48px 16px 12px;background:#1F2C33}
-.av{width:38px;height:38px;border-radius:50%;background:var(--g);display:grid;place-items:center;color:var(--ink);font-weight:800;font-size:.95rem;flex:none}
-.chat-head b{display:block;font-size:.92rem;font-weight:600}
-.chat-head small{display:block;font-size:.72rem;color:#8EA3AD}
-.chat-head small.on{color:var(--g)}
-.chat-body{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden;justify-content:flex-end;
-  background:#0B141A radial-gradient(circle at 20% 10%,rgba(126,217,87,.06),transparent 40%)}
-.msg{max-width:82%;padding:8px 11px 6px;border-radius:12px;font-size:.84rem;line-height:1.4;position:relative;animation:pop .45s var(--ease) both}
-.msg small{display:block;text-align:right;font-size:.64rem;opacity:.6;margin-top:2px}
-.msg.in{align-self:flex-start;background:#202C33;border-top-left-radius:4px}
-.msg.out{align-self:flex-end;background:#005C4B;border-top-right-radius:4px}
-.msg.out small::after{content:" ✓✓";color:#53BDEB}
-@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
-.typing{align-self:flex-start;background:#202C33;border-radius:12px;padding:12px 14px;display:flex;gap:4px;animation:pop .3s var(--ease) both}
-.typing i{width:7px;height:7px;border-radius:50%;background:#8EA3AD;animation:bounce 1.2s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes bounce{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-.chat-input{display:flex;align-items:center;gap:8px;padding:10px 12px 18px;background:#0B141A}
-.chat-input div{flex:1;height:38px;border-radius:20px;background:#1F2C33}
-.chat-input span{width:38px;height:38px;border-radius:50%;background:#00A884}
-.float-card{position:absolute;z-index:4;padding:14px 16px;border-radius:18px;background:rgba(255,254,250,.96);color:var(--ink);
-  box-shadow:0 24px 60px -18px rgba(0,0,0,.6);display:flex;gap:12px;align-items:center;font-size:.84rem;min-width:220px}
-.float-card .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--g)}
-.float-card .ic svg{width:22px;height:22px}
-.float-card b{display:block;font-weight:600;font-size:.88rem}
-.float-card small{color:#6b6d66}
-.fc1{right:-30px;top:16%}
-.fc2{left:-50px;bottom:18%}
-.fc2 .ic{background:var(--ink);color:var(--g)}
-@media (max-width:560px){.fc1{right:-6px;top:6%}.fc2{left:-6px;bottom:6%}.float-card{min-width:0;transform:scale(.85)}}
-.scen{position:absolute;top:-56px;left:50%;transform:translateX(-50%);display:flex;gap:6px;padding:5px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);z-index:5}
-.scen button{border:0;background:none;padding:8px 14px;border-radius:999px;font-size:.78rem;font-weight:500;color:#A9ABA2;cursor:pointer;transition:all .3s;white-space:nowrap}
-.scen button.on{background:var(--g);color:var(--ink)}
-
-/* marquee */
-.marquee{padding:30px 0;border-block:1px solid var(--line);overflow:hidden;background:var(--ink)}
-.mq{display:flex;gap:56px;width:max-content;animation:mq 40s linear infinite}
-.marquee:hover .mq{animation-play-state:paused}
-.mq span{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:700;letter-spacing:-.03em;color:#3E403A;display:flex;align-items:center;gap:56px;white-space:nowrap}
-.mq span::after{content:"✦";color:var(--g);font-size:.8em}
-@keyframes mq{to{transform:translateX(-50%)}}
-
-/* section heads */
-.sec{padding:clamp(90px,12vw,160px) 0}
-.light{background:var(--paper);color:var(--ink)}
-.light .lead,.light .sub{color:#55574F}
-.light .lead strong{color:var(--ink)}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
-.light .eyebrow{color:var(--g2)}
-.eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
-h2{font-size:clamp(2.1rem,4.8vw,4rem);line-height:1.04;letter-spacing:-.04em;font-weight:800;margin:18px 0 20px}
-.sub{font-size:clamp(1rem,1.4vw,1.15rem);color:#A9ABA2;max-width:640px;font-weight:300}
-.head-c{text-align:center;display:flex;flex-direction:column;align-items:center}
-.reveal-line{display:block;overflow:hidden}
-.reveal-line>span{display:block}
-
-/* PAIN timeline */
-.tl{margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
-@media (max-width:900px){.tl{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.tl{grid-template-columns:1fr}}
-.tl-card{position:relative;padding:28px 24px;border-radius:var(--r);background:#fff;box-shadow:0 0 0 1px var(--lineD),0 20px 40px -30px rgba(0,0,0,.3)}
-.tl-card time{display:block;font-size:2rem;font-weight:800;letter-spacing:-.04em}
-.tl-card p{font-size:.95rem;color:#55574F;margin-top:6px}
-.tl-card .bubble{margin-top:16px;padding:10px 14px;border-radius:14px;background:var(--paper2);font-size:.88rem;font-weight:500}
-.tl-card.bad{background:var(--ink);color:var(--paper)}
-.tl-card.bad p{color:#A9ABA2}
-.tl-card.bad .bubble{background:rgba(255,90,78,.12);color:#FFB3AD;box-shadow:inset 0 0 0 1px rgba(255,90,78,.35)}
-.tl-card .tag{position:absolute;top:18px;right:18px;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--paper2);color:#6b6d66}
-.tl-card.bad .tag{background:var(--loss);color:#fff}
-.verdict{margin-top:70px;text-align:center;font-size:clamp(1.5rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.035em;line-height:1.2;max-width:900px;margin-inline:auto}
-.verdict .strike{position:relative;color:#9a9c94}
-.verdict .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:4px;background:var(--loss);transform:scaleX(var(--s,0));transform-origin:0 50%;border-radius:4px}
-.pains{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media (max-width:980px){.pains{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.pains{grid-template-columns:1fr}}
-.pain{padding:28px;border-radius:var(--r);background:var(--paper2);position:relative;overflow:hidden}
-.pain .n{font-size:3rem;font-weight:800;letter-spacing:-.05em;color:var(--loss);line-height:1}
-.pain h3{font-size:1.1rem;font-weight:700;margin:14px 0 8px;letter-spacing:-.02em}
-.pain p{font-size:.92rem;color:#55574F}
-.pain svg.pi{width:34px;height:34px;color:var(--loss)}
-
-/* CALCULATOR */
-.calc{background:var(--ink);overflow:hidden}
-.calc .blob{opacity:.25}
-.calc-grid{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:28px;position:relative}
-@media (max-width:900px){.calc-grid{grid-template-columns:1fr}}
-.panel{padding:clamp(24px,4vw,40px);border-radius:28px;background:linear-gradient(160deg,#1A1B17,#121310);box-shadow:inset 0 0 0 1px var(--line)}
-.field{margin-bottom:28px}
-.field:last-child{margin-bottom:0}
-.field label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.95rem;color:#C4C6BD;margin-bottom:12px}
-.field output{font-weight:700;color:var(--paper);font-size:1.15rem;white-space:nowrap}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--g) var(--p,50%),#2D2E29 var(--p,50%));outline:none;cursor:pointer}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 6px rgba(126,217,87,.25),0 4px 12px rgba(0,0,0,.5);transition:transform .2s}
-input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
-input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:var(--paper);box-shadow:0 0 0 6px rgba(126,217,87,.25)}
-.result{display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.result::before{content:"";position:absolute;inset:-40% -40% auto auto;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,var(--lossglow),transparent 65%);pointer-events:none}
-.res-label{font-size:.9rem;color:#A9ABA2;font-weight:500}
-.big{font-size:clamp(3rem,7vw,5.4rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--loss);margin:10px 0 6px;font-variant-numeric:tabular-nums;text-shadow:0 0 40px var(--lossglow)}
-.big small{font-size:.38em;font-weight:700;letter-spacing:-.02em;margin-left:6px}
-.res-rows{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
-.res-rows div{padding:18px;border-radius:18px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line)}
-.res-rows b{display:block;font-size:1.6rem;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.res-rows span{font-size:.8rem;color:#A9ABA2}
-.ticker{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:16px;background:rgba(255,90,78,.08);box-shadow:inset 0 0 0 1px rgba(255,90,78,.28);font-size:.9rem;color:#FFC9C4}
-.ticker b{color:#fff;font-variant-numeric:tabular-nums}
-.ticker .dot{background:var(--loss);animation:pingR 1.4s infinite}
-@keyframes pingR{70%{box-shadow:0 0 0 10px rgba(255,90,78,0)}100%{box-shadow:0 0 0 0 rgba(255,90,78,0)}}
-.note{font-size:.76rem;color:#6F716A;margin-top:14px}
-
-/* CUSTOM AI */
-.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-@media (max-width:980px){.ai-grid{grid-template-columns:1fr;gap:50px}}
-.ai-list{margin-top:34px;display:grid;gap:14px}
-.ai-list li{list-style:none;display:flex;gap:14px;align-items:flex-start;font-size:1rem}
-.ai-list li b{display:block;font-weight:600}
-.ai-list li span{color:#55574F;font-size:.93rem}
-.chk{width:28px;height:28px;border-radius:9px;background:var(--g);display:grid;place-items:center;flex:none;margin-top:2px}
-.chk svg{width:16px;height:16px;color:var(--ink)}
-.brain{position:relative;aspect-ratio:1;max-width:540px;margin-inline:auto;width:100%}
-.brain svg.net{width:100%;height:100%}
-.core{position:absolute;inset:34%;border-radius:50%;background:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 14px rgba(126,217,87,.12),0 0 0 34px rgba(126,217,87,.06),0 30px 80px -20px rgba(0,0,0,.5)}
-.core .logo{font-size:clamp(1.4rem,3vw,2.1rem);color:var(--paper)}
-.node{position:absolute;padding:10px 14px;border-radius:14px;background:#fff;color:var(--ink);font-size:.8rem;font-weight:600;box-shadow:0 0 0 1px var(--lineD),0 14px 30px -14px rgba(0,0,0,.3);white-space:nowrap;display:flex;align-items:center;gap:8px}
-.node i{width:8px;height:8px;border-radius:50%;background:var(--g);flex:none}
-.flow{stroke-dasharray:6 10;animation:dash 1.4s linear infinite}
-@keyframes dash{to{stroke-dashoffset:-32}}
-
-/* FEATURES bento */
-.bento{margin-top:64px;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.card{position:relative;grid-column:span 2;padding:30px;border-radius:26px;background:linear-gradient(160deg,#1A1B17,#111210);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;transform-style:preserve-3d;transition:box-shadow .4s}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;
-  background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(126,217,87,.14),transparent 40%)}
-.card:hover::before{opacity:1}
-.card:hover{box-shadow:inset 0 0 0 1px rgba(126,217,87,.35)}
-.card.w3{grid-column:span 3}.card.w4{grid-column:span 4}.card.w6{grid-column:span 6}
-@media (max-width:980px){.card,.card.w3,.card.w4{grid-column:span 3}.card.w6{grid-column:span 6}}
-@media (max-width:640px){.bento{grid-template-columns:1fr}.card,.card.w3,.card.w4,.card.w6{grid-column:auto}}
-.card .ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(126,217,87,.1);box-shadow:inset 0 0 0 1px rgba(126,217,87,.25);margin-bottom:22px}
-.card .ico svg{width:26px;height:26px;color:var(--g)}
-.card h3{font-size:1.25rem;font-weight:700;letter-spacing:-.025em;margin-bottom:10px}
-.card p{font-size:.94rem;color:#A9ABA2}
-.card .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.card .chips span{font-size:.76rem;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);color:#C4C6BD}
-.card .chips span.soon{color:#77796f;border-style:dashed}
-.badge{position:absolute;top:24px;right:24px;font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:5px 11px;border-radius:999px;background:var(--g);color:var(--ink)}
-.mini-cal{margin-top:22px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.mini-cal span{aspect-ratio:1;border-radius:8px;background:rgba(255,255,255,.04);display:grid;place-items:center;font-size:.7rem;color:#77796f}
-.mini-cal span.b{background:var(--g);color:var(--ink);font-weight:700}
-.mini-cal span.x{background:rgba(255,255,255,.1);color:#55574F;text-decoration:line-through}
-.remind{margin-top:22px;padding:14px;border-radius:16px;background:#0B141A;font-size:.84rem;max-width:330px}
-.remind p{color:#E9EDEF;margin-bottom:10px}
-.remind div{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.remind button{border:0;padding:9px;border-radius:10px;background:#1F2C33;color:#53BDEB;font-weight:600;font-size:.82rem;cursor:pointer}
-.langs{display:flex;gap:8px;margin-top:20px}
-.langs span{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:700;font-size:.82rem;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);transition:all .3s}
-.langs span.on{background:var(--g);color:var(--ink)}
-.dash-mock{margin-top:22px;display:grid;gap:8px}
-.dash-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line);font-size:.84rem}
-.dash-row b{font-weight:600;flex:1}
-.dash-row small{color:#8C8E86}
-.st{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:999px}
-.st.ok{background:rgba(126,217,87,.15);color:var(--g)}
-.st.wait{background:rgba(255,196,0,.13);color:#FFD34D}
-.st.no{background:rgba(255,90,78,.13);color:#FF8A80}
-
-/* STEPS */
-.steps{margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
-@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.steps{grid-template-columns:1fr}}
-.steps-line{position:absolute;top:36px;left:6%;right:6%;height:2px;background:var(--lineD)}
-.steps-line i{position:absolute;inset:0;background:var(--g);transform-origin:0 50%;transform:scaleX(0)}
-@media (max-width:900px){.steps-line{display:none}}
-.step{position:relative}
-.step .num{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;font-weight:800;background:var(--ink);color:var(--g);position:relative;z-index:1;box-shadow:0 0 0 8px var(--paper)}
-.step h3{font-size:1.2rem;font-weight:700;margin:22px 0 8px;letter-spacing:-.02em}
-.step p{font-size:.95rem;color:#55574F}
-.step .time{display:inline-block;margin-top:14px;font-size:.76rem;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--paper2);color:var(--g2)}
-
-/* COMPARE */
-.cmp-wrap{margin-top:60px}
-.switch{display:flex;justify-content:center;margin-bottom:40px}
-.sw{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:6px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line)}
-.sw button{position:relative;z-index:1;border:0;background:none;padding:14px 30px;font-weight:600;cursor:pointer;color:#A9ABA2;transition:color .4s;font-size:.95rem}
-.sw button.on{color:var(--ink)}
-.sw .knob{position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);border-radius:999px;background:var(--loss);transition:transform .55s var(--ease),background .55s}
-.sw.yes .knob{transform:translateX(100%);background:var(--g)}
-.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:900px){.cmp{grid-template-columns:1fr}}
-.cmp-item{padding:28px;border-radius:24px;background:linear-gradient(160deg,#1A1B17,#111210);box-shadow:inset 0 0 0 1px var(--line);min-height:170px;transition:box-shadow .5s}
-.cmp-item .k{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#77796f;font-weight:600}
-.cmp-item .v{font-size:1.15rem;font-weight:600;margin-top:12px;letter-spacing:-.02em;line-height:1.35;transition:color .4s}
-.cmp-item .v .no-t{color:#FF9C94}
-.cmp-item .v .yes-t{color:var(--g3)}
-.cmp.isno .cmp-item{box-shadow:inset 0 0 0 1px rgba(255,90,78,.22)}
-.cmp.isyes .cmp-item{box-shadow:inset 0 0 0 1px rgba(126,217,87,.28)}
-
-/* VERTICALS */
-.vert{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media (max-width:980px){.vert{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.vert{grid-template-columns:1fr}}
-.v-card{position:relative;padding:26px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px var(--lineD);overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s;min-height:230px;display:flex;flex-direction:column}
-.v-card:hover{transform:translateY(-8px);box-shadow:0 0 0 1px var(--g),0 30px 60px -30px rgba(91,194,54,.6)}
-.v-card .emo{width:56px;height:56px;border-radius:18px;background:var(--paper2);display:grid;place-items:center;margin-bottom:20px;transition:background .4s}
-.v-card .emo svg{width:28px;height:28px;color:var(--ink)}
-.v-card:hover .emo{background:var(--g)}
-.v-card h3{font-size:1.12rem;font-weight:700;letter-spacing:-.02em}
-.v-card p{font-size:.88rem;color:#55574F;margin-top:6px;flex:1}
-.v-card .live{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:.84rem;font-weight:600;color:var(--g2)}
-.v-card .live .dot{width:7px;height:7px}
-.v-card.feat{background:var(--ink);color:var(--paper)}
-.v-card.feat p{color:#A9ABA2}
-.v-card.feat .emo{background:var(--g)}
-.v-card.feat .live{color:var(--g)}
-
-/* WHY */
-.why-grid{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media (max-width:980px){.why-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:480px){.why-grid{grid-template-columns:1fr}}
-.stat{padding:30px;border-radius:24px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
-.stat b{display:block;font-size:clamp(2.6rem,5vw,3.8rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--g)}
-.stat>span{display:block;margin-top:10px;font-size:.92rem;color:#A9ABA2}
-.why-cols{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:900px){.why-cols{grid-template-columns:1fr}}
-.why-col{padding:36px;border-radius:28px;background:linear-gradient(160deg,#1A1B17,#111210);box-shadow:inset 0 0 0 1px var(--line)}
-.why-col h3{font-size:1.6rem;font-weight:800;letter-spacing:-.035em;display:flex;align-items:center;gap:12px}
-.why-col h3 svg{width:32px;height:32px;color:var(--g)}
-.why-col ul{margin-top:20px;display:grid;gap:14px}
-.why-col li{list-style:none;padding-left:30px;position:relative;color:#C4C6BD;font-size:.97rem}
-.why-col li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:14px;border-radius:5px;background:var(--g);box-shadow:0 0 14px var(--gglow)}
-.why-col li b{color:var(--paper);font-weight:600}
-
-/* FAQ */
-.faq{margin-top:56px;max-width:860px;margin-inline:auto}
-.q{border-bottom:1px solid var(--lineD)}
-.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;background:none;border:0;cursor:pointer;text-align:left;font-size:clamp(1.02rem,1.6vw,1.2rem);font-weight:600;letter-spacing:-.02em}
-.q .plus{width:36px;height:36px;border-radius:50%;flex:none;background:var(--paper2);position:relative;transition:background .3s,transform .5s var(--ease)}
-.q .plus::before,.q .plus::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
-.q .plus::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .4s var(--ease)}
-.q.open .plus{background:var(--g);transform:rotate(180deg)}
-.q.open .plus::after{transform:translate(-50%,-50%) rotate(0)}
-.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
-.q.open .a{grid-template-rows:1fr}
-.q .a>div{overflow:hidden}
-.q .a p{padding:0 50px 26px 0;color:#55574F}
-
-/* CTA + FORM */
-.final{overflow:hidden;background:var(--ink)}
-.final h2{font-size:clamp(2.4rem,6vw,5.2rem)}
-.form-grid{margin-top:60px;display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
-@media (max-width:900px){.form-grid{grid-template-columns:1fr}}
-.offer{padding:clamp(26px,4vw,40px);border-radius:28px;background:var(--g);color:var(--ink);position:relative;overflow:hidden}
-.offer h3{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;line-height:1.1}
-.offer ul{margin-top:22px;display:grid;gap:12px}
-.offer li{list-style:none;display:flex;gap:12px;font-weight:500}
-.offer li svg{width:22px;height:22px;flex:none}
-.offer .demo-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px}
-.offer::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(14,15,12,.08)}
-form.panel{display:grid;gap:16px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:560px){.row2{grid-template-columns:1fr}}
-.inp label{display:block;font-size:.84rem;color:#A9ABA2;margin-bottom:8px;font-weight:500}
-.inp input,.inp select,.inp textarea{width:100%;padding:15px 18px;border-radius:14px;border:0;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);outline:none;transition:box-shadow .3s,background .3s;font-size:.98rem}
-.inp textarea{resize:vertical;min-height:110px}
-.inp select option{background:var(--ink2)}
-.inp input:focus,.inp select:focus,.inp textarea:focus{box-shadow:inset 0 0 0 1.5px var(--g);background:rgba(126,217,87,.05)}
-.form-msg{font-size:.92rem;min-height:1.4em}
-.form-msg.ok{color:var(--g)}
-.form-msg.err{color:#FF8A80}
-form .btn{justify-content:center}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-
-footer{padding:60px 0 40px;border-top:1px solid var(--line);background:var(--ink)}
-.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
-.foot nav{position:static;pointer-events:auto;display:flex;gap:22px;flex-wrap:wrap}
-.foot nav a{font-size:.88rem;color:#8C8E86}
-.foot nav a:hover{color:var(--g)}
-.foot small{color:#5f615a;font-size:.82rem}
-.giant{font-size:clamp(5rem,22vw,20rem);font-weight:900;letter-spacing:-.07em;line-height:.8;text-align:center;margin-top:50px;
-  background:linear-gradient(180deg,#1E1F1B,var(--ink));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
-.giant b{background:linear-gradient(180deg,rgba(126,217,87,.35),rgba(126,217,87,0));-webkit-background-clip:text;background-clip:text}
-
-/* sticky mobile CTA */
-.mcta{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:999;display:none;transform:translateY(160%);transition:transform .5s var(--ease)}
-.mcta.show{transform:none}
-.mcta .btn{width:100%;justify-content:center}
-@media (max-width:700px){.mcta{display:block}}
-
-
-/* CHANNELS */
-.channels{background:var(--ink);overflow:hidden}
-.channels .blob{opacity:.22}
-.ch-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:2}
-@media (max-width:980px){.ch-grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}}
-.ch{--c:#25D366;--cg:rgba(37,211,102,.35);position:relative;border-radius:30px;padding:26px 22px 22px;background:linear-gradient(170deg,#1A1B17,#0F100D);box-shadow:inset 0 0 0 1px var(--line);transition:transform .6s var(--ease),box-shadow .6s;overflow:hidden;isolation:isolate}
-.ch::before{content:"";position:absolute;inset:-30% -30% auto auto;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--cg),transparent 65%);z-index:-1;opacity:.5;transition:opacity .6s}
-.ch:hover{transform:translateY(-10px);box-shadow:inset 0 0 0 1.5px var(--c),0 40px 80px -40px var(--cg)}
-.ch:hover::before{opacity:1}
-.ch.vb{--c:#8F5DF2;--cg:rgba(143,93,242,.38)}
-.ch.ig{--c:#E1306C;--cg:rgba(225,48,108,.35)}
-.ch-top{display:flex;align-items:center;gap:14px}
-.ch-ic{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:var(--c);flex:none;box-shadow:0 10px 30px -8px var(--cg)}
-.ch.ig .ch-ic{background:linear-gradient(45deg,#F9A825,#E1306C 45%,#8E3BD9)}
-.ch-ic svg{width:28px;height:28px;color:#fff}
-.ch-top b{display:block;font-size:1.35rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
-.ch-top small{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--g);font-weight:600;margin-top:3px}
-.ch-top small .dot{width:7px;height:7px}
-.ch-desc{font-size:.92rem;color:#A9ABA2;margin:16px 0 18px;min-height:3em}
-.mini{height:300px;border-radius:20px;padding:54px 12px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:7px;overflow:hidden;position:relative}
-.mini .hd{position:absolute;top:0;left:0;right:0;height:42px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:.74rem;font-weight:600;z-index:1}
-.mini .hd i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.62rem;font-weight:800}
-.mini .bb{max-width:84%;padding:8px 11px;border-radius:15px;font-size:.8rem;line-height:1.38;animation:pop .45s var(--ease) both}
-.mini .bb.in{align-self:flex-start}.mini .bb.out{align-self:flex-end}
-.mini .ty{align-self:flex-start;display:flex;gap:4px;padding:11px 13px;border-radius:15px;animation:pop .3s var(--ease) both}
-.mini .ty i{width:6px;height:6px;border-radius:50%;animation:bounce 1.2s infinite}
-.mini .ty i:nth-child(2){animation-delay:.15s}.mini .ty i:nth-child(3){animation-delay:.3s}
-/* whatsapp look */
-.mini.wa{background:#0B141A}.mini.wa .hd{background:#1F2C33;color:#E9EDEF}.mini.wa .hd i{background:#7ED957;color:#0E0F0C}
-.mini.wa .bb.in,.mini.wa .ty{background:#202C33;color:#E9EDEF;border-top-left-radius:4px}.mini.wa .bb.out{background:#005C4B;color:#E9EDEF;border-top-right-radius:4px}
-.mini.wa .ty i{background:#8EA3AD}
-/* viber look */
-.mini.vb{background:#F3F0FA}.mini.vb .hd{background:#fff;color:#2B2246;box-shadow:0 1px 0 rgba(0,0,0,.06)}.mini.vb .hd i{background:#7ED957;color:#0E0F0C}
-.mini.vb .bb.in,.mini.vb .ty{background:#fff;color:#2B2246;border-bottom-left-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.06)}.mini.vb .bb.out{background:#7360F2;color:#fff;border-bottom-right-radius:4px}
-.mini.vb .ty i{background:#A99BD8}
-/* instagram look */
-.mini.ig{background:#000}.mini.ig .hd{background:#000;color:#F5F5F5;border-bottom:1px solid #1c1c1c}.mini.ig .hd i{background:#7ED957;color:#0E0F0C}
-.mini.ig .bb{border-radius:20px}
-.mini.ig .bb.in,.mini.ig .ty{background:#262626;color:#F5F5F5}.mini.ig .bb.out{background:linear-gradient(135deg,#8E3BD9,#5B51DE 55%,#3797F0);color:#fff}
-.mini.ig .ty i{background:#8e8e8e}
-.ch-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.ch-tags span{font-size:.72rem;font-weight:500;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);color:#C4C6BD}
-
-.flowbox{position:relative;z-index:1;margin-top:96px;padding:clamp(22px,4vw,44px);border-radius:32px;background:linear-gradient(170deg,#161713,#0E0F0C);box-shadow:inset 0 0 0 1px var(--line);position:relative;overflow:hidden}
-.flowbox h3{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-.04em;text-align:center;line-height:1.15}
-.flowbox>p{text-align:center;color:#A9ABA2;max-width:620px;margin:12px auto 0;font-size:.98rem}
-.flow-svg{margin-top:34px;width:100%;height:auto}
-.flow-svg.v{display:none;max-width:420px;margin-inline:auto}
-@media (max-width:760px){.flow-svg.h{display:none}.flow-svg.v{display:block}}
-.flow-svg text{font-family:Poppins,sans-serif}
-.fpath{fill:none;stroke:rgba(255,255,255,.12);stroke-width:2}
-.fpath.lit{stroke-dasharray:4 9;animation:dash 1.2s linear infinite}
-.eq{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:clamp(10px,2vw,22px);margin-top:34px}
-.eq div{text-align:center;padding:16px 22px;border-radius:20px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line);min-width:120px}
-.eq b{display:block;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--g)}
-.eq span{font-size:.82rem;color:#A9ABA2}
-.eq em{font-style:normal;font-size:1.6rem;font-weight:800;color:#55574F}
-
-.proof{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:900px){.proof{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.proof{grid-template-columns:1fr}}
-.pr{padding:24px;border-radius:22px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line);display:flex;gap:14px;align-items:flex-start}
-.pr .chk{flex:none}
-.pr b{display:block;font-weight:700;font-size:1rem;letter-spacing:-.02em;margin-bottom:4px}
-.pr span{font-size:.88rem;color:#A9ABA2}
-
-
-/* links to detail pages */
-.more{display:flex;justify-content:center;margin-top:44px}
-.more a{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.94rem;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--paper);transition:box-shadow .3s,background .3s}
-.light .more a{box-shadow:inset 0 0 0 1.5px var(--lineD);color:var(--ink)}
-.more a:hover{box-shadow:inset 0 0 0 1.5px var(--g);background:rgba(126,217,87,.08)}
-.more a svg{width:18px;height:18px;color:var(--g)}
-.card .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.88rem;font-weight:600;color:var(--g)}
-.card .go::after{content:"→";transition:transform .3s var(--ease)}
-.card:hover .go::after{transform:translateX(4px)}
-a.card{display:block;color:inherit}
-.pain{display:flex;align-items:center;gap:16px;padding:22px 24px}
-.pain h3{margin:0}
-.pain svg.pi{flex:none;width:44px;height:44px;padding:9px;border-radius:13px;background:rgba(255,90,78,.1)}
-.pr{align-items:center;padding:18px 20px}
-.pr b{margin:0}
-.ch-ic svg{width:30px;height:30px;color:#fff}
-.ch.vb{--c:#7360F2}
-.ch.ig .ch-ic{background:linear-gradient(45deg,#FEDA75,#FA7E1E 25%,#D62976 50%,#962FBF 75%,#4F5BD5)}
-.ch-tags{margin-top:16px}
-.ai-list li{align-items:center}
-.step h3{margin-bottom:0}
-.v-card{min-height:0}
-@media (max-width:520px){.vert{grid-template-columns:1fr 1fr}.v-card.feat{grid-column:1/-1}.v-card{padding:18px}.v-card .emo{width:46px;height:46px;margin-bottom:14px}.v-card h3{font-size:1rem}}
-.v-card h3{margin-top:auto}
-.tl-card p{font-weight:600;color:var(--ink)}
-.tl-card.bad p{color:var(--paper)}
-
-/* ================= PHONES ================= */
-@media (max-width:600px){
-  nav{inset:10px 0 auto}
-  .nav-in{padding:6px 6px 6px 18px;gap:10px}
-  .logo{font-size:1.45rem}
-  .nav-in .btn{padding:11px 16px;font-size:.86rem}
-  .nav-in .btn svg{width:16px;height:16px}
-  body::after,#cursor,.b3{display:none}
-  .blob{filter:blur(60px)}
-  .b1{width:380px;height:380px;top:-140px;right:-140px}
-  .b2{width:340px;height:340px}
-  .hero{min-height:auto;padding:104px 0 56px}
-  .hero-grid{gap:44px}
-  .pill{font-size:.76rem;padding:6px 14px 6px 6px;gap:8px}
-  h1{font-size:clamp(2.1rem,10.4vw,3.3rem);margin:20px 0 18px}
-  .hl{white-space:normal;padding-bottom:.04em;background:linear-gradient(var(--g),var(--g)) 0 100%/100% .07em no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .hl svg{display:none}
-  .lead{font-size:1rem}
-  .cta-row{flex-direction:column;align-items:stretch;gap:12px;margin-top:28px}
-  .cta-row .btn{justify-content:center}
-  .btn.lg{padding:18px 24px;font-size:1rem}
-  .trust{gap:10px 18px;margin-top:26px;font-size:.84rem}
-  .stage{flex-direction:column;align-items:center}
-  .scen{position:relative;top:auto;left:auto;transform:none;margin:0 auto 16px;max-width:100%;overflow-x:auto;scrollbar-width:none}
-  .scen::-webkit-scrollbar{display:none}
-  .scen button{padding:8px 12px;font-size:.74rem}
-  .phone{width:min(300px,80vw);border-radius:42px;padding:10px}
-  .screen{border-radius:33px}
-  .chat-head{padding:42px 14px 10px}
-  .msg{font-size:.8rem}
-  .float-card{padding:10px 12px;gap:10px;font-size:.76rem;min-width:0;transform:none;border-radius:14px}
-  .float-card b{font-size:.8rem}
-  .float-card .ic{width:34px;height:34px;border-radius:10px}
-  .float-card .ic svg{width:18px;height:18px}
-  .fc1{right:-4px;top:18%}
-  .fc2{left:-4px;bottom:6%}
-  .marquee{padding:20px 0}
-  .mq{gap:36px}.mq span{gap:36px}
-  .sec{padding:76px 0}
-  .eyebrow{font-size:.72rem;letter-spacing:.12em}
-  h2{font-size:clamp(1.85rem,8.6vw,2.6rem);margin:14px 0}
-  h2 br{display:none}
-  .sub{font-size:.98rem}
-  .tl{margin-top:44px;gap:12px}
-  .tl-card{padding:22px 20px}
-  .tl-card time{font-size:1.7rem}
-  .verdict{margin-top:44px;font-size:1.4rem}
-  .pains{margin-top:48px;gap:12px}
-  .pain{padding:22px}
-  .calc-grid{margin-top:40px;gap:16px}
-  .panel{border-radius:22px}
-  .field{margin-bottom:22px}
-  .field label{font-size:.9rem}
-  input[type=range]{height:10px}
-  input[type=range]::-webkit-slider-thumb{width:30px;height:30px}
-  input[type=range]::-moz-range-thumb{width:30px;height:30px}
-  .big{font-size:clamp(2.6rem,13vw,3.6rem)}
-  .res-rows{gap:10px;margin:20px 0}
-  .res-rows div{padding:14px}
-  .res-rows b{font-size:1.35rem}
-  .ticker{font-size:.84rem;padding:14px}
-  .ch-grid{margin-top:40px;gap:14px}
-  .ch{padding:22px 18px 18px;border-radius:24px}
-  .ch-ic{width:46px;height:46px;border-radius:14px}
-  .ch-ic svg{width:24px;height:24px}
-  .ch-top b{font-size:1.2rem}
-  .ch-desc{min-height:0;font-size:.9rem;margin:14px 0 16px}
-  .mini{height:270px;border-radius:16px;padding-top:50px}
-  .flowbox{margin-top:56px;border-radius:24px}
-  .flowbox>p{font-size:.92rem}
-  .eq{gap:8px;flex-wrap:nowrap}
-  .eq em{display:none}
-  .eq div{flex:1 1 0;min-width:0;padding:12px 6px;border-radius:16px}
-  .eq b{font-size:1.9rem}
-  .eq span{display:block;font-size:.7rem;line-height:1.3}
-  .proof{gap:10px}
-  .pr{padding:18px}
-  .ai-list{margin-top:26px}
-  .ai-list li{font-size:.95rem}
-  .brain{aspect-ratio:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-  .brain svg.net{display:none}
-  .core{position:relative;inset:auto;flex:0 0 150px;width:150px;height:150px;margin:0 calc(50% - 75px) 16px}
-  .core .logo{font-size:1.5rem}
-  .node{position:static!important;font-size:.82rem;padding:9px 13px}
-  .bento{margin-top:40px;gap:12px}
-  .card{padding:22px;border-radius:22px}
-  .card h3{font-size:1.1rem}
-  .card.w6{display:flex!important;flex-direction:column;align-items:flex-start;gap:16px!important}
-  .card.w6 .btn{white-space:normal!important}
-  .badge{top:18px;right:18px}
-  .dash-row{flex-wrap:wrap;gap:6px 12px}
-  .dash-row b{flex:1 1 55%}
-  .remind{max-width:none}
-  .steps{margin-top:44px;gap:28px}
-  .step .num{width:60px;height:60px;border-radius:18px;font-size:1.3rem}
-  .step h3{margin-top:16px}
-  .switch{margin-bottom:24px}
-  .sw button{padding:12px 18px;font-size:.88rem}
-  .cmp-wrap{margin-top:36px}
-  .cmp{gap:12px}
-  .cmp-item{padding:22px;min-height:0}
-  .vert{margin-top:40px;gap:12px}
-  .v-card{min-height:0;padding:22px}
-  .why-grid{margin-top:40px;gap:12px}
-  .stat{padding:22px}
-  .why-cols{gap:12px}
-  .why-col{padding:24px;border-radius:22px}
-  .why-col h3{font-size:1.3rem}
-  .faq{margin-top:32px}
-  .q button{padding:20px 0}
-  .q .a p{padding:0 0 20px}
-  .final h2{font-size:clamp(1.95rem,9vw,2.8rem)}
-  .form-grid{margin-top:40px;gap:16px}
-  .offer{padding:24px;border-radius:22px}
-  .offer h3{font-size:1.45rem}
-  .inp input,.inp select,.inp textarea{font-size:16px}
-  footer{padding:44px 0 calc(110px + env(safe-area-inset-bottom))}
-  .foot{flex-direction:column;align-items:flex-start;gap:18px}
-  .giant{margin-top:30px}
-}
-@media (max-width:360px){
-  .wrap{width:calc(100% - 24px)}
-  .nav-in{padding-left:14px}
-  .logo{font-size:1.3rem}
-  .nav-in .btn{padding:10px 13px}
-  .burger{width:42px;height:42px}
-  .burger span{left:12px;right:12px}
-  .burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:24px}
-  body.menu-open .burger span:nth-child(1),body.menu-open .burger span:nth-child(2){top:20px}
-  h1{font-size:2rem}
-  .scen button{padding:7px 9px;font-size:.7rem}
-  .res-rows{grid-template-columns:1fr}
-  .tl-card .tag{position:static;display:inline-block;margin-bottom:10px}
-}
-@media (max-height:500px) and (orientation:landscape){
-  .mmenu{justify-content:flex-start}
-  .hero{min-height:auto}
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  body::after{display:none}
-}
-
-.g2{color:var(--g2)}
-/* ===== AI solutions: hero video card ===== */
-.float-card.vcard{flex-direction:column;align-items:stretch;gap:8px;padding:8px 8px 10px;width:152px;min-width:0;cursor:pointer}
-.vcard .vthumb{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/16;background:#111}
-.vcard video{width:100%;height:100%;object-fit:cover;display:block}
-.vcard .vtag{position:absolute;left:6px;top:6px;font-size:.58rem;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:999px;background:var(--g);color:var(--ink)}
-.vcard .vcap{display:flex;align-items:center;gap:7px;padding:0 3px}
-.vcard .vcap svg{width:16px;height:16px;flex:none;color:var(--g2)}
-.vcard .vcap b{font-size:.76rem;line-height:1.2}
-.fc2.vcard{left:-64px;bottom:6%}
-@media (min-width:601px) and (max-width:980px){.fc2.vcard{left:calc(50% - 250px)}.fc1{right:calc(50% - 280px)}}
-@media (max-width:600px){.float-card.vcard{width:104px;padding:6px 6px 7px;gap:6px}.fc2.vcard{left:-6px;bottom:3%}.vcard .vcap b{font-size:.64rem}.vcard .vcap svg{width:13px;height:13px}.vcard .vtag{font-size:.5rem}}
-
-/* ===== Services (Šta radimo) ===== */
-.svc-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.svc{position:relative;display:flex;flex-direction:column;padding:16px 16px 26px;border-radius:30px;background:var(--paper2);box-shadow:inset 0 0 0 1px var(--lineD);transition:transform .45s var(--ease),box-shadow .45s}
-.svc:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1.5px var(--g2),0 34px 60px -34px rgba(14,15,12,.45)}
-.svc .vis{position:relative;height:230px;border-radius:22px;background:var(--ink);overflow:hidden;margin-bottom:22px}
-.svc .num{padding:0 10px;font-size:.76rem;font-weight:700;letter-spacing:.14em;color:var(--g2)}
-.svc h3{padding:0 10px;font-size:1.5rem;font-weight:700;letter-spacing:-.035em;line-height:1.12;margin:8px 0 8px}
-.svc p{padding:0 10px;color:#55574F;font-size:.95rem}
-.svc .go{margin:auto 10px 0;padding-top:18px;font-weight:600;font-size:.94rem;display:inline-flex;gap:8px;align-items:center}
-.svc .go::after{content:"→";color:var(--g2);transition:transform .3s var(--ease)}
-.svc:hover .go::after{transform:translateX(4px)}
-.svc .new{position:absolute;top:28px;left:28px;z-index:3;font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:5px 11px;border-radius:999px;background:var(--g);color:var(--ink)}
-.v-chat{position:absolute;inset:0;padding:50px 20px 20px;display:flex;flex-direction:column;justify-content:center;gap:9px;background:#0B141A radial-gradient(circle at 80% 0%,rgba(126,217,87,.12),transparent 55%)}
-.v-chat span{max-width:78%;padding:9px 12px;border-radius:14px;font-size:.8rem;line-height:1.35;color:#E9EDEF}
-.v-chat .in{align-self:flex-start;background:#202C33;border-top-left-radius:4px}
-.v-chat .out{align-self:flex-end;background:#005C4B;border-top-right-radius:4px}
-.v-chat .ok{align-self:center;margin-top:6px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--paper);color:var(--ink);font-size:.76rem;font-weight:700}
-.v-chat .ok i{width:18px;height:18px;border-radius:50%;background:var(--g);display:grid;place-items:center}
-.v-chat .ok svg{width:11px;height:11px}
-.v-chans{position:absolute;left:16px;top:14px;display:flex;gap:6px;z-index:2}
-.v-chans b{width:26px;height:26px;border-radius:8px;display:grid;place-items:center}
-.v-chans svg{width:15px;height:15px;fill:#fff}
-.v-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
-.v-vid::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,12,0) 40%,rgba(14,15,12,.85))}
-.v-vid .play{position:absolute;left:50%;top:44%;z-index:2;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;background:var(--g);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(126,217,87,.25);transition:transform .4s var(--ease)}
-.svc:hover .v-vid .play{transform:scale(1.1)}
-.v-vid .play svg{width:24px;height:24px;margin-left:3px;fill:var(--ink)}
-.wave{position:absolute;left:18px;right:18px;bottom:16px;z-index:2;height:34px;display:flex;align-items:center;gap:3px}
-.wave i{flex:1;height:30%;border-radius:3px;background:var(--g);animation:wv 1.1s ease-in-out infinite}
-.wave em{flex:none;margin-right:8px;font-style:normal;font-size:.66rem;font-weight:700;letter-spacing:.08em;color:var(--paper)}
-@keyframes wv{0%,100%{height:22%}50%{height:100%}}
-.v-web{position:absolute;inset:18px 18px -30px;border-radius:14px;background:#17181A;box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
-.v-web .bar{display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line)}
-.v-web .bar i{width:8px;height:8px;border-radius:50%;background:#3A3B37}
-.v-web .bar span{margin-left:8px;flex:1;height:8px;border-radius:4px;background:#26272A}
-.v-web .bd{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px}
-.v-web .k{padding:10px;border-radius:10px;background:#202124}
-.v-web .k small{display:block;font-size:.6rem;color:#8C8E86}
-.v-web .k b{font-size:1.1rem;color:var(--paper)}
-.v-web .k b.g{color:var(--g)}
-.v-web .ch{grid-column:1/-1;height:70px;padding:10px;border-radius:10px;background:#202124;display:flex;align-items:flex-end;gap:6px}
-.v-web .ch i{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--g),rgba(126,217,87,.3))}
-.svc-more{margin-top:18px;display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:24px;background:var(--ink);color:var(--paper);transition:box-shadow .3s}
-.svc-more:hover{box-shadow:0 0 0 2px var(--g)}
-.svc-more .ico{width:46px;height:46px;border-radius:14px;flex:none;display:grid;place-items:center;background:rgba(126,217,87,.12)}
-.svc-more .ico svg{width:24px;height:24px;color:var(--g)}
-.svc-more p{flex:1;font-size:.98rem}
-.svc-more p b{font-weight:600}
-.svc-more p span{color:#A9ABA2}
-.svc-more .arr{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--g);color:var(--ink)}
-.svc-more .arr svg{width:18px;height:18px}
-@media (max-width:980px){.svc-grid{grid-template-columns:1fr;max-width:560px;margin-inline:auto}.svc-more{max-width:560px;margin-inline:auto}}
-@media (max-width:600px){.svc-grid{margin-top:40px;gap:14px}.svc{border-radius:24px;padding:12px 12px 22px}.svc .vis{height:200px;border-radius:18px}.svc h3{font-size:1.3rem}.svc-more{padding:16px;gap:14px}.svc-more p{font-size:.9rem}}
-
-/* ===== AI video section ===== */
-.vid{position:relative;overflow:hidden}
-.vid-grid{position:relative;margin-top:64px}
-.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1040px;margin-inline:auto;align-items:start}
-.reels .reel:nth-child(2){margin-top:56px}
-.vid-grid>div:last-child{margin-top:72px}
-.vfeat{grid-template-columns:1fr 1fr}
-.vid-cta{justify-content:center}
-.ptag{position:absolute;left:12px;top:12px;z-index:2;padding:6px 11px;border-radius:999px;background:rgba(14,15,12,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--g);font-size:.66rem;font-weight:700;letter-spacing:.1em}
-.reel{position:relative;margin:0}
-
-.reel .frame{position:relative;aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#111;box-shadow:0 0 0 1px var(--line),0 40px 80px -30px rgba(0,0,0,.9),0 0 90px -30px var(--gglow)}
-.reel video{width:100%;height:100%;object-fit:cover;display:block}
-.reel .snd{position:absolute;right:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:0;background:rgba(14,15,12,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--paper);font-size:.8rem;font-weight:600;cursor:pointer;transition:background .3s,color .3s}
-.reel .snd svg{width:18px;height:18px}
-.reel .snd .on-i{display:none}
-.reel .snd.on{background:var(--g);color:var(--ink)}
-.reel .snd.on .on-i{display:block}.reel .snd.on .off-i{display:none}
-.reel figcaption{margin-top:14px;padding-left:4px}
-.reel figcaption b{display:block;font-weight:600;font-size:.98rem}
-.reel figcaption small{color:var(--mute);font-size:.84rem}
-.vfeat{display:grid;gap:12px}
-.vf{display:flex;gap:16px;align-items:center;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
-.vf .ico{width:48px;height:48px;border-radius:14px;flex:none;display:grid;place-items:center;background:rgba(126,217,87,.1);box-shadow:inset 0 0 0 1px rgba(126,217,87,.25)}
-.vf .ico svg{width:24px;height:24px;color:var(--g)}
-.vf b{display:block;font-weight:600;font-size:1rem}
-.vf small{color:#A9ABA2;font-size:.88rem}
-.formats{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.formats span{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);color:#C4C6BD}
-.formats span i{display:block;border:2px solid var(--g);border-radius:3px}
-.vid-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.vsteps{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.vstep{position:relative;padding:22px;border-radius:22px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
-.vstep .si{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:var(--g);color:var(--ink);margin-bottom:16px}
-.vstep .si svg{width:22px;height:22px}
-.vstep em{position:absolute;top:22px;right:22px;font-style:normal;font-size:.74rem;font-weight:700;color:#55574F;letter-spacing:.1em}
-.vstep b{display:block;font-size:1.05rem;font-weight:600}
-.vstep small{color:#A9ABA2;font-size:.86rem}
-@media (max-width:980px){.vsteps{grid-template-columns:1fr 1fr}.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 8px;scrollbar-width:none;max-width:none}.reels::-webkit-scrollbar{display:none}.reels .reel{flex:0 0 min(300px,72%);scroll-snap-align:center}.reels .reel:nth-child(2){margin-top:0}.vfeat{grid-template-columns:1fr}.vid-grid>div:last-child{margin-top:44px}}
-@media (max-width:600px){.vid-grid{margin-top:40px}.reel .frame{border-radius:20px}.reel figcaption b{font-size:.86rem}.reel figcaption small{font-size:.76rem}.vf{padding:14px;gap:12px}.vf .ico{width:42px;height:42px}.vsteps{margin-top:48px;gap:10px}.vstep{padding:16px}.vstep .si{width:38px;height:38px;margin-bottom:12px}.vid-cta .btn{width:100%;justify-content:center}}
-@media (max-width:380px){.vsteps{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){.wave i{animation:none;height:60%}}
-</style>
+<link rel="preload" href="/assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css?v=1">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hostio","url":"https://hostio.ba/","logo":"https://hostio.ba/icon-512.png","description":"AI automatizacija i sistemi po mjeri za srednje i velike firme."}</script>
+<script src="/assets/site.js?v=1" defer></script>
 </head>
-<body>
-<div id="progress"></div>
-<div id="cursor"></div>
-
-<nav id="nav">
-  <div class="wrap nav-in">
-    <a href="#top" class="logo" aria-label="Hostio">host<b>io.</b></a>
-    <div class="nav-links">
-      <a href="#usluge">Usluge</a>
-      <a href="#video">AI video</a>
-      <a href="#gubitak">AI asistent</a>
-      <a href="#kalkulator">Kalkulator</a>
-      <a href="#kako">Kako radi</a>
-      <a href="#faq">Pitanja</a>
-    </div>
-    <div class="nav-right">
-      <a href="#demo" class="btn magnetic"><span class="cta-full">Besplatan demo</span><span class="cta-short">Demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <button class="burger" id="burger" type="button" aria-label="Otvori meni" aria-expanded="false" aria-controls="mmenu"><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<div class="mmenu" id="mmenu" aria-hidden="true" data-lenis-prevent>
-  <div class="ml">
-    <a href="#usluge">Usluge <span class="n">01</span></a>
-    <a href="#video">AI video reklame <span class="n">02</span></a>
-    <a href="#gubitak">AI asistent <span class="n">03</span></a>
-    <a href="#kalkulator">Kalkulator <span class="n">04</span></a>
-    <a href="#kako">Kako radi <span class="n">05</span></a>
-    <a href="#faq">Pitanja <span class="n">06</span></a>
-    <a href="/usluge/">Sve usluge detaljno <span class="n">→</span></a>
-  </div>
-  <a href="#demo" class="btn lg">Zakažite besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-</div>
-
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="gridbg"></div>
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <div class="pill hero-in"><i>AI SOLUTIONS</i><span class="dot"></span> AI rješenja za biznise u BiH</div>
-      <h1 id="h1">AI koji radi <span class="hl g">za vaš biznis.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path id="hlpath" d="M2 14 C 60 4, 140 4, 298 10"/></svg></span></h1>
-      <p class="lead hero-in"><strong>AI asistent</strong> koji odgovara i zakazuje 24/7. <strong>AI video reklame</strong> bez snimanja, s glasom koji prodaje. <strong>Web i dashboard</strong> po mjeri.</p>
-      <div class="cta-row hero-in">
-        <a href="#demo" class="btn lg magnetic">Zakažite besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="#video" class="btn ghost lg magnetic"><svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>Pogledajte reklame</a>
+<body data-title-bs="Hostio, AI automatizacija i sistemi po mjeri" data-title-en="Hostio, AI automation and custom systems">
+<svg class="bgfx" viewBox="0 0 1440 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 49.0 L0 44.5 L40 42.5 L80 42.2 L120 42.4 L160 41.6 L200 38.7 L240 33.1 L280 25.3 L320 16.6 L360 8.8 L400 3.9 L440 3.2 L480 7.3 L520 15.6 L560 26.8 L600 38.7 L640 49.3 L680 57.0 L720 61.0 L760 61.6 L800 59.7 L840 57.0 L880 54.9 L920 54.6 L960 56.2 L1000 59.1 L1040 61.9 L1080 63.0 L1120 61.0 L1160 55.3 L1200 46.0 L1240 34.3 L1280 22.3 L1320 12.1 L1360 5.4 L1400 3.4 L1440 5.9 L1480 12.1"/><path d="M-40 131.9 L0 128.3 L40 127.3 L80 128.1 L120 129.1 L160 129.0 L200 126.5 L240 121.1 L280 113.4 L320 104.8 L360 97.1 L400 92.2 L440 91.4 L480 95.2 L520 102.9 L560 113.2 L600 124.0 L640 133.3 L680 139.7 L720 142.6 L760 142.4 L800 140.3 L840 137.9 L880 136.7 L920 137.6 L960 140.7 L1000 145.1 L1040 149.3 L1080 151.7 L1120 150.7 L1160 145.8 L1200 137.1 L1240 126.1 L1280 114.5 L1320 104.5 L1360 97.7 L1400 95.2 L1440 96.9 L1480 101.7"/><path d="M-40 167.6 L0 159.0 L40 159.2 L80 168.9 L120 187.0 L160 210.6 L200 235.5 L240 257.0 L280 270.7 L320 273.9 L360 265.6 L400 247.2 L440 222.2 L480 195.4 L520 171.7 L560 155.8 L600 150.5 L640 156.4 L680 172.1 L720 194.4 L760 218.8 L800 240.8 L840 256.7 L880 264.1 L920 262.3 L960 252.6 L1000 237.1 L1040 218.9 L1080 201.0 L1120 186.2 L1160 176.0 L1200 171.4 L1240 172.5 L1280 178.5 L1320 188.5 L1360 201.2 L1400 215.2 L1440 229.1 L1480 241.3"/><path d="M-40 326.1 L0 319.7 L40 311.5 L80 303.3 L120 296.6 L160 291.9 L200 289.1 L240 287.6 L280 286.4 L320 284.8 L360 282.7 L400 280.6 L440 279.3 L480 280.3 L520 284.3 L560 291.7 L600 301.9 L640 313.3 L680 323.8 L720 331.2 L760 333.5 L800 329.9 L840 320.6 L880 307.1 L920 291.9 L960 277.8 L1000 267.4 L1040 262.5 L1080 263.7 L1120 270.2 L1160 280.4 L1200 292.0 L1240 302.7 L1280 310.9 L1320 315.7 L1360 317.2 L1400 316.2 L1440 313.9 L1480 311.5"/><path d="M-40 415.7 L0 412.8 L40 407.1 L80 400.4 L120 394.4 L160 390.4 L200 388.7 L240 389.0 L280 389.9 L320 390.0 L360 387.8 L400 382.8 L440 375.2 L480 366.1 L520 357.4 L560 350.9 L600 348.3 L640 350.4 L680 356.9 L720 366.7 L760 377.8 L800 388.2 L840 396.0 L880 400.5 L920 401.6 L960 400.2 L1000 397.8 L1040 396.0 L1080 395.9 L1120 397.9 L1160 401.5 L1200 405.4 L1240 408.0 L1280 407.6 L1320 403.4 L1360 395.4 L1400 384.6 L1440 372.7 L1480 362.0"/><path d="M-40 416.7 L0 414.0 L40 421.6 L80 438.6 L120 462.2 L160 488.2 L200 511.5 L240 527.5 L280 532.9 L320 526.3 L360 509.0 L400 484.3 L440 456.9 L480 432.2 L520 415.0 L560 408.4 L600 413.3 L640 428.6 L680 450.8 L720 475.6 L760 498.3 L800 514.8 L840 522.6 L880 520.9 L920 510.8 L960 494.6 L1000 475.6 L1040 457.0 L1080 441.8 L1120 431.8 L1160 428.1 L1200 430.4 L1240 438.0 L1280 449.6 L1320 463.5 L1360 478.1 L1400 491.7 L1440 502.7 L1480 509.5"/><path d="M-40 600.0 L0 591.4 L40 582.3 L80 573.9 L120 567.0 L160 561.2 L200 555.6 L240 549.3 L280 541.4 L320 531.8 L360 521.4 L400 511.6 L440 504.4 L480 501.6 L520 504.6 L560 513.5 L600 527.6 L640 545.0 L680 563.1 L720 579.4 L760 592.0 L800 599.5 L840 602.0 L880 600.2 L920 595.8 L960 590.4 L1000 585.0 L1040 580.5 L1080 576.3 L1120 571.8 L1160 565.7 L1200 557.3 L1240 546.3 L1280 533.3 L1320 519.9 L1360 508.3 L1400 500.5 L1440 498.2 L1480 502.4"/><path d="M-40 594.5 L0 598.2 L40 610.0 L80 628.2 L120 649.5 L160 670.0 L200 685.9 L240 693.9 L280 692.6 L320 682.3 L360 665.0 L400 644.1 L440 623.6 L480 607.1 L520 597.5 L560 596.0 L600 602.1 L640 614.2 L680 629.6 L720 645.4 L760 659.0 L800 668.8 L840 673.8 L880 674.3 L920 671.0 L960 664.9 L1000 656.9 L1040 648.1 L1080 638.9 L1120 629.8 L1160 621.4 L1200 614.5 L1240 610.1 L1280 609.3 L1320 613.0 L1360 621.5 L1400 634.3 L1440 649.8 L1480 665.7"/><path d="M-40 715.7 L0 709.1 L40 700.8 L80 691.2 L120 681.8 L160 674.2 L200 670.5 L240 671.9 L280 679.1 L320 691.5 L360 707.4 L400 724.7 L440 740.9 L480 754.1 L520 763.1 L560 767.9 L600 769.1 L640 768.2 L680 766.6 L720 765.5 L760 765.1 L800 765.1 L840 764.3 L880 761.2 L920 754.7 L960 744.2 L1000 730.0 L1040 713.7 L1080 697.2 L1120 682.9 L1160 673.0 L1200 668.6 L1240 670.1 L1280 676.6 L1320 686.4 L1360 697.5 L1400 708.1 L1440 717.0 L1480 723.9"/><path d="M-40 855.7 L0 861.4 L40 860.2 L80 853.2 L120 842.2 L160 829.6 L200 817.2 L240 806.5 L280 798.2 L320 792.1 L360 787.9 L400 785.0 L440 783.3 L480 782.9 L520 784.5 L560 789.1 L600 797.2 L640 808.8 L680 823.0 L720 838.2 L760 851.9 L800 861.6 L840 865.1 L880 861.1 L920 849.9 L960 832.9 L1000 812.9 L1040 793.0 L1080 776.6 L1120 766.3 L1160 763.2 L1200 767.5 L1240 777.6 L1280 791.4 L1320 806.4 L1360 820.2 L1400 831.3 L1440 838.9 L1480 843.2"/><path d="M-40 867.2 L0 877.1 L40 890.2 L80 904.7 L120 918.2 L160 928.8 L200 935.1 L240 936.9 L280 934.9 L320 930.5 L360 925.5 L400 921.3 L440 918.7 L480 917.7 L520 917.4 L560 916.3 L600 913.2 L640 907.0 L680 897.7 L720 886.0 L760 873.7 L800 862.9 L840 855.5 L880 853.0 L920 855.8 L960 863.2 L1000 873.6 L1040 885.2 L1080 895.8 L1120 904.0 L1160 909.3 L1200 911.9 L1240 913.1 L1280 914.2 L1320 916.5 L1360 920.6 L1400 926.3 L1440 932.5 L1480 937.5"/><path d="M-40 1034.1 L0 1025.7 L40 1013.8 L80 1000.6 L120 987.7 L160 976.2 L200 966.5 L240 958.7 L280 952.7 L320 948.7 L360 947.0 L400 948.5 L440 953.8 L480 963.5 L520 977.3 L560 994.1 L600 1011.9 L640 1027.9 L680 1039.4 L720 1043.8 L760 1039.9 L800 1027.6 L840 1008.7 L880 986.1 L920 963.3 L960 944.2 L1000 931.7 L1040 927.5 L1080 931.9 L1120 943.5 L1160 960.0 L1200 978.3 L1240 995.7 L1280 1009.9 L1320 1019.8 L1360 1024.9 L1400 1025.9 L1440 1023.5 L1480 1018.7"/><path d="M-40 1016.2 L0 1025.8 L40 1042.9 L80 1065.1 L120 1088.9 L160 1110.4 L200 1126.0 L240 1133.3 L280 1131.2 L320 1120.5 L360 1103.4 L400 1083.0 L440 1062.6 L480 1045.3 L520 1033.0 L560 1026.9 L600 1026.5 L640 1031.0 L680 1038.9 L720 1048.8 L760 1059.7 L800 1070.9 L840 1082.1 L880 1092.9 L920 1102.8 L960 1111.0 L1000 1116.2 L1040 1117.1 L1080 1112.5 L1120 1102.0 L1160 1086.1 L1200 1066.6 L1240 1046.1 L1280 1027.8 L1320 1015.2 L1360 1010.6 L1400 1015.2 L1440 1028.6 L1480 1048.8"/><path d="M-40 1183.3 L0 1172.4 L40 1161.8 L80 1151.9 L120 1142.7 L160 1134.0 L200 1126.2 L240 1119.7 L280 1115.8 L320 1115.6 L360 1120.2 L400 1130.3 L440 1145.4 L480 1164.0 L520 1183.5 L560 1200.9 L600 1213.1 L640 1217.9 L680 1214.0 L720 1202.0 L760 1183.6 L800 1161.9 L840 1140.4 L880 1122.4 L920 1110.5 L960 1105.7 L1000 1108.0 L1040 1116.1 L1080 1127.9 L1120 1141.4 L1160 1154.6 L1200 1166.3 L1240 1175.9 L1280 1183.6 L1320 1189.4 L1360 1193.6 L1400 1196.0 L1440 1195.9 L1480 1192.7"/><path d="M-40 1281.4 L0 1288.3 L40 1288.9 L80 1283.9 L120 1274.8 L160 1263.8 L200 1252.9 L240 1243.3 L280 1235.6 L320 1229.9 L360 1225.3 L400 1221.3 L440 1217.5 L480 1214.0 L520 1211.7 L560 1211.8 L600 1215.4 L640 1223.3 L680 1235.4 L720 1250.5 L760 1266.6 L800 1281.0 L840 1291.2 L880 1295.2 L920 1291.9 L960 1281.8 L1000 1266.5 L1040 1248.7 L1080 1231.2 L1120 1216.8 L1160 1207.3 L1200 1203.4 L1240 1204.8 L1280 1210.1 L1320 1217.8 L1360 1226.1 L1400 1233.9 L1440 1240.8 L1480 1246.9"/><path d="M-40 1326.1 L0 1344.0 L40 1358.8 L80 1367.6 L120 1368.8 L160 1362.5 L200 1350.1 L240 1334.7 L280 1319.3 L320 1307.1 L360 1300.0 L400 1299.0 L440 1303.5 L480 1312.1 L520 1322.6 L560 1333.0 L600 1341.4 L640 1347.0 L680 1349.4 L720 1349.1 L760 1346.8 L800 1343.1 L840 1338.7 L880 1333.7 L920 1328.3 L960 1322.6 L1000 1316.9 L1040 1311.9 L1080 1308.6 L1120 1308.0 L1160 1311.0 L1200 1317.8 L1240 1327.8 L1280 1339.7 L1320 1351.3 L1360 1359.9 L1400 1363.6 L1440 1360.9 L1480 1351.8"/><path d="M-40 1437.3 L0 1430.9 L40 1423.2 L80 1416.1 L120 1410.8 L160 1407.9 L200 1407.1 L240 1407.6 L280 1408.3 L320 1408.4 L360 1407.6 L400 1406.3 L440 1405.4 L480 1405.9 L520 1408.8 L560 1414.3 L600 1421.9 L640 1430.2 L680 1437.4 L720 1441.5 L760 1441.1 L800 1435.7 L840 1425.9 L880 1413.5 L920 1400.8 L960 1390.6 L1000 1385.0 L1040 1385.2 L1080 1391.2 L1120 1401.7 L1160 1414.4 L1200 1426.6 L1240 1436.0 L1280 1441.0 L1320 1441.0 L1360 1436.6 L1400 1429.5 L1440 1421.4 L1480 1414.1"/><path d="M-40 1531.0 L0 1522.1 L40 1513.1 L80 1505.0 L120 1498.4 L160 1492.9 L200 1487.9 L240 1483.0 L280 1478.0 L320 1473.3 L360 1470.1 L400 1469.7 L440 1473.3 L480 1481.5 L520 1493.9 L560 1509.3 L600 1525.2 L640 1539.1 L680 1548.2 L720 1550.8 L760 1546.2 L800 1534.9 L840 1519.0 L880 1501.3 L920 1484.6 L960 1471.7 L1000 1464.0 L1040 1462.2 L1080 1465.6 L1120 1472.6 L1160 1481.5 L1200 1490.5 L1240 1498.6 L1280 1505.3 L1320 1510.8 L1360 1515.8 L1400 1520.8 L1440 1525.8 L1480 1530.5"/></svg>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<header id="hd">
+  <div class="wrap bar">
+    <a class="logo" href="/" aria-label="Hostio">host<span>io.</span></a>
+    <nav aria-label="Glavna navigacija">
+      <a class="nl" href="/rjesenja/" data-i="nav1">Rješenja</a><a class="nl" href="/sigurnost/" data-i="nav2">Sigurnost</a><a class="nl" href="/arhitekture/" data-i="nav3">Arhitekture</a><a class="nl" href="/pristup/" data-i="nav4">Pristup</a>
+      <a class="mini" href="#kontakt" data-i="nav_cta">Zatražite audit</a>
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button type="button" data-lang="bs" aria-pressed="true">BS</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <div class="trust hero-in">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Postavljamo sve umjesto vas</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Profesionalni voiceover</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Besplatan demo</span>
-      </div>
-    </div>
-
-    <div class="stage" id="stage">
-      <div class="scen" id="scen">
-        <button class="on" data-s="0">Frizerski salon</button>
-        <button data-s="1">Rent-a-car</button>
-        <button data-s="2">Restoran</button>
-      </div>
-      <div class="phone" id="phone">
-        <div class="screen">
-          <div class="notch"></div>
-          <div class="chat-head">
-            <div class="av" id="chatAv">S</div>
-            <div><b id="chatName">Salon Bella</b><small class="on" id="chatStatus">online</small></div>
-          </div>
-          <div class="chat-body" id="chat"></div>
-          <div class="chat-input"><div></div><span></span></div>
-        </div>
-      </div>
-      <div class="float-card fc1" id="fc1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E0F0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
-        <div><b id="fcTitle">Nova rezervacija</b><small id="fcSub">Sutra 17:00 · Muško šišanje</small></div>
-      </div>
-      <a href="#video" class="float-card fc2 vcard" id="fc2" aria-label="Pogledajte AI video reklame">
-        <div class="vthumb"><video src="/assets/video/hero-loop.mp4" poster="/assets/video/hero-loop.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video><span class="vtag">AI REKLAMA</span></div>
-        <div class="vcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><b>S voiceoverom</b></div>
-      </a>
-    </div>
+    </nav>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="mq">
-    <span>Frizerski saloni</span><span>Rent-a-car</span><span>Restorani</span><span>Apartmani</span><span>Stomatolozi</span><span>Kozmetički saloni</span><span>Auto servisi</span><span>Teretane</span><span>Barberi</span><span>Klinike</span><span>Fotografi</span><span>Turističke agencije</span>
-    <span>Frizerski saloni</span><span>Rent-a-car</span><span>Restorani</span><span>Apartmani</span><span>Stomatolozi</span><span>Kozmetički saloni</span><span>Auto servisi</span><span>Teretane</span><span>Barberi</span><span>Klinike</span><span>Fotografi</span><span>Turističke agencije</span>
-  </div>
-</div>
-
-
-<!-- SERVICES -->
-<section class="sec light" id="usluge">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Šta radimo</span>
-      <h2 class="split">Tri AI rješenja. <br>Jedan cilj: <span class="g2">više mušterija.</span></h2>
-      <p class="sub rv">Uzmite jedno ili sve. Mi postavimo, vi dobijete gotovo.</p>
-    </div>
-    <div class="svc-grid">
-      <a href="#gubitak" class="svc rv">
-        <div class="vis">
-          <div class="v-chans"><b style="background:#25D366"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8z"/></svg></b><b style="background:#7360F2"><svg viewBox="0 0 24 24"><path d="M12 2C6.9 2 3 5.4 3 10.6c0 2.9 1.4 5.3 3.6 6.8V22l3.6-2.6c.6.1 1.2.2 1.8.2 5.1 0 9-3.4 9-8.9S17.1 2 12 2zm4.1 12.6c-.3.6-1.3 1.2-1.9 1.1-.5 0-1.1-.2-3-1.1-2.3-1.1-3.8-3.5-3.9-3.7-.1-.2-.9-1.3-.9-2.4s.6-1.7.8-1.9c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.8c.1.1.1.3 0 .5l-.3.4-.3.4c-.1.1-.2.2-.1.5.6 1.1 1.5 2 2.6 2.6.2.1.4.1.5 0l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.3 0 .7-.2 1.1z"/></svg></b><b style="background:linear-gradient(45deg,#FEDA75,#FA7E1E 25%,#D62976 50%,#962FBF 75%,#4F5BD5)"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM21.9 7.9c-.1-1.6-.4-3-1.6-4.2S17.7 2.2 16.1 2.1C14.5 2 9.5 2 7.9 2.1 6.3 2.2 4.9 2.5 3.7 3.7S2.2 6.3 2.1 7.9C2 9.5 2 14.5 2.1 16.1c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.6.1 8.2 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.6 0-8.2zM19.8 18c-.3.9-1 1.5-1.8 1.8-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4c-.9-.3-1.5-1-1.8-1.8-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7c.3-.9 1-1.5 1.8-1.8 1.3-.5 4.3-.4 5.7-.4s4.4-.1 5.7.4c.9.3 1.5 1 1.8 1.8.5 1.3.4 4.3.4 5.7s.1 4.4-.4 5.7z"/></svg></b></div>
-          <div class="v-chat"><span class="in">Imate li slobodno sutra popodne?</span><span class="out">Imamo u 17:00. Da vas upišem?</span><span class="ok"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0E0F0C" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Termin zakazan</span></div>
-        </div>
-        <span class="num">01</span>
-        <h3>AI asistent i rezervacije</h3>
-        <p>Odgovara na WhatsAppu, Viberu i Instagramu i zakazuje termine. 24/7.</p>
-        <span class="go">Kako radi</span>
-      </a>
-      <a href="#video" class="svc rv">
-        <span class="new">NOVO</span>
-        <div class="vis v-vid">
-          <img src="/assets/video/hostio-poster.jpg" alt="Kadar iz Hostio AI video reklame" loading="lazy" width="720" height="1280">
-          <span class="play"><svg viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span>
-          <div class="wave" aria-hidden="true"><em>VOICEOVER</em><i style="animation-delay:-0.00s"></i><i style="animation-delay:-0.13s"></i><i style="animation-delay:-0.26s"></i><i style="animation-delay:-0.39s"></i><i style="animation-delay:-0.52s"></i><i style="animation-delay:-0.65s"></i><i style="animation-delay:-0.78s"></i><i style="animation-delay:-0.91s"></i><i style="animation-delay:-1.04s"></i><i style="animation-delay:-0.07s"></i><i style="animation-delay:-0.20s"></i><i style="animation-delay:-0.33s"></i><i style="animation-delay:-0.46s"></i><i style="animation-delay:-0.59s"></i><i style="animation-delay:-0.72s"></i><i style="animation-delay:-0.85s"></i><i style="animation-delay:-0.98s"></i><i style="animation-delay:-0.01s"></i><i style="animation-delay:-0.14s"></i><i style="animation-delay:-0.27s"></i><i style="animation-delay:-0.40s"></i><i style="animation-delay:-0.53s"></i></div>
-        </div>
-        <span class="num">02</span>
-        <h3>AI video reklame</h3>
-        <p>Bez kamere i bez lica. Skripta, profesionalni voiceover i animacija.</p>
-        <span class="go">Pogledajte primjere</span>
-      </a>
-      <a href="/usluge/web-stranica/" class="svc rv">
-        <div class="vis">
-          <div class="v-web" aria-hidden="true">
-            <div class="bar"><i></i><i></i><i></i><span></span></div>
-            <div class="bd">
-              <div class="k"><small>Rezervacije</small><b class="g">+38</b></div>
-              <div class="k"><small>Danas</small><b>12</b></div>
-              <div class="ch"><i style="height:35%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:86%"></i><i style="height:100%"></i></div>
-            </div>
-          </div>
-        </div>
-        <span class="num">03</span>
-        <h3>Web stranice i dashboardi</h3>
-        <p>Vaša stranica, vaša baza klijenata i pregled svega na jednom mjestu.</p>
-        <span class="go">Više o webu</span>
-      </a>
-    </div>
-    <a href="/usluge/custom-ai/" class="svc-more rv">
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg></span>
-      <p><b>Imate proces koji vam jede vrijeme?</b> <span>Napravimo custom AI rješenje baš za njega.</span></p>
-      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-  </div>
-</section>
-
-<!-- AI VIDEO -->
-<section class="sec vid" id="video">
-  <div class="blob b1" style="top:-160px;right:-220px;left:auto"></div>
-  <div class="blob b2" style="bottom:-220px;left:-220px;right:auto"></div>
-  <div class="wrap" style="position:relative">
-    <div class="head-c">
-      <span class="eyebrow rv">AI video reklame</span>
-      <h2 class="split">Reklama bez kamere. <br><span class="g">Glas koji prodaje.</span></h2>
-      <p class="sub rv">Vi nam kažete šta prodajete. Mi napravimo gotovu reklamu za Reels, TikTok i Story.</p>
-    </div>
-    <div class="vid-grid">
-      <div class="reels">
-          <figure class="reel rv">
-            <div class="frame">
-              <video src="/assets/video/lumen-reklama.mp4" poster="/assets/video/lumen-poster.jpg" muted loop playsinline preload="none"></video><span class="ptag">PROTOTIP</span>
-              <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
-            </div>
-            <figcaption><b>Lumen · stomatolog</b><small>Izmišljena ordinacija · 3D animacija · 27 s</small></figcaption>
-          </figure>
-          <figure class="reel rv">
-            <div class="frame">
-              <video src="/assets/video/obrtaj-reklama.mp4" poster="/assets/video/obrtaj-poster.jpg" muted loop playsinline preload="none"></video><span class="ptag">PROTOTIP</span>
-              <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
-            </div>
-            <figcaption><b>Obrtaj · auto servis</b><small>Izmišljeni servis · motion grafika · 26 s</small></figcaption>
-          </figure>
-        <figure class="reel rv">
-          <div class="frame">
-            <video src="/assets/video/hostio-reklama.mp4" poster="/assets/video/hostio-poster.jpg" muted loop playsinline preload="none"></video>
-            <button class="snd" type="button" aria-label="Uključi zvuk"><svg class="off-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg><svg class="on-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span>Uključi zvuk</span></button>
-          </div>
-          <figcaption><b>Hostio · Probajte sami</b><small>Motion grafika i voiceover · 44 s</small></figcaption>
-        </figure>
-      </div>
-      <div>
-        <div class="vfeat">
-          <div class="vf rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/><path d="M2 3l19 19"/></svg></span><div><b>Bez snimanja i bez lica</b><small>Ne treba kamera, glumci ni vaše vrijeme.</small></div></div>
-          <div class="vf rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></span><div><b>Profesionalni voiceover</b><small>Prirodan glas, na našem jeziku.</small></div></div>
-          <div class="vf rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.1L12 16l-4.9 3.7L9 13.6 4 10l6.1-1.2z"/></svg></span><div><b>AI vizuali i motion grafika</b><small>Ikonice, animacije i prijelazi koji drže pažnju.</small></div></div>
-          <div class="vf rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></span><div><b>Skripta koja prodaje</b><small>Kratko, jasno, s pozivom na akciju.</small>
-            <div class="formats"><span><i style="width:9px;height:15px"></i>9:16</span><span><i style="width:12px;height:12px"></i>1:1</span><span><i style="width:16px;height:9px"></i>16:9</span></div></div></div>
-        </div>
-        <div class="vid-cta rv">
-          <a href="#demo" class="btn lg magnetic" data-want="Zanima me AI video reklama.">Želim AI reklamu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="/usluge/ai-video/" class="btn ghost lg magnetic">Kako nastaje</a>
-        </div>
-      </div>
-    </div>
-    <div class="vsteps">
-      <div class="vstep rv"><em>01</em><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Kratak brief</b><small>Šta prodajete i kome.</small></div>
-      <div class="vstep rv"><em>02</em><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Skripta</b><small>Vi odobrite tekst.</small></div>
-      <div class="vstep rv"><em>03</em><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></span><b>Voiceover i vizuali</b><small>Glas, AI scene, grafika.</small></div>
-      <div class="vstep rv"><em>04</em><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><b>Gotova reklama</b><small>Spremna za objavu.</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- PAIN -->
-<section class="sec light" id="gubitak">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">AI asistent · priča koja se dešava svaki dan</span>
-      <h2 class="split">Ne gubite mušterije zbog cijene. <br>Gubite ih zbog <span class="loss">tišine.</span></h2>
-      
-    </div>
-
-    <div class="tl">
-      <div class="tl-card"><span class="tag">Prilika</span><time>23:47</time><p>Mušterija piše.</p><div class="bubble">„Imate li slobodno sutra popodne?”</div></div>
-      <div class="tl-card"><span class="tag">Tišina</span><time>00:30</time><p>Vi spavate.</p><div class="bubble">Viđeno: nikad</div></div>
-      <div class="tl-card"><span class="tag">Prekasno</span><time>08:15</time><p>Odgovarate ujutro.</p><div class="bubble">„Pozdrav, imamo u 15h!”</div></div>
-      <div class="tl-card bad"><span class="tag">Izgubljeno</span><time>08:16</time><p>Mušterija je otišla.</p><div class="bubble">„Hvala, već sam rezervisao kod drugih.”</div></div>
-    </div>
-
-    <p class="verdict" id="verdict">Ta mušterija nije otišla jer ste <span class="strike" id="strike">skupi</span>. Otišla je jer <span class="loss">niko nije odgovorio.</span></p>
-
-    <div class="pains">
-      <div class="pain">
-        <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="m9 8 6 6M15 8l-6 6"/></svg>
-        <h3>Neodgovorene poruke</h3>
-      </div>
-      <div class="pain">
-        <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></svg>
-        <h3>Mušterije koje ne dođu</h3>
-      </div>
-      <div class="pain">
-        <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <h3>Sati na telefonu</h3>
-      </div>
-      <div class="pain">
-        <svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-        <h3>Haos u rasporedu</h3>
-      </div>
-    </div>
-    <div class="more rv"><a href="/vise/problem/">Cijela priča: gdje odlazi novac <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
-
-<!-- CHANNELS -->
-<section class="sec channels" id="kanali">
-  <div class="blob b1" style="top:-120px;left:-200px;right:auto"></div>
-  <div class="blob b2" style="bottom:-200px;right:-200px;left:auto"></div>
-  <div class="wrap" style="position:relative">
-    <div class="head-c">
-      <span class="eyebrow rv">WhatsApp · Viber · Instagram</span>
-      <h2 class="split">Pišu na tri mjesta. <br><span class="g">Hostio odgovara na sva tri.</span></h2>
-      
-    </div>
-
-    <div class="ch-grid">
-      <div class="ch wa">
-        <div class="ch-top">
-          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></div>
-          <div><b>WhatsApp</b><small><span class="dot"></span>Odgovara 24/7</small></div>
-        </div>
-        <div class="mini wa" data-ch="wa"><div class="hd"><i>B</i>Salon Bella</div></div>
-        <div class="ch-tags"><span>Pitanja i cijene</span><span>Zakazivanje</span><span>Podsjetnici s dugmadima</span></div>
-      </div>
-      <div class="ch vb">
-        <div class="ch-top">
-          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M444 49.9C431.3 38.2 379.9.9 265.3.4c0 0-135.1-8.1-200.9 52.3C27.8 89.3 14.9 143 13.5 209.5c-1.4 66.5-3.1 191.1 117 224.9h.1l-.1 51.6s-.8 20.9 13 25.1c16.6 5.2 26.4-10.7 42.3-27.8 8.7-9.4 20.7-23.2 29.8-33.7 82.2 6.9 145.3-8.9 152.5-11.2 16.6-5.4 110.5-17.4 125.7-142 15.8-128.6-7.6-209.8-49.8-246.5zM457.9 287c-12.9 104-89 110.6-103 115.1-6 1.9-61.5 15.7-131.2 11.2 0 0-52 62.7-68.2 79-5.3 5.3-11.1 4.8-11-5.7 0-6.9.4-85.7.4-85.7-.1 0-.1 0 0 0-101.8-28.2-95.8-134.3-94.7-189.8 1.1-55.5 11.6-101 42.6-131.6 55.7-50.5 170.4-43 170.4-43 96.9.4 143.3 29.6 154.1 39.4 35.7 30.6 53.9 103.8 40.6 211.1zm-139-80.8c.4 8.6-12.5 9.2-12.9.6-1.1-22-11.4-32.7-32.6-33.9-8.6-.5-7.8-13.4.7-12.9 27.9 1.5 43.4 17.5 44.8 46.2zm20.3 11.3c1-42.4-25.5-75.6-75.8-79.3-8.5-.6-7.6-13.5.9-12.9 58 4.2 88.9 44.1 87.8 92.5-.1 8.6-13.1 8.2-12.9-.3zm47 13.4c.1 8.6-12.9 8.7-12.9.1-.6-81.5-54.9-125.9-120.8-126.4-8.5-.1-8.5-12.9 0-12.9 73.7.5 133 51.4 133.7 139.2zM374.9 329v.2c-10.8 19-31 40-51.8 33.3l-.2-.3c-21.1-5.9-70.8-31.5-102.2-56.5-16.2-12.8-31-27.9-42.4-42.4-10.3-12.9-20.7-28.2-30.8-46.6-21.3-38.5-26-55.7-26-55.7-6.7-20.8 14.2-41 33.3-51.8h.2c9.2-4.8 18-3.2 23.9 3.9 0 0 12.4 14.8 17.7 22.1 5 6.8 11.7 17.7 15.2 23.8 6.1 10.9 2.3 22-3.7 26.6l-12 9.6c-6.1 4.9-5.3 14-5.3 14s17.8 67.3 84.3 84.3c0 0 9.1.8 14-5.3l9.6-12c4.6-6 15.7-9.8 26.6-3.7 14.7 8.3 33.4 21.2 45.8 32.9 7 5.7 8.6 14.4 3.8 23.6z"></path></svg></div>
-          <div><b>Viber</b><small><span class="dot"></span>Odgovara 24/7</small></div>
-        </div>
-        <div class="mini vb" data-ch="vb"><div class="hd"><i>B</i>Salon Bella</div></div>
-        <div class="ch-tags"><span>Radno vrijeme</span><span>Zakazivanje</span><span>Otkazivanje</span></div>
-      </div>
-      <div class="ch ig">
-        <div class="ch-top">
-          <div class="ch-ic"><svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></div>
-          <div><b>Instagram</b><small><span class="dot"></span>Odgovara 24/7</small></div>
-        </div>
-        <div class="mini ig" data-ch="ig"><div class="hd"><i>B</i>salon.bella</div></div>
-        <div class="ch-tags"><span>Odgovori na story</span><span>DM upiti</span><span>Link za rezervaciju</span></div>
-      </div>
-    </div>
-
-    <div class="flowbox rv">
-      <h3>Tri kanala. Jedan mozak. Jedan kalendar.</h3>
-
-      <svg class="flow-svg h" viewBox="0 0 1000 340" aria-hidden="true">
-        <defs>
-          <linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F9A825"/><stop offset=".5" stop-color="#E1306C"/><stop offset="1" stop-color="#8E3BD9"/></linearGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <path id="fh1" class="fpath" d="M190 60 C 320 60, 340 170, 440 170"/>
-        <path id="fh2" class="fpath" d="M190 170 L 440 170"/>
-        <path id="fh3" class="fpath" d="M190 280 C 320 280, 340 170, 440 170"/>
-        <path id="fh4" class="fpath lit" d="M560 170 C 660 170, 680 90, 790 90" stroke="#7ED957" style="stroke:#7ED957"/>
-        <path id="fh5" class="fpath lit" d="M560 170 C 660 170, 680 250, 790 250" style="stroke:#7ED957"/>
-        <g font-size="17" font-weight="700" fill="#FFFEFA">
-          <rect x="30" y="34" width="160" height="52" rx="16" fill="#1A1B17" stroke="#25D366" stroke-width="1.5"/><circle cx="58" cy="60" r="12" fill="#25D366"/><text x="80" y="66">WhatsApp</text>
-          <rect x="30" y="144" width="160" height="52" rx="16" fill="#1A1B17" stroke="#8F5DF2" stroke-width="1.5"/><circle cx="58" cy="170" r="12" fill="#8F5DF2"/><text x="80" y="176">Viber</text>
-          <rect x="30" y="254" width="160" height="52" rx="16" fill="#1A1B17" stroke="#E1306C" stroke-width="1.5"/><circle cx="58" cy="280" r="12" fill="url(#igg)"/><text x="80" y="286">Instagram</text>
-        </g>
-        <circle cx="500" cy="170" r="74" fill="rgba(126,217,87,.08)"/><circle cx="500" cy="170" r="60" fill="#0E0F0C" stroke="#7ED957" stroke-width="2"/>
-        <text x="500" y="178" text-anchor="middle" font-size="24" font-weight="800" fill="#FFFEFA" letter-spacing="-1">host<tspan fill="#7ED957">io.</tspan></text>
-        <g font-weight="700" fill="#FFFEFA">
-          <rect x="790" y="58" width="180" height="64" rx="18" fill="#7ED957"/><text x="880" y="85" text-anchor="middle" font-size="16" fill="#0E0F0C">Vaš kalendar</text><text x="880" y="106" text-anchor="middle" font-size="12" font-weight="500" fill="#1E3D12">bez duplih termina</text>
-          <rect x="790" y="218" width="180" height="64" rx="18" fill="#1A1B17" stroke="#7ED957" stroke-width="1.5"/><text x="880" y="245" text-anchor="middle" font-size="16">Vaš dashboard</text><text x="880" y="266" text-anchor="middle" font-size="12" font-weight="500" fill="#A9ABA2">sve na jednom mjestu</text>
-        </g>
-        <g filter="url(#glow)">
-          <circle r="6" fill="#25D366"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#fh1"/></animateMotion></circle>
-          <circle r="6" fill="#8F5DF2"><animateMotion dur="2.4s" repeatCount="indefinite" begin=".8s"><mpath href="#fh2"/></animateMotion></circle>
-          <circle r="6" fill="#E1306C"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.6s"><mpath href="#fh3"/></animateMotion></circle>
-          <circle r="6" fill="#7ED957"><animateMotion dur="1.8s" repeatCount="indefinite" begin=".4s"><mpath href="#fh4"/></animateMotion></circle>
-          <circle r="6" fill="#7ED957"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.3s"><mpath href="#fh5"/></animateMotion></circle>
-        </g>
-      </svg>
-
-      <svg class="flow-svg v" viewBox="0 0 360 560" aria-hidden="true">
-        <path id="fv1" class="fpath" d="M60 80 C 60 160, 180 160, 180 230"/>
-        <path id="fv2" class="fpath" d="M180 80 L 180 230"/>
-        <path id="fv3" class="fpath" d="M300 80 C 300 160, 180 160, 180 230"/>
-        <path id="fv4" class="fpath lit" d="M180 330 C 180 400, 90 400, 90 450" style="stroke:#7ED957"/>
-        <path id="fv5" class="fpath lit" d="M180 330 C 180 400, 270 400, 270 450" style="stroke:#7ED957"/>
-        <g font-size="14" font-weight="700" fill="#FFFEFA" text-anchor="middle">
-          <rect x="10" y="30" width="100" height="50" rx="15" fill="#1A1B17" stroke="#25D366" stroke-width="1.5"/><text x="60" y="60">WhatsApp</text>
-          <rect x="130" y="30" width="100" height="50" rx="15" fill="#1A1B17" stroke="#8F5DF2" stroke-width="1.5"/><text x="180" y="60">Viber</text>
-          <rect x="250" y="30" width="100" height="50" rx="15" fill="#1A1B17" stroke="#E1306C" stroke-width="1.5"/><text x="300" y="60">Instagram</text>
-        </g>
-        <circle cx="180" cy="280" r="62" fill="rgba(126,217,87,.08)"/><circle cx="180" cy="280" r="50" fill="#0E0F0C" stroke="#7ED957" stroke-width="2"/>
-        <text x="180" y="287" text-anchor="middle" font-size="21" font-weight="800" fill="#FFFEFA" letter-spacing="-1">host<tspan fill="#7ED957">io.</tspan></text>
-        <g font-weight="700" text-anchor="middle">
-          <rect x="15" y="450" width="150" height="60" rx="17" fill="#7ED957"/><text x="90" y="476" font-size="14" fill="#0E0F0C">Vaš kalendar</text><text x="90" y="495" font-size="11" font-weight="500" fill="#1E3D12">bez duplih termina</text>
-          <rect x="195" y="450" width="150" height="60" rx="17" fill="#1A1B17" stroke="#7ED957" stroke-width="1.5"/><text x="270" y="476" font-size="14" fill="#FFFEFA">Vaš dashboard</text><text x="270" y="495" font-size="11" font-weight="500" fill="#A9ABA2">sve na jednom mjestu</text>
-        </g>
-        <g>
-          <circle r="6" fill="#25D366"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#fv1"/></animateMotion></circle>
-          <circle r="6" fill="#8F5DF2"><animateMotion dur="2.2s" repeatCount="indefinite" begin=".7s"><mpath href="#fv2"/></animateMotion></circle>
-          <circle r="6" fill="#E1306C"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.4s"><mpath href="#fv3"/></animateMotion></circle>
-          <circle r="6" fill="#7ED957"><animateMotion dur="1.7s" repeatCount="indefinite" begin=".3s"><mpath href="#fv4"/></animateMotion></circle>
-          <circle r="6" fill="#7ED957"><animateMotion dur="1.7s" repeatCount="indefinite" begin="1.1s"><mpath href="#fv5"/></animateMotion></circle>
-        </g>
-      </svg>
-
-      <div class="eq">
-        <div><b class="count" data-to="3">0</b><span>kanala</span></div><em>→</em>
-        <div><b class="count" data-to="1">0</b><span>kalendar</span></div><em>→</em>
-        <div><b>0</b><span>propuštenih poruka</span></div>
-      </div>
-    </div>
-
-    <div class="proof">
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Mušterija ne mijenja ništa</b></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vi ne mijenjate ništa</b></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Nema duplih termina</b></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Pravila čuva sistem, ne AI</b></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Odgovara na jeziku poruke</b></div></div>
-      <div class="pr"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Sve vidite na jednom mjestu</b></div></div>
-    </div>
-    <div class="more rv"><a href="/usluge/ai-odgovori/">Kako radi na svakom kanalu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
-
-<!-- CALCULATOR -->
-<section class="sec calc" id="kalkulator">
-  <div class="blob b1" style="top:10%;right:-300px"></div>
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Kalkulator gubitka</span>
-      <h2 class="split">Koliko vas košta <br>svaka <span class="loss">neodgovorena</span> poruka?</h2>
-      <p class="sub rv">Pomjerite klizače.</p>
-    </div>
-    <div class="calc-grid">
-      <div class="panel rv">
-        <div class="field"><label for="c1">Upita dnevno (poruke, pozivi) <output id="o1"></output></label><input type="range" id="c1" min="2" max="80" value="15"></div>
-        <div class="field"><label for="c2">Na koliko ne odgovorite odmah <output id="o2"></output></label><input type="range" id="c2" min="5" max="80" value="30"></div>
-        <div class="field"><label for="c3">Od njih, koliko ode drugome <output id="o3"></output></label><input type="range" id="c3" min="10" max="90" value="50"></div>
-        <div class="field"><label for="c4">Prosječna vrijednost jedne mušterije <output id="o4"></output></label><input type="range" id="c4" min="10" max="500" step="5" value="40"></div>
-        <div class="field"><label for="c5">Minuta po jednom razgovoru <output id="o5"></output></label><input type="range" id="c5" min="1" max="15" value="4"></div>
-        <div class="field"><label for="c6">Mušterija mjesečno koje ne dođu na termin <output id="o6"></output></label><input type="range" id="c6" min="0" max="40" value="6"></div>
-      </div>
-      <div class="panel result rv">
-        <div>
-          <div class="res-label">Procjena: novac koji svakog mjeseca ostavljate na stolu</div>
-          <div class="big"><span id="lossM">0</span><small>KM</small></div>
-          <div class="res-label">To je <b id="lossY" style="color:#fff">0 KM</b> godišnje.</div>
-          <div class="res-rows">
-            <div><b id="hrs">0 h</b><span>mjesečno provedete odgovarajući na poruke</span></div>
-            <div><b id="lost">0</b><span>mušterija mjesečno ode konkurenciji</span></div>
-          </div>
-        </div>
-        <div>
-          <div class="ticker"><span class="dot"></span><span>Svaki dan bez Hostia: <b id="perDay">0 KM</b> manje u kasi. Dok čitate ovu stranicu: <b id="tick">0,000 KM</b>.</span></div>
-          <a href="#demo" class="btn lg" style="width:100%;justify-content:center;margin-top:16px">Želim to vratiti <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <p class="note">Informativna procjena iz vaših brojki.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CUSTOM AI -->
-<section class="sec light" id="custom-ai">
-  <div class="wrap ai-grid">
+<main>
+<section class="hero" aria-labelledby="h1"><div class="aur" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div><div class="hgrid" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow rv">Custom AI, ne običan chatbot</span>
-      <h2 class="split">AI koji zna vaš biznis kao vaš najbolji radnik.</h2>
-      <p class="lead rv"><strong>Vlastiti AI</strong>, naučen na vašim uslugama, cijenama i pravilima.</p>
-      <ul class="ai-list">
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zvuči kao čovjek, ne kao robot</b></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Zna vaše cijene, usluge i radno vrijeme</b></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Vaša pravila su zakon</b></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Govori jezikom vaše mušterije</b></div></li>
-        <li class="rv"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Raste s vama</b></div></li>
-      </ul>
-      <div class="more rv" style="justify-content:flex-start;margin-top:30px"><a href="/usluge/custom-ai/">Više o custom AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    </div>
-    <div class="brain" id="brain">
-      <svg class="net" viewBox="0 0 500 500" fill="none">
-        <circle cx="250" cy="250" r="200" stroke="rgba(14,15,12,.08)" stroke-width="1.5"/>
-        <circle cx="250" cy="250" r="140" stroke="rgba(14,15,12,.06)" stroke-width="1.5" stroke-dasharray="4 8"/>
-        <g stroke="#5BC236" stroke-width="2" class="flow">
-          <path d="M250 250 L95 95"/><path d="M250 250 L405 95"/><path d="M250 250 L60 250"/><path d="M250 250 L440 250"/><path d="M250 250 L95 405"/><path d="M250 250 L405 405"/>
-        </g>
-      </svg>
-      <div class="core"><span class="logo">host<b>io.</b></span></div>
-      <div class="node" style="left:6%;top:14%"><i></i>Vaše usluge</div>
-      <div class="node" style="right:4%;top:14%"><i></i>Cjenovnik</div>
-      <div class="node" style="left:-2%;top:47%"><i></i>Radno vrijeme</div>
-      <div class="node" style="right:-2%;top:47%"><i></i>Vaš ton</div>
-      <div class="node" style="left:6%;bottom:14%"><i></i>Pravila termina</div>
-      <div class="node" style="right:4%;bottom:14%"><i></i>Česta pitanja</div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="sec" id="mogucnosti">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Sve što AI asistent radi</span>
-      <h2 class="split">Jedan sistem. <br>Cijela recepcija. <span class="g">Automatski.</span></h2>
-      
-    </div>
-
-    <div class="bento">
-      <a href="/usluge/ai-odgovori/" class="card w4 tilt">
-        <span class="badge">24/7</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg></div>
-        <h3>AI odgovara na WhatsAppu, Viberu i Instagramu</h3>
-        <p>Odgovor za nekoliko sekundi. Danju i noću.</p>
-        <div class="chips"><span>WhatsApp</span><span>Instagram DM</span><span>Viber</span></div>
-      <span class="go">Više</span></a>
-      <a href="/usluge/ai-odgovori/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-        <h3>Razgovor kao s čovjekom</h3>
-        <p>Kratko, prirodno, ljubazno.</p>
-      <span class="go">Više</span></a>
-
-      <a href="/usluge/zakazivanje/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <h3>Automatsko zakazivanje</h3>
-        <p>Upisuje u vaš raspored. Bez duplih termina.</p>
-        <div class="mini-cal" aria-hidden="true">
-          <span>P</span><span>U</span><span>S</span><span>Č</span><span>P</span><span>S</span><span>N</span>
-          <span>9</span><span class="b">10</span><span>11</span><span class="b">12</span><span>13</span><span class="b">14</span><span class="x">15</span>
-        </div>
-      <span class="go">Više</span></a>
-      <a href="/usluge/podsjetnici/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
-        <h3>Podsjetnici dan prije</h3>
-        <p>Jedan klik: dolazi ili ne.</p>
-        <div class="remind"><p>Podsjetnik: sutra u 17:00 imate termin u Salonu Bella. 💈</p><div><button type="button">Dolazim</button><button type="button">Otkaži</button></div></div>
-      <span class="go">Više</span></a>
-      <a href="/usluge/zakazivanje/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <h3>Pravila koja se ne krše</h3>
-        <p>AI pita, sistem odlučuje.</p>
-      <span class="go">Više</span></a>
-
-      <a href="/usluge/web-stranica/" class="card w3 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
-        <h3>Vaša vlastita web stranica za rezervacije</h3>
-        <p>Brendirana, na 4 jezika. Rezervacija u par klikova.</p>
-        <div class="langs" id="langs"><span class="on">BS</span><span>EN</span><span>DE</span><span>AR</span></div>
-      <span class="go">Više</span></a>
-      <a href="/usluge/dashboard/" class="card w3 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div>
-        <h3>Vlasnički dashboard</h3>
-        <p>Sve na jednom mjestu. Odobrite jednim klikom.</p>
-        <div class="dash-mock">
-          <div class="dash-row"><b>Amar H. · Golf 8</b><small>12.–15.11.</small><span class="st wait">Čeka odobrenje</span></div>
-          <div class="dash-row"><b>Lejla K. · Pramenovi</b><small>Sutra 10:00</small><span class="st ok">Potvrđeno</span></div>
-          <div class="dash-row"><b>Sto za 6 · Subota</b><small>20:30</small><span class="st no">Otkazano</span></div>
-        </div>
-      <span class="go">Više</span></a>
-
-      <a href="/usluge/podsjetnici/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
-        <h3>Automatski emailovi</h3>
-        <p>Na jeziku mušterije. Vi ne pišete ništa.</p>
-      <span class="go">Više</span></a>
-      <a href="/usluge/web-stranica/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/></svg></div>
-        <h3>Online forme i dokumenti</h3>
-        <p>Podaci i dokumenti stižu online.</p>
-      <span class="go">Više</span></a>
-      <a href="/usluge/dashboard/" class="card w2 tilt">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Sigurnost i privatnost</h3>
-        <p>Vidite samo svoje podatke.</p>
-      <span class="go">Više</span></a>
-
-      <div class="card w6 tilt" style="display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center">
-        <div class="ico" style="margin:0;width:64px;height:64px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg></div>
-        <div>
-          <h3>Custom AI rješenja po mjeri</h3>
-          <p>Proces koji vam jede vrijeme? Napravimo ga.</p>
-        </div>
-        <a href="/usluge/custom-ai/" class="btn magnetic" style="white-space:nowrap">Saznajte više</a>
+      <h1 id="h1" data-i="h1">AI sistemi koji rade unutar vaših procesa, pod vašom kontrolom.</h1>
+      <p class="lead" data-i="lead">Hostio projektuje, integriše i održava AI automatizacije za srednje i velike firme. Povezujemo ih s vašim CRM-om, ERP-om i kanalima komunikacije, uz provjere koje sprječavaju izmišljene odgovore i ljudsko odobrenje tamo gdje je potrebno.</p>
+      <div class="links">
+        <a class="cta" href="#kontakt"><i></i><span data-i="cta">Zatražite operativni audit</span></a>
+        <a class="tlink" href="#sigurnost" data-i="cta2">Kako sistem donosi odluke</a>
       </div>
+      <ul class="facts" data-i="facts"><li>Integracija s postojećim sistemima</li><li>Ljudsko odobrenje osjetljivih akcija</li><li>Odgovori na jeziku kupca</li></ul>
     </div>
-    <div class="more rv"><a href="/usluge/">Sve usluge detaljno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
-
-<!-- STEPS -->
-<section class="sec light" id="kako">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Kako počinjete</span>
-      <h2 class="split">Vi radite svoj posao. <br>Mi postavimo sve ostalo.</h2>
-      <p class="sub rv">Bez instalacija. Bez tehnike.</p>
-    </div>
-    <div class="steps" id="steps">
-      <div class="steps-line"><i id="stepsLine"></i></div>
-      <div class="step"><div class="num">1</div><h3>Kratak razgovor</h3><span class="time">15 minuta</span></div>
-      <div class="step"><div class="num">2</div><h3>Pravimo vaš AI</h3><span class="time">Mi radimo</span></div>
-      <div class="step"><div class="num">3</div><h3>Povezujemo kanale</h3><span class="time">Mi radimo</span></div>
-      <div class="step"><div class="num">4</div><h3>Vi samo potvrđujete</h3><span class="time">Od prvog dana</span></div>
-    </div>
-    <div class="more rv"><a href="/vise/kako-radi/">Kako počinjete, korak po korak <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
-
-<!-- COMPARE -->
-<section class="sec" id="razlika">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Dva načina da vodite biznis</span>
-      <h2 class="split">Isti biznis. Isti dan. <br>Potpuno drugi rezultat.</h2>
-    </div>
-    <div class="cmp-wrap">
-      <div class="switch rv"><div class="sw" id="sw"><span class="knob"></span><button class="on" data-v="no">Bez Hostia</button><button data-v="yes">Sa Hostiom</button></div></div>
-      <div class="cmp isno" id="cmp">
-        <div class="cmp-item"><div class="k">Poruka u 23:47</div><div class="v" data-no="Čeka do jutra. Mušterija rezerviše kod drugih." data-yes="Odgovor za 6 sekundi. Termin upisan prije ponoći."></div></div>
-        <div class="cmp-item"><div class="k">Vaše vrijeme</div><div class="v" data-no="Sati dnevno na odgovaranje na ista pitanja." data-yes="Nula. Gledate samo potvrđene rezervacije."></div></div>
-        <div class="cmp-item"><div class="k">Raspored</div><div class="v" data-no="Sveska, poruke i dupli termini." data-yes="Jedan kalendar, pravila koja se ne krše."></div></div>
-        <div class="cmp-item"><div class="k">Mušterije koje ne dođu</div><div class="v" data-no="Saznate kad je stolica već prazna." data-yes="Podsjetnik dan prije. Otkaz stigne na vrijeme i termin se popuni."></div></div>
-        <div class="cmp-item"><div class="k">Strani gosti</div><div class="v" data-no="Snalazite se s prevodiocem ili ne odgovorite." data-yes="Odgovor na njihovom jeziku, odmah."></div></div>
-        <div class="cmp-item"><div class="k">Vikend i praznici</div><div class="v" data-no="Ili radite i tada, ili gubite posao." data-yes="Hostio radi. Vi se odmarate."></div></div>
+    <div class="trw">
+      <div class="fch c1" data-ch="WhatsApp" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#9BEA7A,#2F9E3A)"></i>WhatsApp</div>
+      <div class="fch c2" data-ch="E-mail" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#F3E3B5,#B08A2E)"></i>E-mail</div>
+      <div class="fch c3" data-ch="Instagram" aria-hidden="true"><i style="background:radial-gradient(circle at 30% 30%,#FFC36B,#E1306C 55%,#7B2FBF)"></i>Instagram</div>
+      <div class="fch c4" data-ch="Web chat" aria-hidden="true"><i style="background:radial-gradient(circle at 35% 30%,#9CC0FF,#2D5BB0)"></i>Web chat</div>
+      <div class="trace" aria-live="off">
+        <div class="tr-top"><b data-i="tr_title">Obrada jednog upita</b><span class="pulse"><i></i><span id="trIdx">1/3</span></span></div>
+        <div class="tr-in" id="trIn"><small id="trInMeta"></small><span id="trInText"></span></div>
+        <ol class="tr-steps" id="trSteps"></ol>
+        <div class="tr-out" id="trOut"><small id="trOutMeta"></small><span id="trOutText"></span></div>
+        <div class="tr-end"><span data-i="tr_res">Ishod</span><b id="trEnd">&nbsp;</b></div>
       </div>
+      <p class="note" data-i="tr_note">Ilustrativni primjeri s izmišljenim podacima.</p>
     </div>
   </div>
 </section>
-
-<!-- VERTICALS -->
-<section class="sec light" id="za-koga">
+<section id="problem" aria-labelledby="h-prob" style="padding-top:clamp(20px,4vh,40px)">
   <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Za koga je Hostio</span>
-      <h2 class="split">Ako vam mušterije pišu, <br>Hostio je za vas.</h2>
-      
+    <div class="sec-head rv">
+      <h2 id="h-prob" data-i="pr_h">Gdje firme gube vrijeme i prihod</h2>
+      <p data-i="pr_p_s">AI ima smisla tamo gdje se isti posao ponavlja stotinama puta mjesečno i gdje kašnjenje ima cijenu.</p>
     </div>
-    <div class="vert">
-      <a class="v-card feat" href="/r/vrelo" target="_blank" rel="noopener">
-        <div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17v2M18 17v2M3 13l2-6a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 7l2 6v4H3z"/><circle cx="7.5" cy="13.5" r="1"/><circle cx="16.5" cy="13.5" r="1"/></svg></div>
-        <h3>Rent-a-car</h3>
-        <span class="live"><span class="dot"></span>Pogledajte demo uživo →</span>
-      </a>
-      <a class="v-card feat" href="/a/vidik" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3>Apartmani i smještaj</h3><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
-      <a class="v-card feat" href="/s/zamajac" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><h3>Auto servisi</h3><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div><h3>Frizeri i barberi</h3></div>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div><h3>Restorani i kafići</h3></div>
-
-      <a class="v-card feat" href="/k/lumen" target="_blank" rel="noopener"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 6 4.5 6 7.5c0 2 .6 3 1 5 .5 2.5.6 9.5 2.5 9.5S11 16 12 16s1 6 2.5 6S16.5 15 17 12.5c.4-2 1-3 1-5C18 4.5 16 2 12 2z"/></svg></div><h3>Stomatolozi i klinike</h3><span class="live"><span class="dot"></span>Pogledajte demo uživo →</span></a>
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-5 3.6 1.9 5.8-4.9-3.6-4.9 3.6 1.9-5.8-5-3.6h6.1z"/></svg></div><h3>Kozmetika i nokti</h3></div>
-      
-      <div class="v-card"><div class="emo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 9v6M21 9v6M6 5v14M18 5v14"/></svg></div><h3>Teretane i treneri</h3></div>
+    <div class="cols3 rv">
+      <article><div class="viz v1" aria-hidden="true"><svg viewBox="0 0 320 128" preserveAspectRatio="xMidYMid meet"><circle cx="80" cy="64" r="34" fill="#fff" stroke="#D6E9CE" stroke-width="6"/><circle class="ring" cx="80" cy="64" r="34"/><line class="hand" x1="80" y1="64" x2="80" y2="40" stroke="#1F1F1F" stroke-width="3" stroke-linecap="round"/><circle cx="80" cy="64" r="4" fill="#1F1F1F"/><g class="bub"><rect x="140" y="30" width="140" height="28" rx="14" fill="#fff"/><circle cx="160" cy="44" r="3" fill="#A9B3A0"/><circle cx="172" cy="44" r="3" fill="#A9B3A0"/><circle cx="184" cy="44" r="3" fill="#A9B3A0"/></g><g class="bub2"><rect x="170" y="70" width="110" height="28" rx="14" fill="#1F1F1F"/><path d="M252 84l5 5 9-10" stroke="#7ED957" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="184" y="81" width="54" height="6" rx="3" fill="#5E615A"/></g></svg></div><h3 data-i="pr1_h">Sporo prvo javljanje</h3><p data-i="pr1_s">Upiti čekaju da se neko oslobodi, a svaki sat kašnjenja smanjuje šansu za posao.</p></article>
+      <article><div class="viz v2" aria-hidden="true"><svg viewBox="0 0 320 128" preserveAspectRatio="xMidYMid meet"><rect x="30" y="22" width="70" height="86" rx="10" fill="#fff" stroke="#CFE6DD"/><rect x="42" y="38" width="46" height="6" rx="3" fill="#C9D3CC"/><rect x="42" y="56" width="38" height="6" rx="3" fill="#C9D3CC"/><rect x="42" y="74" width="42" height="6" rx="3" fill="#C9D3CC"/><rect class="pk" x="58" y="36" width="22" height="10" rx="5" fill="#3CC8A0"/><rect class="pk" x="58" y="54" width="22" height="10" rx="5" fill="#7ED957"/><rect class="pk" x="58" y="72" width="22" height="10" rx="5" fill="#5B8DEF"/><rect x="196" y="22" width="96" height="86" rx="10" fill="#fff" stroke="#CFE6DD"/><rect class="cell" x="208" y="34" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/><rect class="cell" x="208" y="54" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/><rect class="cell" x="208" y="74" width="72" height="14" rx="4" fill="#fff" stroke="#E1EBE6"/></svg></div><h3 data-i="pr2_h">Ručno prepisivanje</h3><p data-i="pr2_s">Isti podaci se ručno kucaju iz poruka u CRM i ERP. To troši sate i stvara greške.</p></article>
+      <article><div class="viz v3" aria-hidden="true"><i class="star" style="left:12%;top:20%"></i><i class="star" style="left:30%;top:12%;animation-delay:-1s"></i><i class="star" style="left:48%;top:28%;animation-delay:-2s"></i><i class="star" style="left:64%;top:16%;animation-delay:-.5s"></i><span class="clock"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9FD7B0"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>02:37</span><div class="words"><span>Guten Abend</span><span>Hello</span><span dir="rtl">مرحبا</span><span>Zdravo</span><span>Bonjour</span></div></div><h3 data-i="pr3_h">Upiti van radnog vremena i na drugim jezicima</h3><p data-i="pr3_s">Kupci iz drugih zona i jezika pišu kada vaš tim ne radi. Ti upiti se tiho izgube.</p></article>
     </div>
-    <div class="more rv"><a href="/vise/za-koga/">Šta dobija vaša djelatnost <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-
-<!-- WHY -->
-<section class="sec" id="zasto">
-  <div class="blob b2" style="left:auto;right:-200px;bottom:-200px;opacity:.3"></div>
+<section id="rjesenja" aria-labelledby="h-sol">
   <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Zašto je Hostio bitan</span>
-      <h2 class="split">Vrijeme i novac. <br>Hostio vam vraća <span class="g">oboje.</span></h2>
-      
+    <div class="sec-head rv">
+      <h2 id="h-sol" data-i="so_h">Šta gradimo</h2>
+      <p data-i="so_p_s">Četiri vrste sistema, uvijek prilagođene vašem procesu. Ne prodajemo gotove pakete.</p>
     </div>
-    <div class="why-grid">
-      <div class="stat"><b><span class="count" data-to="24">0</span>/7</b><span>radi svaki dan, svaki sat, i praznikom</span></div>
-      <div class="stat"><b>&lt;<span class="count" data-to="10">0</span>s</b><span>do odgovora mušteriji, i u ponoć</span></div>
-      <div class="stat"><b><span class="count" data-to="4">0</span></b><span>jezika na kojima odgovara i vodi stranicu</span></div>
-      <div class="stat"><b><span class="count" data-to="1">0</span> klik</b><span>da odobrite rezervaciju iz dashboarda</span></div>
+    <div class="grid2">
+      <article class="sol rv" style="--g:linear-gradient(135deg,#7ED957,#2F9E5A)"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+        <h3 data-i="so1_h">Višekanalni agenti za prijem upita</h3>
+        <p data-i="so1_s">Odgovaraju na upite na svim kanalima, na jeziku kupca, i predaju ih pravoj osobi ili sistemu.</p></article>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#3CC8A0,#1F7F86)"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h8"/><path d="M17 4l3 3-3 3M15 14l3 3-3 3"/></svg></span>
+        <h3 data-i="so2_h">Automatizacija operativnih tokova</h3>
+        <p data-i="so2_s">Narudžbe, dokumenti i ponude prolaze kroz definisan tok, bez ručnog prepisivanja.</p></article>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#5B8DEF,#3CC8A0)"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg></span>
+        <h3 data-i="so3_h">Integracije s postojećim sistemima</h3>
+        <p data-i="so3_s">Povezujemo se na vaš CRM, ERP i web shop, bez zamjene alata koje tim već koristi.</p></article>
+      <article class="sol rv" style="--g:linear-gradient(135deg,#B9E35A,#3E8A26)"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h3M8 16h6"/></svg></span>
+        <h3 data-i="so4_h">Kontrolni sloj i izvještavanje</h3>
+        <p data-i="so4_s">Pregled svega što sistem radi i red za odobrenje osjetljivih akcija.</p></article>
     </div>
-    <div class="more rv"><a href="/vise/zasto/">Kako vam vraća vrijeme i novac <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <a class="more" href="/rjesenja/"><span data-i="more_sol">Sva rješenja i integracije</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
-
-<!-- FAQ -->
-<section class="sec light" id="faq">
+<section id="kontrola" aria-labelledby="h-ctl" style="padding-top:0">
   <div class="wrap">
-    <div class="head-c">
-      <span class="eyebrow rv">Pitanja</span>
-      <h2 class="split">Sve što vas zanima.</h2>
+    <div class="sec-head rv">
+      <h2 id="h-ctl" data-i="ct_h">Vi zadržavate kontrolu</h2>
+      <p data-i="ct_p">Svaka akcija sistema je vidljiva i provjerljiva. Osjetljive odluke, poput popusta, djelimičnih isporuka ili medicinskih pitanja, čekaju odobrenje ovlaštene osobe.</p>
     </div>
-    <div class="faq">
-      <div class="q"><button type="button">Hoće li mušterije znati da razgovaraju s AI-jem?<span class="plus"></span></button><div class="a"><div><p>Hostio zvuči prirodno, kratko i ljubazno, kao vaš najbolji radnik.</p></div></div></div>
-      <div class="q"><button type="button">Šta ako AI ne zna odgovor?<span class="plus"></span></button><div class="a"><div><p>Ne izmišlja. Odgovara samo iz podataka vašeg biznisa, a termine provjerava sistem.</p></div></div></div>
-      <div class="q"><button type="button">Moram li mijenjati broj telefona ili instalirati nešto?<span class="plus"></span></button><div class="a"><div><p>Ne. Mi postavljamo sve, vi dobijete gotov sistem.</p></div></div></div>
-      <div class="q"><button type="button">Treba li mi snimanje za AI video reklamu?<span class="plus"></span></button><div class="a"><div><p>Ne. Napišemo skriptu, uradimo profesionalni voiceover, vizuale i animaciju. Vi samo odobrite.</p></div></div></div>
-      <div class="q"><button type="button">Mogu li uzeti samo jednu uslugu?<span class="plus"></span></button><div class="a"><div><p>Da. AI asistenta, video reklame i web možete uzeti posebno ili zajedno.</p></div></div></div>
-      <div class="q"><button type="button">Moj biznis nije na listi. Može li Hostio i za mene?<span class="plus"></span></button><div class="a"><div><p>Vjerovatno da. Opišite nam kako radite u formi ispod.</p></div></div></div>
-    </div>
-    <div class="more rv"><a href="/vise/pitanja/">Sva pitanja i odgovori <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
-
-<!-- FINAL CTA + FORM -->
-<section class="sec final" id="demo">
-  <div class="gridbg"></div>
-  <div class="blob b1" style="top:-100px;left:30%"></div>
-  <div class="wrap" style="position:relative">
-    <div class="head-c">
-      <span class="eyebrow rv">Odluka je vaša</span>
-      <h2 class="split">Recite nam šta vam treba. <br><span class="g">Mi napravimo ostalo.</span></h2>
-      
-    </div>
-    <div class="form-grid">
-      <div class="offer rv">
-        <h3>Besplatan demo za vaš biznis</h3>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pokažemo vam rješenje na primjeru baš vašeg biznisa</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Izračunamo koliko vremena i novca vam vraća</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bez obaveze i bez tehničkog znanja</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Javljamo se u roku od 24 sata</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:6px 22px">
-          <a class="demo-link" href="/r/vrelo" target="_blank" rel="noopener">Rent-a-car demo →</a>
-          <a class="demo-link" href="/a/vidik" target="_blank" rel="noopener">Apartman demo →</a>
-          <a class="demo-link" href="/s/zamajac" target="_blank" rel="noopener">Auto servis demo →</a>
-          <a class="demo-link" href="/k/lumen" target="_blank" rel="noopener">Stomatolog demo →</a>
+    <div class="dash-fit rv" id="dashFit"><div class="tilt" id="tilt"><div class="dash" id="dash" role="img" aria-label="Ilustracija kontrolnog sloja">
+      <aside class="ds-side">
+        <div class="ds-brand"><i>P</i><div><b data-i="d_co">Primjer d.o.o.</b><small data-i="d_dep">Prodaja i podrška</small></div></div>
+        <nav>
+          <span class="on"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 4v4h6V4z"/></svg><em data-i="d_n1">Pregled</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><em data-i="d_n2">Upiti</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/></svg><em data-i="d_n3">Odobrenja</em><b>3</b></span>
+          <span><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><em data-i="d_n4">Pravila</em></span>
+          <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M10 7.5h3a3 3 0 0 1 3 3V13"/></svg><em data-i="d_n5">Integracije</em></span>
+          <span><svg viewBox="0 0 24 24"><path d="M5 6h14M5 10h14M5 14h10M5 18h7"/></svg><em data-i="d_n6">Logovi</em></span>
+        </nav>
+        <div class="ds-ai"><span class="pulse"><i></i></span><div><b data-i="d_ai">Sistem radi</b><small data-i="d_ai2">4 kanala, 2 integracije</small></div></div>
+      </aside>
+      <div class="ds-main">
+        <div class="ds-top"><div><h5 data-i="d_hi">Operativni pregled</h5><small data-i="d_date">Četvrtak, 19. novembar</small></div><div class="ds-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><span data-i="d_search">Pretraži upite, kupce…</span></div><div class="ds-av">A</div></div>
+        <div class="ds-kpis">
+          <div class="kpi"><small data-i="k1">Upiti danas</small><b><span class="dc" data-to="186">0</span></b><em>+9%</em></div>
+          <div class="kpi"><small data-i="k2">Medijan prvog odgovora</small><b><span class="dc" data-to="11">0</span> s</b></div>
+          <div class="kpi"><small data-i="k3">Riješeno bez osoblja</small><b><span class="dc" data-to="72">0</span>%</b><div class="kbar"><i style="--w:72%"></i></div></div>
+          <div class="kpi"><small data-i="k4">Čeka odobrenje</small><b><span class="dc" data-to="3">0</span></b><em class="w" data-i="k4e">otvoreno</em></div>
+        </div>
+        <div class="ds-mid">
+          <div class="card"><div class="card-h"><b data-i="c1">Upiti po kanalima</b><small data-i="c1s">Zadnjih 14 dana</small></div><svg viewBox="0 0 600 174" class="chart" preserveAspectRatio="none">
+<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ED957" stop-opacity=".35"/><stop offset="1" stop-color="#7ED957" stop-opacity="0"/></linearGradient></defs>
+<line x1="0" x2="600" y1="42.5" y2="42.5" class="gl"/><line x1="0" x2="600" y1="85.0" y2="85.0" class="gl"/><line x1="0" x2="600" y1="127.5" y2="127.5" class="gl"/>
+<path d="M0,170 L0.0,102.0 L46.2,89.6 L92.3,95.8 L138.5,74.2 L184.6,80.4 L230.8,61.8 L276.9,77.3 L323.1,52.5 L369.2,58.7 L415.4,43.3 L461.5,49.5 L507.7,27.8 L553.8,34.0 L600.0,21.6 L600,170 Z" class="area"/>
+<polyline points="0.0,145.3 46.2,142.2 92.3,145.3 138.5,136.0 184.6,139.1 230.8,132.9 276.9,136.0 323.1,129.8 369.2,132.9 415.4,126.7 461.5,123.6 507.7,126.7 553.8,120.5 600.0,117.5" class="ln l3" pathLength="1"/><polyline points="0.0,126.7 46.2,123.6 92.3,114.4 138.5,120.5 184.6,111.3 230.8,105.1 276.9,108.2 323.1,102.0 369.2,95.8 415.4,98.9 461.5,89.6 507.7,92.7 553.8,83.5 600.0,86.5" class="ln l2" pathLength="1"/><polyline points="0.0,102.0 46.2,89.6 92.3,95.8 138.5,74.2 184.6,80.4 230.8,61.8 276.9,77.3 323.1,52.5 369.2,58.7 415.4,43.3 461.5,49.5 507.7,27.8 553.8,34.0 600.0,21.6" class="ln l1" pathLength="1"/>
+<circle cx="600" cy="21.6" r="5" class="lastdot"/></svg>
+            <div class="lg"><span><i style="background:#7ED957"></i>WhatsApp</span><span><i style="background:#1F1F1F"></i>E-mail</span><span><i style="background:#A9B3A0"></i>Web</span></div></div>
+          <div class="card"><div class="card-h"><b data-i="c2">Jezici upita</b><small data-i="c2s">Danas</small></div>
+            <div class="hb"><span data-i="lg_bs">Bosanski</span><div><i style="--w:46%;background:#7ED957"></i></div><em>46%</em></div>
+            <div class="hb"><span data-i="lg_en">Engleski</span><div><i style="--w:27%;background:#1F1F1F"></i></div><em>27%</em></div>
+            <div class="hb"><span data-i="lg_de">Njemački</span><div><i style="--w:18%;background:#5E615A"></i></div><em>18%</em></div>
+            <div class="hb"><span data-i="lg_ar">Arapski</span><div><i style="--w:9%;background:#A9B3A0"></i></div><em>9%</em></div>
+            <div class="ds-note" data-i="c2n"><b>3 odgovora</b> čekaju vaše odobrenje</div>
+          </div>
+        </div>
+        <div class="ds-bot">
+          <div class="card"><div class="card-h"><b data-i="c3">Red za odobrenje</b><small data-i="c3s">Prosječno čekanje 6 min</small></div>
+            <table class="tb"><tbody>
+              <tr><td>14:02</td><td><span class="chn em">E-mail</span></td><td data-i="q1">Narudžba 40 paleta, art. 1187</td><td data-i="q1r">Djelimična isporuka</td><td><span class="st wait" data-i="s_wait">Čeka</span></td></tr>
+              <tr><td>13:48</td><td><span class="chn wa">WhatsApp</span></td><td data-i="q2">Popust 5% za dva stana</td><td data-i="q2r">Iznad ovlaštenja</td><td><span class="st wait" data-i="s_wait">Čeka</span></td></tr>
+              <tr><td>13:31</td><td><span class="chn wb">Web</span></td><td data-i="q3">Reklamacija isporuke</td><td data-i="q3r">Pritužba</td><td><span class="st new" data-i="s_new">Dodijeljeno</span></td></tr>
+              <tr><td>13:10</td><td><span class="chn ig">Instagram</span></td><td data-i="q4">Cijena najma, 3 mjeseca</td><td data-i="q4r">Pouzdanost 0,71</td><td><span class="st ok" data-i="s_ok">Odobreno</span></td></tr>
+            </tbody></table></div>
+          <div class="card feed"><div class="card-h"><b data-i="c4">Log događaja</b><span class="pulse"><i></i></span></div><ul id="feed"></ul></div>
         </div>
       </div>
-      <form class="panel rv" id="leadForm" novalidate>
-        <div class="row2">
-          <div class="inp"><label for="f-name">Ime i prezime *</label><input id="f-name" name="name" required minlength="2" maxlength="120" autocomplete="name" placeholder="Vaše ime"></div>
-          <div class="inp"><label for="f-biz">Naziv biznisa</label><input id="f-biz" name="business" maxlength="160" autocomplete="organization" placeholder="npr. Salon Bella"></div>
-        </div>
-        <div class="row2">
-          <div class="inp"><label for="f-type">Djelatnost</label>
-            <select id="f-type" name="business_type">
-              <option value="">Izaberite</option><option>Rent-a-car</option><option>Frizer / barber</option><option>Restoran / kafić</option><option>Apartmani / smještaj</option><option>Stomatolog / klinika</option><option>Kozmetika / nokti</option><option>Auto servis</option><option>Teretana / trener</option><option>Drugo</option>
-            </select></div>
-          <div class="inp"><label for="f-contact">Telefon ili email *</label><input id="f-contact" name="contact" required minlength="5" maxlength="160" autocomplete="tel" placeholder="+387 6x xxx xxx"></div>
-        </div>
-        <div class="inp"><label for="f-msg">Šta vas zanima? (opcionalno)</label><textarea id="f-msg" name="message" maxlength="2000" placeholder="npr. AI asistent za Instagram i WhatsApp, AI video reklama, web stranica..."></textarea></div>
-        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn lg" type="submit" id="fSubmit">Želim besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <p class="form-msg" id="fMsg" role="status" aria-live="polite"></p>
-      </form>
+    </div></div></div>
+    <p class="note" data-i="d_note">Ilustracija kontrolnog sloja s izmišljenim podacima. Izgled i funkcije se prilagođavaju svakom klijentu.</p>
+  </div>
+</section>
+<section id="sigurnost" aria-labelledby="h-sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-sec" data-i="se_h">Kako sistem donosi odluke</h2>
+      <p data-i="se_p">Jezički model razumije poruku. Odluke o cijenama, dostupnosti i obavezama donose vaši podaci i vaša pravila. Svaki upit prolazi kroz iste korake.</p>
+    </div>
+    <ol class="pipe rv" id="pipe"><span class="rail" aria-hidden="true"><b></b><i></i></span>
+      <li><h3 data-i="p1_h">Prijem</h3><p data-i="p1_s">Poruka s bilo kojeg kanala dobija jedinstven zapis.</p></li>
+      <li><h3 data-i="p2_h">Razumijevanje</h3><p data-i="p2_s">Model izvlači namjeru i podatke u strogu strukturu.</p></li>
+      <li><h3 data-i="p3_h">Provjera</h3><p data-i="p3_s">Cijene, zalihe i termini čitaju se iz vaših sistema.</p></li>
+      <li><h3 data-i="p4_h">Pravila</h3><p data-i="p4_s">Popusti, izuzeci i osjetljive teme idu čovjeku.</p></li>
+      <li><h3 data-i="p5_h">Akcija i zapis</h3><p data-i="p5_s">Odgovor, upis u CRM ili ERP i zapis u logu.</p></li>
+    </ol>
+    <a class="more" href="/sigurnost/"><span data-i="more_sec">Sigurnost i podaci</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    
+  </div>
+</section>
+<section id="arhitekture" aria-labelledby="h-arch">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-arch" data-i="ar_h">Referentne arhitekture</h2>
+      <p data-i="ar_p_s">Tri tipična sistema koje projektujemo. Demo verzije prikazujemo uživo na uvodnom sastanku.</p>
+    </div>
+    <div class="tzs"><a class="tz rv" style="--g:linear-gradient(90deg,#7ED957,#3CC8A0)" href="/arhitekture/#nekretnine"><span class="lab" data-i="ta">Nekretnine i smještaj</span><h3 data-i="a_h">Višejezični prodajni upiti</h3><p data-i="at_a">Upiti iz inostranstva dobijaju odgovor na jeziku kupca, a kvalifikovani lead ide u CRM.</p><span class="go"><span data-i="tz_go">Pogledajte arhitekturu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="tz rv" style="--g:linear-gradient(90deg,#3CC8A0,#5B8DEF)" href="/arhitekture/#klinike"><span class="lab" data-i="tb">Privatne klinike</span><h3 data-i="b_h">Prijem pacijenata i zakazivanje</h3><p data-i="at_b">Administrativna pitanja rješava sistem, a sve medicinsko odmah ide osoblju.</p><span class="go"><span data-i="tz_go">Pogledajte arhitekturu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="tz rv" style="--g:linear-gradient(90deg,#B9E35A,#3E8A26)" href="/arhitekture/#veleprodaja"><span class="lab" data-i="tc">Veleprodaja i distribucija</span><h3 data-i="c_h">B2B narudžbe i upiti</h3><p data-i="at_c">Narudžbe iz e-mailova i PDF-ova postaju nacrti u ERP-u, uz provjeru zaliha i cijena.</p><span class="go"><span data-i="tz_go">Pogledajte arhitekturu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  </div>
+</section>
+<section id="integracije" aria-labelledby="h-int" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-int" data-i="in_h">Radimo s alatima koje već imate</h2>
+      <p data-i="in_p">Povezivanje ide preko zvaničnih API-ja i webhooka. Za sisteme bez API-ja dogovaramo siguran način razmjene podataka.</p>
+    </div>
+    <div class="hubw rv" style="margin-bottom:0"><svg class="hub" viewBox="0 0 1000 420" aria-hidden="true"><defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#1F1F1F"/><stop offset="1" stop-color="#14301F"/></linearGradient></defs><path id="hl0" d="M195 60 C320 60,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr0" d="M580 210 C700 210,680 60,805 60" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl1" d="M195 160 C320 160,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr1" d="M580 210 C700 210,680 160,805 160" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl2" d="M195 260 C320 260,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr2" d="M580 210 C700 210,680 260,805 260" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hl3" d="M195 360 C320 360,300 210,420 210" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><path id="hr3" d="M580 210 C700 210,680 360,805 360" fill="none" stroke="#C9CDC1" stroke-width="1.5" stroke-dasharray="4 6"/><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="0.00s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl0"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="0.37s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr0"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="0.74s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl1"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="1.11s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr1"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="1.48s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl2"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="1.85s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr2"/></animateMotion></circle><circle r="5" fill="#7ED957"><animateMotion dur="2.8s" begin="2.22s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hl3"/></animateMotion></circle><circle r="5" fill="#3CC8A0"><animateMotion dur="2.8s" begin="2.59s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#hr3"/></animateMotion></circle><g><rect x="35" y="36" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="60" r="7" fill="#7ED957"/><text x="70" y="65" font-size="16" font-weight="600" fill="#1F1F1F">WhatsApp</text></g><g><rect x="35" y="136" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="160" r="7" fill="#E1306C"/><text x="70" y="165" font-size="16" font-weight="600" fill="#1F1F1F">Instagram</text></g><g><rect x="35" y="236" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="260" r="7" fill="#5B8DEF"/><text x="70" y="265" font-size="16" font-weight="600" fill="#1F1F1F">Web chat</text></g><g><rect x="35" y="336" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><circle cx="56" cy="360" r="7" fill="#C9A23E"/><text x="70" y="365" font-size="16" font-weight="600" fill="#1F1F1F">E-mail</text></g><g><rect x="805" y="36" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="53" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="65" font-size="16" font-weight="600" fill="#1F1F1F">CRM</text></g><g><rect x="805" y="136" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="153" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="165" font-size="16" font-weight="600" fill="#1F1F1F">ERP</text></g><g><rect x="805" y="236" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="253" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="265" font-size="16" font-weight="600" fill="#1F1F1F" data-i="hub_ec">Online prodaja</text></g><g><rect x="805" y="336" width="160" height="48" rx="14" fill="#fff" stroke="#D3D6CB"/><rect x="822" y="353" width="14" height="14" rx="4" fill="#3CC8A0"/><text x="846" y="365" font-size="16" font-weight="600" fill="#1F1F1F" data-i="hub_cal">Kalendar</text></g><g class="hubc"><circle cx="500" cy="210" r="110" fill="none" stroke="rgba(126,217,87,.35)" stroke-width="1.5"><animate attributeName="r" values="80;130" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="3s" repeatCount="indefinite"/></circle><rect x="420" y="165" width="160" height="90" rx="22" fill="url(#hg)"/><text x="500" y="207" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="30" letter-spacing="-1.4" fill="#fff">host<tspan fill="#7ED957">io.</tspan></text><text x="500" y="234" text-anchor="middle" font-size="12.5" fill="#A9BDB0" data-i="hub_c">provjere i pravila</text></g></svg></div>
+    <a class="more" href="/rjesenja/#integracije"><span data-i="more_int">Sve integracije</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+<section id="pristup" aria-labelledby="h-how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-how" data-i="ho_h">Od audita do rada u produkciji</h2>
+      <p data-i="ho_p_s">Četiri faze, svaka s jasnim rezultatom. Na sljedeću prelazimo tek uz vašu saglasnost.</p>
+    </div>
+    <div class="steps short" id="steps"><div class="track"></div>
+      <div class="step"><div class="n">1</div><h3 data-i="s1_h">Audit i ROI mapa</h3><span class="d" data-i="s1_d">1 do 2 sedmice</span><p data-i="s1_p">Razgovori s timom, mapa procesa, polazne metrike, procjena uštede i prijedlog arhitekture. Rezultat je pisani izvještaj i fiksna ponuda.</p></div>
+      <div class="step"><div class="n">2</div><h3 data-i="s2_h">Arhitektura i testno okruženje</h3><span class="d" data-i="s2_d">2 do 4 sedmice</span><p data-i="s2_p">Sistem se gradi i testira na stvarnim, anonimiziranim primjerima iz vašeg poslovanja, uz dogovorene kriterije prihvatanja.</p></div>
+      <div class="step"><div class="n">3</div><h3 data-i="s3_h">Kontrolisano uvođenje</h3><span class="d" data-i="s3_d">2 do 4 sedmice</span><p data-i="s3_p">Prvo jedan kanal ili tim, s uključenim ljudskim odobrenjem. Automatizacija se širi tek kada rezultati to opravdaju.</p></div>
+      <div class="step"><div class="n">4</div><h3 data-i="s4_h">Održavanje i nadzor</h3><span class="d" data-i="s4_d">mjesečno</span><p data-i="s4_p">Praćenje rada, ispravke, prilagodbe pravila i mjesečni izvještaj o rezultatima, prema ugovorenom obimu podrške.</p></div>
+    </div>
+    <a class="more" href="/pristup/"><span data-i="more_how">Kako radimo, korak po korak</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+<section id="trzista" aria-labelledby="h-mk">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-mk" data-i="mk_h">Lokalno i međunarodno</h2>
+      <p data-i="mk_p">Sistemi se grade i održavaju na daljinu, pa lokacija firme nije ograničenje. Način rada prilagođavamo tržištu.</p>
+    </div>
+    <div class="mk">
+      <div class="rv"><h3 data-i="m1_h">Bosna i Hercegovina i Adria regija</h3><p data-i="m1_p">Privatne poliklinike i estetski centri, veleprodaja i distribucija, logistika, investitori i agencije za nekretnine, osiguranje, lanci s više poslovnica i veće online prodavnice.</p></div>
+      <div class="rv"><canvas id="globe" width="680" height="680" aria-hidden="true"></canvas><h3 data-i="m2_h">EU, DACH, Ujedinjeno Kraljevstvo i SAD</h3><p data-i="m2_p">B2B uslužne firme, privatne klinike, softverske kompanije s velikim brojem upita podrške, agencije za nekretnine i online brendovi.</p></div>
     </div>
   </div>
 </section>
+<section id="kontakt" aria-labelledby="h-contact" style="padding-top:0">
+  <div class="wrap"><div class="box">
+    <div>
+      <h2 id="h-contact" data-i="k_h">Zatražite operativni audit</h2>
+      <p class="lead" data-i="k_p">Opišite proces koji želite unaprijediti. Prvi korak je kratak uvodni razgovor bez obaveze, na kojem procjenjujemo da li audit ima smisla.</p>
+      <ul class="ticks" data-i="k_l"><li>Mapa procesa i polazne metrike</li><li>Procjena uštede vremena i troškova</li><li>Prijedlog arhitekture i integracija</li><li>Fiksna ponuda za izgradnju</li></ul>
+    </div>
+    <form id="cf" novalidate>
+      <div class="f"><label for="c-name" data-i="f_name">Ime i prezime</label><input id="c-name" name="name" required maxlength="120" autocomplete="name"></div>
+      <div class="f"><label for="c-co" data-i="f_co">Firma</label><input id="c-co" name="company" required maxlength="120" autocomplete="organization"></div>
+      <div class="f"><label for="c-role" data-i="f_role">Uloga</label><input id="c-role" name="role" maxlength="80" autocomplete="organization-title"></div>
+      <div class="f"><label for="c-mail" data-i="f_mail">Poslovni e-mail</label><input id="c-mail" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+      <div class="f"><label for="c-country" data-i="f_country">Država</label><input id="c-country" name="country" maxlength="60" autocomplete="country-name"></div>
+      <div class="f"><label for="c-size" data-i="f_size">Broj zaposlenih</label><select id="c-size" name="size"><option value="">—</option><option>1–20</option><option>21–50</option><option>51–250</option><option>250+</option></select></div>
+      <div class="f full"><label for="c-msg" data-i="f_msg">Koji proces želite unaprijediti?</label><textarea id="c-msg" name="message" maxlength="2000"></textarea></div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="cta" type="submit" id="cfBtn"><i></i><span data-i="f_send">Pošaljite upit</span></button>
+      <p class="fmsg" id="cfMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div></div>
+</section>
+</main>
 
 <footer>
   <div class="wrap">
-    <div class="foot">
-      <a href="#top" class="logo">host<b>io.</b></a>
-      <nav aria-label="Podnožje">
-        <a href="/usluge/">Usluge</a><a href="/usluge/ai-video/">AI video reklame</a><a href="#kalkulator">Kalkulator</a><a href="/vise/za-koga/">Za koga</a><a href="/vise/pitanja/">Pitanja</a><a href="/privatnost">Privatnost</a><a href="/brisanje-podataka">Brisanje podataka</a>
-      </nav>
-      <small>© <span id="yr"></span> Hostio · AI rješenja za vaš biznis</small>
+    <div class="foot2">
+      <div><a class="logo" href="/" style="font-size:1.4rem">host<span>io.</span></a><p data-i="ft_p">AI automatizacija i sistemi po mjeri za srednje i velike firme, u regiji i šire.</p></div>
+      <div><h4 data-i="ft_h1">Stranice</h4><ul><li><a href="/rjesenja/" data-i="nav1">Rješenja</a></li><li><a href="/sigurnost/" data-i="nav2">Sigurnost</a></li><li><a href="/arhitekture/" data-i="nav3">Arhitekture</a></li><li><a href="/pristup/" data-i="nav4">Pristup</a></li></ul></div>
+      <div><h4 data-i="ft_h2">Kontakt</h4><ul><li><a href="/#kontakt" data-i="nav_cta">Zatražite audit</a></li><li><a href="/privatnost" data-i="privacy">Privatnost</a></li></ul></div>
     </div>
-    <div class="giant" aria-hidden="true">host<b>io.</b></div>
+    <div class="foot"><span>© <span id="yr"></span> Hostio</span></div>
   </div>
 </footer>
-
-<div class="mcta" id="mcta"><a href="#demo" class="btn lg">Besplatan demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-
-<script>
-(() => {
-"use strict";
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
-$("#yr").textContent = new Date().getFullYear();
-
-/* ---------- Lead form (Supabase, insert-only) ---------- */
-const SB_URL = "https://eauwnwvieyepzrbildqt.supabase.co";
-const SB_KEY = "sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
-const form = $("#leadForm"), fMsg = $("#fMsg"), fBtn = $("#fSubmit");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const d = Object.fromEntries(new FormData(form));
-  if (d.website) return; // bot
-  const name = (d.name || "").trim(), contact = (d.contact || "").trim();
-  if (name.length < 2 || contact.length < 5) {
-    fMsg.className = "form-msg err"; fMsg.textContent = "Upišite ime i broj telefona ili email da vas možemo kontaktirati."; return;
-  }
-  fBtn.disabled = true; fBtn.style.opacity = .7; fMsg.className = "form-msg"; fMsg.textContent = "Šaljem...";
-  try {
-    const r = await fetch(SB_URL + "/rest/v1/leads", {
-      method: "POST",
-      headers: { apikey: SB_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
-      body: JSON.stringify({ name, contact, business: (d.business || "").trim() || null, business_type: d.business_type || null, message: (d.message || "").trim() || null, source: "hostio-site" })
-    });
-    if (!r.ok) throw new Error(r.status);
-    form.reset();
-    fMsg.className = "form-msg ok"; fMsg.textContent = "Hvala! Primili smo vaš upit i javljamo se u roku od 24 sata.";
-  } catch (err) {
-    fMsg.className = "form-msg err"; fMsg.textContent = "Slanje nije uspjelo. Provjerite internet i pokušajte ponovo.";
-  } finally { fBtn.disabled = false; fBtn.style.opacity = 1; }
-});
-
-/* ---------- FAQ ---------- */
-$$(".q button").forEach(b => b.addEventListener("click", () => {
-  const q = b.parentElement, open = q.classList.contains("open");
-  $$(".q.open").forEach(x => x.classList.remove("open"));
-  if (!open) q.classList.add("open");
-}));
-
-/* ---------- Compare switch ---------- */
-const sw = $("#sw"), cmp = $("#cmp");
-function setCmp(v) {
-  sw.classList.toggle("yes", v === "yes");
-  $$("button", sw).forEach(b => b.classList.toggle("on", b.dataset.v === v));
-  cmp.classList.toggle("isyes", v === "yes"); cmp.classList.toggle("isno", v !== "yes");
-  $$(".v", cmp).forEach((el, i) => {
-    const html = `<span class="${v === "yes" ? "yes-t" : "no-t"}">${el.dataset[v]}</span>`;
-    if (window.gsap && !reduce) {
-      gsap.to(el, { opacity: 0, y: -10, duration: .2, delay: i * .04, onComplete: () => { el.innerHTML = html; gsap.fromTo(el, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .45, ease: "power3.out" }); } });
-    } else el.innerHTML = html;
-  });
-}
-$$("button", sw).forEach(b => b.addEventListener("click", () => { cmpAuto = false; setCmp(b.dataset.v); }));
-let cmpAuto = true;
-setCmp("no");
-
-/* ---------- Calculator ---------- */
-const ids = ["c1","c2","c3","c4","c5","c6"], inp = Object.fromEntries(ids.map(i => [i, $("#" + i)]));
-const fmt = n => Math.round(n).toLocaleString("bs-BA").replace(/,/g, ".");
-let perSecond = 0, shown = { m: 0 }, calcLive = false, calcFirst = true;
-function calc() {
-  ids.forEach(i => { const el = inp[i]; el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); });
-  const q = +inp.c1.value, miss = +inp.c2.value / 100, gone = +inp.c3.value / 100, val = +inp.c4.value, mins = +inp.c5.value, noshow = +inp.c6.value;
-  $("#o1").textContent = q; $("#o2").textContent = Math.round(miss * 100) + "%"; $("#o3").textContent = Math.round(gone * 100) + "%";
-  $("#o4").textContent = val + " KM"; $("#o5").textContent = mins + " min"; $("#o6").textContent = noshow;
-  const lostCust = q * 30 * miss * gone;
-  const lossM = lostCust * val + noshow * val;
-  const hrs = q * 30 * mins / 60;
-  perSecond = lossM / (30 * 24 * 3600);
-  $("#lossY").textContent = fmt(lossM * 12) + " KM";
-  $("#perDay").textContent = fmt(lossM / 30) + " KM";
-  $("#hrs").textContent = fmt(hrs) + " h";
-  $("#lost").textContent = fmt(lostCust);
-  if (!window.gsap || reduce) { $("#lossM").textContent = fmt(lossM); return; }
-  if (!calcLive) return; // counts up from 0 when the calculator scrolls into view
-  gsap.to(shown, { m: lossM, duration: calcFirst ? 2 : .8, ease: "power3.out", overwrite: true, onUpdate: () => $("#lossM").textContent = fmt(shown.m) });
-  calcFirst = false;
-}
-ids.forEach(i => inp[i].addEventListener("input", calc));
-calc();
-const t0 = performance.now();
-setInterval(() => {
-  const v = perSecond * (performance.now() - t0) / 1000;
-  $("#tick").textContent = v.toFixed(3).replace(".", ",") + " KM";
-}, 100);
-
-/* ---------- Hero chat demo ---------- */
-const SCEN = [
-  { name: "Salon Bella", av: "S", card: ["Nova rezervacija", "Sutra 17:00 · Muško šišanje"], msgs: [
-    ["in", "Pozdrav, imate li sutra slobodno za šišanje?", "23:47"],
-    ["out", "Pozdrav! 😊 Sutra imamo slobodno u 10:00, 13:30 i 17:00. Koje vam odgovara?", "23:47"],
-    ["in", "17h može", "23:48"],
-    ["out", "Super, upisani ste: muško šišanje, sutra u 17:00. Dan prije ćemo vas podsjetiti. Vidimo se! ✂️", "23:48"] ] },
-  { name: "Vrelo Rent a Car", av: "V", card: ["Novi zahtjev za najam", "Golf 8 · 12.–15.11. · čeka odobrenje"], msgs: [
-    ["in", "Hi, do you have a car from 12th to 15th November?", "01:12"],
-    ["out", "Hi! Yes, for 12–15 Nov we have a VW Golf 8 and a Škoda Octavia available. Here's your booking link with the dates already filled in 👉 hostio.ba/vrelo", "01:12"],
-    ["in", "Great, booked the Golf and uploaded my licence", "01:15"],
-    ["out", "Perfect, we've received it! You'll get a confirmation email shortly. 🚗", "01:15"] ] },
-  { name: "Restoran Kod Mehe", av: "K", card: ["Rezervacija stola", "Subota 20:30 · 6 osoba"], msgs: [
-    ["in", "Dobro veče, može sto za 6 osoba u subotu oko 20h?", "22:05"],
-    ["out", "Dobro veče! U subotu u 20:00 smo puni, ali imamo sto za 6 u 20:30. Može?", "22:05"],
-    ["in", "Može, na ime Amra", "22:06"],
-    ["out", "Rezervisano: subota 20:30, 6 osoba, na ime Amra. Radujemo se! 🍽️", "22:06"] ] }
-];
-const chat = $("#chat"); let scen = 0, chatTimer = [], chatAuto = true;
-const fc1 = $("#fc1");
-function clearChat() { chatTimer.forEach(clearTimeout); chatTimer = []; chat.innerHTML = ""; }
-function esc(s) { return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
-function playChat(i) {
-  clearChat(); scen = i; const S = SCEN[i];
-  $("#chatName").textContent = S.name; $("#chatAv").textContent = S.av;
-  $("#fcTitle").textContent = S.card[0]; $("#fcSub").textContent = S.card[1];
-  $$("#scen button").forEach(b => b.classList.toggle("on", +b.dataset.s === i));
-  if (window.gsap) gsap.set(fc1, { opacity: 0, y: 20, scale: .9 });
-  let t = 400;
-  S.msgs.forEach(([who, text, time]) => {
-    if (who === "out") {
-      chatTimer.push(setTimeout(() => { $("#chatStatus").textContent = "piše..."; const ty = document.createElement("div"); ty.className = "typing"; ty.innerHTML = "<i></i><i></i><i></i>"; chat.appendChild(ty); }, t));
-      t += 1300;
-      chatTimer.push(setTimeout(() => { $(".typing", chat)?.remove(); $("#chatStatus").textContent = "online"; addMsg(who, text, time); }, t));
-    } else {
-      chatTimer.push(setTimeout(() => addMsg(who, text, time), t));
-    }
-    t += who === "in" ? 1100 : 1500;
-  });
-  chatTimer.push(setTimeout(() => { if (window.gsap) gsap.to(fc1, { opacity: 1, y: 0, scale: 1, duration: .7, ease: "back.out(1.7)" }); }, t - 600));
-  chatTimer.push(setTimeout(() => { if (chatAuto) playChat((scen + 1) % SCEN.length); }, t + 3800));
-}
-function addMsg(who, text, time) {
-  const m = document.createElement("div"); m.className = "msg " + who;
-  m.innerHTML = esc(text) + `<small>${time}</small>`; chat.appendChild(m);
-  while (chat.children.length > 6) chat.firstChild.remove();
-}
-$$("#scen button").forEach(b => b.addEventListener("click", () => { chatAuto = false; playChat(+b.dataset.s); }));
-
-/* language chips cycle */
-const langs = $$("#langs span"); let li = 0;
-setInterval(() => { langs.forEach(s => s.classList.remove("on")); li = (li + 1) % langs.length; langs[li].classList.add("on"); }, 1400);
-
-/* ---------- Mobile menu ---------- */
-const burger = $("#burger"), mmenu = $("#mmenu");
-function setMenu(open) {
-  document.body.classList.toggle("menu-open", open);
-  burger.setAttribute("aria-expanded", open ? "true" : "false");
-  burger.setAttribute("aria-label", open ? "Zatvori meni" : "Otvori meni");
-  mmenu.setAttribute("aria-hidden", open ? "false" : "true");
-  if (window.__lenis) { open ? window.__lenis.stop() : window.__lenis.start(); }
-  else document.documentElement.style.overflow = open ? "hidden" : "";
-  $("#nav").classList.remove("hide");
-}
-burger.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
-$$("a", mmenu).forEach(a => a.addEventListener("click", () => setMenu(false)));
-addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("menu-open")) setMenu(false); });
-addEventListener("resize", () => { if (innerWidth > 900 && document.body.classList.contains("menu-open")) setMenu(false); });
-
-/* ---------- Nav hide on scroll + mobile CTA ---------- */
-let lastY = 0; const nav = $("#nav"), mcta = $("#mcta");
-addEventListener("scroll", () => {
-  const y = scrollY;
-  nav.classList.toggle("hide", y > lastY && y > 300 && !document.body.classList.contains("menu-open"));
-  lastY = y;
-  const demoTop = $("#demo").getBoundingClientRect().top;
-  mcta.classList.toggle("show", y > innerHeight * .8 && demoTop > innerHeight * .9);
-}, { passive: true });
-
-
-/* ---------- Channel mini chats (WhatsApp / Viber / Instagram) ---------- */
-const MINI = {
-  wa: [["in","Koliko košta pranje i feniranje?"],["out","Pranje i feniranje je 20 KM 😊 Danas imamo slobodno u 16:30. Da vas upišem?"],["in","Može!"],["out","Upisano, danas u 16:30. Vidimo se! 💇‍♀️"]],
-  vb: [["in","Dobar dan, radite li sutra?"],["out","Dobar dan! Sutra radimo od 9 do 18h. Želite li termin?"],["in","Može ujutro"],["out","Imamo u 9:30 ili 10:15. Koje vam odgovara?"]],
-  ig: [["in","Vidjela sam vaš story 😍 Ima li termin u subotu?"],["out","Hvala! 🙌 U subotu imamo slobodno u 11:00 i 14:00. Koje vam odgovara?"],["in","11h"],["out","Rezervisano za subotu u 11:00 ✨ Poslat ćemo podsjetnik dan prije."]]
-};
-function runMini(box, script, startDelay) {
-  const hd = box.querySelector(".hd");
-  const reset = () => { [...box.children].forEach(c => { if (c !== hd) c.remove(); }); };
-  const add = (cls, html) => { const el = document.createElement("div"); el.className = cls; el.innerHTML = html; box.appendChild(el); while (box.children.length > 4) { const f = [...box.children].find(c => c !== hd); f && f.remove(); } return el; };
-  const loop = () => {
-    reset(); let t = 300;
-    script.forEach(([who, text]) => {
-      if (who === "out") {
-        setTimeout(() => add("ty", "<i></i><i></i><i></i>"), t); t += 1200;
-        setTimeout(() => { box.querySelector(".ty")?.remove(); add("bb out", esc(text)); }, t);
-      } else setTimeout(() => add("bb in", esc(text)), t);
-      t += who === "in" ? 900 : 1400;
-    });
-    setTimeout(loop, t + 3200);
-  };
-  setTimeout(loop, startDelay);
-}
-let miniStarted = false;
-function startMinis() {
-  if (miniStarted) return; miniStarted = true;
-  $$(".mini").forEach((b, i) => runMini(b, MINI[b.dataset.ch], i * 900));
-}
-const chObs = "IntersectionObserver" in window ? new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { startMinis(); chObs.disconnect(); } }, { threshold: .2 }) : null;
-chObs ? chObs.observe($(".ch-grid")) : startMinis();
-
-/* ---------- Load motion libraries (with backup CDN); without them the page still works ---------- */
-let fellBack = false;
-function fallback() {
-  if (fellBack) return; fellBack = true;
-  document.documentElement.classList.remove("mp");
-  playChat(0); $("#strike").style.setProperty("--s", 1); $$(".count").forEach(c => c.textContent = c.dataset.to);
-  $("#stepsLine").style.transform = "scaleX(1)";
-}
-const load = src => new Promise((res, rej) => { const sc = document.createElement("script"); sc.src = src; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); });
-const tryLoad = list => list.reduce((p, src) => p.catch(() => load(src)), Promise.reject());
-if (reduce) { fallback(); return; }
-const safety = setTimeout(fallback, 6000);
-tryLoad(["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"])
-  .then(() => tryLoad(["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js", "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"]))
-  .then(() => tryLoad(["https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js", "https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"]).catch(() => {}))
-  .then(() => { if (!window.gsap || !window.ScrollTrigger) throw new Error("no gsap"); clearTimeout(safety); if (!fellBack) motion(); })
-  .catch(fallback);
-
-function motion() {
-document.documentElement.classList.remove("mp");
-gsap.registerPlugin(ScrollTrigger);
-
-/* smooth scroll */
-let lenis = null;
-if (window.Lenis) {
-  lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-  window.__lenis = lenis;
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
-  $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
-    const id = a.getAttribute("href"); if (id.length < 2) return; const el = $(id); if (!el) return;
-    e.preventDefault(); lenis.scrollTo(el, { offset: id === "#top" ? 0 : -20 });
-  }));
-}
-
-/* progress bar */
-gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
-
-/* cursor glow */
-if (fine) {
-  const cx = gsap.quickTo("#cursor", "x", { duration: .6, ease: "power3" }), cy = gsap.quickTo("#cursor", "y", { duration: .6, ease: "power3" });
-  addEventListener("pointermove", e => { cx(e.clientX); cy(e.clientY); });
-}
-
-/* split helper: words */
-function splitWords(el) {
-  const walk = node => {
-    [...node.childNodes].forEach(n => {
-      if (n.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(part => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-          const w = document.createElement("span"); w.className = "w"; const i = document.createElement("span"); i.textContent = part; w.appendChild(i); frag.appendChild(w);
-        });
-        n.replaceWith(frag);
-      } else if (n.nodeType === 1 && n.tagName !== "BR" && n.tagName !== "svg" && n.tagName !== "SVG") walk(n);
-    });
-  };
-  walk(el);
-  return $$(".w>span", el);
-}
-
-/* HERO intro */
-const h1Words = splitWords($("#h1"));
-$$("#h1 .w").forEach(w => { w.style.display = "inline-block"; w.style.overflow = "hidden"; w.style.verticalAlign = "top"; });
-const hl = $("#hlpath"), hlLen = hl.getTotalLength();
-gsap.set(hl, { strokeDasharray: hlLen, strokeDashoffset: hlLen });
-const intro = gsap.timeline({ defaults: { ease: "power4.out" } });
-intro.from(".nav-in", { y: -40, opacity: 0, duration: 1 })
-  .from(".hero .pill", { y: 20, opacity: 0, duration: .8 }, "-=.6")
-  .from(h1Words, { yPercent: 115, rotate: 4, duration: 1.1, stagger: .055 }, "-=.5")
-  .to(hl, { strokeDashoffset: 0, duration: 1, ease: "power2.inOut" }, "-=.4")
-  .from(".hero .lead, .hero .cta-row, .hero .trust", { y: 30, opacity: 0, duration: .9, stagger: .1 }, "-=.9")
-  .from("#phone", { y: 120, rotateX: 25, rotateY: -18, opacity: 0, duration: 1.4, ease: "expo.out" }, .5)
-  .from("#scen", { y: 20, opacity: 0, duration: .8 }, "-=.8")
-  .from("#fc2", { x: -40, opacity: 0, duration: .9, ease: "back.out(1.6)" }, "-=.5");
-setTimeout(() => playChat(0), 1600);
-
-/* floating idle */
-gsap.to("#fc2", { y: -12, duration: 2.6, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 2.5 });
-
-/* phone tilt to pointer + scroll parallax */
-if (fine) {
-  const stage = $("#stage"), ph = $("#phone");
-  stage.addEventListener("pointermove", e => {
-    const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-    gsap.to(ph, { rotateY: x * 16, rotateX: -y * 12, duration: .8, ease: "power3.out" });
-  });
-  stage.addEventListener("pointerleave", () => gsap.to(ph, { rotateY: 0, rotateX: 0, duration: 1, ease: "elastic.out(1,.5)" }));
-}
-gsap.to("#stage", { yPercent: -12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-gsap.to(".hero .blob", { yPercent: 40, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-
-/* section titles: word reveal */
-$$("h2.split").forEach(h => {
-  const words = splitWords(h);
-  gsap.from(words, { yPercent: 110, rotate: 3, duration: 1, ease: "power4.out", stagger: .04, scrollTrigger: { trigger: h, start: "top 85%" } });
-});
-$$(".rv").forEach(el => gsap.from(el, { y: 40, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
-
-/* pain timeline */
-gsap.from(".tl-card", { y: 60, opacity: 0, rotateX: -20, transformOrigin: "50% 0%", duration: 1, stagger: .15, ease: "power3.out", scrollTrigger: { trigger: ".tl", start: "top 80%" } });
-gsap.fromTo(".tl-card.bad", { scale: 1 }, { scale: 1.04, duration: .4, yoyo: true, repeat: 1, delay: .9, ease: "power2.inOut", scrollTrigger: { trigger: ".tl", start: "top 70%" } });
-gsap.from("#verdict", { y: 40, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#verdict", start: "top 85%" } });
-gsap.to("#strike", { "--s": 1, duration: .8, ease: "power3.inOut", scrollTrigger: { trigger: "#verdict", start: "top 70%" }, delay: .5 });
-gsap.from(".pain", { y: 50, opacity: 0, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".pains", start: "top 85%" } });
-
-/* calculator: count up when visible */
-ScrollTrigger.create({ trigger: "#kalkulator", start: "top 70%", once: true, onEnter: () => { calcLive = true; calc(); } });
-
-/* brain */
-gsap.from(".core", { scale: .4, opacity: 0, duration: 1.2, ease: "elastic.out(1,.6)", scrollTrigger: { trigger: "#brain", start: "top 75%" } });
-gsap.from(".node", { scale: 0, opacity: 0, duration: .8, stagger: .1, ease: "back.out(2)", scrollTrigger: { trigger: "#brain", start: "top 70%" } });
-$$(".node").forEach((n, i) => gsap.to(n, { y: i % 2 ? 10 : -10, duration: 2 + i * .3, yoyo: true, repeat: -1, ease: "sine.inOut" }));
-gsap.to(".brain svg.net", { rotate: 360, duration: 80, repeat: -1, ease: "none", transformOrigin: "50% 50%" });
-gsap.from(".ai-list li", { x: -30, opacity: 0, duration: .8, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".ai-list", start: "top 80%" } });
-
-/* bento */
-ScrollTrigger.batch(".card", { start: "top 88%", onEnter: b => gsap.from(b, { y: 70, opacity: 0, scale: .96, duration: 1, stagger: .08, ease: "power3.out" }), once: true });
-gsap.from(".mini-cal span.b", { scale: 0, duration: .5, stagger: .2, ease: "back.out(3)", scrollTrigger: { trigger: ".mini-cal", start: "top 85%" } });
-gsap.from(".dash-row", { x: 40, opacity: 0, duration: .7, stagger: .15, ease: "power3.out", scrollTrigger: { trigger: ".dash-mock", start: "top 88%" } });
-
-/* card spotlight + tilt */
-$$(".card").forEach(c => {
-  c.addEventListener("pointermove", e => {
-    const r = c.getBoundingClientRect();
-    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
-    if (fine) { const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; gsap.to(c, { rotateY: x * 6, rotateX: -y * 6, transformPerspective: 900, duration: .6, ease: "power3.out" }); }
-  });
-  c.addEventListener("pointerleave", () => gsap.to(c, { rotateY: 0, rotateX: 0, duration: .8, ease: "power3.out" }));
-});
-
-/* steps */
-gsap.to("#stepsLine", { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#steps", start: "top 75%", end: "bottom 60%", scrub: .6 } });
-gsap.from(".step", { y: 50, opacity: 0, duration: .9, stagger: .18, ease: "power3.out", scrollTrigger: { trigger: "#steps", start: "top 78%" } });
-gsap.from(".step .num", { scale: 0, rotate: -90, duration: .9, stagger: .18, ease: "back.out(2)", scrollTrigger: { trigger: "#steps", start: "top 78%" } });
-
-/* compare: auto flip to "Sa Hostiom" when scrolled into view */
-ScrollTrigger.create({ trigger: "#cmp", start: "top 70%", once: true, onEnter: () => setTimeout(() => { if (cmpAuto) setCmp("yes"); }, 1600) });
-gsap.from(".cmp-item", { y: 50, opacity: 0, duration: .9, stagger: .08, ease: "power3.out", scrollTrigger: { trigger: "#cmp", start: "top 85%" } });
-
-
-/* channels */
-gsap.from(".ch", { y: 36, opacity: 0, duration: .8, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".ch-grid", start: "top 85%" } });
-gsap.from(".ch-ic", { scale: 0, rotate: -40, duration: .9, stagger: .15, ease: "back.out(2.2)", scrollTrigger: { trigger: ".ch-grid", start: "top 82%" } });
-gsap.from(".eq > *", { y: 30, opacity: 0, duration: .7, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".eq", start: "top 88%" } });
-gsap.from(".pr", { y: 40, opacity: 0, duration: .8, stagger: .08, ease: "power3.out", scrollTrigger: { trigger: ".proof", start: "top 85%" } });
-$$(".ch").forEach(c => {
-  if (!fine) return;
-  c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; gsap.to(c, { rotateY: x * 7, rotateX: -y * 7, transformPerspective: 900, duration: .6, ease: "power3.out" }); });
-  c.addEventListener("pointerleave", () => gsap.to(c, { rotateY: 0, rotateX: 0, duration: .9, ease: "power3.out" }));
-});
-
-/* verticals */
-gsap.from(".v-card", { y: 60, opacity: 0, duration: .9, stagger: .07, ease: "power3.out", scrollTrigger: { trigger: ".vert", start: "top 85%" } });
-
-/* why stats count */
-$$(".count").forEach(c => {
-  const o = { v: 0 }, to = +c.dataset.to;
-  gsap.to(o, { v: to, duration: 1.6, ease: "power2.out", scrollTrigger: { trigger: c, start: "top 88%" }, onUpdate: () => c.textContent = Math.round(o.v) });
-});
-gsap.from(".stat", { y: 40, opacity: 0, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".why-grid", start: "top 85%" } });
-
-/* faq */
-gsap.from(".q", { y: 30, opacity: 0, duration: .7, stagger: .06, ease: "power3.out", scrollTrigger: { trigger: ".faq", start: "top 85%" } });
-
-/* giant footer */
-gsap.from(".giant", { yPercent: 40, opacity: 0, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: "footer", start: "top 90%" } });
-
-/* marquee speed reacts to scroll velocity */
-const mq = $(".mq");
-ScrollTrigger.create({ onUpdate: s => { const v = Math.min(Math.abs(s.getVelocity()) / 1000, 4); gsap.to(mq, { skewX: -v * 2, duration: .3, overwrite: true }); gsap.to(mq, { skewX: 0, duration: .8, delay: .3 }); } });
-
-/* magnetic buttons */
-if (fine) $$(".magnetic").forEach(b => {
-  b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4, ease: "power3.out" }); });
-  b.addEventListener("pointerleave", () => gsap.to(b, { x: 0, y: 0, duration: .7, ease: "elastic.out(1,.4)" }));
-});
-
-ScrollTrigger.refresh();
-addEventListener("load", () => ScrollTrigger.refresh());
-}
-})();
-</script>
-
-<script>
-/* AI video: play in view, one sound at a time, prefill demo form */
-(() => {
-  const reels = [...document.querySelectorAll(".reel")];
-  const vids = reels.map(r => r.querySelector("video"));
-  const setBtn = (b, on) => { b.classList.toggle("on", on); b.querySelector("span").textContent = on ? "Zvuk uključen" : "Uključi zvuk"; b.setAttribute("aria-label", on ? "Isključi zvuk" : "Uključi zvuk"); };
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { v.play().catch(() => {}); }
-      else { v.pause(); if (!v.muted) { v.muted = true; setBtn(v.closest(".reel").querySelector(".snd"), false); } }
-    }), { threshold: .35 });
-    vids.forEach(v => io.observe(v));
-  }
-  reels.forEach(r => {
-    const b = r.querySelector(".snd"), v = r.querySelector("video");
-    b.addEventListener("click", () => {
-      const turnOn = v.muted;
-      reels.forEach(o => { o.querySelector("video").muted = true; setBtn(o.querySelector(".snd"), false); });
-      if (turnOn) { v.muted = false; v.currentTime = 0; v.play().catch(() => {}); setBtn(b, true); }
-    });
-  });
-  const hv = document.querySelector(".vcard video"); if (hv) hv.play().catch(() => {});
-  try { const w = sessionStorage.getItem("hostio_want"); const t = document.getElementById("f-msg"); if (w && t && !t.value) t.value = w; sessionStorage.removeItem("hostio_want"); } catch (e) {}
-  document.querySelectorAll("[data-want]").forEach(a => a.addEventListener("click", () => {
-    const t = document.getElementById("f-msg"); if (t && !t.value) t.value = a.dataset.want;
-  }));
-})();
-</script>
 </body>
 </html>

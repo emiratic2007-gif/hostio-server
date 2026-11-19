@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Referentne arhitekture, Hostio</title>
+<meta name="description" content="Referentne arhitekture za nekretnine, privatne klinike i veleprodaju: tok, zaštite, integracije i metrike.">
+<link rel="canonical" href="https://hostio.ba/arhitekture/">
+<meta name="theme-color" content="#EDF0E8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hostio">
+<meta property="og:url" content="https://hostio.ba/arhitekture/">
+<meta property="og:title" content="Referentne arhitekture, Hostio">
+<meta property="og:description" content="Referentne arhitekture za nekretnine, privatne klinike i veleprodaju: tok, zaštite, integracije i metrike.">
+<meta property="og:image" content="https://hostio.ba/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="bs_BA">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css?v=1">
+
+<script src="/assets/site.js?v=1" defer></script>
+</head>
+<body data-title-bs="Referentne arhitekture, Hostio" data-title-en="Reference architectures, Hostio">
+<svg class="bgfx" viewBox="0 0 1440 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 49.0 L0 44.5 L40 42.5 L80 42.2 L120 42.4 L160 41.6 L200 38.7 L240 33.1 L280 25.3 L320 16.6 L360 8.8 L400 3.9 L440 3.2 L480 7.3 L520 15.6 L560 26.8 L600 38.7 L640 49.3 L680 57.0 L720 61.0 L760 61.6 L800 59.7 L840 57.0 L880 54.9 L920 54.6 L960 56.2 L1000 59.1 L1040 61.9 L1080 63.0 L1120 61.0 L1160 55.3 L1200 46.0 L1240 34.3 L1280 22.3 L1320 12.1 L1360 5.4 L1400 3.4 L1440 5.9 L1480 12.1"/><path d="M-40 131.9 L0 128.3 L40 127.3 L80 128.1 L120 129.1 L160 129.0 L200 126.5 L240 121.1 L280 113.4 L320 104.8 L360 97.1 L400 92.2 L440 91.4 L480 95.2 L520 102.9 L560 113.2 L600 124.0 L640 133.3 L680 139.7 L720 142.6 L760 142.4 L800 140.3 L840 137.9 L880 136.7 L920 137.6 L960 140.7 L1000 145.1 L1040 149.3 L1080 151.7 L1120 150.7 L1160 145.8 L1200 137.1 L1240 126.1 L1280 114.5 L1320 104.5 L1360 97.7 L1400 95.2 L1440 96.9 L1480 101.7"/><path d="M-40 167.6 L0 159.0 L40 159.2 L80 168.9 L120 187.0 L160 210.6 L200 235.5 L240 257.0 L280 270.7 L320 273.9 L360 265.6 L400 247.2 L440 222.2 L480 195.4 L520 171.7 L560 155.8 L600 150.5 L640 156.4 L680 172.1 L720 194.4 L760 218.8 L800 240.8 L840 256.7 L880 264.1 L920 262.3 L960 252.6 L1000 237.1 L1040 218.9 L1080 201.0 L1120 186.2 L1160 176.0 L1200 171.4 L1240 172.5 L1280 178.5 L1320 188.5 L1360 201.2 L1400 215.2 L1440 229.1 L1480 241.3"/><path d="M-40 326.1 L0 319.7 L40 311.5 L80 303.3 L120 296.6 L160 291.9 L200 289.1 L240 287.6 L280 286.4 L320 284.8 L360 282.7 L400 280.6 L440 279.3 L480 280.3 L520 284.3 L560 291.7 L600 301.9 L640 313.3 L680 323.8 L720 331.2 L760 333.5 L800 329.9 L840 320.6 L880 307.1 L920 291.9 L960 277.8 L1000 267.4 L1040 262.5 L1080 263.7 L1120 270.2 L1160 280.4 L1200 292.0 L1240 302.7 L1280 310.9 L1320 315.7 L1360 317.2 L1400 316.2 L1440 313.9 L1480 311.5"/><path d="M-40 415.7 L0 412.8 L40 407.1 L80 400.4 L120 394.4 L160 390.4 L200 388.7 L240 389.0 L280 389.9 L320 390.0 L360 387.8 L400 382.8 L440 375.2 L480 366.1 L520 357.4 L560 350.9 L600 348.3 L640 350.4 L680 356.9 L720 366.7 L760 377.8 L800 388.2 L840 396.0 L880 400.5 L920 401.6 L960 400.2 L1000 397.8 L1040 396.0 L1080 395.9 L1120 397.9 L1160 401.5 L1200 405.4 L1240 408.0 L1280 407.6 L1320 403.4 L1360 395.4 L1400 384.6 L1440 372.7 L1480 362.0"/><path d="M-40 416.7 L0 414.0 L40 421.6 L80 438.6 L120 462.2 L160 488.2 L200 511.5 L240 527.5 L280 532.9 L320 526.3 L360 509.0 L400 484.3 L440 456.9 L480 432.2 L520 415.0 L560 408.4 L600 413.3 L640 428.6 L680 450.8 L720 475.6 L760 498.3 L800 514.8 L840 522.6 L880 520.9 L920 510.8 L960 494.6 L1000 475.6 L1040 457.0 L1080 441.8 L1120 431.8 L1160 428.1 L1200 430.4 L1240 438.0 L1280 449.6 L1320 463.5 L1360 478.1 L1400 491.7 L1440 502.7 L1480 509.5"/><path d="M-40 600.0 L0 591.4 L40 582.3 L80 573.9 L120 567.0 L160 561.2 L200 555.6 L240 549.3 L280 541.4 L320 531.8 L360 521.4 L400 511.6 L440 504.4 L480 501.6 L520 504.6 L560 513.5 L600 527.6 L640 545.0 L680 563.1 L720 579.4 L760 592.0 L800 599.5 L840 602.0 L880 600.2 L920 595.8 L960 590.4 L1000 585.0 L1040 580.5 L1080 576.3 L1120 571.8 L1160 565.7 L1200 557.3 L1240 546.3 L1280 533.3 L1320 519.9 L1360 508.3 L1400 500.5 L1440 498.2 L1480 502.4"/><path d="M-40 594.5 L0 598.2 L40 610.0 L80 628.2 L120 649.5 L160 670.0 L200 685.9 L240 693.9 L280 692.6 L320 682.3 L360 665.0 L400 644.1 L440 623.6 L480 607.1 L520 597.5 L560 596.0 L600 602.1 L640 614.2 L680 629.6 L720 645.4 L760 659.0 L800 668.8 L840 673.8 L880 674.3 L920 671.0 L960 664.9 L1000 656.9 L1040 648.1 L1080 638.9 L1120 629.8 L1160 621.4 L1200 614.5 L1240 610.1 L1280 609.3 L1320 613.0 L1360 621.5 L1400 634.3 L1440 649.8 L1480 665.7"/><path d="M-40 715.7 L0 709.1 L40 700.8 L80 691.2 L120 681.8 L160 674.2 L200 670.5 L240 671.9 L280 679.1 L320 691.5 L360 707.4 L400 724.7 L440 740.9 L480 754.1 L520 763.1 L560 767.9 L600 769.1 L640 768.2 L680 766.6 L720 765.5 L760 765.1 L800 765.1 L840 764.3 L880 761.2 L920 754.7 L960 744.2 L1000 730.0 L1040 713.7 L1080 697.2 L1120 682.9 L1160 673.0 L1200 668.6 L1240 670.1 L1280 676.6 L1320 686.4 L1360 697.5 L1400 708.1 L1440 717.0 L1480 723.9"/><path d="M-40 855.7 L0 861.4 L40 860.2 L80 853.2 L120 842.2 L160 829.6 L200 817.2 L240 806.5 L280 798.2 L320 792.1 L360 787.9 L400 785.0 L440 783.3 L480 782.9 L520 784.5 L560 789.1 L600 797.2 L640 808.8 L680 823.0 L720 838.2 L760 851.9 L800 861.6 L840 865.1 L880 861.1 L920 849.9 L960 832.9 L1000 812.9 L1040 793.0 L1080 776.6 L1120 766.3 L1160 763.2 L1200 767.5 L1240 777.6 L1280 791.4 L1320 806.4 L1360 820.2 L1400 831.3 L1440 838.9 L1480 843.2"/><path d="M-40 867.2 L0 877.1 L40 890.2 L80 904.7 L120 918.2 L160 928.8 L200 935.1 L240 936.9 L280 934.9 L320 930.5 L360 925.5 L400 921.3 L440 918.7 L480 917.7 L520 917.4 L560 916.3 L600 913.2 L640 907.0 L680 897.7 L720 886.0 L760 873.7 L800 862.9 L840 855.5 L880 853.0 L920 855.8 L960 863.2 L1000 873.6 L1040 885.2 L1080 895.8 L1120 904.0 L1160 909.3 L1200 911.9 L1240 913.1 L1280 914.2 L1320 916.5 L1360 920.6 L1400 926.3 L1440 932.5 L1480 937.5"/><path d="M-40 1034.1 L0 1025.7 L40 1013.8 L80 1000.6 L120 987.7 L160 976.2 L200 966.5 L240 958.7 L280 952.7 L320 948.7 L360 947.0 L400 948.5 L440 953.8 L480 963.5 L520 977.3 L560 994.1 L600 1011.9 L640 1027.9 L680 1039.4 L720 1043.8 L760 1039.9 L800 1027.6 L840 1008.7 L880 986.1 L920 963.3 L960 944.2 L1000 931.7 L1040 927.5 L1080 931.9 L1120 943.5 L1160 960.0 L1200 978.3 L1240 995.7 L1280 1009.9 L1320 1019.8 L1360 1024.9 L1400 1025.9 L1440 1023.5 L1480 1018.7"/><path d="M-40 1016.2 L0 1025.8 L40 1042.9 L80 1065.1 L120 1088.9 L160 1110.4 L200 1126.0 L240 1133.3 L280 1131.2 L320 1120.5 L360 1103.4 L400 1083.0 L440 1062.6 L480 1045.3 L520 1033.0 L560 1026.9 L600 1026.5 L640 1031.0 L680 1038.9 L720 1048.8 L760 1059.7 L800 1070.9 L840 1082.1 L880 1092.9 L920 1102.8 L960 1111.0 L1000 1116.2 L1040 1117.1 L1080 1112.5 L1120 1102.0 L1160 1086.1 L1200 1066.6 L1240 1046.1 L1280 1027.8 L1320 1015.2 L1360 1010.6 L1400 1015.2 L1440 1028.6 L1480 1048.8"/><path d="M-40 1183.3 L0 1172.4 L40 1161.8 L80 1151.9 L120 1142.7 L160 1134.0 L200 1126.2 L240 1119.7 L280 1115.8 L320 1115.6 L360 1120.2 L400 1130.3 L440 1145.4 L480 1164.0 L520 1183.5 L560 1200.9 L600 1213.1 L640 1217.9 L680 1214.0 L720 1202.0 L760 1183.6 L800 1161.9 L840 1140.4 L880 1122.4 L920 1110.5 L960 1105.7 L1000 1108.0 L1040 1116.1 L1080 1127.9 L1120 1141.4 L1160 1154.6 L1200 1166.3 L1240 1175.9 L1280 1183.6 L1320 1189.4 L1360 1193.6 L1400 1196.0 L1440 1195.9 L1480 1192.7"/><path d="M-40 1281.4 L0 1288.3 L40 1288.9 L80 1283.9 L120 1274.8 L160 1263.8 L200 1252.9 L240 1243.3 L280 1235.6 L320 1229.9 L360 1225.3 L400 1221.3 L440 1217.5 L480 1214.0 L520 1211.7 L560 1211.8 L600 1215.4 L640 1223.3 L680 1235.4 L720 1250.5 L760 1266.6 L800 1281.0 L840 1291.2 L880 1295.2 L920 1291.9 L960 1281.8 L1000 1266.5 L1040 1248.7 L1080 1231.2 L1120 1216.8 L1160 1207.3 L1200 1203.4 L1240 1204.8 L1280 1210.1 L1320 1217.8 L1360 1226.1 L1400 1233.9 L1440 1240.8 L1480 1246.9"/><path d="M-40 1326.1 L0 1344.0 L40 1358.8 L80 1367.6 L120 1368.8 L160 1362.5 L200 1350.1 L240 1334.7 L280 1319.3 L320 1307.1 L360 1300.0 L400 1299.0 L440 1303.5 L480 1312.1 L520 1322.6 L560 1333.0 L600 1341.4 L640 1347.0 L680 1349.4 L720 1349.1 L760 1346.8 L800 1343.1 L840 1338.7 L880 1333.7 L920 1328.3 L960 1322.6 L1000 1316.9 L1040 1311.9 L1080 1308.6 L1120 1308.0 L1160 1311.0 L1200 1317.8 L1240 1327.8 L1280 1339.7 L1320 1351.3 L1360 1359.9 L1400 1363.6 L1440 1360.9 L1480 1351.8"/><path d="M-40 1437.3 L0 1430.9 L40 1423.2 L80 1416.1 L120 1410.8 L160 1407.9 L200 1407.1 L240 1407.6 L280 1408.3 L320 1408.4 L360 1407.6 L400 1406.3 L440 1405.4 L480 1405.9 L520 1408.8 L560 1414.3 L600 1421.9 L640 1430.2 L680 1437.4 L720 1441.5 L760 1441.1 L800 1435.7 L840 1425.9 L880 1413.5 L920 1400.8 L960 1390.6 L1000 1385.0 L1040 1385.2 L1080 1391.2 L1120 1401.7 L1160 1414.4 L1200 1426.6 L1240 1436.0 L1280 1441.0 L1320 1441.0 L1360 1436.6 L1400 1429.5 L1440 1421.4 L1480 1414.1"/><path d="M-40 1531.0 L0 1522.1 L40 1513.1 L80 1505.0 L120 1498.4 L160 1492.9 L200 1487.9 L240 1483.0 L280 1478.0 L320 1473.3 L360 1470.1 L400 1469.7 L440 1473.3 L480 1481.5 L520 1493.9 L560 1509.3 L600 1525.2 L640 1539.1 L680 1548.2 L720 1550.8 L760 1546.2 L800 1534.9 L840 1519.0 L880 1501.3 L920 1484.6 L960 1471.7 L1000 1464.0 L1040 1462.2 L1080 1465.6 L1120 1472.6 L1160 1481.5 L1200 1490.5 L1240 1498.6 L1280 1505.3 L1320 1510.8 L1360 1515.8 L1400 1520.8 L1440 1525.8 L1480 1530.5"/></svg>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<header id="hd">
+  <div class="wrap bar">
+    <a class="logo" href="/" aria-label="Hostio">host<span>io.</span></a>
+    <nav aria-label="Glavna navigacija">
+      <a class="nl" href="/rjesenja/" data-i="nav1">Rješenja</a><a class="nl" href="/sigurnost/" data-i="nav2">Sigurnost</a><a class="nl" href="/arhitekture/" data-i="nav3" aria-current=page>Arhitekture</a><a class="nl" href="/pristup/" data-i="nav4">Pristup</a>
+      <a class="mini" href="/#kontakt" data-i="nav_cta">Zatražite audit</a>
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button type="button" data-lang="bs" aria-pressed="true">BS</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="h1"><div class="aur" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+  <div class="wrap"><a class="crumb" href="/" data-i="crumb">Hostio, početna</a>
+    <h1 id="h1" data-i="ar_h1">Referentne arhitekture.</h1>
+    <p class="lead" data-i="ar_lead">Kako izgledaju sistemi koje projektujemo: tok upita, zaštite, integracije i šta se mjeri.</p>
+  </div>
+</section>
+<section id="arhitekture" aria-labelledby="h-arch">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="h-arch" data-i="ar_h2">Tri sistema, tri industrije</h2>
+      <p data-i="ar_p">Tri tipična sistema koje projektujemo, prikazana kao referentna rješenja, a ne kao opisi projekata za konkretne klijente. Demo verzije prikazujemo uživo na uvodnom sastanku.</p>
+    </div>
+    <div class="tabs rv" role="tablist" aria-label="Arhitekture">
+      <button role="tab" id="tb-a" data-hash="nekretnine" aria-controls="ar-a" aria-selected="true" data-i="ta">Nekretnine i smještaj</button>
+      <button role="tab" id="tb-b" data-hash="klinike" aria-controls="ar-b" aria-selected="false" tabindex="-1" data-i="tb">Privatne klinike</button>
+      <button role="tab" id="tb-c" data-hash="veleprodaja" aria-controls="ar-c" aria-selected="false" tabindex="-1" data-i="tc">Veleprodaja i distribucija</button>
+    </div>
+    <div class="arch rv" role="tabpanel" id="ar-a" aria-labelledby="tb-a">
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="a_h">Višejezični prodajni upiti</h3>
+        <p data-i="a_p">Kupci i gosti iz dijaspore i inostranstva pišu na engleskom, njemačkom, arapskom ili bosanskom, često van radnog vremena. Prodajni tim propušta upite ili odgovara satima kasnije.</p>
+        <ol class="flowlist" data-i="a_f"><li>Upit stiže s WhatsAppa, Instagrama, weba ili portala za nekretnine</li><li>Agent prepoznaje jezik, objekat i namjeru: kupovina, najam ili razgledanje</li><li>Dostupnost i cijena čitaju se iz baze objekata</li><li>Kvalifikacija: budžet, rok i način plaćanja</li><li>Lead se upisuje u CRM, a prodavač dobija sažetak i predloženi termin razgledanja</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="a_g"><li>Cijena i dostupnost isključivo iz baze</li><li>Popusti i rezervacije uvijek idu prodavaču</li><li>Odgovor na jeziku kupca, sažetak na jeziku tima</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="a_i">CRM (npr. HubSpot ili Pipedrive), baza objekata, kalendar prodajnog tima.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="a_k">Vrijeme do prvog odgovora, udio kvalifikovanih upita, broj zakazanih razgledanja.</p></div>
+      </div>
+    </div>
+    <div class="arch" role="tabpanel" id="ar-b" aria-labelledby="tb-b" hidden>
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="b_h">Prijem pacijenata i zakazivanje</h3>
+        <p data-i="b_p">Recepcija je opterećena pozivima i porukama, a dio upita stiže noću i vikendom. Medicinski sadržaj traži poseban oprez i jasnu granicu između administracije i struke.</p>
+        <ol class="flowlist" data-i="b_f"><li>Upit stiže s bilo kojeg kanala klinike</li><li>Agent razdvaja administrativna pitanja (termini, cijene usluga, priprema) od medicinskih</li><li>Slobodni termini čitaju se iz kalendara ili sistema klinike</li><li>Termin se predlaže i potvrđuje prema pravilima klinike</li><li>Podsjetnici i izmjene termina šalju se automatski</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="b_g"><li>Agent ne daje medicinske savjete ni dijagnoze</li><li>Simptomi i hitni slučajevi odmah idu osoblju</li><li>Pristup podacima pacijenata ograničen po ulogama</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="b_i">Sistem za zakazivanje ili informacioni sistem klinike preko API-ja, kalendar, podsjetnici putem WhatsAppa ili SMS-a.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="b_k">Opterećenje recepcije, udio termina zakazanih van radnog vremena, broj propuštenih termina.</p></div>
+      </div>
+    </div>
+    <div class="arch" role="tabpanel" id="ar-c" aria-labelledby="tb-c" hidden>
+      <div><div class="lab" data-i="a_lab">Referentna arhitektura</div><h3 data-i="c_h">B2B narudžbe i upiti</h3>
+        <p data-i="c_p">Narudžbe stižu e-mailom, porukama i telefonom, u različitim formatima. Komercijalisti ručno provjeravaju zalihe i prepisuju stavke u ERP.</p>
+        <ol class="flowlist" data-i="c_f"><li>Narudžba stiže e-mailom ili porukom, u tekstu, PDF-u ili tabeli</li><li>Stavke se izvlače u strukturu i povezuju sa šiframa artikala</li><li>Zalihe, cijene po kupcu i rokovi čitaju se iz ERP-a</li><li>Pravila određuju šta ide automatski, a šta komercijalisti</li><li>Nacrt narudžbe ili ponude kreira se u ERP-u i čeka potvrdu</li></ol></div>
+      <div class="facts2">
+        <div><h4 data-i="h_guard">Zaštite</h4><ul class="ticks" data-i="c_g"><li>Cijene po kupcu isključivo iz ERP-a</li><li>Djelimične isporuke i izuzeci uvijek na odobrenje</li><li>Svaka stavka ima trag do originalnog dokumenta</li></ul></div>
+        <div><h4 data-i="h_int">Integracije</h4><p data-i="c_i">ERP preko API-ja ili dogovorenog izvoza podataka, poslovni e-mail, CRM.</p></div>
+        <div><h4 data-i="h_kpi">Šta se mjeri</h4><p data-i="c_k">Vrijeme obrade narudžbe, sati ručnog unosa, broj grešaka u stavkama.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section aria-label="Audit" style="padding-top:0"><div class="wrap"><div class="band rv">
+  <div><h2 data-i="band_h">Pogledajmo vaš proces zajedno.</h2><p data-i="band_p">Kratak uvodni razgovor, bez obaveze. Ako audit ima smisla, dobijate fiksnu ponudu.</p></div>
+  <a class="cta" href="/#kontakt"><i></i><span data-i="band_cta">Zatražite operativni audit</span></a>
+</div></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot2">
+      <div><a class="logo" href="/" style="font-size:1.4rem">host<span>io.</span></a><p data-i="ft_p">AI automatizacija i sistemi po mjeri za srednje i velike firme, u regiji i šire.</p></div>
+      <div><h4 data-i="ft_h1">Stranice</h4><ul><li><a href="/rjesenja/" data-i="nav1">Rješenja</a></li><li><a href="/sigurnost/" data-i="nav2">Sigurnost</a></li><li><a href="/arhitekture/" data-i="nav3">Arhitekture</a></li><li><a href="/pristup/" data-i="nav4">Pristup</a></li></ul></div>
+      <div><h4 data-i="ft_h2">Kontakt</h4><ul><li><a href="/#kontakt" data-i="nav_cta">Zatražite audit</a></li><li><a href="/privatnost" data-i="privacy">Privatnost</a></li></ul></div>
+    </div>
+    <div class="foot"><span>© <span id="yr"></span> Hostio</span></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -8,3 +8,14 @@
 # DownTown pub: short link for Instagram story
 /downtown  /pub/  200
 /downtown/  /pub/  200
+
+# Old marketing pages (before the 2026-11 repositioning)
+/novo  /  301
+/novo/  /  301
+/usluge  /rjesenja/  301
+/usluge/*  /rjesenja/  301
+/vise/kako-radi  /pristup/  301
+/vise/kako-radi/  /pristup/  301
+/vise/pitanja  /pristup/#pitanja  301
+/vise/pitanja/  /pristup/#pitanja  301
+/vise/*  /  301
