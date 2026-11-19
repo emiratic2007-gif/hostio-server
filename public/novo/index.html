@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hostio, studio za primijenjenu umjetnu inteligenciju</title>
+<meta name="description" content="Hostio projektuje i uvodi AI asistente, automatizacije i softver po mjeri za firme, bez obzira gdje posluju.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F3F4F0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap&text=hostio." rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F0; --paper2:#E9EBE4; --ink:#1F1F1F; --ink2:#2B2C29; --graphite:#5E615A; --soft:#8A8D84;
+  --line:#D6D8CF; --green:#7ED957; --green-ink:#3E8A26;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --text:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+.logo{font-family:Poppins,var(--display);font-weight:800;letter-spacing:-.045em;text-decoration:none;line-height:1}
+.logo span{color:var(--green)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:72px}
+.bar .logo{font-size:1.6rem}
+.bar nav{display:flex;align-items:center;gap:30px;font-size:.95rem}
+.bar nav a{text-decoration:none;color:var(--graphite);transition:color .2s}
+.bar nav a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:6px}
+.lang button{font-size:.82rem;font-weight:600;padding:5px 11px;border-radius:999px;color:var(--soft);letter-spacing:.02em}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+@media (max-width:760px){.bar nav a{display:none}.bar{height:64px}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(56px,10vh,120px) 0 clamp(72px,11vh,130px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:end}
+h1{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:clamp(2.6rem,5.6vw,5.1rem);line-height:1.02;letter-spacing:-.035em;max-width:15ch}
+.lead{margin-top:30px;font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--graphite);max-width:46ch}
+.links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:38px;align-items:center}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;padding:15px 24px;border-radius:999px;transition:transform .25s var(--ease),background .25s}
+.cta:hover{background:#000;transform:translateY(-1px)}
+.cta i{width:8px;height:8px;border-radius:50%;background:var(--green);display:block}
+.tlink{font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--line);padding-bottom:2px;transition:border-color .2s}
+.tlink:hover{border-color:var(--ink)}
+
+/* the live panel: the one moving thing on the page */
+.live{background:var(--ink);color:#EDEEE8;border-radius:22px;padding:26px 26px 22px;position:relative;min-height:330px;display:flex;flex-direction:column;box-shadow:0 40px 80px -40px rgba(31,31,31,.55)}
+.live-top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#9EA197}
+.live-top b{font-weight:500;color:#EDEEE8}
+.pulse{display:inline-flex;align-items:center;gap:8px}
+.pulse i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(126,217,87,.6);animation:pl 2.2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(126,217,87,.55)}70%{box-shadow:0 0 0 9px rgba(126,217,87,0)}100%{box-shadow:0 0 0 0 rgba(126,217,87,0)}}
+.msgs{margin-top:22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.m{max-width:88%;padding:12px 16px;border-radius:16px;font-size:.98rem;line-height:1.45;opacity:0;transform:translateY(6px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.m.show{opacity:1;transform:none}
+.m.in{background:#2F302C;border-bottom-left-radius:5px}
+.m.out{align-self:flex-end;background:#EDEEE8;color:var(--ink);border-bottom-right-radius:5px}
+.m.out small{display:block;font-size:.75rem;color:var(--soft);margin-bottom:3px}
+.typing{align-self:flex-end;display:flex;gap:5px;padding:14px 16px;background:#3A3B36;border-radius:16px;opacity:0;transition:opacity .3s}
+.typing.show{opacity:1}
+.typing span{width:6px;height:6px;border-radius:50%;background:#9EA197;animation:ty 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes ty{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-3px);opacity:1}}
+.done{margin-top:16px;padding-top:14px;border-top:1px solid #34352F;display:flex;align-items:center;gap:10px;font-size:.88rem;color:#C9CBC2;opacity:0;transition:opacity .45s}
+.done.show{opacity:1}
+.done svg{flex:none}
+.live-cap{margin-top:14px;font-size:.85rem;color:var(--soft)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;align-items:start}.live{min-height:300px}}
+
+/* ---------- sections ---------- */
+section{padding:clamp(80px,12vh,140px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:30px 60px;align-items:end;margin-bottom:clamp(44px,7vh,80px)}
+h2{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.05;letter-spacing:-.03em}
+.sec-head p{color:var(--graphite);max-width:52ch}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr}}
+
+/* work */
+#radovi{border-top:1px solid var(--line)}
+.work{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(28px,5vh,56px) 0}
+.work + .work{border-top:1px solid var(--line)}
+.work:nth-child(even) .stage{order:2}
+.stage{border-radius:24px;aspect-ratio:1/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:4%}
+.phone{width:min(40%,250px);aspect-ratio:9/18.6;border-radius:30px;background:#111;padding:7px;box-shadow:0 30px 60px -28px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06);flex:none;position:relative}
+.phone>*{width:100%;height:100%;border-radius:24px;object-fit:cover;object-position:top;overflow:hidden}
+.phone.tilt{transform:rotate(-4deg) translateY(4%)}
+.phone.tilt2{transform:rotate(3deg) translateY(-3%)}
+.meta{font-size:.9rem;color:var(--soft)}
+.work h3{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,2.5vw,2.2rem);letter-spacing:-.025em;line-height:1.1;margin:8px 0 14px}
+.work p{color:var(--graphite);max-width:44ch}
+.work ul{list-style:none;margin:22px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
+.work li{font-size:.86rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink2)}
+@media (max-width:860px){.work{grid-template-columns:1fr}.work:nth-child(even) .stage{order:0}.stage{aspect-ratio:1/1.12}.phone{width:50%}.ai-card{width:60%;right:4%;bottom:5%;font-size:.78rem}}
+
+/* reservation concept, drawn in HTML */
+.res{background:#FBF7F2;color:#2A1D1B;font-family:var(--text);display:flex;flex-direction:column;padding:26px 16px 16px;font-size:12px}
+.res .rn{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em;color:#5B1E25}
+.res .rs{color:#8C7A72;margin-top:2px}
+.res .rimg{margin:12px 0 10px;height:24%;flex:none;border-radius:14px;background:
+  radial-gradient(120% 90% at 30% 20%,#E9C9A8 0,#B9744F 40%,#5B1E25 100%);position:relative;overflow:hidden}
+.res .rimg:after{content:"";position:absolute;inset:auto 10% 12% 10%;height:36%;border-radius:50% 50% 8px 8px;background:radial-gradient(60% 80% at 50% 20%,rgba(255,240,220,.55),rgba(255,240,220,0))}
+.res h4{font-size:15px;font-weight:600;color:#2A1D1B}
+.res .lab{margin-top:10px;color:#8C7A72;font-size:11px}
+.res .row{display:flex;gap:6px;margin-top:6px}
+.res .chip{flex:1;text-align:center;padding:7px 0;border-radius:10px;border:1px solid #E6DAD0;background:#fff;line-height:1.25}
+.res .chip b{display:block;font-size:14px}
+.res .chip.on{background:#5B1E25;border-color:#5B1E25;color:#FBF7F2}
+.res .btnr{margin-top:auto;background:#5B1E25;color:#FBF7F2;text-align:center;padding:11px;border-radius:12px;font-weight:600;font-size:13px}
+.ai-card{position:absolute;right:7%;bottom:10%;width:min(48%,250px);background:#fff;border-radius:16px;padding:12px 14px;font-size:.82rem;line-height:1.4;box-shadow:0 24px 50px -24px rgba(0,0,0,.35)}
+.ai-card small{display:flex;align-items:center;gap:6px;color:var(--soft);font-size:.72rem;margin-bottom:4px}
+.ai-card small i{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* video phones */
+.vid{position:relative;cursor:pointer}
+.vid button{position:absolute;inset:auto 0 18px 0;margin:auto;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.vid.playing button{opacity:0;pointer-events:none}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.svc article{padding:30px 34px 10px 0}
+.svc article + article{padding-left:34px;border-left:1px solid var(--line)}
+.svc h3{font-family:var(--display);font-weight:600;font-size:1.45rem;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.svc p{color:var(--graphite)}
+.svc .ex{margin-top:18px;font-size:.92rem;color:var(--ink2)}
+@media (max-width:860px){.svc{grid-template-columns:1fr}.svc article,.svc article + article{padding:28px 0;border-left:0;border-top:1px solid var(--line)}.svc article:first-child{border-top:0}}
+
+/* approach */
+#pristup{background:var(--ink);color:#EDEEE8}
+#pristup .sec-head p{color:#A9ABA2}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
+.step{border-top:1px solid #3A3B36;padding-top:22px}
+.step .n{font-family:var(--display);font-size:3.2rem;font-weight:500;line-height:1;color:#4A4C45;letter-spacing:-.03em}
+.step h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:18px 0 8px;letter-spacing:-.015em}
+.step p{color:#A9ABA2;font-size:.98rem}
+.reach{margin-top:clamp(56px,9vh,96px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:baseline;border-top:1px solid #3A3B36;padding-top:28px}
+.reach p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.8rem);letter-spacing:-.02em;line-height:1.25;max-width:30ch}
+.reach span{color:#A9ABA2;max-width:40ch}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:start}
+.contact h2{font-size:clamp(2.2rem,4.4vw,3.8rem);max-width:14ch}
+.contact .lead{margin-top:22px}
+.side{margin-top:34px;display:grid;gap:6px;color:var(--graphite);font-size:.95rem}
+.side a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--line)}
+form{display:grid;gap:14px}
+.f label{display:block;font-size:.88rem;color:var(--graphite);margin-bottom:6px}
+.f input,.f textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.f textarea{min-height:130px;resize:vertical}
+.f input:focus,.f textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(31,31,31,.08)}
+.hp{position:absolute;left:-9999px}
+form .cta{justify-self:start;margin-top:6px}
+.fmsg{font-size:.92rem;min-height:1.4em}
+.fmsg.ok{color:var(--green-ink)}.fmsg.err{color:#B4382C}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:34px 0 40px}
+.foot{display:flex;flex-wrap:wrap;gap:16px 30px;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--soft)}
+.foot .logo{font-size:1.3rem;color:var(--ink)}
+.foot nav{display:flex;gap:22px}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<header id="hd">
+  <div class="wrap bar">
+    <a class="logo" href="/" aria-label="Hostio">host<span>io.</span></a>
+    <nav aria-label="Glavna navigacija">
+      <a href="#radovi" data-i="nav_work">Radovi</a>
+      <a href="#usluge" data-i="nav_svc">Usluge</a>
+      <a href="#pristup" data-i="nav_how">Pristup</a>
+      <a href="#kontakt" data-i="nav_contact">Kontakt</a>
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button type="button" data-lang="bs" aria-pressed="true">BS</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="h1" data-i="h1">Umjetna inteligencija, ugrađena u način na koji vaš biznis već radi.</h1>
+      <p class="lead" data-i="lead">Hostio je studio za primijenjenu umjetnu inteligenciju. Projektujemo i uvodimo AI asistente, automatizacije i softver po mjeri za firme kojima je vrijeme preskupo za rutinu, ma gdje poslovale.</p>
+      <div class="links">
+        <a class="cta" href="#kontakt"><i></i><span data-i="cta">Započnimo razgovor</span></a>
+        <a class="tlink" href="#radovi" data-i="see_work">Pogledajte radove</a>
+      </div>
+    </div>
+    <div>
+      <div class="live" aria-live="off">
+        <div class="live-top"><b id="lvWho">Stomatološka klinika</b><span class="pulse"><i></i><span id="lvTime">23:40</span></span></div>
+        <div class="msgs" id="lvMsgs"></div>
+        <div class="done" id="lvDone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7ED957"/><path d="M7.5 12.4l3 3 6-6.4" stroke="#1F1F1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="lvDoneT"></span></div>
+      </div>
+      <p class="live-cap" data-i="live_cap">Primjeri iz rada naših AI asistenata, u stvarnom vremenu i na jeziku kupca.</p>
+    </div>
+  </div>
+</section>
+
+<section id="radovi" aria-labelledby="h-work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-work" data-i="work_h">Odabrani radovi</h2>
+      <p data-i="work_p">Svaki projekat počinje stvarnim procesom: porukama koje stižu u ponoć, terminima, računima. Ovo su neki od sistema koje smo izgradili i koje možete isprobati.</p>
+    </div>
+
+    <div class="works">
+      <article class="work">
+        <div class="stage" style="background:#E3E5DE">
+          <div class="phone tilt"><img src="/assets/work/zamajac.webp" alt="Zamajac, web stranica auto servisa na mobitelu" loading="lazy" width="640" height="1386"></div>
+          <div class="ai-card" style="right:6%;bottom:12%"><small><i></i><span data-i="z_card_h">AI dijagnoza</span></small><span data-i="z_card">„Kad zakočim, nešto pišti.“ Najčešće istrošene pločice. Pregled sutra u 9:00?</span></div>
+        </div>
+        <div>
+          <span class="meta" data-i="z_meta">Auto servis, demo projekat</span>
+          <h3>Zamajac</h3>
+          <p data-i="z_p">Mušterija opiše kvar svojim riječima, AI predloži šta bi moglo biti i ponudi termin. Radionica sve vidi na zajedničkoj tabli, a račun se pravi jednim klikom.</p>
+          <ul><li data-i="z_1">Web i online termini</li><li data-i="z_2">AI dijagnoza kvara</li><li data-i="z_3">Dashboard i računi</li></ul>
+          <a class="tlink" href="/s/zamajac" target="_blank" rel="noopener" data-i="open_demo">Otvorite demo</a>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="stage" style="background:#ECE3DC">
+          <div class="phone tilt2"><div class="res" aria-label="Koncept rezervacije za restoran">
+            <div class="rn">Ruža</div><div class="rs" data-i="r_sub">Restoran, Stari grad</div>
+            <div class="rimg" aria-hidden="true"></div>
+            <h4 data-i="r_h">Rezervacija stola</h4>
+            <div class="lab" data-i="r_day">Dan</div>
+            <div class="row"><div class="chip"><span data-i="r_d1">Pet</span><b>21</b></div><div class="chip on"><span data-i="r_d2">Sub</span><b>22</b></div><div class="chip"><span data-i="r_d3">Ned</span><b>23</b></div></div>
+            <div class="lab" data-i="r_time">Vrijeme</div>
+            <div class="row"><div class="chip">19:00</div><div class="chip on">20:00</div><div class="chip">21:30</div></div>
+            <div class="lab" data-i="r_guests">Broj gostiju</div>
+            <div class="row"><div class="chip">2</div><div class="chip on">4</div><div class="chip">6+</div></div>
+            <div class="btnr" data-i="r_btn">Potvrdi rezervaciju</div>
+          </div></div>
+          <div class="ai-card"><small><i></i>WhatsApp, 22:51</small><span data-i="r_card">Gost: „Ima li mjesta za četvero u subotu?“ AI: „Ima, u 20:00 uz prozor. Da potvrdim?“</span></div>
+        </div>
+        <div>
+          <span class="meta" data-i="r_meta">Restoran, koncept</span>
+          <h3 data-i="r_title">Rezervacije bez telefona</h3>
+          <p data-i="r_p">Gost rezerviše za manje od minute, sa sajta ili iz poruke na Instagramu i WhatsAppu. Osoblje dobije uredan spisak po danima, bez prepisivanja i dvostrukih termina.</p>
+          <ul><li data-i="r_1">Rezervacija u dva koraka</li><li data-i="r_2">AI odgovori na poruke</li><li data-i="r_3">Spisak za osoblje</li></ul>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="stage" style="background:#E0E5EA">
+          <div class="phone tilt"><img src="/assets/work/vidik.webp" alt="Vidik, stranica za apartman na mobitelu" loading="lazy" width="640" height="1386"></div>
+          <div class="ai-card"><small><i></i>Booking, 08:14</small><span data-i="v_card">„Is the apartment free 12–15 May?“ Slobodno je. Cijena i link za potvrdu su poslani gostu.</span></div>
+        </div>
+        <div>
+          <span class="meta" data-i="v_meta">Apartmani, demo projekat</span>
+          <h3>Vidik</h3>
+          <p data-i="v_p">Stranica za smještaj na tri jezika, s direktnim upitima bez provizije. Asistent odgovara gostima iz cijelog svijeta i provjerava slobodne datume.</p>
+          <ul><li data-i="v_1">Bosanski, engleski, njemački</li><li data-i="v_2">Direktne rezervacije</li><li data-i="v_3">AI odgovori 24/7</li></ul>
+          <a class="tlink" href="/a/vidik" target="_blank" rel="noopener" data-i="open_demo">Otvorite demo</a>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="stage" style="background:#E6E3EC">
+          <div class="phone vid tilt" data-src="/assets/video/lumen-reklama.mp4"><img src="/assets/video/lumen-poster.jpg" alt="Lumen, AI reklama za stomatološku kliniku" loading="lazy"><button type="button" aria-label="Pusti video"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></button></div>
+          <div class="phone vid tilt2" data-src="/assets/video/obrtaj-reklama.mp4"><img src="/assets/video/obrtaj-poster.jpg" alt="Obrtaj, AI reklama za auto servis" loading="lazy"><button type="button" aria-label="Pusti video"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></button></div>
+        </div>
+        <div>
+          <span class="meta" data-i="a_meta">Video i glas, koncepti</span>
+          <h3 data-i="a_title">AI reklame</h3>
+          <p data-i="a_p">Kratki filmovi za društvene mreže, bez kamere i bez snimanja. Animacija, muzika i profesionalni glas na jeziku vašeg tržišta.</p>
+          <ul><li data-i="a_1">Scenarij i animacija</li><li data-i="a_2">Voiceover na više jezika</li><li data-i="a_3">Formati za Reels i TikTok</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="usluge" aria-labelledby="h-svc">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-svc" data-i="svc_h">Čime se bavimo</h2>
+      <p data-i="svc_p">Ne prodajemo gotove pakete. Gledamo gdje vaš tim gubi vrijeme i gradimo ono što taj problem stvarno rješava.</p>
+    </div>
+    <div class="svc">
+      <article>
+        <h3 data-i="s1_h">AI asistenti</h3>
+        <p data-i="s1_p">Odgovaraju na upite, zakazuju termine i prosljeđuju čovjeku ono što traži čovjeka. Na webu, WhatsAppu, Instagramu i Viberu, danju i noću.</p>
+        <p class="ex" data-i="s1_ex">Za klinike, salone, servise, smještaj i ugostiteljstvo.</p>
+      </article>
+      <article>
+        <h3 data-i="s2_h">Automatizacija i softver</h3>
+        <p data-i="s2_p">Interni alati, dashboardi, računi i povezivanje s postojećim sistemima. Manje ručnog prepisivanja, manje grešaka, bolji pregled.</p>
+        <p class="ex" data-i="s2_ex">Za timove koji danas sve vode u tabelama i porukama.</p>
+      </article>
+      <article>
+        <h3 data-i="s3_h">Video i glas</h3>
+        <p data-i="s3_p">Reklame, prezentacije i objašnjenja proizvoda bez snimanja, s glasom koji zvuči prirodno na više jezika.</p>
+        <p class="ex" data-i="s3_ex">Za brendove kojima treba redovan sadržaj bez produkcijske ekipe.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="pristup" aria-labelledby="h-how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-how" data-i="how_h">Kako radimo</h2>
+      <p data-i="how_p">Kratko, jasno i bez iznenađenja. Prvu radnu verziju obično vidite za nekoliko sedmica.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3 data-i="st1_h">Razgovor</h3><p data-i="st1_p">Upoznajemo vaš proces i mjesta na kojima se gubi vrijeme.</p></div>
+      <div class="step"><div class="n">2</div><h3 data-i="st2_h">Prijedlog</h3><p data-i="st2_p">Jasan opseg, rok i cijena prije nego što počnemo.</p></div>
+      <div class="step"><div class="n">3</div><h3 data-i="st3_h">Izrada</h3><p data-i="st3_p">Gradimo u kratkim krugovima i testiramo na vašim stvarnim primjerima.</p></div>
+      <div class="step"><div class="n">4</div><h3 data-i="st4_h">Podrška</h3><p data-i="st4_p">Pratimo kako sistem radi i unapređujemo ga zajedno s vama.</p></div>
+    </div>
+    <div class="reach">
+      <p data-i="reach">Radimo na daljinu, s firmama u regiji i šire.</p>
+      <span data-i="reach_s">Rješenja govore jezikom vaših kupaca, a mi s vama na bosanskom ili engleskom.</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" aria-labelledby="h-contact">
+  <div class="wrap contact">
+    <div>
+      <h2 id="h-contact" data-i="c_h">Imate proces koji oduzima previše vremena?</h2>
+      <p class="lead" data-i="c_p">Opišite ga u par rečenica. Javit ćemo se u roku od jednog radnog dana s prijedlogom kako bi se mogao riješiti.</p>
+      <div class="side">
+        <span>Instagram: <a href="https://www.instagram.com/hostio.ba/" target="_blank" rel="noopener">@hostio.ba</a></span>
+      </div>
+    </div>
+    <form id="cf" novalidate>
+      <div class="f"><label for="c-name" data-i="f_name">Ime i firma</label><input id="c-name" name="name" required minlength="2" maxlength="160" autocomplete="name"></div>
+      <div class="f"><label for="c-contact" data-i="f_contact">E-mail ili telefon</label><input id="c-contact" name="contact" required minlength="5" maxlength="160" autocomplete="email"></div>
+      <div class="f"><label for="c-msg" data-i="f_msg">Šta biste željeli riješiti?</label><textarea id="c-msg" name="message" maxlength="2000"></textarea></div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="cta" type="submit" id="cfBtn"><i></i><span data-i="f_send">Pošaljite upit</span></button>
+      <p class="fmsg" id="cfMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="/">host<span>io.</span></a>
+    <nav aria-label="Podnožje"><a href="/privatnost" data-i="privacy">Privatnost</a><a href="https://www.instagram.com/hostio.ba/" target="_blank" rel="noopener">Instagram</a></nav>
+    <span>© <span id="yr"></span> Hostio</span>
+  </div>
+</footer>
+
+<script>
+const T={
+ en:{
+  nav_work:"Work",nav_svc:"Services",nav_how:"Approach",nav_contact:"Contact",
+  h1:"Artificial intelligence, built into the way your business already works.",
+  lead:"Hostio is an applied AI studio. We design and deploy AI assistants, automations and custom software for companies whose time is too valuable for routine work, wherever they operate.",
+  cta:"Start a conversation",see_work:"See our work",
+  live_cap:"Examples of our AI assistants at work, in real time and in the customer's language.",
+  work_h:"Selected work",work_p:"Every project starts with a real process: messages arriving at midnight, bookings, invoices. These are some of the systems we have built, and you can try them yourself.",
+  z_card_h:"AI diagnosis",z_card:"“When I brake, something squeals.” Most likely worn pads. Inspection tomorrow at 9:00?",
+  z_meta:"Car service, demo project",z_p:"Customers describe the problem in their own words, the AI suggests what it might be and offers a slot. The workshop sees everything on a shared board, and invoices take one click.",
+  z_1:"Website and online booking",z_2:"AI fault diagnosis",z_3:"Dashboard and invoicing",open_demo:"Open the demo",
+  r_sub:"Restaurant, Old Town",r_h:"Book a table",r_day:"Day",r_d1:"Fri",r_d2:"Sat",r_d3:"Sun",r_time:"Time",r_guests:"Guests",r_btn:"Confirm booking",
+  r_card:"Guest: “Any room for four on Saturday?” AI: “Yes, at 8 pm by the window. Shall I confirm?”",
+  r_meta:"Restaurant, concept",r_title:"Bookings without the phone",r_p:"Guests book in under a minute, from the website or straight from Instagram and WhatsApp. Staff get a clean list by day, with no copying and no double bookings.",
+  r_1:"Two-step booking",r_2:"AI replies to messages",r_3:"Daily list for staff",
+  v_card:"“Is the apartment free 12–15 May?” It is. The price and a confirmation link were sent to the guest.",
+  v_meta:"Holiday rental, demo project",v_p:"A three-language booking site with direct enquiries and no commission. The assistant answers guests from anywhere and checks availability.",
+  v_1:"Bosnian, English, German",v_2:"Direct bookings",v_3:"AI replies 24/7",
+  a_meta:"Video and voice, concepts",a_title:"AI ads",a_p:"Short films for social media, with no camera and no shoot. Animation, music and a professional voice in your market's language.",
+  a_1:"Script and animation",a_2:"Multilingual voiceover",a_3:"Formats for Reels and TikTok",
+  svc_h:"What we do",svc_p:"We don't sell ready-made packages. We look at where your team loses time and build what actually solves that problem.",
+  s1_h:"AI assistants",s1_p:"They answer enquiries, book appointments and hand over to a person whatever needs a person. On the web, WhatsApp, Instagram and Viber, day and night.",s1_ex:"For clinics, salons, workshops, rentals and hospitality.",
+  s2_h:"Automation and software",s2_p:"Internal tools, dashboards, invoicing and connections to the systems you already use. Less manual copying, fewer mistakes, a clearer overview.",s2_ex:"For teams that run everything on spreadsheets and messages today.",
+  s3_h:"Video and voice",s3_p:"Ads, presentations and product explainers without a shoot, with a voice that sounds natural in several languages.",s3_ex:"For brands that need regular content without a production crew.",
+  how_h:"How we work",how_p:"Short, clear and without surprises. You usually see the first working version within a few weeks.",
+  st1_h:"Conversation",st1_p:"We learn your process and where the time goes.",st2_h:"Proposal",st2_p:"A clear scope, timeline and price before we start.",
+  st3_h:"Build",st3_p:"We build in short cycles and test on your real cases.",st4_h:"Support",st4_p:"We watch how the system performs and improve it with you.",
+  reach:"We work remotely, with companies in the region and beyond.",reach_s:"Our solutions speak your customers' language, and we speak with you in English or Bosnian.",
+  c_h:"Is there a process that takes too much of your time?",c_p:"Describe it in a few sentences. We'll get back to you within one working day with a proposal for how it could be solved.",
+  f_name:"Name and company",f_contact:"Email or phone",f_msg:"What would you like to solve?",f_send:"Send enquiry",privacy:"Privacy"
+ },
+ bs:{}
+};
+// remember the Bosnian originals from the page itself
+document.querySelectorAll('[data-i]').forEach(el=>{T.bs[el.dataset.i]=el.innerHTML;});
+const SCENES={
+ bs:[
+  {who:"Stomatološka klinika",time:"23:40",msgs:[["in","Imate li slobodan termin sutra ujutro?"],["out","Imamo u 10:30. Da vas upišem na kontrolni pregled?","AI asistent"],["in","Može, hvala."]],done:"Termin upisan u kalendar ordinacije"},
+  {who:"Rent-a-car",time:"07:12",msgs:[["in","Is the Golf available Friday to Monday?"],["out","Yes, four days for 140 €. Shall I reserve it for you?","AI asistent"],["in","Yes please."]],done:"Rezervacija poslana vlasniku na potvrdu"},
+  {who:"Auto servis",time:"18:05",msgs:[["in","Kad zakočim, nešto pišti."],["out","Najčešće su to istrošene pločice. Imamo termin za pregled sutra u 9:00.","AI asistent"],["in","Super, dolazim."]],done:"Upit pretvoren u termin"},
+  {who:"Računovodstvo",time:"09:00",msgs:[["in","34 nova računa stigla su u inbox."],["out","Podaci su izvučeni i uneseni u tabelu. Dva računa traže provjeru.","AI automatizacija"]],done:"Spremno za pregled"}
+ ],
+ en:[
+  {who:"Dental clinic",time:"23:40",msgs:[["in","Do you have anything tomorrow morning?"],["out","We have 10:30. Shall I book you in for a check-up?","AI assistant"],["in","Yes, thank you."]],done:"Booked into the clinic calendar"},
+  {who:"Car rental",time:"07:12",msgs:[["in","Imate li Golf od petka do ponedjeljka?"],["out","Imamo, četiri dana za 140 €. Da ga rezervišem?","AI assistant"],["in","Može."]],done:"Booking sent to the owner for approval"},
+  {who:"Car service",time:"18:05",msgs:[["in","When I brake, something squeals."],["out","That is most often worn brake pads. We can inspect it tomorrow at 9:00.","AI assistant"],["in","Great, see you then."]],done:"Enquiry turned into an appointment"},
+  {who:"Accounting",time:"09:00",msgs:[["in","34 new invoices arrived in the inbox."],["out","The data has been extracted and entered into the sheet. Two invoices need a check.","AI automation"]],done:"Ready for review"}
+ ]};
+let LANG="bs";
+function setLang(l){
+ LANG=l;document.documentElement.lang=l;
+ document.querySelectorAll('[data-i]').forEach(el=>{const v=T[l][el.dataset.i];if(v!=null)el.innerHTML=v;});
+ document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+ document.title=l==='en'?"Hostio, an applied AI studio":"Hostio, studio za primijenjenu umjetnu inteligenciju";
+ try{localStorage.setItem('hostio_lang',l)}catch(e){}
+ restart();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+/* live panel */
+const $m=document.getElementById('lvMsgs'),$who=document.getElementById('lvWho'),$time=document.getElementById('lvTime'),$done=document.getElementById('lvDone'),$doneT=document.getElementById('lvDoneT');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let timers=[],si=0;
+const later=(f,ms)=>timers.push(setTimeout(f,ms));
+function play(){
+ const sc=SCENES[LANG][si%SCENES[LANG].length];si++;
+ $m.innerHTML='';$done.classList.remove('show');$who.textContent=sc.who;$time.textContent=sc.time;$doneT.textContent=sc.done;
+ let t=300;
+ sc.msgs.forEach(([k,txt,lab])=>{
+  if(k==='out'){const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<span></span><span></span><span></span>';later(()=>{$m.appendChild(ty);requestAnimationFrame(()=>ty.classList.add('show'))},t);t+=1300;later(()=>ty.remove(),t);}
+  const d=document.createElement('div');d.className='m '+k;d.innerHTML=(lab?'<small>'+lab+'</small>':'')+txt;
+  later(()=>{$m.appendChild(d);requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.add('show')))},t);t+=k==='in'?1500:2000;
+ });
+ later(()=>$done.classList.add('show'),t);t+=3200;
+ later(play,t);
+}
+function restart(){timers.forEach(clearTimeout);timers=[];si=Math.max(0,si-1);
+ if(reduce){const sc=SCENES[LANG][0];$who.textContent=sc.who;$time.textContent=sc.time;$m.innerHTML=sc.msgs.map(([k,txt,lab])=>`<div class="m ${k} show">${lab?'<small>'+lab+'</small>':''}${txt}</div>`).join('');$doneT.textContent=sc.done;$done.classList.add('show');return;}
+ play();}
+
+/* videos */
+document.querySelectorAll('.vid').forEach(v=>v.addEventListener('click',()=>{
+ if(v.classList.contains('playing'))return;
+ const vid=document.createElement('video');vid.src=v.dataset.src;vid.playsInline=true;vid.controls=true;vid.autoplay=true;vid.setAttribute('playsinline','');
+ v.querySelector('img').replaceWith(vid);v.classList.add('playing');vid.play().catch(()=>{});
+}));
+
+/* header line on scroll */
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* contact form -> Supabase leads (insert only) */
+const SB_URL="https://eauwnwvieyepzrbildqt.supabase.co",SB_KEY="sb_publishable_iQCs2n49JzTcJyrPadZIiw_xXSI4Qh_";
+const cf=document.getElementById('cf'),cfMsg=document.getElementById('cfMsg'),cfBtn=document.getElementById('cfBtn');
+const M={bs:{need:"Upišite ime i e-mail ili telefon.",sending:"Šaljem…",ok:"Hvala. Upit je primljen, javljamo se u roku od jednog radnog dana.",err:"Slanje nije uspjelo. Provjerite internet i pokušajte ponovo."},
+ en:{need:"Please enter your name and an email or phone number.",sending:"Sending…",ok:"Thank you. We have your enquiry and will reply within one working day.",err:"Sending failed. Check your connection and try again."}};
+cf.addEventListener('submit',async e=>{
+ e.preventDefault();const d=Object.fromEntries(new FormData(cf));if(d.website)return;
+ const name=(d.name||'').trim(),contact=(d.contact||'').trim();
+ if(name.length<2||contact.length<5){cfMsg.className='fmsg err';cfMsg.textContent=M[LANG].need;return;}
+ cfBtn.disabled=true;cfMsg.className='fmsg';cfMsg.textContent=M[LANG].sending;
+ try{const r=await fetch(SB_URL+'/rest/v1/leads',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},
+   body:JSON.stringify({name,contact,message:(d.message||'').trim()||null,source:'hostio-studio-'+LANG})});
+  if(!r.ok)throw new Error(r.status);cf.reset();cfMsg.className='fmsg ok';cfMsg.textContent=M[LANG].ok;}
+ catch(err){cfMsg.className='fmsg err';cfMsg.textContent=M[LANG].err;}
+ finally{cfBtn.disabled=false;}
+});
+
+/* initial language: saved choice, ?lang=, or the browser's language */
+let init='bs';
+try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('hostio_lang');
+ init=q==='en'||q==='bs'?q:(s||(/^(bs|hr|sr|sh|cnr)/i.test(navigator.language||'')?'bs':'en'));}catch(e){}
+if(init==='en')setLang('en');else restart();
+</script>
+</body>
+</html>
